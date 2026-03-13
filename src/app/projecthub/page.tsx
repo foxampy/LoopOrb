@@ -7,7 +7,8 @@ import {
   Rocket, FlaskConical, Cpu, Waves, Droplets, Microscope,
   Satellite, Target, Clock, CheckCircle2, Circle, Hexagon, Triangle,
   Sparkles, Lightbulb, TrendingUp, Users, Gem, Award, ArrowRight,
-  Zap, Globe, Menu, X, Wallet
+  Zap, Globe, Menu, X, Wallet, FileText, FileCheck, Hash, Box,
+  Lock, Unlock, Vote, Coins, Brain, Shield
 } from "lucide-react";
 
 // --- UNIVERSAL NAVBAR FOR PROJECTHUB ---
@@ -108,141 +109,166 @@ function ProjectHubNavbar() {
   );
 }
 
-// --- TYPES ---
-interface Project {
-  id: string;
-  name: string;
-  code: string;
-  category: "hardware" | "software" | "infrastructure" | "research";
-  status: "concept" | "development" | "testing" | "production";
-  budget: string;
-  timeline: string;
-  progress: number;
-  description: string;
-  icon: any;
-  color: string;
-  team: number;
-  impact: string;
+// --- PROJECT LIFECYCLE COMPONENT ---
+function ProjectLifecycle() {
+  const stages = [
+    {
+      id: 1,
+      title: "Proposal Submission",
+      subtitle: "Подготовка предложения",
+      icon: FileText,
+      color: "from-blue-500 to-cyan-500",
+      details: [
+        "Описание проекта и целей",
+        "Таймлайн и milestones",
+        "Бюджет и распределение",
+        "Информация о команде"
+      ]
+    },
+    {
+      id: 2,
+      title: "Community Review",
+      subtitle: "Обзор сообществом",
+      icon: Users,
+      color: "from-cyan-500 to-teal-500",
+      details: [
+        "7-14 дней публичного ревью",
+        "Peer review от экспертов",
+        "Обсуждение в Discord",
+        "Правки по обратной связи"
+      ]
+    },
+    {
+      id: 3,
+      title: "DAO Voting",
+      subtitle: "Голосование DAO",
+      icon: Vote,
+      color: "from-teal-500 to-emerald-500",
+      details: [
+        "Квадратичное голосование",
+        "Quorum: 5% от staked VOD",
+        "Порог одобрения: 60%",
+        "7 дней голосования"
+      ]
+    },
+    {
+      id: 4,
+      title: "Development",
+      subtitle: "Разработка",
+      icon: Cpu,
+      color: "from-emerald-500 to-green-500",
+      details: [
+        "Smart contract escrow",
+        "Milestone-based funding",
+        "Регулярные обновления",
+        "Открытый репозиторий"
+      ]
+    },
+    {
+      id: 5,
+      title: "Milestone Verification",
+      subtitle: "Верификация этапов",
+      icon: FileCheck,
+      color: "from-green-500 to-lime-500",
+      details: [
+        "Предоставление доказательств",
+        "DAO verification vote",
+        "Release next tranche",
+        "Или project termination"
+      ]
+    },
+    {
+      id: 6,
+      title: "IP-NFT Creation",
+      subtitle: "Коммерциализация",
+      icon: Hash,
+      color: "from-lime-500 to-yellow-500",
+      details: [
+        "Создание IP-NFT",
+        "Токенизация интеллектуальной собственности",
+        "Revenue distribution",
+        "40% инвесторам, 30% команде"
+      ]
+    }
+  ];
+
+  return (
+    <div className="space-y-4">
+      {stages.map((stage, index) => (
+        <motion.div
+          key={stage.id}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: index * 0.1 }}
+          className="relative flex items-start gap-4 p-4 rounded-xl border bg-[#e8f5f0] border-[#1e3a5f]/20"
+        >
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${stage.color}`}>
+            <stage.icon className="w-6 h-6 text-white" />
+          </div>
+          
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-semibold text-[#1e3a5f]">{stage.id}. {stage.title}</span>
+            </div>
+            <div className="text-sm text-[#2d6a4f] mb-2">{stage.subtitle}</div>
+            <div className="space-y-1">
+              {stage.details.map((detail, i) => (
+                <div key={i} className="text-xs text-[#1e3a5f]/60 flex items-center gap-2">
+                  <div className="w-1 h-1 rounded-full bg-[#1e3a5f]/40" />
+                  {detail}
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {index < stages.length - 1 && (
+            <div className="absolute -bottom-3 left-6 w-px h-6 bg-gradient-to-b from-[#1e3a5f]/20 to-transparent" />
+          )}
+        </motion.div>
+      ))}
+    </div>
+  );
 }
 
-interface Milestone {
-  id: string;
-  projectId: string;
-  title: string;
-  date: string;
-  completed: boolean;
+// --- FUNDING TIERS COMPONENT ---
+function FundingTiers() {
+  const tiers = [
+    { name: "Micro Grant", amount: "$5K - $20K", duration: "3 months", requirements: "MVP, 1 milestone", color: "from-slate-500 to-slate-600" },
+    { name: "Seed Grant", amount: "$20K - $100K", duration: "6 months", requirements: "Team, prototype", color: "from-cyan-500 to-blue-500" },
+    { name: "Growth Grant", amount: "$100K - $500K", duration: "12 months", requirements: "Traction, partners", color: "from-emerald-500 to-teal-500", featured: true },
+    { name: "Scale Grant", amount: "$500K - $2M", duration: "24 months", requirements: "Revenue, market fit", color: "from-amber-500 to-orange-500" },
+    { name: "Moonshot", amount: "$2M+", duration: "36 months", requirements: "Breakthrough tech", color: "from-purple-500 to-pink-500" },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      {tiers.map((tier, index) => (
+        <motion.div
+          key={tier.name}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          className={`relative p-4 rounded-xl border ${tier.featured ? 'border-[#2d6a4f] border-2' : 'border-[#1e3a5f]/20'} bg-[#e8f5f0]`}
+        >
+          {tier.featured && (
+            <div className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-[#2d6a4f] text-white text-[10px] font-bold rounded-full">
+              POPULAR
+            </div>
+          )}
+          <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${tier.color} flex items-center justify-center mb-3`}>
+            <Coins className="w-4 h-4 text-white" />
+          </div>
+          <h4 className="font-bold text-[#1e3a5f] text-sm mb-1">{tier.name}</h4>
+          <div className="text-lg font-bold text-[#2d6a4f] mb-2">{tier.amount}</div>
+          <div className="text-xs text-[#1e3a5f]/60 space-y-1">
+            <div>Duration: {tier.duration}</div>
+            <div className="text-[10px]">{tier.requirements}</div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
 }
-
-// --- MOCK DATA ---
-const projects: Project[] = [
-  {
-    id: "aquacell-genesis",
-    name: "AquaCell Genesis",
-    code: "AC-G1",
-    category: "hardware",
-    status: "production",
-    budget: "$450,000",
-    timeline: "Q1-Q4 2025",
-    progress: 85,
-    description: "Портативная лаборатория для анализа воды с лабораторной точностью ±2%. Lab-on-chip технология с NFC-верификацией картриджей.",
-    icon: FlaskConical,
-    color: "mint",
-    team: 12,
-    impact: "2,400+ устройств",
-  },
-  {
-    id: "aquahome-pro",
-    name: "AquaHome Pro",
-    code: "AH-P1",
-    category: "hardware",
-    status: "testing",
-    budget: "$350,000",
-    timeline: "Q2-Q4 2025",
-    progress: 62,
-    description: "Стационарная система мониторинга с автосэмплером TimeCapsule. 12 проб/квартал + real-time Guardian на выходе фильтра.",
-    icon: HomeIcon,
-    color: "mint",
-    team: 8,
-    impact: "Beta: 150 домов",
-  },
-  {
-    id: "vod-chain",
-    name: "VOD Chain Core",
-    code: "VC-C1",
-    category: "software",
-    status: "development",
-    budget: "$600,000",
-    timeline: "Q1-Q3 2025",
-    progress: 45,
-    description: "Блокчейн-ядро на TON с 10k TPS. Data Anchoring Protocol — верификация водных данных через криптографические хеши.",
-    icon: Cpu,
-    color: "navy",
-    team: 15,
-    impact: "Testnet live",
-  },
-  {
-    id: "ai-analytics",
-    name: "AI Analytics Engine",
-    code: "AI-A1",
-    category: "software",
-    status: "development",
-    budget: "$480,000",
-    timeline: "Q2-Q4 2025",
-    progress: 38,
-    description: "ML-модели прогнозирования качества воды. Edge computing + централизованное обучение. Точность прогнозов >85%.",
-    icon: BrainIcon,
-    color: "navy",
-    team: 10,
-    impact: "MVP ready",
-  },
-  {
-    id: "aquadrone",
-    name: "AquaDrone Fleet",
-    code: "AD-F1",
-    category: "infrastructure",
-    status: "concept",
-    budget: "$1,200,000",
-    timeline: "2025-2026",
-    progress: 15,
-    description: "Автономные катамараны для удалённого сэмплирования. 4-6 часов автономности, доставка проб между буями.",
-    icon: Satellite,
-    color: "mint",
-    team: 6,
-    impact: "R&D phase",
-  },
-  {
-    id: "desci-protocol",
-    name: "DeSci Verification",
-    code: "DS-V1",
-    category: "research",
-    status: "testing",
-    budget: "$180,000",
-    timeline: "Q3-Q4 2025",
-    progress: 70,
-    description: "Протокол peer-review на блокчейне. Верификация научных исследований с токенизацией IP через IP-NFT.",
-    icon: Microscope,
-    color: "navy",
-    team: 5,
-    impact: "Pilot: 50 papers",
-  },
-];
-
-const milestones: Milestone[] = [
-  { id: "m1", projectId: "aquacell-genesis", title: "Прототип MEMS-спектрометра", date: "2025-01", completed: true },
-  { id: "m2", projectId: "aquacell-genesis", title: "Калибровка ±2% точности", date: "2025-03", completed: true },
-  { id: "m3", projectId: "aquacell-genesis", title: "NFC-защита картриджей", date: "2025-05", completed: true },
-  { id: "m4", projectId: "aquacell-genesis", title: "Сертификация ISO", date: "2025-07", completed: false },
-  { id: "m5", projectId: "vod-chain", title: "Testnet запуск", date: "2025-02", completed: true },
-  { id: "m6", projectId: "vod-chain", title: "Data Anchoring v1", date: "2025-04", completed: false },
-  { id: "m7", projectId: "vod-chain", title: "Mainnet релиз", date: "2025-08", completed: false },
-];
-
-const stats = [
-  { label: "Активных проектов", value: "12", icon: Rocket, trend: "+3" },
-  { label: "Исследователей", value: "156", icon: Users, trend: "+24" },
-  { label: "Бюджет R&D", value: "$4.2M", icon: Gem, trend: "Q2" },
-  { label: "Патентов", value: "23", icon: Award, trend: "+5" },
-];
 
 // --- HELPER COMPONENTS ---
 function HomeIcon(props: any) {
@@ -276,7 +302,6 @@ function NeomorphicCard({ children, className = "", hover = true }: { children: 
         ${className}
       `}
     >
-      {/* Texture overlay */}
       <div 
         className="absolute inset-0 rounded-2xl opacity-30 pointer-events-none"
         style={{
@@ -313,277 +338,18 @@ function RetroButton({ children, variant = "primary", className = "", onClick }:
   );
 }
 
-// --- PROJECT CARD ---
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const Icon = project.icon;
-  const isMint = project.color === "mint";
-  
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-    >
-      <NeomorphicCard className="h-full group">
-        <div className="p-6">
-          {/* Header */}
-          <div className="flex items-start justify-between mb-4">
-            <div className={`
-              w-14 h-14 rounded-xl flex items-center justify-center
-              ${isMint ? "bg-[#2d6a4f]/10 text-[#2d6a4f]" : "bg-[#1e3a5f]/10 text-[#1e3a5f]"}
-              border-2 ${isMint ? "border-[#2d6a4f]/30" : "border-[#1e3a5f]/30"}
-              group-hover:scale-110 transition-transform duration-300
-            `}>
-              <Icon className="w-7 h-7" />
-            </div>
-            <div className="text-right">
-              <div className="text-xs font-mono text-[#1e3a5f]/60 uppercase tracking-wider">{project.code}</div>
-              <div className={`
-                inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mt-1
-                ${project.status === "production" ? "bg-[#2d6a4f]/20 text-[#2d6a4f]" :
-                  project.status === "testing" ? "bg-[#f4a261]/20 text-[#e76f51]" :
-                  project.status === "development" ? "bg-[#1e3a5f]/20 text-[#1e3a5f]" :
-                  "bg-[#6c757d]/20 text-[#6c757d]"}
-              `}>
-                <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${
-                  project.status === "production" ? "bg-[#2d6a4f]" :
-                  project.status === "testing" ? "bg-[#e76f51]" :
-                  project.status === "development" ? "bg-[#1e3a5f]" : "bg-[#6c757d]"
-                }`} />
-                {project.status === "production" ? "В производстве" :
-                 project.status === "testing" ? "Тестирование" :
-                 project.status === "development" ? "Разработка" : "Концепт"}
-              </div>
-            </div>
-          </div>
-
-          {/* Title & Description */}
-          <h3 className="text-xl font-bold text-[#1e3a5f] mb-2 group-hover:text-[#2d6a4f] transition-colors">
-            {project.name}
-          </h3>
-          <p className="text-sm text-[#1e3a5f]/70 leading-relaxed mb-4 line-clamp-3">
-            {project.description}
-          </p>
-
-          {/* Progress Bar */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between text-xs mb-2">
-              <span className="text-[#1e3a5f]/60 font-medium">Прогресс</span>
-              <span className="text-[#2d6a4f] font-bold">{project.progress}%</span>
-            </div>
-            <div className="h-3 bg-[#1e3a5f]/10 rounded-full overflow-hidden border border-[#1e3a5f]/20">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${project.progress}%` }}
-                transition={{ delay: index * 0.1 + 0.3, duration: 1, ease: "easeOut" }}
-                className={`
-                  h-full rounded-full relative
-                  ${isMint ? "bg-gradient-to-r from-[#2d6a4f] to-[#40916c]" : "bg-gradient-to-r from-[#1e3a5f] to-[#2d5a87]"}
-                `}
-              >
-                <div className="absolute inset-0 bg-white/20 animate-pulse" />
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-3 gap-3 mb-4">
-            <div className="bg-[#1e3a5f]/5 rounded-lg p-2 text-center border border-[#1e3a5f]/10">
-              <div className="text-xs text-[#1e3a5f]/50 mb-1">Бюджет</div>
-              <div className="text-sm font-bold text-[#1e3a5f]">{project.budget}</div>
-            </div>
-            <div className="bg-[#1e3a5f]/5 rounded-lg p-2 text-center border border-[#1e3a5f]/10">
-              <div className="text-xs text-[#1e3a5f]/50 mb-1">Команда</div>
-              <div className="text-sm font-bold text-[#1e3a5f]">{project.team}</div>
-            </div>
-            <div className="bg-[#1e3a5f]/5 rounded-lg p-2 text-center border border-[#1e3a5f]/10">
-              <div className="text-xs text-[#1e3a5f]/50 mb-1">Таймлайн</div>
-              <div className="text-sm font-bold text-[#1e3a5f]">{project.timeline}</div>
-            </div>
-          </div>
-
-          {/* Impact Badge */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs text-[#1e3a5f]/60">
-              <Target className="w-3.5 h-3.5" />
-              <span>Impact: <span className="text-[#2d6a4f] font-semibold">{project.impact}</span></span>
-            </div>
-            <button className="text-[#2d6a4f] hover:text-[#1e3a5f] transition-colors">
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-        </div>
-      </NeomorphicCard>
-    </motion.div>
-  );
-}
-
-// --- MILESTONE TIMELINE ---
-function MilestoneTimeline() {
-  const projectMilestones = milestones.filter(m => m.projectId === "aquacell-genesis");
-  
-  return (
-    <NeomorphicCard className="p-6">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-lg bg-[#2d6a4f]/10 flex items-center justify-center border-2 border-[#2d6a4f]/30">
-          <Clock className="w-5 h-5 text-[#2d6a4f]" />
-        </div>
-        <div>
-          <h3 className="text-lg font-bold text-[#1e3a5f]">Майлстоуны AquaCell</h3>
-          <p className="text-xs text-[#1e3a5f]/60">Дорожная карта разработки</p>
-        </div>
-      </div>
-
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-[19px] top-8 bottom-4 w-0.5 bg-[#1e3a5f]/20" />
-        
-        <div className="space-y-4">
-          {projectMilestones.map((milestone, index) => (
-            <motion.div
-              key={milestone.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.15 }}
-              className="relative flex items-start gap-4"
-            >
-              <div className={`
-                w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 z-10
-                border-2 ${milestone.completed 
-                  ? "bg-[#2d6a4f] border-[#2d6a4f] text-white" 
-                  : "bg-[#e8f5f0] border-[#1e3a5f]/30 text-[#1e3a5f]/40"}
-              `}>
-                {milestone.completed ? (
-                  <CheckCircle2 className="w-5 h-5" />
-                ) : (
-                  <Circle className="w-5 h-5" />
-                )}
-              </div>
-              <div className={`flex-1 pb-4 ${index !== projectMilestones.length - 1 ? "border-b border-[#1e3a5f]/10" : ""}`}>
-                <div className="flex items-center justify-between mb-1">
-                  <span className={`font-medium ${milestone.completed ? "text-[#1e3a5f]" : "text-[#1e3a5f]/50"}`}>
-                    {milestone.title}
-                  </span>
-                  <span className="text-xs font-mono text-[#1e3a5f]/40">{milestone.date}</span>
-                </div>
-                {milestone.completed && (
-                  <span className="text-xs text-[#2d6a4f] font-medium">✓ Завершено</span>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </NeomorphicCard>
-  );
-}
-
-// --- RETRO STATS CARD ---
-function RetroStatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
-  const Icon = stat.icon;
-  
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: index * 0.1 }}
-    >
-      <NeomorphicCard className="p-5 h-full">
-        <div className="flex items-start justify-between mb-3">
-          <div className="w-12 h-12 rounded-xl bg-[#2d6a4f]/10 flex items-center justify-center border-2 border-[#2d6a4f]/30">
-            <Icon className="w-6 h-6 text-[#2d6a4f]" />
-          </div>
-          <span className="text-xs font-mono text-[#2d6a4f] bg-[#2d6a4f]/10 px-2 py-1 rounded-full">
-            {stat.trend}
-          </span>
-        </div>
-        <div className="text-3xl font-bold text-[#1e3a5f] mb-1">{stat.value}</div>
-        <div className="text-sm text-[#1e3a5f]/60">{stat.label}</div>
-      </NeomorphicCard>
-    </motion.div>
-  );
-}
-
-// --- DECORATIVE RETRO ELEMENTS ---
-function RetroDecorations() {
-  return (
-    <>
-      {/* Floating geometric shapes */}
-      <motion.div
-        animate={{ 
-          y: [0, -20, 0], 
-          rotate: [0, 5, 0],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 right-10 w-24 h-24 opacity-10 pointer-events-none"
-      >
-        <Hexagon className="w-full h-full text-[#1e3a5f]" strokeWidth={1} />
-      </motion.div>
-      
-      <motion.div
-        animate={{ 
-          y: [0, 15, 0], 
-          rotate: [0, -10, 0],
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-40 left-10 w-16 h-16 opacity-10 pointer-events-none"
-      >
-        <Triangle className="w-full h-full text-[#2d6a4f]" strokeWidth={1} />
-      </motion.div>
-
-      {/* Grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(#1e3a5f 1px, transparent 1px),
-            linear-gradient(90deg, #1e3a5f 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px',
-        }}
-      />
-    </>
-  );
-}
-
 // --- MAIN PAGE ---
 export default function ProjectHubPage() {
-  const [activeFilter, setActiveFilter] = useState<string>("all");
-
-  const filteredProjects = activeFilter === "all" 
-    ? projects 
-    : projects.filter(p => p.category === activeFilter);
-
-  const filters = [
-    { id: "all", label: "Все проекты", count: projects.length },
-    { id: "hardware", label: "Hardware", count: projects.filter(p => p.category === "hardware").length },
-    { id: "software", label: "Software", count: projects.filter(p => p.category === "software").length },
-    { id: "infrastructure", label: "Инфраструктура", count: projects.filter(p => p.category === "infrastructure").length },
-    { id: "research", label: "Исследования", count: projects.filter(p => p.category === "research").length },
-  ];
-
   return (
     <div className="min-h-screen bg-[#d4ede4] text-[#1e3a5f] overflow-x-hidden">
-      {/* Custom scrollbar styles */}
       <style jsx global>{`
-        ::-webkit-scrollbar {
-          width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-          background: #d4ede4;
-        }
-        ::-webkit-scrollbar-thumb {
-          background: #1e3a5f;
-          border-radius: 5px;
-          border: 2px solid #d4ede4;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #2d6a4f;
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #d4ede4; }
+        ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 5px; border: 2px solid #d4ede4; }
+        ::-webkit-scrollbar-thumb:hover { background: #2d6a4f; }
       `}</style>
 
       <ProjectHubNavbar />
-      <RetroDecorations />
 
       {/* --- HERO SECTION --- */}
       <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8">
@@ -594,7 +360,6 @@ export default function ProjectHubPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            {/* Badge */}
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -603,13 +368,12 @@ export default function ProjectHubPage() {
             >
               <Sparkles className="w-4 h-4 text-[#2d6a4f]" />
               <span className="text-sm font-medium text-[#1e3a5f]">VODeco ProjectHub</span>
-              <span className="text-xs text-[#1e3a5f]/50 font-mono">v2.0</span>
+              <span className="text-xs text-[#1e3a5f]/50 font-mono">v1.0</span>
             </motion.div>
 
-            {/* Main Title */}
             <h1 className="text-5xl md:text-7xl font-black text-[#1e3a5f] mb-6 tracking-tight">
               <span className="relative inline-block">
-                ЦЕНТР
+                DeSci
                 <motion.span
                   animate={{ rotate: [0, 5, 0] }}
                   transition={{ duration: 4, repeat: Infinity }}
@@ -619,15 +383,14 @@ export default function ProjectHubPage() {
                 </motion.span>
               </span>
               <br />
-              <span className="text-[#2d6a4f]">РАЗРАБОТОК</span>
+              <span className="text-[#2d6a4f]">PROJECTHUB</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-[#1e3a5f]/70 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Экосистема инновационных проектов для децентрализованной экономики воды. 
-              От автономных лабораторий до блокчейн-протоколов.
+            <p className="text-lg md:text-xl text-[#1e3a5f]/70 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Децентрализованная платформа для финансирования, разработки и коммерциализации 
+              инноваций в области водных технологий. Открытая наука с токенизацией IP через IP-NFT.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-4">
               <RetroButton variant="primary">
                 <span className="flex items-center gap-2">
@@ -638,116 +401,246 @@ export default function ProjectHubPage() {
               <RetroButton variant="outline">
                 <span className="flex items-center gap-2">
                   <Lightbulb className="w-4 h-4" />
-                  Стать контрибьютором
+                  Стать инвестором
                 </span>
               </RetroButton>
             </div>
           </motion.div>
 
-          {/* --- STATS GRID --- */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-            {stats.map((stat, index) => (
-              <RetroStatCard key={stat.label} stat={stat} index={index} />
-            ))}
-          </div>
-
-          {/* --- FILTER TABS --- */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`
-                  relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200
-                  ${activeFilter === filter.id
-                    ? "bg-[#1e3a5f] text-[#e8f5f0] shadow-[4px_4px_0px_0px_#0d1b2a]"
-                    : "bg-[#e8f5f0] text-[#1e3a5f] border-2 border-[#1e3a5f]/20 hover:border-[#1e3a5f]/40"
-                  }
-                `}
-              >
-                {filter.label}
-                <span className={`
-                  ml-2 text-xs px-1.5 py-0.5 rounded-full
-                  ${activeFilter === filter.id ? "bg-[#e8f5f0]/20" : "bg-[#1e3a5f]/10"}
-                `}>
-                  {filter.count}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* --- PROJECTS GRID --- */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))}
-            </AnimatePresence>
-          </div>
-
-          {/* --- BOTTOM SECTION: TIMELINE + INFO --- */}
-          <div className="grid lg:grid-cols-2 gap-6">
-            <MilestoneTimeline />
-            
-            {/* Ecosystem Info Card */}
+          {/* --- PROJECT LIFECYCLE --- */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-16">
             <NeomorphicCard className="p-6">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-[#1e3a5f]/10 flex items-center justify-center border-2 border-[#1e3a5f]/30">
-                  <Globe className="w-5 h-5 text-[#1e3a5f]" />
+                <div className="w-10 h-10 rounded-lg bg-[#2d6a4f]/10 flex items-center justify-center border-2 border-[#2d6a4f]/30">
+                  <Target className="w-5 h-5 text-[#2d6a4f]" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#1e3a5f]">Экосистема VODeco</h3>
-                  <p className="text-xs text-[#1e3a5f]/60">12-слойная архитектура</p>
+                  <h3 className="text-lg font-bold text-[#1e3a5f]">Жизненный Цикл Проекта</h3>
+                  <p className="text-xs text-[#1e3a5f]/60">От идеи до коммерциализации</p>
                 </div>
               </div>
-
-              <div className="space-y-4">
-                <div className="bg-[#1e3a5f]/5 rounded-xl p-4 border border-[#1e3a5f]/10">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Waves className="w-5 h-5 text-[#2d6a4f]" />
-                    <span className="font-semibold text-[#1e3a5f]">Физический слой</span>
-                  </div>
-                  <p className="text-sm text-[#1e3a5f]/60">
-                    Датчики, IoT-устройства, автономные лаборатории — всё оборудование для сбора данных.
-                  </p>
-                </div>
-
-                <div className="bg-[#1e3a5f]/5 rounded-xl p-4 border border-[#1e3a5f]/10">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Cpu className="w-5 h-5 text-[#1e3a5f]" />
-                    <span className="font-semibold text-[#1e3a5f]">Блокчейн слой</span>
-                  </div>
-                  <p className="text-sm text-[#1e3a5f]/60">
-                    VOD Chain с Data Anchoring — криптографическая верификация всех водных данных.
-                  </p>
-                </div>
-
-                <div className="bg-[#1e3a5f]/5 rounded-xl p-4 border border-[#1e3a5f]/10">
-                  <div className="flex items-center gap-3 mb-2">
-                    <TrendingUp className="w-5 h-5 text-[#f4a261]" />
-                    <span className="font-semibold text-[#1e3a5f]">Экономический слой</span>
-                  </div>
-                  <p className="text-sm text-[#1e3a5f]/60">
-                    Water-backed токеномика: 1 VOD = 1 м³ верифицированной воды.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t-2 border-[#1e3a5f]/10">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#1e3a5f]/60">Всего проектов в хабе</span>
-                  <span className="text-2xl font-bold text-[#2d6a4f]">12</span>
-                </div>
-              </div>
+              <ProjectLifecycle />
             </NeomorphicCard>
+
+            <div className="space-y-6">
+              {/* IP-NFT Info */}
+              <NeomorphicCard className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#1e3a5f]/10 flex items-center justify-center border-2 border-[#1e3a5f]/30">
+                    <Hash className="w-5 h-5 text-[#1e3a5f]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-[#1e3a5f]">IP-NFT Integration</h3>
+                    <p className="text-xs text-[#1e3a5f]/60">Токенизация интеллектуальной собственности</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-[#1e3a5f]/5 rounded-lg">
+                    <span className="text-sm text-[#1e3a5f]">Инвесторам проекта</span>
+                    <span className="font-bold text-[#2d6a4f]">40%</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-[#1e3a5f]/5 rounded-lg">
+                    <span className="text-sm text-[#1e3a5f]">Команде разработки</span>
+                    <span className="font-bold text-[#2d6a4f]">30%</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-[#1e3a5f]/5 rounded-lg">
+                    <span className="text-sm text-[#1e3a5f]">DAO Treasury</span>
+                    <span className="font-bold text-[#2d6a4f]">20%</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-[#1e3a5f]/5 rounded-lg">
+                    <span className="text-sm text-[#1e3a5f]">Community Rewards</span>
+                    <span className="font-bold text-[#2d6a4f]">10%</span>
+                  </div>
+                </div>
+              </NeomorphicCard>
+
+              {/* Milestone Based Funding */}
+              <NeomorphicCard className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#2d6a4f]/10 flex items-center justify-center border-2 border-[#2d6a5f]/30">
+                    <CheckCircle2 className="w-5 h-5 text-[#2d6a4f]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-[#1e3a5f]">Milestone-Based Payouts</h3>
+                    <p className="text-xs text-[#1e3a5f]/60">Структура выплат по этапам</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 p-2 rounded-lg bg-emerald-50 border border-emerald-200">
+                    <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white text-sm font-bold">1</div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-[#1e3a5f]">После голосования DAO</div>
+                      <div className="text-xs text-[#1e3a5f]/60">20% начальный капитал</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-2 rounded-lg bg-[#1e3a5f]/5">
+                    <div className="w-8 h-8 rounded-full bg-[#1e3a5f]/30 flex items-center justify-center text-white text-sm font-bold">2</div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-[#1e3a5f]">Milestone 1 Complete</div>
+                      <div className="text-xs text-[#1e3a5f]/60">30% после верификации</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-2 rounded-lg bg-[#1e3a5f]/5">
+                    <div className="w-8 h-8 rounded-full bg-[#1e3a5f]/30 flex items-center justify-center text-white text-sm font-bold">3</div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-[#1e3a5f]">Milestone 2 Complete</div>
+                      <div className="text-xs text-[#1e3a5f]/60">30% после верификации</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-2 rounded-lg bg-[#1e3a5f]/5">
+                    <div className="w-8 h-8 rounded-full bg-[#1e3a5f]/30 flex items-center justify-center text-white text-sm font-bold">4</div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-[#1e3a5f]">Финальный отчет</div>
+                      <div className="text-xs text-[#1e3a5f]/60">20% после сдачи</div>
+                    </div>
+                  </div>
+                </div>
+              </NeomorphicCard>
+            </div>
           </div>
 
-          {/* --- FOOTER CTA --- */}
+          {/* --- FUNDING TIERS --- */}
+          <NeomorphicCard className="p-6 mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-lg bg-[#2d6a4f]/10 flex items-center justify-center border-2 border-[#2d6a4f]/30">
+                <Coins className="w-5 h-5 text-[#2d6a4f]" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#1e3a5f]">Уровни Финансирования</h3>
+                <p className="text-xs text-[#1e3a5f]/60">От микро-грантов до moonshot-проектов</p>
+              </div>
+            </div>
+            <FundingTiers />
+          </NeomorphicCard>
+
+          {/* --- PROJECT CATEGORIES --- */}
+          <NeomorphicCard className="p-6 mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-lg bg-[#1e3a5f]/10 flex items-center justify-center border-2 border-[#1e3a5f]/30">
+                <FlaskConical className="w-5 h-5 text-[#1e3a5f]" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#1e3a5f]">Категории Проектов</h3>
+                <p className="text-xs text-[#1e3a5f]/60">4 направления исследований и разработок</p>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { 
+                  icon: Cpu, 
+                  title: "Hardware Innovation", 
+                  desc: "AquaCell Pro, AquaDrones, Portable Test Kits, Smart Filters",
+                  color: "from-blue-500 to-cyan-500"
+                },
+                { 
+                  icon: Droplets, 
+                  title: "Water Treatment", 
+                  desc: "Desalination, Bio-filtration, Nano-filtration, Solar Purification",
+                  color: "from-cyan-500 to-teal-500"
+                },
+                { 
+                  icon: Brain, 
+                  title: "Data & Analytics", 
+                  desc: "AI Prediction, Blockchain Registry, Climate Analysis, Leak Detection",
+                  color: "from-emerald-500 to-green-500"
+                },
+                { 
+                  icon: Users, 
+                  title: "Community Solutions", 
+                  desc: "Rural Water Access, Education, Emergency Response, Indigenous Rights",
+                  color: "from-amber-500 to-orange-500"
+                },
+              ].map((cat, index) => (
+                <motion.div
+                  key={cat.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-4 rounded-xl border border-[#1e3a5f]/20 bg-[#e8f5f0]"
+                >
+                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${cat.color} flex items-center justify-center mb-3`}>
+                    <cat.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <h4 className="font-bold text-[#1e3a5f] text-sm mb-2">{cat.title}</h4>
+                  <p className="text-xs text-[#1e3a5f]/60">{cat.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </NeomorphicCard>
+
+          {/* --- STATS & METRICS --- */}
+          <div className="grid md:grid-cols-4 gap-4 mb-16">
+            {[
+              { label: "Целевая цель (12м)", value: "25", sub: "активных проектов", icon: Rocket },
+              { label: "Финансирование", value: "$2M", sub: "общий бюджет", icon: Coins },
+              { label: "IP-NFTs", value: "10", sub: "создано", icon: Hash },
+              { label: "Успешность", value: "70%", sub: "target success rate", icon: Target },
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <NeomorphicCard className="p-5 text-center">
+                  <div className="w-12 h-12 rounded-xl bg-[#2d6a4f]/10 flex items-center justify-center border-2 border-[#2d6a4f]/30 mx-auto mb-3">
+                    <stat.icon className="w-6 h-6 text-[#2d6a4f]" />
+                  </div>
+                  <div className="text-3xl font-bold text-[#1e3a5f] mb-1">{stat.value}</div>
+                  <div className="text-sm text-[#1e3a5f]/70">{stat.label}</div>
+                  <div className="text-xs text-[#2d6a4f] mt-1">{stat.sub}</div>
+                </NeomorphicCard>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* --- GOVERNANCE RIGHTS --- */}
+          <NeomorphicCard className="p-6 mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-lg bg-[#2d6a4f]/10 flex items-center justify-center border-2 border-[#2d6a4f]/30">
+                <Vote className="w-5 h-5 text-[#2d6a4f]" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#1e3a5f]">Уровни Участия и Права</h3>
+                <p className="text-xs text-[#1e3a5f]/60">В зависимости от уровня инвестиций</p>
+              </div>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b-2 border-[#1e3a5f]/20">
+                    <th className="text-left py-3 px-4 text-sm font-bold text-[#1e3a5f]">Уровень</th>
+                    <th className="text-left py-3 px-4 text-sm font-bold text-[#1e3a5f]">Инвестиции</th>
+                    <th className="text-left py-3 px-4 text-sm font-bold text-[#1e3a5f]">Права</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { level: "Observer", investment: "$0 - $100", rights: "Чтение, комментарии" },
+                    { level: "Contributor", investment: "$100 - $1,000", rights: "Голосование, Q&A" },
+                    { level: "Supporter", investment: "$1,000 - $10,000", rights: "Создание предложений" },
+                    { level: "Patron", investment: "$10,000 - $100,000", rights: "Приоритетный доступ, advisory" },
+                    { level: "Champion", investment: "$100,000+", rights: "Board seat, стратегические решения" },
+                  ].map((row, index) => (
+                    <tr key={row.level} className="border-b border-[#1e3a5f]/10">
+                      <td className="py-3 px-4 text-sm font-medium text-[#2d6a4f]">{row.level}</td>
+                      <td className="py-3 px-4 text-sm text-[#1e3a5f]">{row.investment}</td>
+                      <td className="py-3 px-4 text-sm text-[#1e3a5f]/70">{row.rights}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </NeomorphicCard>
+
+          {/* --- CTA --- */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-16 text-center"
+            className="text-center"
           >
             <NeomorphicCard className="p-8 max-w-3xl mx-auto">
               <div className="flex flex-col md:flex-row items-center gap-6">
@@ -759,8 +652,8 @@ export default function ProjectHubPage() {
                     Готовы строить будущее водной экономики?
                   </h3>
                   <p className="text-[#1e3a5f]/60 mb-4">
-                    Присоединяйтесь к 156+ исследователям и разработчикам. 
-                    Получите грант на разработку вашего проекта в VODCoin.
+                    Присоединяйтесь к экосистеме исследователей и разработчиков. 
+                    Получите грант на разработку вашего проекта в VOD.
                   </p>
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
                     <RetroButton variant="primary">
@@ -782,7 +675,7 @@ export default function ProjectHubPage() {
         </div>
       </section>
 
-      {/* --- DECORATIVE FOOTER --- */}
+      {/* --- FOOTER --- */}
       <footer className="py-8 px-4 border-t-2 border-[#1e3a5f]/10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
@@ -790,10 +683,10 @@ export default function ProjectHubPage() {
               <Droplets className="w-4 h-4 text-white" />
             </div>
             <span className="font-bold text-[#1e3a5f]">VODeco ProjectHub</span>
-            <span className="text-xs text-[#1e3a5f]/40 font-mono">v2.0.1-beta</span>
+            <span className="text-xs text-[#1e3a5f]/40 font-mono">v1.0</span>
           </div>
           <div className="flex items-center gap-6 text-sm text-[#1e3a5f]/60">
-            <Link href="/" className="hover:text-[#2d6a4f] transition-colors">Главная</Link>
+            <Link href="/landing" className="hover:text-[#2d6a4f] transition-colors">Staking</Link>
             <Link href="/tokenomics" className="hover:text-[#2d6a4f] transition-colors">Токеномика</Link>
             <Link href="/dao" className="hover:text-[#2d6a4f] transition-colors">DAO</Link>
           </div>

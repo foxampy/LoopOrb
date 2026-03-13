@@ -7,7 +7,8 @@ import {
   Activity, Gauge, Droplets, Zap, Shield, Lock, TrendingUp, TrendingDown, Minus,
   Hexagon, Microchip, Database, Server, RefreshCw, Settings, CheckCircle2,
   Gem, Coins, Globe, Users, Award, Sparkles, Beaker, Atom, ArrowRight,
-  Menu, X, Wallet
+  Menu, X, Wallet, Radio, Wifi, QrCode, FileCheck, Hash, Box,
+  Droplet, Thermometer, Eye, Clock, MapPin, AlertTriangle
 } from "lucide-react";
 
 // --- UNIVERSAL NAVBAR FOR TOKENOMICS ---
@@ -128,23 +129,14 @@ interface AllocationItem {
   locked: boolean;
 }
 
-interface ConversionStage {
-  stage: number;
-  name: string;
-  input: string;
-  output: string;
-  formula: string;
-  active: boolean;
-}
-
 // --- MOCK DATA ---
 const metrics: TokenMetric[] = [
   { id: "price", label: "VOD Price", value: "1.24", unit: "USD", change: 2.4, status: "optimal", icon: Coins },
   { id: "w_index", label: "Water Index W_m³", value: "1.20", unit: "USD", change: 0.8, status: "normal", icon: Droplets },
-  { id: "supply", label: "Circulating Supply", value: "127.4M", unit: "VOD", change: 5.2, status: "normal", icon: Database },
-  { id: "staked", label: "Total Staked", value: "84.2M", unit: "VOD", change: 12.1, status: "optimal", icon: Lock },
-  { id: "validators", label: "Active Nodes", value: "2,847", unit: "nodes", change: 8.7, status: "optimal", icon: Server },
-  { id: "emission", label: "Daily Emission", value: "24,500", unit: "VOD", change: -2.1, status: "normal", icon: Activity },
+  { id: "supply", label: "Circulating Supply", value: "0", unit: "VOD", change: 0, status: "normal", icon: Database },
+  { id: "staked", label: "Total Staked", value: "0", unit: "VOD", change: 0, status: "optimal", icon: Lock },
+  { id: "validators", label: "Active Nodes", value: "0", unit: "nodes", change: 0, status: "optimal", icon: Server },
+  { id: "sealed", label: "Sealed m³", value: "0", unit: "m³", change: 0, status: "normal", icon: Box },
 ];
 
 const allocations: AllocationItem[] = [
@@ -157,13 +149,6 @@ const allocations: AllocationItem[] = [
   { category: "DAO Treasury", percentage: 2, amount: "27.7M VOD", color: "#ec4899", description: "Казна управления", locked: false },
 ];
 
-const conversionStages: ConversionStage[] = [
-  { stage: 1, name: "VODCoin Grant", input: "100,000 VODCoin", output: "$5,000", formula: "Fixed @ $0.05", active: true },
-  { stage: 2, name: "Time Staking", input: "12 months", output: "+12% bonus", formula: "1 + (months/100)", active: true },
-  { stage: 3, name: "Verification", input: "Project Success", output: "+50% multiplier", formula: "KPI completion", active: false },
-  { stage: 4, name: "VOD Emission", input: "Verified Work", output: "6,462 VOD", formula: "$ value / W_m³", active: false },
-];
-
 const priceBands = {
   floor: 1.00,
   current: 1.24,
@@ -172,14 +157,7 @@ const priceBands = {
 };
 
 // --- CHROMIUM STYLES ---
-const chromeGradient = "bg-gradient-to-br from-slate-300 via-slate-100 to-slate-400";
-const chromeBorder = "border border-slate-300/50";
 const darkPanel = "bg-slate-900/90 border border-slate-700/50";
-const neonCyan = "text-cyan-400";
-const neonBlue = "text-blue-400";
-const neonGreen = "text-emerald-400";
-const neonAmber = "text-amber-400";
-const neonRed = "text-rose-400";
 
 // --- HELPER COMPONENTS ---
 function StatusIndicator({ status }: { status: string }) {
@@ -210,10 +188,7 @@ function MetricCard({ metric, index }: { metric: TokenMetric; index: number }) {
       transition={{ delay: index * 0.1 }}
       className={`relative overflow-hidden rounded-xl p-5 ${darkPanel} backdrop-blur-xl`}
     >
-      {/* Chrome border effect */}
       <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-slate-400/20 via-transparent to-slate-600/20 pointer-events-none" />
-      
-      {/* Scanline effect */}
       <motion.div
         animate={{ top: ["0%", "100%"] }}
         transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -250,124 +225,79 @@ function MetricCard({ metric, index }: { metric: TokenMetric; index: number }) {
   );
 }
 
-function GaugeMeter({ value, min, max, label, unit, color = "cyan" }: { value: number; min: number; max: number; label: string; unit: string; color?: string }) {
-  const percentage = ((value - min) / (max - min)) * 100;
-  const colorClasses: Record<string, string> = {
-    cyan: "text-cyan-400",
-    emerald: "text-emerald-400",
-    amber: "text-amber-400",
-    rose: "text-rose-400",
-  };
-  
-  return (
-    <div className="relative w-32 h-32 mx-auto">
-      {/* Outer chrome ring */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-slate-400 via-slate-200 to-slate-500 p-1">
-        <div className="w-full h-full rounded-full bg-slate-900" />
-      </div>
-      
-      {/* Gauge background */}
-      <svg className="absolute inset-0 w-full h-full -rotate-90">
-        <circle
-          cx="64"
-          cy="64"
-          r="56"
-          fill="none"
-          stroke="#1e293b"
-          strokeWidth="8"
-          strokeDasharray="351.86"
-          strokeDashoffset="87.97"
-          strokeLinecap="round"
-        />
-        <motion.circle
-          cx="64"
-          cy="64"
-          r="56"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="8"
-          strokeDasharray="351.86"
-          strokeDashoffset={351.86 - (351.86 * 0.75 * percentage / 100)}
-          strokeLinecap="round"
-          className={`${colorClasses[color]} drop-shadow-[0_0_8px_currentColor]`}
-          initial={{ strokeDashoffset: 351.86 }}
-          animate={{ strokeDashoffset: 351.86 - (351.86 * 0.75 * percentage / 100) }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        />
-      </svg>
-      
-      {/* Center display */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <div className="text-xl font-mono font-bold text-slate-100">{value.toFixed(2)}</div>
-        <div className="text-xs text-slate-500">{unit}</div>
-      </div>
-      
-      {/* Label */}
-      <div className="absolute -bottom-6 left-0 right-0 text-center text-xs text-slate-400 uppercase tracking-wider">
-        {label}
-      </div>
-    </div>
-  );
-}
+// --- EMISSION FLOW COMPONENT ---
+function EmissionFlowDiagram() {
+  const stages = [
+    {
+      id: 1,
+      title: "Physical Water",
+      subtitle: "Физический м³ воды",
+      icon: Droplet,
+      color: "from-blue-500 to-cyan-500",
+      details: ["AquaCell / AquaHome / Industrial Sensors", "pH, температура, турбидность, ОВП"],
+      active: true
+    },
+    {
+      id: 2,
+      title: "Data Transmission",
+      subtitle: "Передача данных",
+      icon: Radio,
+      color: "from-cyan-500 to-teal-500",
+      details: ["Bluetooth / WiFi / LoRaWAN / 4G", "Шифрование AES-256"],
+      active: true
+    },
+    {
+      id: 3,
+      title: "Validation",
+      subtitle: "Валидация данных",
+      icon: Eye,
+      color: "from-teal-500 to-emerald-500",
+      details: ["Проверка валидаторами (min 3)", "Диапазоны, геолокация, anti-replay"],
+      active: false
+    },
+    {
+      id: 4,
+      title: "Sealing",
+      subtitle: "Запечатывание",
+      icon: Hash,
+      color: "from-emerald-500 to-green-500",
+      details: ["SHA-256 хэширование", "Запись в блокчейн-ноду"],
+      active: false
+    },
+    {
+      id: 5,
+      title: "Token Emission",
+      subtitle: "Эмиссия токена",
+      icon: Zap,
+      color: "from-green-500 to-lime-500",
+      details: ["10 VOD base × множители", "На кошелек владельца"],
+      active: false
+    }
+  ];
 
-function DigitalDisplay({ value, label, className = "" }: { value: string; label: string; className?: string }) {
   return (
-    <div className={`bg-slate-950 rounded-lg p-4 border border-slate-800 ${className}`}>
-      <div className="font-mono text-3xl text-cyan-400 tracking-wider drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">
-        {value.split("").map((char, i) => (
-          <motion.span
-            key={i}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: i * 0.05 }}
-          >
-            {char}
-          </motion.span>
-        ))}
-      </div>
-      <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">{label}</div>
-      
-      {/* LED dots */}
-      <div className="flex gap-1 mt-3">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className={`w-1.5 h-1.5 rounded-full ${i < 6 ? "bg-cyan-400 shadow-[0_0_4px_currentColor]" : "bg-slate-800"}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ConversionPipeline() {
-  return (
-    <div className="space-y-3">
-      {conversionStages.map((stage, index) => (
+    <div className="space-y-4">
+      {stages.map((stage, index) => (
         <motion.div
-          key={stage.stage}
+          key={stage.id}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: index * 0.15 }}
-          className={`relative flex items-center gap-4 p-4 rounded-xl border ${
+          className={`relative flex items-start gap-4 p-4 rounded-xl border ${
             stage.active 
               ? "bg-slate-800/50 border-cyan-500/30" 
-              : "bg-slate-900/30 border-slate-700/30 opacity-60"
+              : "bg-slate-900/30 border-slate-700/30"
           }`}
         >
           {/* Stage number */}
-          <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-mono font-bold text-lg ${
-            stage.active 
-              ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30" 
-              : "bg-slate-800 text-slate-500 border border-slate-700"
-          }`}>
-            {stage.stage}
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${stage.color}`}>
+            <stage.icon className="w-6 h-6 text-white" />
           </div>
           
           {/* Stage info */}
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <span className="font-semibold text-slate-200">{stage.name}</span>
+              <span className="font-semibold text-slate-200">{stage.id}. {stage.title}</span>
               {stage.active && (
                 <motion.span
                   animate={{ opacity: [1, 0.5, 1] }}
@@ -378,61 +308,101 @@ function ConversionPipeline() {
                 </motion.span>
               )}
             </div>
-            <div className="text-xs text-slate-500 font-mono">{stage.formula}</div>
+            <div className="text-sm text-cyan-400 mb-2">{stage.subtitle}</div>
+            <div className="space-y-1">
+              {stage.details.map((detail, i) => (
+                <div key={i} className="text-xs text-slate-500 flex items-center gap-2">
+                  <div className="w-1 h-1 rounded-full bg-slate-600" />
+                  {detail}
+                </div>
+              ))}
+            </div>
           </div>
           
-          {/* Conversion flow */}
-          <div className="flex items-center gap-3 text-sm">
-            <span className="text-slate-400">{stage.input}</span>
-            <ArrowRight className="w-4 h-4 text-slate-600" />
-            <span className={stage.active ? "text-cyan-400 font-mono" : "text-slate-500 font-mono"}>
-              {stage.output}
-            </span>
-          </div>
+          {/* Arrow */}
+          {index < stages.length - 1 && (
+            <div className="absolute -bottom-3 left-6 w-px h-6 bg-gradient-to-b from-slate-600 to-transparent" />
+          )}
         </motion.div>
       ))}
     </div>
   );
 }
 
-function PriceBandVisualizer() {
-  const currentPercent = ((priceBands.current - priceBands.floor) / (priceBands.ceiling - priceBands.floor)) * 100;
-  const optimalPercent = ((priceBands.optimal - priceBands.floor) / (priceBands.ceiling - priceBands.floor)) * 100;
-  
+// --- EMISSION FORMULA COMPONENT ---
+function EmissionFormula() {
   return (
-    <div className="relative">
-      {/* Price bar background */}
-      <div className="h-8 bg-slate-800 rounded-full overflow-hidden relative border border-slate-700">
-        {/* Gradient zones */}
-        <div className="absolute inset-0 bg-gradient-to-r from-rose-900/30 via-emerald-900/30 to-rose-900/30" />
-        
-        {/* Optimal zone */}
-        <div 
-          className="absolute top-0 bottom-0 bg-emerald-500/20"
-          style={{ 
-            left: `${optimalPercent - 10}%`, 
-            width: "20%",
-          }}
-        />
-        
-        {/* Current price indicator */}
-        <motion.div
-          initial={{ left: 0 }}
-          animate={{ left: `${currentPercent}%` }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute top-0 bottom-0 w-1 bg-cyan-400 shadow-[0_0_10px_currentColor]"
-        >
-          <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-            <span className="text-xs font-mono text-cyan-400">${priceBands.current}</span>
-          </div>
-        </motion.div>
+    <div className={`${darkPanel} rounded-xl p-6`}>
+      <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+        <Atom className="w-4 h-4 text-cyan-400" />
+        Формула Эмиссии
+      </h3>
+      
+      <div className="p-4 bg-slate-950 rounded-lg border border-slate-800 mb-4">
+        <div className="text-sm text-slate-300 font-mono leading-relaxed">
+          VOD_emitted = Base_Rate × Quality_Multiplier × Scarcity_Multiplier × Continuity_Bonus × (1 - Slashing)
+        </div>
       </div>
       
-      {/* Labels */}
-      <div className="flex justify-between mt-2 text-xs text-slate-500 font-mono">
-        <span>Floor: ${priceBands.floor}</span>
-        <span className="text-emerald-400">Optimal: ${priceBands.optimal}</span>
-        <span>Ceiling: ${priceBands.ceiling}</span>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {[
+          { label: "Base_Rate", value: "10 VOD/m³", desc: "Базовая ставка", color: "text-cyan-400" },
+          { label: "Quality_Multiplier", value: "0.5x - 2.0x", desc: "pH, турбидность, чистота", color: "text-emerald-400" },
+          { label: "Scarcity_Multiplier", value: "1.0x - 3.0x", desc: "Региональный дефицит", color: "text-amber-400" },
+          { label: "Continuity_Bonus", value: "1.0x - 1.25x", desc: "Непрерывность данных", color: "text-blue-400" },
+          { label: "Slashing", value: "0 - 100%", desc: "Штраф за аномалии", color: "text-rose-400" },
+        ].map((item) => (
+          <div key={item.label} className="p-3 bg-slate-900/50 rounded-lg border border-slate-800">
+            <div className="text-xs text-slate-500 mb-1">{item.label}</div>
+            <div className={`font-mono font-semibold ${item.color}`}>{item.value}</div>
+            <div className="text-xs text-slate-600">{item.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// --- WATER INDEX COMPONENT ---
+function WaterIndexComponent() {
+  const components = [
+    { label: "Base Energy", value: "$0.30", desc: "Добыча и транспорт" },
+    { label: "Treatment", value: "$0.40", desc: "Очистка до питьевой" },
+    { label: "Scarcity", value: "$0.20", desc: "Региональный дефицит" },
+    { label: "Quality", value: "$0.30", desc: "Индекс чистоты" },
+    { label: "Carbon", value: "$0.05", desc: "Углеродный след" },
+    { label: "Efficiency", value: "-$0.05", desc: "Экономия ресурсов", negative: true },
+  ];
+
+  return (
+    <div className={`${darkPanel} rounded-xl p-6`}>
+      <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+        <Droplets className="w-4 h-4 text-cyan-400" />
+        Water Index W_m³ Components
+      </h3>
+      
+      <div className="space-y-2 mb-4">
+        {components.map((item) => (
+          <div key={item.label} className="flex items-center justify-between py-2 border-b border-slate-800 last:border-0">
+            <div>
+              <div className="text-sm text-slate-300">{item.label}</div>
+              <div className="text-xs text-slate-600">{item.desc}</div>
+            </div>
+            <span className={`font-mono font-semibold ${item.negative ? "text-rose-400" : "text-emerald-400"}`}>
+              {item.value}
+            </span>
+          </div>
+        ))}
+      </div>
+      
+      <div className="pt-4 border-t-2 border-slate-700">
+        <div className="flex items-center justify-between">
+          <div>
+            <span className="text-sm font-semibold text-slate-200">Total W_m³</span>
+            <div className="text-xs text-slate-500">Базовая цена 1 м³ верифицированной воды</div>
+          </div>
+          <span className="text-2xl font-mono font-bold text-cyan-400">$1.20</span>
+        </div>
       </div>
     </div>
   );
@@ -456,7 +426,6 @@ function ScannerOverlay() {
 export default function TokenomicsPage() {
   const [hoveredSlice, setHoveredSlice] = useState<number | null>(null);
   
-  // Calculate pie chart segments
   const total = allocations.reduce((sum, item) => sum + item.percentage, 0);
   let currentAngle = 0;
   const segments = allocations.map((item) => {
@@ -468,40 +437,25 @@ export default function TokenomicsPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 overflow-x-hidden">
-      {/* Custom scrollbar */}
       <style jsx global>{`
-        ::-webkit-scrollbar {
-          width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-          background: #020617;
-        }
-        ::-webkit-scrollbar-thumb {
-          background: #334155;
-          border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #475569;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
       `}</style>
 
       <TokenomicsNavbar />
 
       {/* --- HERO SECTION --- */}
       <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Background grid */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: `
-              linear-gradient(cyan 1px, transparent 1px),
-              linear-gradient(90deg, cyan 1px, transparent 1px)
-            `,
+            backgroundImage: `linear-gradient(cyan 1px, transparent 1px), linear-gradient(90deg, cyan 1px, transparent 1px)`,
             backgroundSize: '50px 50px',
           }}
         />
         
-        {/* Floating hexagons */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -516,11 +470,10 @@ export default function TokenomicsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            {/* Chrome badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800 to-slate-700 border border-slate-600 mb-6">
               <Microchip className="w-4 h-4 text-cyan-400" />
               <span className="text-sm font-mono text-slate-300">VODeco Tokenomics Engine</span>
-              <span className="text-xs text-slate-500">v4.0</span>
+              <span className="text-xs text-slate-500">v1.0</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black text-slate-100 mb-4 tracking-tight">
@@ -533,10 +486,9 @@ export default function TokenomicsPage() {
               </span>
             </h1>
 
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Двухуровневая архитектура: VODCoin для разработки → VOD обеспеченный водой.
-              <br />
-              <span className="text-cyan-400 font-mono">1 VOD = 1 м³ верифицированной воды</span>
+            <p className="text-lg text-slate-400 max-w-3xl mx-auto">
+              Токен VOD выходит в эмиссию <span className="text-cyan-400 font-semibold">ТОЛЬКО</span> после полного цикла верификации: 
+              оцифровка физического кубометра воды → валидация данных → хэширование в ноду → эмиссия токена.
             </p>
           </motion.div>
 
@@ -547,106 +499,25 @@ export default function TokenomicsPage() {
             ))}
           </div>
 
-          {/* --- MAIN DASHBOARD --- */}
-          <div className="grid lg:grid-cols-3 gap-6">
-            {/* Left column - Gauges */}
-            <div className="space-y-6">
-              {/* Price Gauge */}
-              <div className={`${darkPanel} rounded-xl p-6 relative overflow-hidden`}>
-                <ScannerOverlay />
-                <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6 relative z-10">
-                  Price Monitor
-                </h3>
-                <GaugeMeter 
-                  value={priceBands.current} 
-                  min={priceBands.floor} 
-                  max={priceBands.ceiling}
-                  label="VOD/USD"
-                  unit="$"
-                  color="cyan"
-                />
-              </div>
-
-              {/* Water Index */}
-              <div className={`${darkPanel} rounded-xl p-6 relative overflow-hidden`}>
-                <ScannerOverlay />
-                <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6 relative z-10">
-                  Water Index W_m³
-                </h3>
-                <GaugeMeter 
-                  value={priceBands.optimal} 
-                  min={0} 
-                  max={2}
-                  label="Base Index"
-                  unit="$"
-                  color="emerald"
-                />
-              </div>
-
-              {/* Digital Counter */}
-              <DigitalDisplay 
-                value="1,386,000,000"
-                label="Total Supply VOD"
-              />
+          {/* --- EMISSION FLOW SECTION --- */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-12">
+            <div className={`${darkPanel} rounded-xl p-6 relative overflow-hidden`}>
+              <ScannerOverlay />
+              <h3 className="text-lg font-semibold text-slate-200 mb-6 relative z-10 flex items-center gap-2">
+                <RefreshCw className="w-5 h-5 text-cyan-400" />
+                Token Emission Flow
+              </h3>
+              <EmissionFlowDiagram />
             </div>
 
-            {/* Center column - Price Bands & Conversion */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* Price Stabilization */}
-              <div className={`${darkPanel} rounded-xl p-6`}>
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-emerald-400" />
-                    Price Stabilization Bands
-                  </h3>
-                  <StatusIndicator status="optimal" />
-                </div>
-                
-                <PriceBandVisualizer />
-                
-                <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-800">
-                  <div className="text-center">
-                    <div className="text-xs text-slate-500 mb-1">Floor</div>
-                    <div className="text-lg font-mono text-rose-400">${priceBands.floor}</div>
-                    <div className="text-xs text-slate-600">DAO Buyback</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-xs text-slate-500 mb-1">Current</div>
-                    <div className="text-lg font-mono text-cyan-400">${priceBands.current}</div>
-                    <div className="text-xs text-slate-600">Market</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-xs text-slate-500 mb-1">Ceiling</div>
-                    <div className="text-lg font-mono text-amber-400">${priceBands.ceiling}</div>
-                    <div className="text-xs text-slate-600">DAO Mint</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Conversion Pipeline */}
-              <div className={`${darkPanel} rounded-xl p-6`}>
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
-                    <RefreshCw className="w-4 h-4 text-cyan-400" />
-                    VODCoin → VOD Conversion
-                  </h3>
-                  <span className="text-xs text-slate-500 font-mono">Anti-Speculative</span>
-                </div>
-                
-                <ConversionPipeline />
-                
-                <div className="mt-6 p-4 bg-slate-900/50 rounded-lg border border-slate-800">
-                  <div className="text-xs text-slate-500 font-mono mb-2">FORMULA:</div>
-                  <div className="text-sm text-slate-300 font-mono">
-                    VOD = (VODCoin × Price_Coin) / W_m³ × (1 + Time_Bonus + Verify_Multiplier)
-                  </div>
-                </div>
-              </div>
+            <div className="space-y-6">
+              <EmissionFormula />
+              <WaterIndexComponent />
             </div>
           </div>
 
           {/* --- ALLOCATION SECTION --- */}
-          <div className={`${darkPanel} rounded-xl p-6 mt-6`}>
+          <div className={`${darkPanel} rounded-xl p-6 mb-6`}>
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-lg font-semibold text-slate-200 flex items-center gap-2">
                 <PieIcon className="w-5 h-5 text-cyan-400" />
@@ -685,7 +556,6 @@ export default function TokenomicsPage() {
                       />
                     );
                   })}
-                  {/* Center hole */}
                   <circle cx="100" cy="100" r="40" fill="#0f172a" />
                   <text x="100" y="95" textAnchor="middle" className="fill-slate-400 text-xs">SUPPLY</text>
                   <text x="100" y="110" textAnchor="middle" className="fill-cyan-400 text-sm font-bold">1.386B</text>
@@ -729,104 +599,72 @@ export default function TokenomicsPage() {
             </div>
           </div>
 
-          {/* --- EMISSION MECHANICS --- */}
-          <div className="grid md:grid-cols-2 gap-6 mt-6">
-            <div className={`${darkPanel} rounded-xl p-6`}>
-              <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-emerald-400" />
-                Data Anchoring Emission
-              </h3>
-              
-              <div className="space-y-4">
-                <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
-                  <div className="text-xs text-slate-500 font-mono mb-2">DAILY EMISSION PER NODE:</div>
-                  <div className="text-lg font-mono text-cyan-400">
-                    10 VOD × Uptime_% × Quality_Score × Network_Effect
+          {/* --- STAKING TIERS --- */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {[
+              { name: "Explorer", min: "1,000", max: "9,999", apy: "8-12%", color: "from-slate-700 to-slate-600", features: ["Базовые награды", "Доступ к DAO", "Ежемесячные бонусы"] },
+              { name: "Guardian", min: "10,000", max: "99,999", apy: "12-18%", color: "from-cyan-600 to-emerald-600", featured: true, features: ["Повышенные награды", "Pre-order доступ", "Governance rights", "Эксклюзивные NFT"] },
+              { name: "Validator", min: "100,000", max: "∞", apy: "18-25%", color: "from-amber-600 to-orange-600", features: ["Максимальные награды", "Запуск ноды", "Валидация данных", "Дивиденды от комиссий"] },
+            ].map((tier, index) => (
+              <motion.div
+                key={tier.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={`relative p-6 rounded-xl border ${tier.featured ? 'border-cyan-500/50' : 'border-slate-700'} bg-slate-900/50`}
+              >
+                {tier.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-900 text-xs font-bold rounded-full">
+                    RECOMMENDED
                   </div>
+                )}
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tier.color} flex items-center justify-center mb-4`}>
+                  <Award className="w-6 h-6 text-white" />
                 </div>
-                
-                <div className="space-y-2">
-                  {[
-                    { label: "Base Rate", value: "10 VOD/day", color: "text-slate-400" },
-                    { label: "Uptime Multiplier", value: "0.1 - 1.0", color: "text-emerald-400" },
-                    { label: "Quality Score", value: "0.1 - 2.0", color: "text-cyan-400" },
-                    { label: "Network Effect", value: "1.0 - 3.0", color: "text-amber-400" },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-center justify-between text-sm">
-                      <span className="text-slate-500">{item.label}</span>
-                      <span className={`font-mono ${item.color}`}>{item.value}</span>
-                    </div>
+                <h3 className="text-xl font-bold text-slate-100 mb-2">{tier.name}</h3>
+                <div className="text-sm text-slate-400 mb-4">{tier.min} - {tier.max} VOD</div>
+                <div className="text-3xl font-bold text-cyan-400 mb-4">{tier.apy} <span className="text-sm text-slate-500">APY</span></div>
+                <ul className="space-y-2">
+                  {tier.features.map((feature, i) => (
+                    <li key={i} className="text-sm text-slate-400 flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                      {feature}
+                    </li>
                   ))}
-                </div>
-              </div>
-            </div>
-
-            <div className={`${darkPanel} rounded-xl p-6`}>
-              <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-cyan-400" />
-                W_m³ Index Formula
-              </h3>
-              
-              <div className="space-y-3">
-                {[
-                  { label: "Base Energy", value: "$0.30", desc: "Добыча и транспорт" },
-                  { label: "Treatment", value: "$0.40", desc: "Очистка до питьевой" },
-                  { label: "Scarcity", value: "$0.20", desc: "Региональный дефицит" },
-                  { label: "Quality", value: "$0.30", desc: "Индекс чистоты" },
-                  { label: "Carbon", value: "$0.05", desc: "Углеродный след" },
-                  { label: "Efficiency", value: "-$0.05", desc: "Экономия ресурсов", negative: true },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between py-2 border-b border-slate-800 last:border-0">
-                    <div>
-                      <div className="text-sm text-slate-300">{item.label}</div>
-                      <div className="text-xs text-slate-600">{item.desc}</div>
-                    </div>
-                    <span className={`font-mono ${item.negative ? "text-rose-400" : "text-emerald-400"}`}>
-                      {item.value}
-                    </span>
-                  </div>
-                ))}
-                
-                <div className="pt-3 mt-3 border-t-2 border-slate-700">
-                  <div className="flex items-center justify-between">
-                    <span className="font-semibold text-slate-200">Total W_m³</span>
-                    <span className="text-xl font-mono text-cyan-400">$1.20</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+                </ul>
+              </motion.div>
+            ))}
           </div>
 
-          {/* --- FOOTER CTA --- */}
+          {/* --- KEY PRINCIPLE --- */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-12 text-center"
+            className="mt-12"
           >
-            <div className={`${darkPanel} rounded-2xl p-8 max-w-3xl mx-auto relative overflow-hidden`}>
-              {/* Background glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-emerald-500/10" />
+            <div className={`${darkPanel} rounded-2xl p-8 max-w-4xl mx-auto relative overflow-hidden border-2 border-cyan-500/30`}>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-emerald-500/5" />
               
-              <div className="relative z-10">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center">
-                  <Database className="w-8 h-8 text-white" />
+              <div className="relative z-10 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center">
+                  <Box className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-100 mb-2">
-                  Начните зарабатывать VOD
+                <h3 className="text-2xl font-bold text-slate-100 mb-4">
+                  Ключевой Принцип Эмиссии
                 </h3>
-                <p className="text-slate-400 mb-6">
-                  Установите AquaCell или AquaHome, верифицируйте данные о воде 
-                  и получайте токены за каждый кубометр оцифрованной воды.
+                <p className="text-lg text-slate-300 mb-6">
+                  <span className="text-cyan-400 font-semibold">1 VOD = 1 м³ верифицированной воды</span>
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  <button className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold rounded-lg transition-colors flex items-center gap-2">
-                    <Zap className="w-4 h-4" />
-                    Купить устройство
-                  </button>
-                  <button className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-lg transition-colors border border-slate-700">
-                    Стейкать VOD
-                  </button>
+                <div className="text-slate-400 max-w-2xl mx-auto space-y-2">
+                  <p>Токен выходит в эмиссию <span className="text-emerald-400 font-semibold">ТОЛЬКО</span> после полного цикла:</p>
+                  <div className="flex flex-wrap justify-center gap-2 mt-4">
+                    {["Оцифровка физического м³", "Валидация данных", "Хэширование в ноду", "Эмиссия токена"].map((step, i) => (
+                      <span key={i} className="px-3 py-1 bg-slate-800 rounded-full text-sm text-cyan-400 border border-cyan-500/30">
+                        {i + 1}. {step}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -843,14 +681,13 @@ export default function TokenomicsPage() {
             </div>
             <div>
               <span className="font-bold text-slate-200">VODeco Tokenomics</span>
-              <span className="text-xs text-slate-500 ml-2 font-mono">v4.0.2-stable</span>
+              <span className="text-xs text-slate-500 ml-2 font-mono">v1.0</span>
             </div>
           </div>
           <div className="flex items-center gap-6 text-sm text-slate-500">
-            <Link href="/" className="hover:text-cyan-400 transition-colors">Главная</Link>
+            <Link href="/landing" className="hover:text-cyan-400 transition-colors">Staking</Link>
             <Link href="/projecthub" className="hover:text-cyan-400 transition-colors">ProjectHub</Link>
             <Link href="/dao" className="hover:text-cyan-400 transition-colors">DAO</Link>
-            <Link href="/whitepaper" className="hover:text-cyan-400 transition-colors">Whitepaper</Link>
           </div>
         </div>
       </footer>
