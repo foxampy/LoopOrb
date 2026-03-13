@@ -57,34 +57,89 @@ src/
 └── types/             # TypeScript types
 ```
 
-## 💰 Токеномика
+## 💰 Токеномика VOD
 
-### UNITY Coin (Off-chain)
+### VOD Token (Water-Backed)
 
-- **Тип**: Utility coin (off-chain)
-- **Назначение**: Мера участия в экосистеме
-- **Эмиссия**: Централизованная, за реальные действия
+- **Тип**: Utility token, обеспеченный водой
+- **Назначение**: 1 VOD = 1 м³ верифицированной воды
+- **Total Supply**: 1,386,000,000 VOD
+- **Эмиссия**: Только после полного цикла верификации
 
-**Способы получения:**
-- Регистрация: 10 UNITY
-- Telegram регистрация: 15 UNITY
-- Добавление объекта: 50-200 UNITY
-- Добавление данных: 20-100 UNITY
-- Стейкинг: APY 10-20%
+### Поток Эмиссии Токена
 
-**Использование:**
-- Стейкинг в проекты
-- Голосование в DAO
-- Доступ к премиум-функциям
+1. **Physical Water Digitization** — сбор данных с AquaCell/AquaHome/Industrial IoT
+2. **Data Transmission** — шифрованная передача (Bluetooth/WiFi/LoRaWAN/4G)
+3. **Data Validation** — проверка валидаторами (min 3 confirmations)
+4. **Hashing & Anchoring** — SHA-256 хэширование и запись в блокчейн-ноду
+5. **Token Emission** — выпуск VOD на кошелек владельца устройства
 
-### Будущий токен
+### Формула Эмиссии
 
-Эмиссия токена будет возможна только после:
-1. Оцифровки реальных водных данных
-2. Хэширования данных в ноды
-3. Верификации данных
+```
+VOD_emitted = 10 VOD/m³ × Quality_Multiplier (0.5-2.0) × Scarcity_Multiplier (1.0-3.0) × Continuity_Bonus (1.0-1.25) × (1 - Slashing)
+```
 
-UNITY коины будут конвертированы в токены 1:1.
+### Распределение Токенов
+
+| Category | Percentage | Amount | Purpose |
+|----------|------------|--------|---------|
+| Water Reserve | 35% | 485.1M | Физическое обеспечение водой |
+| R&D Treasury | 25% | 346.5M | Финансирование ProjectHub |
+| Community | 15% | 207.9M | Стимулы и награды |
+| Team & Foundation | 12% | 166.3M | Команда и развитие |
+| Early Investors | 8% | 110.9M | Pre-seed и Seed раунды |
+| Liquidity | 3% | 41.6M | Ликвидность |
+| DAO Treasury | 2% | 27.7M | Казна управления |
+
+### Стейкинг
+
+- **Explorer**: 1,000-9,999 VOD → APY 8-12%
+- **Guardian**: 10,000-99,999 VOD → APY 12-18%
+- **Validator**: 100,000+ VOD → APY 18-25%
+
+### Water Index W_m³
+
+Базовая цена 1 м³ воды = $1.20 USD
+
+| Component | Value |
+|-----------|-------|
+| Base Energy | $0.30 |
+| Treatment | $0.40 |
+| Scarcity | $0.20 |
+| Quality | $0.30 |
+| Carbon | $0.05 |
+| Efficiency | -$0.05 |
+
+## 🚀 ProjectHub
+
+Децентрализованная платформа для финансирования, разработки и коммерциализации инноваций в области водных технологий.
+
+### Жизненный цикл проекта
+
+1. **Proposal Submission** — подготовка предложения с бюджетом и milestones
+2. **Community Review** — 7-14 дней публичного ревью и peer review
+3. **DAO Voting** — квадратичное голосование, quorum 5%, порог 60%
+4. **Development** — milestone-based funding через smart contract escrow
+5. **Milestone Verification** — DAO verification vote для каждого этапа
+6. **IP-NFT Creation** — токенизация интеллектуальной собственности
+
+### Уровни финансирования
+
+| Tier | Amount | Duration | Requirements |
+|------|--------|----------|--------------|
+| Micro Grant | $5K-$20K | 3 months | MVP, 1 milestone |
+| Seed Grant | $20K-$100K | 6 months | Team, prototype |
+| Growth Grant | $100K-$500K | 12 months | Traction, partners |
+| Scale Grant | $500K-$2M | 24 months | Revenue, market fit |
+| Moonshot | $2M+ | 36 months | Breakthrough tech |
+
+### Revenue Distribution (IP-NFT)
+
+- **40%** — инвесторам проекта
+- **30%** — команде разработки
+- **20%** — DAO Treasury
+- **10%** — community rewards
 
 ## 🌍 Деплой
 
