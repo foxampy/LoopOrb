@@ -16,6 +16,10 @@
     "cta_primary": "Start Staking",
     "cta_secondary": "Explore ProjectHub"
   },
+  "ecosystem": {
+    "label": "ARCHITECTURE",
+    "title": "6-Layer Water Economy"
+  },
   "crisis": {
     "label": "THE CRISIS",
     "title": "Water is Running Out",

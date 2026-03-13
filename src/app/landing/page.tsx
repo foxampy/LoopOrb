@@ -591,6 +591,167 @@ function Footer() {
   );
 }
 
+// --- ECOSYSTEM ARCHITECTURE SECTION ---
+function EcosystemArchitectureSection() {
+  const { t } = useI18n();
+  
+  const layers = [
+    {
+      id: "physical",
+      title: "Physical Layer",
+      subtitle: "Физический слой",
+      icon: Droplets,
+      color: "from-blue-500 to-cyan-500",
+      items: ["AquaCell", "AquaHome", "AquaDrones", "Industrial IoT"],
+      description: "Устройства сбора данных о качестве воды"
+    },
+    {
+      id: "transmission",
+      title: "Data Transmission",
+      subtitle: "Передача данных",
+      icon: Activity,
+      color: "from-cyan-500 to-teal-500",
+      items: ["Bluetooth 5.0", "WiFi", "LoRaWAN", "4G/5G", "QR-код"],
+      description: "Шифрованная передача данных с датчиков"
+    },
+    {
+      id: "validation",
+      title: "Validation Layer",
+      subtitle: "Валидация",
+      icon: Shield,
+      color: "from-teal-500 to-emerald-500",
+      items: ["Validation Nodes", "Peer Verification", "USGS API", "Anomaly Detection"],
+      description: "Проверка достоверности данных"
+    },
+    {
+      id: "blockchain",
+      title: "Blockchain Layer",
+      subtitle: "Блокчейн",
+      icon: Database,
+      color: "from-emerald-500 to-green-500",
+      items: ["Data Anchoring", "SHA-256 Hashing", "IPFS Storage", "Smart Contracts"],
+      description: "Запечатывание данных в блокчейне"
+    },
+    {
+      id: "token",
+      title: "Token Emission",
+      subtitle: "Эмиссия токена",
+      icon: Zap,
+      color: "from-green-500 to-lime-500",
+      items: ["10 VOD/m³ Base", "Quality Multiplier", "Staking Rewards", "DAO Governance"],
+      description: "Выпуск VOD токенов за верифицированные м³"
+    },
+    {
+      id: "application",
+      title: "Application Layer",
+      subtitle: "Приложения",
+      icon: Globe,
+      color: "from-lime-500 to-yellow-500",
+      items: ["ProjectHub", "Data Marketplace", "DeSci Research", "B2B API"],
+      description: "Продукты и сервисы экосистемы"
+    }
+  ];
+
+  return (
+    <section id="ecosystem" className="relative py-20 md:py-28 bg-slate-950 overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-[200px]" />
+      </div>
+      
+      <div className="relative max-w-6xl mx-auto px-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          className="text-center mb-12 md:mb-16"
+        >
+          <span className="inline-block px-4 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-medium mb-4">
+            {t("ecosystem.label") || "Ecosystem Architecture"}
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            {t("ecosystem.title") || "6-Layer Water Economy"}
+          </h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            От физического кубометра воды до цифрового токена — полный цикл верификации и эмиссии
+          </p>
+        </motion.div>
+
+        {/* Architecture Flow */}
+        <div className="space-y-4">
+          {layers.map((layer, index) => (
+            <motion.div
+              key={layer.id}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="relative"
+            >
+              <div className="flex items-center gap-4 p-4 md:p-6 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-cyan-500/30 transition-colors">
+                {/* Icon */}
+                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${layer.color} flex items-center justify-center flex-shrink-0`}>
+                  <layer.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 mb-2">
+                    <h3 className="text-lg md:text-xl font-bold text-white">{layer.title}</h3>
+                    <span className="text-sm text-cyan-400">{layer.subtitle}</span>
+                  </div>
+                  <p className="text-sm text-slate-400 mb-3 hidden md:block">{layer.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {layer.items.map((item, i) => (
+                      <span key={i} className="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 border border-slate-700">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Arrow */}
+                {index < layers.length - 1 && (
+                  <div className="hidden md:flex items-center justify-center w-8">
+                    <ArrowRight className="w-6 h-6 text-slate-600" />
+                  </div>
+                )}
+              </div>
+              
+              {/* Connection line */}
+              {index < layers.length - 1 && (
+                <div className="absolute left-6 md:left-8 bottom-0 translate-y-full w-0.5 h-4 bg-gradient-to-b from-slate-700 to-transparent" />
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Key Principle */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 p-6 md:p-8 bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/30 rounded-2xl"
+        >
+          <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center flex-shrink-0">
+              <Lock className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                Ключевой принцип: 1 VOD = 1 м³ верифицированной воды
+              </h3>
+              <p className="text-slate-400">
+                Токен выходит в эмиссию только после полного цикла: оцифровка → валидация → хэширование → запечатывание.
+                Никакой эмиссии без реального физического обеспечения.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 // --- MAIN PAGE ---
 function LandingContent() {
   return (
@@ -598,6 +759,7 @@ function LandingContent() {
       <Navbar />
       <HeroSection />
       <CrisisSection />
+      <EcosystemArchitectureSection />
       <DAOSection />
       <StakingSection />
       <ProjectHubSection />

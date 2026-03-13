@@ -16,8 +16,12 @@
     "cta_primary": "Начать стейкинг",
     "cta_secondary": "Исследовать ProjectHub"
   },
+  "ecosystem": {
+    "label": "АРХИТЕКТУРА",
+    "title": "6-уровневая экономика воды"
+  },
   "crisis": {
-    "label": "КРИЗИС",
+    "label": "КРИЗИ",
     "title": "Вода заканчивается",
     "stats": {
       "people": {
