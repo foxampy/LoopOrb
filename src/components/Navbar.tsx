@@ -33,14 +33,12 @@ interface User {
 
 // Navigation items
 const navItems = [
-  { href: "/", label: "Главная", icon: Home },
-  { href: "/projects", label: "Проекты", icon: FolderOpen },
-  { href: "/globe", label: "3D Глобус", icon: Globe },
+  { href: "/landing", label: "Staking", icon: Gem },
+  { href: "/ecosystem", label: "Ecosystem", icon: Globe },
+  { href: "/projecthub", label: "ProjectHub", icon: FolderOpen },
+  { href: "/tokenomics", label: "Tokenomics", icon: Wallet },
   { href: "/dao", label: "DAO", icon: Gavel },
-  { href: "/feed", label: "Лента", icon: Newspaper },
-  { href: "/missions", label: "Миссии", icon: Trophy },
-  { href: "/achievements", label: "Достижения", icon: Trophy },
-  { href: "/wallet", label: "Кошелек", icon: Wallet, requiresAuth: true },
+  { href: "/profile", label: "Account", icon: User, requiresAuth: true },
 ];
 
 export default function Navbar() {
