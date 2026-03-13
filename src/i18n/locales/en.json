@@ -1,0 +1,245 @@
+{
+  "nav": {
+    "home": "Home",
+    "ecosystem": "Ecosystem",
+    "projecthub": "ProjectHub",
+    "tokenomics": "Tokenomics",
+    "dao": "DAO",
+    "staking": "Staking",
+    "connect": "Connect Wallet"
+  },
+  "hero": {
+    "badge": "Water Crisis 2030",
+    "title": "The Last Drop",
+    "subtitle": "Decides Everything",
+    "description": "By 2030, 50% of humanity will face water stress. VODeco is the decentralized infrastructure transforming water from a depleting resource into a sustainable digital economy.",
+    "cta_primary": "Start Staking",
+    "cta_secondary": "Explore ProjectHub"
+  },
+  "crisis": {
+    "label": "THE CRISIS",
+    "title": "Water is Running Out",
+    "stats": {
+      "people": {
+        "value": "2.2B",
+        "label": "People without safe water"
+      },
+      "shortage": {
+        "value": "40%",
+        "label": "Global water shortage by 2030"
+      },
+      "infrastructure": {
+        "value": "$6.7T",
+        "label": "Required investment gap"
+      }
+    },
+    "description": "Traditional centralized systems have failed. Corruption, opacity, and inefficiency plague water management. The solution isn't more bureaucracy—it's decentralized autonomous infrastructure owned by the people.",
+    "quote": "Water is the new oil. But unlike oil, we have no alternative."
+  },
+  "dao": {
+    "label": "GOVERNANCE",
+    "title": "True Democracy Through DAO",
+    "subtitle": "One Token = One Voice = One Cubic Meter",
+    "principles": {
+      "transparent": {
+        "title": "Radical Transparency",
+        "desc": "Every decision, every transaction, every data point verified on-chain"
+      },
+      "equal": {
+        "title": "Equal Rights",
+        "desc": "No corporations, no governments control the network—only token holders"
+      },
+      "open": {
+        "title": "Open Participation",
+        "desc": "Anyone, anywhere can join, validate, and earn through water stewardship"
+      }
+    },
+    "features": {
+      "voting": {
+        "title": "Liquid Democracy",
+        "desc": "Delegate or direct vote on infrastructure projects"
+      },
+      "treasury": {
+        "title": "Community Treasury",
+        "desc": "25% of all emissions fund R&D through ProjectHub"
+      },
+      "consensus": {
+        "title": "Proof-of-Water",
+        "desc": "Consensus mechanism based on verified water data"
+      }
+    }
+  },
+  "staking": {
+    "label": "STAKING",
+    "title": "Stake VOD. Secure Water. Earn Yield.",
+    "subtitle": "Transform capital into planetary-scale water infrastructure",
+    "tiers": {
+      "explorer": {
+        "name": "Explorer",
+        "amount": "1,000 VOD",
+        "apy": "8-12%",
+        "rewards": "Basic yield + governance rights"
+      },
+      "guardian": {
+        "name": "Guardian",
+        "amount": "10,000 VOD",
+        "apy": "12-18%",
+        "rewards": "Enhanced yield + project voting"
+      },
+      "validator": {
+        "name": "Validator",
+        "amount": "100,000 VOD",
+        "apy": "18-25%",
+        "rewards": "Maximum yield + validation fees"
+      }
+    },
+    "calculator": {
+      "title": "Yield Calculator",
+      "amount": "Stake Amount",
+      "duration": "Lock Duration",
+      "estimated": "Estimated Annual Yield",
+      "apy": "APY",
+      "water_backed": "Water-Backed Guarantee"
+    },
+    "benefits": {
+      "sustainable": {
+        "title": "Sustainable Yield",
+        "desc": "Returns backed by real water data and infrastructure fees"
+      },
+      "governance": {
+        "title": "DAO Governance",
+        "desc": "Vote on ProjectHub allocations and protocol upgrades"
+      },
+      "impact": {
+        "title": "Measurable Impact",
+        "desc": "Every staked token funds verified water monitoring nodes"
+      }
+    }
+  },
+  "projecthub": {
+    "label": "PROJECTHUB",
+    "title": "Fund the Future of Water",
+    "subtitle": "12 active projects. $4.2M deployed. You decide where capital flows.",
+    "stats": {
+      "projects": "Active Projects",
+      "funded": "Total Funded",
+      "researchers": "Researchers",
+      "patents": "Patents Filed"
+    },
+    "featured": {
+      "aquacell": {
+        "title": "AquaCell Genesis",
+        "desc": "Pocket laboratory with ±2% accuracy. Lab-on-chip technology.",
+        "progress": "85% Complete"
+      },
+      "vodchain": {
+        "title": "VOD Chain",
+        "desc": "10k TPS blockchain for water data anchoring.",
+        "progress": "45% Complete"
+      },
+      "aquadrones": {
+        "title": "AquaDrone Fleet",
+        "desc": "Autonomous sampling vessels for remote water bodies.",
+        "progress": "15% Complete"
+      }
+    },
+    "cta": "Browse All Projects"
+  },
+  "ecosystem": {
+    "label": "ECOSYSTEM",
+    "title": "Unified Network of Everything",
+    "subtitle": "Objects, subjects, projects, systems—all connected through decentralized protocols",
+    "layers": {
+      "physical": {
+        "name": "Physical Layer",
+        "items": ["IoT Sensors", "AquaCell Devices", "Monitoring Stations", "Treatment Units"]
+      },
+      "data": {
+        "name": "Data Layer",
+        "items": ["Real-time Collection", "Edge Computing", "IPFS Storage", "AI Validation"]
+      },
+      "blockchain": {
+        "name": "Blockchain Layer",
+        "items": ["VOD Chain", "Smart Contracts", "Data Anchoring", "Token Emission"]
+      },
+      "economic": {
+        "name": "Economic Layer",
+        "items": ["Staking Pools", "Project Bonds", "Data Markets", "Insurance"]
+      }
+    }
+  },
+  "token": {
+    "label": "TOKEN",
+    "title": "VOD: Water-Backed Digital Asset",
+    "features": {
+      "backed": {
+        "title": "Physically Backed",
+        "desc": "1 VOD = 1 cubic meter of verified water"
+      },
+      "anti_speculative": {
+        "title": "Anti-Speculative",
+        "desc": "Price bands ($1.00-$5.00) tied to water index W_m³"
+      },
+      "productive": {
+        "title": "Productive Only",
+        "desc": "No ICO. Tokens emitted only through verified data"
+      }
+    }
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Common Questions",
+    "items": {
+      "what": {
+        "q": "What is VODeco?",
+        "a": "VODeco is a decentralized physical infrastructure network (DePIN) for water resource management. It combines IoT sensors, blockchain verification, and tokenized incentives to create a global water monitoring and management ecosystem."
+      },
+      "staking": {
+        "q": "How does staking work?",
+        "a": "When you stake VOD tokens, you secure the network and fund water monitoring infrastructure. In return, you receive staking yields (8-25% APY) based on lock duration and amount. Staked tokens also grant governance rights in the DAO."
+      },
+      "backed": {
+        "q": "What does 'water-backed' mean?",
+        "a": "Each VOD token represents one cubic meter of verified water data. The token's value is algorithmically tied to the Water Index (W_m³), which calculates real costs of water extraction, treatment, and scarcity. This prevents speculation and ensures fundamental value."
+      },
+      "projects": {
+        "q": "How are ProjectHub projects funded?",
+        "a": "25% of VOD emissions go to the R&D Treasury. Token holders vote on which projects receive funding through the DAO. Projects receive VODCoin (development credits) and convert to VOD tokens upon successful delivery."
+      },
+      "validators": {
+        "q": "How do I become a validator?",
+        "a": "Stake 100,000 VOD minimum to run a validation node. Validators verify water data from IoT devices, ensure data quality, and earn fees from the network. Hardware requirements: reliable internet, 99%+ uptime commitment."
+      }
+    }
+  },
+  "cta": {
+    "title": "Join the Water Revolution",
+    "subtitle": "Stake VOD. Fund Infrastructure. Secure the Future.",
+    "button": "Start Staking Now",
+    "secondary": "Read Whitepaper"
+  },
+  "footer": {
+    "tagline": "Decentralized Water Infrastructure for a Thriving Planet",
+    "links": {
+      "ecosystem": "Ecosystem",
+      "governance": "Governance",
+      "developers": "Developers",
+      "community": "Community"
+    },
+    "copyright": "© 2025 VODeco DAO. Open Source Protocol."
+  },
+  "languages": {
+    "en": "English",
+    "ru": "Русский",
+    "ar": "العربية",
+    "he": "עברית",
+    "zh": "中文",
+    "hi": "हिन्दी",
+    "ja": "日本語",
+    "ko": "한국어",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "es": "Español",
+    "fr": "Français"
+  }
+}

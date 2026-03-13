@@ -1,0 +1,845 @@
+// LoopOrb Platform Database Schema
+// PostgreSQL on Render.com
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==========================================
+// USERS & AUTHENTICATION
+// ==========================================
+
+model User {
+  id            String    @id @default(uuid())
+  email         String?   @unique
+  password      String?   // hashed
+  name          String
+  handle        String?   @unique // @username
+  avatar        String?
+  bio           String?   @db.Text
+  
+  // OAuth providers
+  googleId      String?   @unique
+  telegramId    String?   @unique
+  
+  // Role system
+  role          UserRole  @default(CITIZEN)
+  isAdmin       Boolean   @default(false)
+  
+  // Gamification
+  level         Int       @default(1)
+  xp            Int       @default(0)
+  reputation    Int       @default(0)
+  
+  // Wallet (UNITY coins - offchain)
+  unityBalance  Decimal   @default(0) @db.Decimal(18, 8)
+  stakedAmount  Decimal   @default(0) @db.Decimal(18, 8)
+  
+  // Status
+  emailVerified DateTime?
+  isActive      Boolean   @default(true)
+  lastLoginAt   DateTime?
+  
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  wallet        Wallet?
+  transactions  Transaction[]
+  stakes        Stake[]
+  posts         Post[]
+  comments      Comment[]
+  projects      ProjectMember[]
+  objects       WaterObject[] // Created objects
+  createdProjects Project[]   @relation("CreatedProjects")
+  authoredProposals Proposal[] @relation("AuthoredProposals")
+  data          WaterData[]
+  votes         DaoVote[]
+  achievements  UserAchievement[]
+  missions      UserMission[]
+  sessions      Session[]
+  notifications Notification[]
+  followers     Follow[] @relation("UserFollowers")
+  following     Follow[] @relation("UserFollowing")
+  
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("sessions")
+}
+
+enum UserRole {
+  CITIZEN      // Обычный пользователь
+  SCIENTIST    // Ученый/исследователь
+  INVESTOR     // Инвестор
+  GOVERNMENT   // Государственный служащий
+  OPERATOR     // Оператор инфраструктуры
+  ADMIN        // Администратор
+}
+
+// ==========================================
+// WALLET & ECONOMY (UNITY COINS - OFFCHAIN)
+// ==========================================
+
+model Wallet {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  
+  // UNITY Coin (off-chain until tokenization)
+  balance     Decimal  @default(0) @db.Decimal(18, 8)
+  
+  // Staking info
+  totalStaked Decimal  @default(0) @db.Decimal(18, 8)
+  totalEarned Decimal  @default(0) @db.Decimal(18, 8)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("wallets")
+}
+
+model Transaction {
+  id          String          @id @default(uuid())
+  userId      String
+  
+  type        TransactionType
+  amount      Decimal         @db.Decimal(18, 8)
+  
+  // Context
+  projectId   String?
+  description String?
+  metadata    Json?           // Additional context
+  
+  status      TransactionStatus @default(COMPLETED)
+  
+  createdAt   DateTime        @default(now())
+  
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project     Project?        @relation(fields: [projectId], references: [id])
+  
+  @@index([userId])
+  @@index([createdAt])
+  @@map("transactions")
+}
+
+enum TransactionType {
+  REGISTRATION_BONUS    // Бонус за регистрацию
+  DAILY_BONUS          // Ежедневный бонус
+  REFERRAL_BONUS       // Бонус за реферала
+  
+  ADD_OBJECT           // Добавление объекта
+  ADD_DATA             // Добавление данных
+  VALIDATE_DATA        // Валидация данных
+  
+  MISSION_REWARD       // Награда за миссию
+  ACHIEVEMENT_REWARD   // Награда за достижение
+  
+  STAKE                // Стейкинг
+  UNSTAKE              // Разстейкинг
+  STAKE_REWARD         // Награда за стейкинг
+  
+  TRANSFER_IN          // Получение перевода
+  TRANSFER_OUT         // Отправка перевода
+  
+  PROJECT_CONTRIBUTION // Вклад в проект
+  PROJECT_REWARD       // Награда от проекта
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+// ==========================================
+// STAKING SYSTEM
+// ==========================================
+
+model Stake {
+  id          String      @id @default(uuid())
+  userId      String
+  projectId   String
+  
+  amount      Decimal     @db.Decimal(18, 8)
+  apy         Decimal     @db.Decimal(5, 2) // Annual percentage yield
+  
+  startDate   DateTime    @default(now())
+  endDate     DateTime?   // Null = indefinite
+  lastRewardAt DateTime   @default(now())
+  
+  totalRewarded Decimal  @default(0) @db.Decimal(18, 8)
+  
+  status      StakeStatus @default(ACTIVE)
+  
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project     Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([projectId])
+  @@map("stakes")
+}
+
+enum StakeStatus {
+  ACTIVE
+  UNSTAKING // В процессе вывода
+  COMPLETED
+  CANCELLED
+}
+
+// ==========================================
+// PROJECTS
+// ==========================================
+
+model Project {
+  id              String          @id @default(uuid())
+  slug            String          @unique
+  
+  name            String
+  description     String          @db.Text
+  shortDescription String
+  
+  // Classification
+  type            ProjectType
+  category        ProjectCategory
+  status          ProjectStatus   @default(DRAFT)
+  
+  // Location
+  country         String
+  region          String?
+  city            String?
+  coordinates     Json?           // { lat: number, lng: number }
+  
+  // Financial
+  targetAmount    Decimal?        @db.Decimal(18, 2)
+  raisedAmount    Decimal         @default(0) @db.Decimal(18, 2)
+  minStake        Decimal         @default(100) @db.Decimal(18, 8) // Minimum UNITY to stake
+  
+  // Returns
+  expectedApy     Decimal?        @db.Decimal(5, 2)
+  expectedReturn  Decimal?        @db.Decimal(18, 2)
+  
+  // ESG & Impact
+  esgScore        Int?            // 0-100
+  sdgGoals        Int[]           // [6, 9, 11, 13, 16]
+  impactMetrics   Json?           // { waterSaved: number, peopleHelped: number, etc }
+  
+  // Media
+  coverImage      String?
+  gallery         String[]
+  documents       Json[]          // [{ name, url, type, uploadedAt }]
+  
+  // Timeline
+  startDate       DateTime?
+  endDate         DateTime?
+  
+  // Relations
+  creatorId       String
+  creator         User            @relation(fields: [creatorId], references: [id], name: "CreatedProjects")
+  
+  members         ProjectMember[]
+  objects         ProjectObject[]
+  milestones      Milestone[]
+  stakes          Stake[]
+  transactions    Transaction[]
+  posts           Post[]
+  
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  
+  @@index([status])
+  @@index([type])
+  @@index([country])
+  @@map("projects")
+}
+
+model ProjectMember {
+  id        String           @id @default(uuid())
+  projectId String
+  userId    String
+  role      ProjectMemberRole @default(MEMBER)
+  
+  joinedAt  DateTime         @default(now())
+  
+  project   Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([projectId, userId])
+  @@map("project_members")
+}
+
+model ProjectObject {
+  id        String       @id @default(uuid())
+  projectId String
+  objectId  String
+  
+  project   Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  object    WaterObject  @relation(fields: [objectId], references: [id], onDelete: Cascade)
+  
+  @@unique([projectId, objectId])
+  @@map("project_objects")
+}
+
+model Milestone {
+  id          String        @id @default(uuid())
+  projectId   String
+  
+  title       String
+  description String?       @db.Text
+  
+  dueDate     DateTime?
+  completedAt DateTime?
+  
+  status      MilestoneStatus @default(PENDING)
+  
+  project     Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  @@map("milestones")
+}
+
+enum ProjectType {
+  INFRASTRUCTURE       // Модернизация инфраструктуры
+  RESTORATION          // Восстановление экосистем
+  RESEARCH             // Исследования
+  MONITORING           // Мониторинг
+  EDUCATION            // Образование
+  TECHNOLOGY           // Разработка технологий
+}
+
+enum ProjectCategory {
+  WATER_TREATMENT      // Очистка воды
+  INFRASTRUCTURE       // Инфраструктура
+  CONSERVATION         // Сохранение
+  RESEARCH             // Исследования
+  COMMUNITY            // Сообщество
+}
+
+enum ProjectStatus {
+  DRAFT
+  PENDING_REVIEW       // На рассмотрении
+  ACTIVE               // Активен
+  FUNDING              // Сбор средств
+  IN_PROGRESS          // В работе
+  COMPLETED            // Завершен
+  CANCELLED            // Отменен
+}
+
+enum ProjectMemberRole {
+  MEMBER
+  CONTRIBUTOR
+  MANAGER
+  LEAD
+}
+
+enum MilestoneStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  DELAYED
+}
+
+// ==========================================
+// WATER OBJECTS
+// ==========================================
+
+model WaterObject {
+  id            String        @id @default(uuid())
+  
+  name          String
+  nameLocal     String?       // Локальное название
+  
+  type          ObjectType
+  subtype       String?       // Уточнение типа
+  
+  // Location
+  country       String
+  region        String?
+  city          String?
+  coordinates   Json          // { lat: number, lng: number }
+  
+  // Classification
+  basin         String?       // Водосборный бассейн
+  watershed     String?       // Водораздел
+  
+  // Current status
+  status        ObjectStatus  @default(ACTIVE)
+  qualityIndex  Int?          // 0-100
+  
+  // Description
+  description   String?       @db.Text
+  history       String?       @db.Text
+  threats       String[]      // Угрозы
+  
+  // Media
+  images        String[]
+  
+  // Relations
+  creatorId     String
+  creator       User          @relation(fields: [creatorId], references: [id])
+  
+  data          WaterData[]
+  projects      ProjectObject[]
+  posts         Post[]
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  
+  @@index([type])
+  @@index([country])
+  @@index([status])
+  @@map("water_objects")
+}
+
+model WaterData {
+  id            String        @id @default(uuid())
+  
+  objectId      String
+  object        WaterObject   @relation(fields: [objectId], references: [id], onDelete: Cascade)
+  
+  userId        String
+  user          User          @relation(fields: [userId], references: [id])
+  
+  // Measurement
+  measuredAt    DateTime      @default(now())
+  location      Json?         // { lat: number, lng: number } если отличается от объекта
+  
+  // Water metrics
+  ph            Float?
+  temperature   Float?        // Celsius
+  turbidity     Float?        // NTU
+  tds           Float?        // Total Dissolved Solids, ppm
+  conductivity  Float?        // µS/cm
+  dissolvedOxygen Float?      // mg/L
+  
+  // Chemical
+  nitrates      Float?        // mg/L
+  phosphates    Float?        // mg/L
+  
+  // Biological
+  bacteriaCount Float?
+  
+  // Visual
+  clarity       Int?          // 0-10
+  color         String?
+  odor          String?
+  
+  // Images
+  images        String[]
+  
+  // Validation
+  status        DataStatus    @default(PENDING)
+  validatedBy   String?       // User ID who validated
+  validatedAt   DateTime?
+  notes         String?       @db.Text
+  
+  // Hash for future tokenization
+  dataHash      String?       // SHA-256 hash for future anchoring
+  
+  createdAt     DateTime      @default(now())
+  
+  @@index([objectId])
+  @@index([userId])
+  @@index([measuredAt])
+  @@index([status])
+  @@map("water_data")
+}
+
+enum ObjectType {
+  // Природные
+  RIVER
+  LAKE
+  POND
+  STREAM
+  SPRING
+  WETLAND
+  GLACIER
+  AQUIFER
+  SEA
+  OCEAN
+  
+  // Инфраструктурные
+  WATER_TREATMENT_PLANT
+  PUMPING_STATION
+  RESERVOIR
+  DAM
+  PIPELINE
+  WELL
+  
+  // Другое
+  MONITORING_STATION
+  RESEARCH_SITE
+}
+
+enum ObjectStatus {
+  ACTIVE
+  MONITORING
+  RESTORATION
+  CRITICAL
+  INACTIVE
+}
+
+enum DataStatus {
+  PENDING      // Ожидает валидации
+  VALIDATED    // Подтверждено
+  REJECTED     // Отклонено
+  EXPERT       // Экспертные данные
+}
+
+// ==========================================
+// SOCIAL
+// ==========================================
+
+model Post {
+  id          String    @id @default(uuid())
+  
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  content     String    @db.Text
+  images      String[]
+  
+  // Engagement
+  likes       Like[]
+  comments    Comment[]
+  
+  likesCount    Int     @default(0)
+  commentsCount Int     @default(0)
+  
+  // Context
+  projectId   String?
+  project     Project?    @relation(fields: [projectId], references: [id])
+  objectId    String?
+  object      WaterObject? @relation(fields: [objectId], references: [id])
+  
+  // Mentions & hashtags
+  mentions    String[]  // @username
+  hashtags    String[]
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  @@index([authorId])
+  @@index([createdAt])
+  @@map("posts")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  content   String   @db.Text
+  
+  // Nested replies
+  parentId  String?
+  replies   Comment[] @relation("CommentReplies")
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("comments")
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
+  userId    String
+  
+  createdAt DateTime @default(now())
+  
+  @@unique([postId, userId])
+  @@map("likes")
+}
+
+model Follow {
+  id          String   @id @default(uuid())
+  
+  followerId  String
+  follower    User     @relation("UserFollowing", fields: [followerId], references: [id], onDelete: Cascade)
+  
+  followingId String
+  following   User     @relation("UserFollowers", fields: [followingId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+  
+  @@unique([followerId, followingId])
+  @@map("follows")
+}
+
+// ==========================================
+// GAMIFICATION
+// ==========================================
+
+model Achievement {
+  id          String   @id @default(uuid())
+  
+  name        String   @unique
+  description String   @db.Text
+  
+  category    AchievementCategory
+  icon        String
+  color       String
+  
+  // Requirements
+  xpReward    Int
+  unityReward Decimal  @default(0) @db.Decimal(18, 8)
+  
+  // Unlock conditions
+  condition   Json     // { type: "projects_count", value: 5 }
+  
+  users       UserAchievement[]
+  
+  createdAt   DateTime @default(now())
+  
+  @@map("achievements")
+}
+
+model UserAchievement {
+  id            String      @id @default(uuid())
+  
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  
+  unlockedAt    DateTime    @default(now())
+  
+  @@unique([userId, achievementId])
+  @@map("user_achievements")
+}
+
+model Mission {
+  id          String    @id @default(uuid())
+  
+  title       String
+  description String    @db.Text
+  
+  type        MissionType
+  category    MissionCategory
+  
+  // Requirements
+  requirements Json     // { action: "add_data", count: 3 }
+  
+  // Rewards
+  xpReward    Int
+  unityReward Decimal  @default(0) @db.Decimal(18, 8)
+  
+  // Availability
+  startDate   DateTime?
+  endDate     DateTime?
+  isActive    Boolean   @default(true)
+  
+  users       UserMission[]
+  
+  createdAt   DateTime  @default(now())
+  
+  @@map("missions")
+}
+
+model UserMission {
+  id          String        @id @default(uuid())
+  
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  missionId   String
+  mission     Mission         @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  
+  progress    Int           @default(0)
+  target      Int
+  
+  status      UserMissionStatus @default(ACTIVE)
+  
+  startedAt   DateTime      @default(now())
+  completedAt DateTime?
+  
+  @@unique([userId, missionId])
+  @@map("user_missions")
+}
+
+enum AchievementCategory {
+  EXPLORER      // Исследователь
+  SCIENTIST     // Ученый
+  ACTIVIST      // Активист
+  INVESTOR      // Инвестор
+  INFLUENCER    // Лидер мнений
+  SPECIAL       // Особые
+}
+
+enum MissionType {
+  DAILY
+  WEEKLY
+  MONTHLY
+  ONETIME
+  PROJECT
+}
+
+enum MissionCategory {
+  DATA_COLLECTION
+  VALIDATION
+  PROJECT_PARTICIPATION
+  SOCIAL
+  EDUCATION
+  EXPLORATION
+}
+
+enum UserMissionStatus {
+  ACTIVE
+  COMPLETED
+  EXPIRED
+}
+
+// ==========================================
+// DAO GOVERNANCE
+// ==========================================
+
+model Proposal {
+  id          String          @id @default(uuid())
+  
+  title       String
+  description String          @db.Text
+  
+  category    ProposalCategory
+  status      ProposalStatus  @default(ACTIVE)
+  
+  // Voting
+  votesFor    Decimal         @default(0) @db.Decimal(18, 8)
+  votesAgainst Decimal        @default(0) @db.Decimal(18, 8)
+  votesAbstain Decimal         @default(0) @db.Decimal(18, 8)
+  
+  // Timeline
+  startDate   DateTime
+  endDate     DateTime
+  
+  // Result
+  executedAt  DateTime?
+  executionResult Json?
+  
+  // Relations
+  authorId    String
+  author      User            @relation(fields: [authorId], references: [id], name: "AuthoredProposals")
+  votes       DaoVote[]
+  
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  
+  @@index([status])
+  @@index([endDate])
+  @@map("proposals")
+}
+
+model DaoVote {
+  id          String   @id @default(uuid())
+  
+  proposalId  String
+  proposal    Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  vote        VoteType
+  weight      Decimal  @db.Decimal(18, 8) // UNITY power
+  
+  reason      String?  @db.Text
+  
+  createdAt   DateTime @default(now())
+  
+  @@unique([proposalId, userId])
+  @@map("dao_votes")
+}
+
+enum ProposalCategory {
+  TREASURY
+  PROJECT_FUNDING
+  PLATFORM_UPGRADE
+  PARAMETER_CHANGE
+  ECOSYSTEM
+}
+
+enum ProposalStatus {
+  DRAFT
+  ACTIVE
+  PASSED
+  REJECTED
+  EXECUTED
+  CANCELLED
+}
+
+enum VoteType {
+  FOR
+  AGAINST
+  ABSTAIN
+}
+
+// ==========================================
+// NOTIFICATIONS
+// ==========================================
+
+model Notification {
+  id          String           @id @default(uuid())
+  
+  userId      String
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  type        NotificationType
+  title       String
+  message     String           @db.Text
+  
+  // Context
+  data        Json?            // { postId, userId, projectId, etc }
+  
+  isRead      Boolean          @default(false)
+  readAt      DateTime?
+  
+  createdAt   DateTime         @default(now())
+  
+  @@index([userId])
+  @@index([isRead])
+  @@index([createdAt])
+  @@map("notifications")
+}
+
+enum NotificationType {
+  SYSTEM
+  PROJECT_UPDATE
+  PROJECT_INVITE
+  MISSION_COMPLETED
+  ACHIEVEMENT_UNLOCKED
+  DATA_VALIDATED
+  STAKE_REWARD
+  TRANSFER_RECEIVED
+  POST_LIKE
+  POST_COMMENT
+  FOLLOW
+  DAO_VOTE
+  PROPOSAL_ENDED
+}
