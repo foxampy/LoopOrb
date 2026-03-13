@@ -264,9 +264,10 @@ export default function ProjectDetailPage() {
     { href: "/profile", label: "Account" },
   ];
 
-  const IconComponent = {
+  const iconMap: Record<string, any> = {
     Droplet, Waves, Satellite, Brain, Database, FlaskConical, Zap, Box
-  }[project.icon] || Droplets;
+  };
+  const IconComponent = iconMap[project.icon] || Droplets;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200">
