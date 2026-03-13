@@ -374,7 +374,7 @@ export default function ProjectDetailPage() {
   };
 
   const selectedTierData = project.preorderTiers.find(t => t.id === selectedTier);
-  const totalPrice = selectedTierData 
+  const totalPrice = selectedTierData && selectedTier
     ? selectedTierData.price * (tierQuantities[selectedTier] || 1)
     : 0;
 
