@@ -7,7 +7,7 @@ import {
   Rocket, FlaskConical, Cpu, Waves, Droplets, Microscope,
   Target, Clock, CheckCircle2, Circle, Sparkles, Lightbulb, 
   TrendingUp, Users, Gem, Award, ArrowRight, Zap, Globe,
-  Menu, X, Wallet, FileText, FileCheck, Hash, Box,
+  Menu, X, Wallet, FileText, FileCheck, Hash, Box, FolderOpen,
   Lock, Unlock, Vote, Coins, Brain, Shield, Radio,
   Thermometer, Eye, Beaker, Satellite, Droplet,
   Wifi, QrCode, Database, Server, Activity, TrendingDown,

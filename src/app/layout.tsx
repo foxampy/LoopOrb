@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VODeco - Decentralized Water Infrastructure",
+  title: "LoopOrb - Глобальная экосистема управления водными ресурсами",
   description:
-    "VODeco is a decentralized cyber-physical ecosystem for water resource management. Stake VOD tokens, fund water infrastructure, and earn yield through verified water data.",
+    "LoopOrb — децентрализованная платформа для мониторинга, инвестирования и управления водными ресурсами. Стейкинг токенов UNITY, инвестирование в водные проекты и заработок через верифицированные данные о воде.",
   keywords: [
     "water",
     "blockchain",
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     "IoT",
     "environment",
   ],
-  authors: [{ name: "VODeco DAO" }],
+  authors: [{ name: "LoopOrb DAO" }],
   openGraph: {
-    title: "VODeco - Water-Backed Digital Economy",
-    description: "Transform water from depleting resource into sustainable digital economy",
+    title: "LoopOrb - Water-Backed Digital Economy",
+    description: "Превратите воду из истощаемого ресурса в устойчивую цифровую экономику",
     type: "website",
   },
 };

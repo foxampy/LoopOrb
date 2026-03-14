@@ -196,8 +196,10 @@ const mockPosts = [
 
 export default function ProfilePage() {
   const [user, setUser] = useState(mockUser);
-  const [isEditing, setIsEditing] = useState(true); // Start in edit mode for new user
+  const [isEditing, setIsEditing] = useState(true);
   const [activeTab, setActiveTab] = useState<"posts" | "achievements" | "about">("about");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [editForm, setEditForm] = useState({
     name: "",
     handle: "",
@@ -206,6 +208,61 @@ export default function ProfilePage() {
     website: "",
     occupation: ""
   });
+
+  useEffect(() => {
+    // Check authentication
+    fetch("/api/auth/me")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setIsAuthenticated(true);
+          setUser({ ...mockUser, ...data.data.user });
+        }
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-ocean-deep flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-water-500/30 border-t-water-500 rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <>
+        <UniversalNavbar variant="default" />
+        <main className="min-h-screen pt-20 pb-8 px-4 flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-card p-8 max-w-md w-full text-center"
+          >
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-water-500/20 flex items-center justify-center">
+              <Lock className="w-10 h-10 text-water-400" />
+            </div>
+            <h1 className="text-2xl font-bold text-white mb-4">Требуется авторизация</h1>
+            <p className="text-water-200/70 mb-6">
+              Для доступа к профилю необходимо войти в аккаунт.
+            </p>
+            <div className="space-y-3">
+              <Link href="/login" className="block w-full py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-900 font-bold rounded-xl transition-all">
+                Войти
+              </Link>
+              <Link href="/register" className="block w-full py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all">
+                Создать аккаунт
+              </Link>
+            </div>
+          </motion.div>
+        </main>
+      </>
+    );
+  }
 
   const handleSaveProfile = () => {
     setUser({ ...user, ...editForm });

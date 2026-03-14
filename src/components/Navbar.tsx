@@ -20,6 +20,7 @@ import {
   Trophy,
   Gem,
   Lock,
+  Target,
 } from "lucide-react";
 
 interface User {
@@ -33,12 +34,15 @@ interface User {
 
 // Navigation items
 const navItems = [
-  { href: "/landing", label: "Staking", icon: Gem },
-  { href: "/ecosystem", label: "Ecosystem", icon: Globe },
+  { href: "/landing", label: "Лендинг", icon: Globe },
+  { href: "/staking", label: "Стейкинг", icon: Gem },
+  { href: "/tokenhub", label: "Токенхаб", icon: Wallet },
   { href: "/projecthub", label: "ProjectHub", icon: FolderOpen },
-  { href: "/tokenomics", label: "Tokenomics", icon: Wallet },
+  { href: "/projects", label: "Проекты", icon: Target },
+  { href: "/ecosystem", label: "Экосистема", icon: Globe },
+  { href: "/tokenomics", label: "Токеномика", icon: Wallet },
   { href: "/dao", label: "DAO", icon: Gavel },
-  { href: "/profile", label: "Account", icon: User, requiresAuth: true },
+  { href: "/profile", label: "Профиль", icon: User, requiresAuth: true },
 ];
 
 export default function Navbar() {

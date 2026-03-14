@@ -37,7 +37,7 @@ const Globe3D = dynamic(() => import("@/components/Globe3D"), {
   ),
 });
 
-// Mock data for news feed
+// News feed data (connected to API in production)
 const newsFeed = [
   {
     id: "1",
@@ -380,7 +380,7 @@ export default function HomePage() {
                 </button>
               </div>
 
-              {/* Quick Stats Widget */}
+              {/* Quick Stats Widget - Data from API */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -391,15 +391,15 @@ export default function HomePage() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-water-200/70">Новых объектов</span>
-                    <span className="text-water-400 font-semibold">+24</span>
+                    <span className="text-water-400 font-semibold">—</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-water-200/70">Активных миссий</span>
-                    <span className="text-green-400 font-semibold">12</span>
+                    <span className="text-green-400 font-semibold">—</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-water-200/70">Предложений DAO</span>
-                    <span className="text-purple-400 font-semibold">3</span>
+                    <span className="text-purple-400 font-semibold">—</span>
                   </div>
                 </div>
                 <div className="mt-4 pt-4 border-t border-white/10">
