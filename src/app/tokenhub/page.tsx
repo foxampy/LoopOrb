@@ -285,6 +285,7 @@ const stakingTiers = [
 
 // --- PROJECT CARD COMPONENT ---
 function ProjectCard({ project, index }: { project: typeof investmentProjects[0]; index: number }) {
+  const t = useTranslations("tokenhub");
   const progress = (project.funded / project.fundingGoal) * 100;
   const statusColors: Record<string, string> = {
     active: "bg-emerald-500",
@@ -292,14 +293,14 @@ function ProjectCard({ project, index }: { project: typeof investmentProjects[0]
     completed: "bg-blue-500"
   };
   const statusLabels: Record<string, string> = {
-    active: "Активен",
-    fundraising: "Сбор средств",
-    completed: "Завершён"
+    active: t("project.status.active"),
+    fundraising: t("project.status.fundraising"),
+    completed: t("project.status.completed")
   };
   const riskLabels: Record<string, { text: string; color: string }> = {
-    low: { text: "Низкий", color: "text-emerald-400" },
-    medium: { text: "Средний", color: "text-amber-400" },
-    high: { text: "Высокий", color: "text-red-400" }
+    low: { text: t("project.risk.low"), color: "text-emerald-400" },
+    medium: { text: t("project.risk.medium"), color: "text-amber-400" },
+    high: { text: t("project.risk.high"), color: "text-red-400" }
   };
 
   return (
@@ -385,13 +386,13 @@ function ProjectCard({ project, index }: { project: typeof investmentProjects[0]
           </div>
           <div className="text-center">
             <div className="text-lg font-bold text-white">{project.minStake.toLocaleString()}</div>
-            <div className="text-xs text-water-200/50">Мин. стейк</div>
+            <div className="text-xs text-water-200/50">{t("project.minStake")}</div>
           </div>
           <div className="text-center">
             <div className={`text-lg font-bold ${riskLabels[project.riskLevel].color}`}>
               {riskLabels[project.riskLevel].text}
             </div>
-            <div className="text-xs text-water-200/50">Риск</div>
+            <div className="text-xs text-water-200/50">{t("project.risk.label")}</div>
           </div>
         </div>
 
@@ -399,13 +400,13 @@ function ProjectCard({ project, index }: { project: typeof investmentProjects[0]
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm text-water-200/50">
             <Users className="w-4 h-4" />
-            <span>{project.backers} инвесторов</span>
+            <span>{project.backers} {t("project.backers")}</span>
           </div>
           <Link
             href={`/tokenhub/${project.id}`}
             className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition"
           >
-            Инвестировать
+            {t("project.invest")}
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
