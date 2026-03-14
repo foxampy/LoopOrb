@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import {
@@ -427,6 +428,7 @@ function DAOLevels() {
 
 // --- MAIN PAGE ---
 export default function TokenomicsPage() {
+  const t = useTranslations("tokenomics");
   const [activeToken, setActiveToken] = useState<string>("vod");
 
   return (
@@ -442,14 +444,13 @@ export default function TokenomicsPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-4">
               <Coins className="w-4 h-4 text-cyan-400" />
-              <span className="text-sm text-cyan-400 font-medium">Токеномика</span>
+              <span className="text-sm text-cyan-400 font-medium">{t("title")}</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Три токена, три функции
+              {t("title")}
             </h1>
             <p className="text-lg text-water-200/70 max-w-2xl mx-auto">
-              Синхронизированная экономика: VOD (товар), VODeco (управление), VODcredit (репутация).
-              Каждый токен выполняет свою роль в экосистеме.
+              {t("subtitle")}
             </p>
           </motion.div>
 
@@ -638,19 +639,19 @@ export default function TokenomicsPage() {
             className="glass-card p-8 text-center"
           >
             <h3 className="text-2xl font-bold text-white mb-4">
-              Готов участвовать в экономике воды?
+              {t("cta.title")}
             </h3>
             <p className="text-water-200/70 mb-6 max-w-2xl mx-auto">
-              Начни стейкинг в R&D проекты или получи VODcredit за вклад в экосистему.
+              {t("cta.subtitle")}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/tokenhub" className="btn-primary flex items-center gap-2">
                 <Gem className="w-5 h-5" />
-                Инвестировать в проекты
+                {t("cta.invest")}
               </Link>
               <Link href="/staking" className="btn-secondary flex items-center gap-2">
                 <Lock className="w-5 h-5" />
-                Стейкинг
+                {t("cta.stake")}
               </Link>
             </div>
           </motion.div>
