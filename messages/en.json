@@ -1,0 +1,418 @@
+{
+  "metadata": {
+    "title": "LoopOrb - Water Data Ecosystem",
+    "description": "Decentralized platform for monitoring, managing and investing in water resources"
+  },
+  "nav": {
+    "landing": "Landing",
+    "ecosystem": "Ecosystem",
+    "projecthub": "ProjectHub",
+    "tokenhub": "TokenHub",
+    "staking": "Staking",
+    "tokenomics": "Tokenomics",
+    "dao": "DAO",
+    "profile": "Account"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "submit": "Submit",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "comingSoon": "Coming Soon",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "apy": "APY",
+    "stake": "Stake",
+    "earned": "Earned",
+    "balance": "Balance"
+  },
+  "home": {
+    "title": "Water Data Ecosystem",
+    "subtitle": "Decentralized platform for monitoring and managing water resources",
+    "features": {
+      "monitoring": {
+        "title": "Monitoring",
+        "desc": "Real-time water quality tracking"
+      },
+      "investing": {
+        "title": "Investing",
+        "desc": "Support R&D projects through tokenization"
+      },
+      "governance": {
+        "title": "Governance",
+        "desc": "DAO for community decision making"
+      }
+    }
+  },
+  "tokenhub": {
+    "title": "Invest in Water Technologies",
+    "subtitle": "Support LoopOrb ecosystem R&D projects and earn from real technology implementation. Stake UNITY in projects with APY up to 32%.",
+    "stats": {
+      "totalRaised": "Total Raised",
+      "goal": "Funding Goal",
+      "activeProjects": "Active Projects",
+      "investors": "Investors"
+    },
+    "calculator": {
+      "title": "Staking Calculator",
+      "amount": "Amount (UNITY)",
+      "duration": "Duration (months)",
+      "tier": "Tier",
+      "annualYield": "Annual Yield",
+      "durationYield": "Yield for {months} months"
+    },
+    "filters": {
+      "all": "All Projects",
+      "hardware": "Hardware / IoT",
+      "software": "Software / AI",
+      "community": "Community",
+      "search": "Search projects..."
+    },
+    "project": {
+      "status": {
+        "active": "Active",
+        "fundraising": "Fundraising",
+        "completed": "Completed"
+      },
+      "risk": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "minStake": "Min Stake",
+      "lockPeriod": "Lock Period",
+      "backers": "investors",
+      "invest": "Invest",
+      "specs": "Specifications",
+      "features": "Features",
+      "milestones": "Project Milestones",
+      "team": "Team",
+      "documents": "Documents",
+      "esg": {
+        "title": "ESG Metrics",
+        "waterSaved": "Water Saved",
+        "co2Avoided": "CO₂ Avoided",
+        "communities": "Communities"
+      }
+    },
+    "howItWorks": {
+      "title": "How Investing Works",
+      "step1": {
+        "title": "Choose Project",
+        "desc": "Explore R&D initiatives with full data transparency"
+      },
+      "step2": {
+        "title": "Stake UNITY",
+        "desc": "Lock tokens in the project smart contract"
+      },
+      "step3": {
+        "title": "Earn Returns",
+        "desc": "APY from 8% to 32% depending on the project"
+      },
+      "step4": {
+        "title": "Support Science",
+        "desc": "Your funds go to real development"
+      }
+    },
+    "standard": {
+      "title": "VOD Token Standard Implementation",
+      "subtitle": "Technical architecture and ProjectHub integration",
+      "architecture": {
+        "title": "Token Architecture",
+        "vod": {
+          "name": "VOD (Commodity)",
+          "desc": "1 VOD = 1 m³ of verified water. Emission only upon physical verification"
+        },
+        "vodeco": {
+          "name": "VODeco (Governance)",
+          "desc": "DAO governance, validator staking, fixed 1B supply"
+        },
+        "vodcredit": {
+          "name": "VODcredit (SBT)",
+          "desc": "Participant reputation, non-transferable, earned for contribution"
+        }
+      },
+      "integration": {
+        "title": "ProjectHub Integration",
+        "pipeline": "ProjectHub → TokenHub Pipeline",
+        "pipelineDesc": "Projects from ProjectHub (16 R&D initiatives) go through stages: Concept → Prototype → Pilot → Production",
+        "stages": {
+          "concept": "Concept: $100-500K",
+          "prototype": "Prototype: $500K-2M",
+          "production": "Production: $2M+"
+        },
+        "rewards": {
+          "title": "Cross-Platform Rewards",
+          "desc": "Participation in ProjectHub projects (data, research) automatically earns VODcredit → increases VOD emission multiplier → increases TokenHub investment returns"
+        }
+      },
+      "swaps": {
+        "title": "Token Swaps",
+        "desc": "DEX integration for VOD ↔ VODeco exchange. Liquidity provided through pools with APY 5-15%. Automatic market makers for stability."
+      },
+      "pools": {
+        "title": "Liquidity Pools",
+        "desc": "VOD/TON, VODeco/TON, VOD/VODeco pools. TVL grows proportionally to the number of verified water sources in the network."
+      },
+      "security": {
+        "title": "Security",
+        "desc": "Multi-sig contracts, CertiK audit, HSM modules for hardware nodes. Slashing for validator misconduct."
+      }
+    },
+    "structure": {
+      "title": "Interconnected Tokenomics Structure",
+      "level1": {
+        "name": "Water (VOD)",
+        "desc": "Base layer — physical asset. Each VOD backed by 1m³ of water.",
+        "emission": "Algorithmic",
+        "tax": "2% annually"
+      },
+      "level2": {
+        "name": "Governance (VODeco)",
+        "desc": "DAO voting, validation, R&D investments through TokenHub.",
+        "supply": "1B fixed",
+        "stake": "100K for validator"
+      },
+      "level3": {
+        "name": "Reputation (VODcredit)",
+        "desc": "SBT token for contribution. Affects emission and privileges.",
+        "type": "Soulbound",
+        "earning": "For activity"
+      },
+      "flows": {
+        "title": "Component Interconnection",
+        "data": "Data",
+        "dataDesc": "IoT Sensors",
+        "emission": "Emission",
+        "emissionDesc": "VODcredit × Volume = VOD",
+        "governance": "Governance",
+        "governanceDesc": "VODeco + DAO",
+        "investing": "Investing",
+        "investingDesc": "TokenHub → R&D"
+      }
+    }
+  },
+  "tokenomics": {
+    "title": "Three Tokens, Three Functions",
+    "subtitle": "Synchronized economy: VOD (commodity), VODeco (governance), VODcredit (reputation). Each token plays its role in the ecosystem.",
+    "tokens": {
+      "vod": {
+        "name": "VOD",
+        "fullName": "Water Commodity Token",
+        "type": "Commodity",
+        "description": "Right to 1 m³ of verified water. Emitted only upon physical volume verification.",
+        "supply": "Unlimited",
+        "backing": "1 m³ of water in licensed storage",
+        "emission": "Only upon physical volume verification",
+        "holders": "Operators, citizens, investors"
+      },
+      "vodeco": {
+        "name": "VODeco",
+        "fullName": "Governance Token",
+        "type": "Governance",
+        "description": "DAO governance token. Fixed emission. Grants voting rights and validation participation.",
+        "supply": "1,000,000,000 (fixed)",
+        "backing": "Reputation + stake in ecosystem",
+        "emission": "Fixed, fully unfrozen by 2027",
+        "holders": "DAO participants, validators, investors"
+      },
+      "vodcredit": {
+        "name": "VODcredit",
+        "fullName": "Reputation SBT",
+        "type": "Reputation (SBT)",
+        "description": "Non-transferable reputation token. Earned for ecosystem contribution.",
+        "supply": "Unlimited",
+        "backing": "Ecosystem contribution (data, validation, development)",
+        "emission": "Algorithmically for useful actions",
+        "holders": "All ecosystem participants"
+      }
+    },
+    "emission": {
+      "title": "VOD Emission Formula",
+      "formula": "EMISSION = Volume × Quality × Actuality × Reputation",
+      "volume": "Water Volume (m³)",
+      "quality": "Data Quality (0-1)",
+      "actuality": "Actuality",
+      "reputation": "Operator Reputation",
+      "actualityOptions": {
+        "realtime": "Real-time (1.0)",
+        "hour": "Hour delay (0.5)",
+        "day": "Daily (0.1)"
+      }
+    },
+    "allocation": {
+      "title": "VODeco Allocation",
+      "waterReserve": "Water Reserve",
+      "rdTreasury": "R&D Treasury",
+      "community": "Community",
+      "team": "Team & Foundation",
+      "investors": "Early Investors",
+      "liquidity": "Liquidity",
+      "daoTreasury": "DAO Treasury"
+    },
+    "dao": {
+      "title": "DAO Levels",
+      "l1": {
+        "name": "Constitutional",
+        "topic": "Emission rule changes",
+        "quorum": "66% VODeco + 51% validators",
+        "mechanism": "Multi-sig + 30 days",
+        "time": "30 days"
+      },
+      "l2": {
+        "name": "Economic",
+        "topic": "Staking, tax parameters",
+        "quorum": "51% VODeco",
+        "mechanism": "Direct voting",
+        "time": "7 days"
+      },
+      "l3": {
+        "name": "Projects",
+        "topic": "Investments, allocation",
+        "quorum": "40% VODeco + reputation",
+        "mechanism": "Quadratic voting",
+        "time": "14 days"
+      },
+      "l4": {
+        "name": "Operational",
+        "topic": "Grants, rewards",
+        "quorum": "Delegates",
+        "mechanism": "Liquid democracy",
+        "time": "3 days"
+      }
+    },
+    "ecosystem": {
+      "title": "Interconnected Ecosystem",
+      "projecthub": {
+        "title": "ProjectHub",
+        "subtitle": "16 R&D Projects",
+        "desc": "R&D initiatives from concept to production. Each project goes through verification stages and can receive funding through TokenHub."
+      },
+      "tokenhub": {
+        "title": "TokenHub",
+        "subtitle": "Investing & DeFi",
+        "desc": "B2I interface for investing in R&D projects. Staking with APY 8-32%, DEX integration for token exchange, liquidity for VOD/VODeco."
+      },
+      "daoGov": {
+        "title": "DAO Governance",
+        "subtitle": "4 decision levels",
+        "desc": "Decentralized governance through VODeco. From constitutional to operational decisions — everything is transparent and verifiable on blockchain."
+      },
+      "flows": {
+        "title": "Value Flows"
+      },
+      "features": {
+        "waterBacked": {
+          "title": "Water-Backed",
+          "desc": "Each VOD backed by 1m³ of water"
+        },
+        "transparent": {
+          "title": "Transparent",
+          "desc": "All operations on blockchain"
+        },
+        "sustainable": {
+          "title": "Sustainable",
+          "desc": "ESG-oriented model"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to participate in water economy?",
+      "subtitle": "Start staking in R&D projects or earn VODcredit for ecosystem contribution.",
+      "invest": "Invest in Projects",
+      "stake": "Staking"
+    }
+  },
+  "staking": {
+    "title": "UNITY Staking",
+    "subtitle": "Lock tokens to support the network and earn passive income",
+    "tiers": {
+      "title": "Staking Tiers",
+      "explorer": {
+        "name": "Explorer",
+        "apy": "8-12%",
+        "desc": "Basic tier for new investors"
+      },
+      "guardian": {
+        "name": "Guardian",
+        "apy": "12-18%",
+        "desc": "Optimal risk-return balance"
+      },
+      "validator": {
+        "name": "Validator",
+        "apy": "18-25%",
+        "desc": "Maximum rewards for large stakers"
+      }
+    },
+    "calculator": {
+      "title": "Yield Calculator",
+      "amount": "Staking Amount (UNITY)",
+      "period": "Period (months)",
+      "baseApy": "Base APY",
+      "durationBonus": "Duration Bonus",
+      "amountBonus": "Amount Bonus",
+      "totalApy": "Total APY",
+      "estimated": "Estimated Profit"
+    },
+    "stats": {
+      "totalStaked": "Total Staked",
+      "yourStake": "Your Stake",
+      "yourEarnings": "Your Earnings",
+      "lockPeriod": "Lock Period"
+    }
+  },
+  "projecthub": {
+    "title": "Research Projects",
+    "subtitle": "LoopOrb ecosystem R&D initiatives from concept to production",
+    "categories": {
+      "hardware": "Hardware Innovation",
+      "treatment": "Water Treatment",
+      "analytics": "Data & Analytics",
+      "community": "Community Solutions"
+    },
+    "project": {
+      "status": "Status",
+      "funding": "Funding",
+      "team": "Team",
+      "timeline": "Timeline",
+      "documents": "Documents",
+      "invest": "Invest",
+      "viewDetails": "View Details"
+    }
+  },
+  "dao": {
+    "title": "Decentralized Governance",
+    "subtitle": "Make decisions on ecosystem development through voting",
+    "proposals": {
+      "title": "Proposals",
+      "active": "Active",
+      "passed": "Passed",
+      "rejected": "Rejected",
+      "create": "Create Proposal"
+    },
+    "voting": {
+      "for": "For",
+      "against": "Against",
+      "abstain": "Abstain",
+      "quorum": "Quorum",
+      "endsIn": "Ends in"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "wallet": "Wallet",
+    "achievements": "Achievements",
+    "activity": "Activity",
+    "settings": "Settings",
+    "logout": "Logout",
+    "connectWallet": "Connect Wallet",
+    "editProfile": "Edit Profile"
+  }
+}

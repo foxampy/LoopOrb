@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { I18nProvider } from "@/i18n/I18nContext";
+import IntlProvider from "@/components/IntlProvider";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -38,13 +38,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="ru" className="dark">
       <body
         className={`${inter.variable} font-sans antialiased bg-slate-950 text-white min-h-screen`}
       >
-        <I18nProvider>
+        <IntlProvider>
           {children}
-        </I18nProvider>
+        </IntlProvider>
       </body>
     </html>
   );
