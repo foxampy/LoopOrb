@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import {
@@ -342,6 +343,7 @@ function StakingInfoSection() {
 
 // --- MAIN PAGE ---
 export default function StakingPage() {
+  const t = useTranslations("staking");
   return (
     <>
       <Navbar />
@@ -355,21 +357,20 @@ export default function StakingPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6">
               <Gem className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400 font-medium">Стейкинг UNITY</span>
+              <span className="text-sm text-emerald-400 font-medium">{t("title")}</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Застейкай <span className="gradient-text">UNITY</span>
+              {t("title")}
             </h1>
             <p className="text-lg text-water-200/70 max-w-2xl mx-auto">
-              Защити воду. Получи доход. Участвуй в управлении.
-              Трансформируй капитал в инфраструктуру планетарного масштаба.
+              {t("subtitle")}
             </p>
           </motion.div>
 
           {/* Staking Tiers */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6 text-center">Уровни стейкинга</h2>
+            <h2 className="text-2xl font-bold text-white mb-6 text-center">{t("tiers.title")}</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {stakingTiers.map((tier, index) => (
                 <TierCard key={tier.id} tier={tier} index={index} />
