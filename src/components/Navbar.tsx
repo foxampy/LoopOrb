@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
@@ -32,26 +33,29 @@ interface User {
   role: string;
 }
 
-// Navigation items
-const navItems = [
-  { href: "/landing", label: "Лендинг", icon: Globe },
-  { href: "/staking", label: "Стейкинг", icon: Gem },
-  { href: "/tokenhub", label: "Токенхаб", icon: Wallet },
-  { href: "/projecthub", label: "ProjectHub", icon: FolderOpen },
-  { href: "/projects", label: "Проекты", icon: Target },
-  { href: "/ecosystem", label: "Экосистема", icon: Globe },
-  { href: "/tokenomics", label: "Токеномика", icon: Wallet },
-  { href: "/dao", label: "DAO", icon: Gavel },
-  { href: "/profile", label: "Профиль", icon: User, requiresAuth: true },
+// Navigation items - labels will be translated in component
+const getNavItems = (t: (key: string) => string) => [
+  { href: "/landing", label: t("nav.landing"), icon: Globe },
+  { href: "/staking", label: t("nav.staking"), icon: Gem },
+  { href: "/tokenhub", label: t("nav.tokenhub"), icon: Wallet },
+  { href: "/projecthub", label: t("nav.projecthub"), icon: FolderOpen },
+  { href: "/projects", label: t("nav.projects"), icon: Target },
+  { href: "/ecosystem", label: t("nav.ecosystem"), icon: Globe },
+  { href: "/tokenomics", label: t("nav.tokenomics"), icon: Wallet },
+  { href: "/dao", label: t("nav.dao"), icon: Gavel },
+  { href: "/profile", label: t("nav.profile"), icon: User, requiresAuth: true },
 ];
 
 export default function Navbar() {
+  const t = useTranslations();
   const [user, setUser] = useState<User | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const pathname = usePathname();
+  
+  const navItems = getNavItems(t);
 
   useEffect(() => {
     // Fetch current user

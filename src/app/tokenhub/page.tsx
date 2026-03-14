@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import {
@@ -506,14 +507,15 @@ function StakingCalculator() {
 
 // --- MAIN PAGE ---
 export default function TokenHubPage() {
+  const t = useTranslations("tokenhub");
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const categories = [
-    { id: "all", label: "Все проекты", count: investmentProjects.length },
-    { id: "hardware", label: "Hardware / IoT", count: investmentProjects.filter(p => p.category.includes("Hardware")).length },
-    { id: "software", label: "Software / AI", count: investmentProjects.filter(p => p.category.includes("Software")).length },
-    { id: "community", label: "Community", count: investmentProjects.filter(p => p.category.includes("Community")).length },
+    { id: "all", label: t("filters.all"), count: investmentProjects.length },
+    { id: "hardware", label: t("filters.hardware"), count: investmentProjects.filter(p => p.category.includes("Hardware")).length },
+    { id: "software", label: t("filters.software"), count: investmentProjects.filter(p => p.category.includes("Software")).length },
+    { id: "community", label: t("filters.community"), count: investmentProjects.filter(p => p.category.includes("Community")).length },
   ];
 
   const filteredProjects = investmentProjects.filter(project => {
@@ -545,11 +547,10 @@ export default function TokenHubPage() {
               <span className="text-sm text-cyan-400 font-medium">TokenHub</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Инвестируй в <span className="gradient-text">водные технологии</span>
+              {t("title").split(" ").slice(0, 2).join(" ")} <span className="gradient-text">{t("title").split(" ").slice(2).join(" ")}</span>
             </h1>
             <p className="text-lg text-water-200/70 max-w-2xl mx-auto">
-              Поддерживай R&D проекты экосистемы LoopOrb и получай доход от реального внедрения технологий.
-              Стейкай UNITY в проекты с APY до 32%.
+              {t("subtitle")}
             </p>
           </motion.div>
 
@@ -561,10 +562,10 @@ export default function TokenHubPage() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
           >
             {[
-              { label: "Всего собрано", value: `$${(totalFunded / 1000000).toFixed(1)}M`, icon: Wallet },
-              { label: "Целевая сумма", value: `$${(totalGoal / 1000000).toFixed(1)}M`, icon: Target },
-              { label: "Активных проектов", value: investmentProjects.filter(p => p.status === "active").length.toString(), icon: Activity },
-              { label: "Инвесторов", value: "2,451", icon: Users },
+              { label: t("stats.totalRaised"), value: `$${(totalFunded / 1000000).toFixed(1)}M`, icon: Wallet },
+              { label: t("stats.goal"), value: `$${(totalGoal / 1000000).toFixed(1)}M`, icon: Target },
+              { label: t("stats.activeProjects"), value: investmentProjects.filter(p => p.status === "active").length.toString(), icon: Activity },
+              { label: t("stats.investors"), value: "2,451", icon: Users },
             ].map((stat, index) => (
               <div key={stat.label} className="glass-card p-4 text-center">
                 <stat.icon className="w-5 h-5 text-cyan-400 mx-auto mb-2" />
@@ -612,7 +613,7 @@ export default function TokenHubPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Поиск проектов..."
+                placeholder={t("filters.search")}
                 className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-water-200/50 focus:outline-none focus:border-cyan-500"
               />
             </div>
@@ -632,13 +633,13 @@ export default function TokenHubPage() {
             transition={{ delay: 0.3 }}
             className="glass-card p-8"
           >
-            <h2 className="text-2xl font-bold text-white mb-6">Как работает инвестирование</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">{t("howItWorks.title")}</h2>
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                { step: "1", title: "Выбери проект", desc: "Изучи R&D инициативы с полной прозрачностью данных", icon: Search },
-                { step: "2", title: "Застейкай UNITY", desc: "Заблокируй токены в смарт-контракте проекта", icon: Lock },
-                { step: "3", title: "Получай доход", desc: "APY от 8% до 32% в зависимости от проекта", icon: TrendingUp },
-                { step: "4", title: "Поддержи науку", desc: "Твои средства идут на реальные разработки", icon: Globe },
+                { step: "1", title: t("howItWorks.step1.title"), desc: t("howItWorks.step1.desc"), icon: Search },
+                { step: "2", title: t("howItWorks.step2.title"), desc: t("howItWorks.step2.desc"), icon: Lock },
+                { step: "3", title: t("howItWorks.step3.title"), desc: t("howItWorks.step3.desc"), icon: TrendingUp },
+                { step: "4", title: t("howItWorks.step4.title"), desc: t("howItWorks.step4.desc"), icon: Globe },
               ].map((item, index) => (
                 <div key={item.step} className="text-center">
                   <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-cyan-500/20 flex items-center justify-center">
