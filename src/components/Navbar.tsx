@@ -22,6 +22,8 @@ import {
   Gem,
   Lock,
   Target,
+  FileText,
+  Users,
 } from "lucide-react";
 
 interface User {
@@ -36,11 +38,11 @@ interface User {
 // Navigation items - labels will be translated in component
 const getNavItems = (t: (key: string) => string) => [
   { href: "/landing", label: t("nav.landing"), icon: Globe },
+  { href: "/about", label: "О нас", icon: Users },
+  { href: "/litepaper", label: "Litepaper", icon: FileText },
   { href: "/staking", label: t("nav.staking"), icon: Gem },
   { href: "/tokenhub", label: t("nav.tokenhub"), icon: Wallet },
   { href: "/projecthub", label: t("nav.projecthub"), icon: FolderOpen },
-  { href: "/projects", label: t("nav.projects"), icon: Target },
-  { href: "/ecosystem", label: t("nav.ecosystem"), icon: Globe },
   { href: "/tokenomics", label: t("nav.tokenomics"), icon: Wallet },
   { href: "/dao", label: t("nav.dao"), icon: Gavel },
   { href: "/profile", label: t("nav.profile"), icon: User, requiresAuth: true },
