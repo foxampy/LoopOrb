@@ -628,22 +628,22 @@ function StakingCalculator() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-white/5 rounded-xl">
-        <div className="text-center">
-          <div className="text-sm text-water-200/50 mb-1">Уровень</div>
-          <div className="text-lg font-bold text-cyan-400">{tier.name}</div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 p-3 sm:p-4 bg-white/5 rounded-xl">
+        <div className="text-center p-2">
+          <div className="text-xs sm:text-sm text-water-200/50 mb-1">Уровень</div>
+          <div className="text-base sm:text-lg font-bold text-cyan-400">{tier.name}</div>
         </div>
-        <div className="text-center">
-          <div className="text-sm text-water-200/50 mb-1">APY</div>
-          <div className="text-2xl font-bold text-emerald-400">{estimatedApy}%</div>
+        <div className="text-center p-2">
+          <div className="text-xs sm:text-sm text-water-200/50 mb-1">APY</div>
+          <div className="text-xl sm:text-2xl font-bold text-emerald-400">{estimatedApy}%</div>
         </div>
-        <div className="text-center">
-          <div className="text-sm text-water-200/50 mb-1">Годовой доход</div>
-          <div className="text-lg font-bold text-white">{annualYield.toLocaleString()} UNITY</div>
+        <div className="text-center p-2 col-span-2 lg:col-span-1">
+          <div className="text-xs sm:text-sm text-water-200/50 mb-1">Годовой доход</div>
+          <div className="text-base sm:text-lg font-bold text-white truncate">{annualYield.toLocaleString()} UNITY</div>
         </div>
-        <div className="text-center">
-          <div className="text-sm text-water-200/50 mb-1">Доход за {duration} мес</div>
-          <div className="text-lg font-bold text-cyan-400">
+        <div className="text-center p-2 col-span-2 lg:col-span-1">
+          <div className="text-xs sm:text-sm text-water-200/50 mb-1">Доход за {duration} мес</div>
+          <div className="text-base sm:text-lg font-bold text-cyan-400 truncate">
             {(annualYield * (duration / 12)).toLocaleString()} UNITY
           </div>
         </div>
@@ -732,21 +732,21 @@ export default function TokenHubPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-col md:flex-row gap-4 mb-8"
+            className="flex flex-col gap-4 mb-8"
           >
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
               {categories.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                     activeCategory === cat.id
                       ? "bg-cyan-500 text-slate-900"
                       : "bg-white/5 text-water-200/70 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   {cat.label}
-                  <span className={`ml-2 text-xs px-1.5 py-0.5 rounded-full ${
+                  <span className={`ml-1 sm:ml-2 text-xs px-1.5 py-0.5 rounded-full ${
                     activeCategory === cat.id ? "bg-slate-900/20" : "bg-white/10"
                   }`}>
                     {cat.count}
@@ -754,7 +754,7 @@ export default function TokenHubPage() {
                 </button>
               ))}
             </div>
-            <div className="relative flex-grow max-w-md ml-auto">
+            <div className="relative w-full md:max-w-md md:ml-auto">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-water-200/50" />
               <input
                 type="text"
