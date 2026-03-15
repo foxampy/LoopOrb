@@ -248,6 +248,152 @@ const investmentProjects = [
       "Отчеты для ООН",
       "Научные публикации"
     ]
+  },
+  // --- PPP PROJECTS UZBEKISTAN ---
+  {
+    id: "pumping-station-2-jizzakh",
+    name: "Pumping Station No. 2 (Jizzakh)",
+    category: "Infrastructure / PPP",
+    description: "Модернизация насосной станции в Джизакской области Узбекистана. Часть национальной системы управления водными ресурсами.",
+    status: "fundraising",
+    fundingGoal: 7760600,
+    funded: 2328180,
+    apy: "17%",
+    minStake: 500,
+    lockPeriod: "10 лет",
+    riskLevel: "low",
+    backers: 145,
+    image: "station",
+    specs: {
+      location: "Джизак, Узбекистан",
+      type: "Насосная станция",
+      capacity: "150,000 м³/день",
+      partners: "UNICAP, VODPROM, IFC, AIIB"
+    },
+    emissions: "VOD токены пропорционально доле + USDT выплаты",
+    features: [
+      "Государственные гарантии Узбекистана",
+      "Модель PPP (Public-Private Partnership)",
+      "Международное финансирование IFC, AIIB, ADB",
+      "Глобальные технические партнёры Culligan",
+      "Соответствие UN Global Compact"
+    ]
+  },
+  {
+    id: "korovulbozor-bukhara",
+    name: "Korovulbozor Pumping Station",
+    category: "Infrastructure / PPP",
+    description: "Модернизация насосной станции Коровулбозор в Бухарской области Узбекистана. Улучшение эффективности водоснабжения.",
+    status: "fundraising",
+    fundingGoal: 6189700,
+    funded: 1856910,
+    apy: "15%",
+    minStake: 500,
+    lockPeriod: "10 лет",
+    riskLevel: "low",
+    backers: 128,
+    image: "station",
+    specs: {
+      location: "Бухара, Узбекистан",
+      type: "Насосная станция",
+      capacity: "120,000 м³/день",
+      partners: "UNICAP, VODPROM, IsDB, EDB"
+    },
+    emissions: "VOD токены + ежегодные выплаты в USDT",
+    features: [
+      "Концепция развития водных ресурсов 2020-2030",
+      "Декрет Президента Узбекистана № УП-6024",
+      "Цифровая трансформация водного сектора",
+      "Партнёрство с Culligan International",
+      "Поддержка UN-Water Initiative"
+    ]
+  },
+  {
+    id: "kuyumazar-auxiliary",
+    name: "Kuyumazar Auxiliary Pumping Station",
+    category: "Infrastructure / PPP",
+    description: "Вспомогательная насосная станция Куюмазар в Бухарской области. Модернизация системы подачи воды.",
+    status: "active",
+    fundingGoal: 11965400,
+    funded: 3589620,
+    apy: "22%",
+    minStake: 1000,
+    lockPeriod: "10 лет",
+    riskLevel: "medium",
+    backers: 203,
+    image: "station",
+    specs: {
+      location: "Бухара, Узбекистан",
+      type: "Вспомогательная станция",
+      capacity: "200,000 м³/день",
+      partners: "UNICAP, VODPROM, ADB, AIIB"
+    },
+    emissions: "Высокий IRR - 22% годовых",
+    features: [
+      "Высокая доходность 22% IRR",
+      "30% доступно для VOD DAO сообщества",
+      "Премиальные VOD токены за стейкинг",
+      "Автоматические выплаты в USDT",
+      "Мониторинг через VODPROM платформу"
+    ]
+  },
+  {
+    id: "kuyumazar-main",
+    name: "Kuyumazar Pumping Station",
+    category: "Infrastructure / PPP",
+    description: "Главная насосная станция Куюмазар в Бухарской области. Крупнейший объект модернизации в регионе.",
+    status: "fundraising",
+    fundingGoal: 7760600,
+    funded: 2328180,
+    apy: "17%",
+    minStake: 500,
+    lockPeriod: "10 лет",
+    riskLevel: "low",
+    backers: 156,
+    image: "station",
+    specs: {
+      location: "Бухара, Узбекистан",
+      type: "Главная насосная станция",
+      capacity: "180,000 м³/день",
+      partners: "UNICAP, VODPROM, IFC, IsDB"
+    },
+    emissions: "VOD токены пропорционально доле",
+    features: [
+      "Национальная система управления водой",
+      "Модернизация по стандартам UN",
+      "Долгосрочный контракт 10 лет",
+      "Профессиональное управление VODPROM",
+      "Международные стандарты качества"
+    ]
+  },
+  {
+    id: "amu-bukhara-1",
+    name: "Amu-Bukhara-1 Pumping Station",
+    category: "Infrastructure / PPP",
+    description: "Насосная станция Аму-Бухара-1 в Бухарской области. Стратегический объект для региона.",
+    status: "fundraising",
+    fundingGoal: 9490100,
+    funded: 2837030,
+    apy: "20%",
+    minStake: 500,
+    lockPeriod: "10 лет",
+    riskLevel: "medium",
+    backers: 189,
+    image: "station",
+    specs: {
+      location: "Бухара, Узбекистан",
+      type: "Стратегическая станция",
+      capacity: "220,000 м³/день",
+      partners: "UNICAP, VODPROM, AIIB, ADB, EDB"
+    },
+    emissions: "20% IRR + VOD токены + USDT выплаты",
+    features: [
+      "Высокая доходность 20% годовых",
+      "Стратегическое расположение",
+      "Крупнейшие международные банки",
+      "Полный цикл: Финансирование → Проектирование → Реконструкция → Эксплуатация",
+      "Прозрачное управление через DAO"
+    ]
   }
 ];
 

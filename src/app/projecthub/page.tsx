@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Rocket, FlaskConical, Cpu, Waves, Droplets, Microscope,
@@ -565,6 +566,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 // --- MAIN PAGE ---
 export default function ProjectHubPage() {
+  const t = useTranslations("projecthub");
   const [activeCategory, setActiveCategory] = useState("all");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -676,18 +678,17 @@ export default function ProjectHubPage() {
               </h1>
               
               <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
-                Децентрализованная платформа для финансирования, разработки и коммерциализации 
-                инноваций в области водных технологий.
+                {t("subtitle")}
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <button className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-900 font-bold rounded-xl flex items-center gap-2 hover:from-cyan-400 hover:to-emerald-400 transition-all">
                   <Rocket className="w-5 h-5" />
-                  Предложить проект
+                  {t("common.comingSoon")}
                 </button>
                 <button className="px-6 py-3 bg-slate-800 text-white font-medium rounded-xl border border-slate-700 flex items-center gap-2 hover:bg-slate-700 transition-all">
                   <FileText className="w-5 h-5" />
-                  Документация
+                  {t("common.comingSoon")}
                 </button>
               </div>
             </motion.div>

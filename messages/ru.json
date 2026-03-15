@@ -414,5 +414,36 @@
     "logout": "Выйти",
     "connectWallet": "Подключить кошелёк",
     "editProfile": "Редактировать профиль"
+  },
+  "litepaper": {
+    "title": "VODeco: Вода как экономика",
+    "subtitle": "Многоуровневая экосистема мониторинга воды, объединяющая IoT, блокчейн и автоматические лаборатории",
+    "download": "Скачать PDF",
+    "sections": {
+      "overview": "Обзор",
+      "architecture": "Архитектура",
+      "tokens": "Токеномика",
+      "vodlab": "VOD-Lab",
+      "security": "Безопасность",
+      "roadmap": "Роадмап"
+    },
+    "problem": "Проблема",
+    "solution": "Решение",
+    "levels": {
+      "physical": "Уровень 1: Физика",
+      "data": "Уровень 2: Данные",
+      "protocols": "Уровень 3: Протоколы",
+      "apps": "Уровень 4: Приложения"
+    }
+  },
+  "history": {
+    "title": "История VODeco",
+    "subtitle": "Путь от Culligan к глобальной водной экономике",
+    "milestones": "Ключевые вехи",
+    "phases": {
+      "vodprom": "Фаза 1: VODPROM",
+      "expansion": "Фаза 2: Расширение",
+      "future": "Фаза 3: Будущее"
+    }
   }
 }

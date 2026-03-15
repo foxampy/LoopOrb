@@ -414,5 +414,36 @@
     "logout": "Logout",
     "connectWallet": "Connect Wallet",
     "editProfile": "Edit Profile"
+  },
+  "litepaper": {
+    "title": "VODeco: Water as Economy",
+    "subtitle": "Multi-level water monitoring ecosystem combining IoT, blockchain and automated laboratories",
+    "download": "Download PDF",
+    "sections": {
+      "overview": "Overview",
+      "architecture": "Architecture",
+      "tokens": "Tokenomics",
+      "vodlab": "VOD-Lab",
+      "security": "Security",
+      "roadmap": "Roadmap"
+    },
+    "problem": "Problem",
+    "solution": "Solution",
+    "levels": {
+      "physical": "Level 1: Physical",
+      "data": "Level 2: Data",
+      "protocols": "Level 3: Protocols",
+      "apps": "Level 4: Applications"
+    }
+  },
+  "history": {
+    "title": "VODeco History",
+    "subtitle": "The journey from Culligan to global water economy",
+    "milestones": "Key Milestones",
+    "phases": {
+      "vodprom": "Phase 1: VODPROM",
+      "expansion": "Phase 2: Expansion",
+      "future": "Phase 3: Future"
+    }
   }
 }
