@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import IntlProvider from "@/components/IntlProvider";
+import { AIChatWidget } from "@/components/AIChat/AIChatWidget";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -25,11 +26,28 @@ export const metadata: Metadata = {
     "environment",
   ],
   authors: [{ name: "LoopOrb DAO" }],
+  manifest: "/manifest.json",
+  themeColor: "#0ea5e9",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "LoopOrb"
+  },
   openGraph: {
     title: "LoopOrb - Water-Backed Digital Economy",
     description: "Превратите воду из истощаемого ресурса в устойчивую цифровую экономику",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" }
+    ],
+    apple: [
+      { url: "/icons/icon-192x192.png", sizes: "192x192" }
+    ]
+  }
 };
 
 export default function RootLayout({
@@ -44,6 +62,7 @@ export default function RootLayout({
       >
         <IntlProvider>
           {children}
+          <AIChatWidget />
         </IntlProvider>
       </body>
     </html>

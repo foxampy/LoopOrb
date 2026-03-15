@@ -24,6 +24,7 @@ import {
   Target,
   FileText,
   Users,
+  Microscope,
 } from "lucide-react";
 
 interface User {
@@ -38,13 +39,17 @@ interface User {
 // Navigation items - labels will be translated in component
 const getNavItems = (t: (key: string) => string) => [
   { href: "/landing", label: t("nav.landing"), icon: Globe },
-  { href: "/about", label: "О нас", icon: Users },
-  { href: "/litepaper", label: "Litepaper", icon: FileText },
-  { href: "/staking", label: t("nav.staking"), icon: Gem },
+  { href: "/ecosystem/feed", label: "Лента", icon: Newspaper },
   { href: "/tokenhub", label: t("nav.tokenhub"), icon: Wallet },
   { href: "/projecthub", label: t("nav.projecthub"), icon: FolderOpen },
-  { href: "/tokenomics", label: t("nav.tokenomics"), icon: Wallet },
+  { href: "/staking", label: t("nav.staking"), icon: Gem },
   { href: "/dao", label: t("nav.dao"), icon: Gavel },
+  { href: "/ecosystem/missions", label: "Миссии", icon: Target },
+  { href: "/ecosystem/achievements", label: "Достижения", icon: Trophy },
+  { href: "/vod-lab", label: "VOD-Lab", icon: Microscope },
+  { href: "/tokenomics", label: t("nav.tokenomics"), icon: Wallet },
+  { href: "/litepaper", label: "Litepaper", icon: FileText },
+  { href: "/about", label: "О нас", icon: Users },
   { href: "/profile", label: t("nav.profile"), icon: User, requiresAuth: true },
 ];
 

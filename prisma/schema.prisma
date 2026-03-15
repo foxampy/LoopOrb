@@ -40,6 +40,11 @@ model User {
   unityBalance  Decimal   @default(0) @db.Decimal(18, 8)
   stakedAmount  Decimal   @default(0) @db.Decimal(18, 8)
   
+  // VODeco 3-token system
+  vodBalance    Decimal   @default(0) @db.Decimal(18, 8)   // Commodity token
+  vodecoBalance Decimal   @default(0) @db.Decimal(18, 8)   // Governance token
+  vodcreditScore Int      @default(0)                      // Reputation SBT
+  
   // Status
   emailVerified DateTime?
   isActive      Boolean   @default(true)
@@ -68,6 +73,14 @@ model User {
   followers     Follow[] @relation("UserFollowers")
   following     Follow[] @relation("UserFollowing")
   
+  // Chat relations
+  chatParticipants ChatParticipant[]
+  messages        Message[]
+  
+  // Groups
+  ownedGroups     Group[] @relation("GroupOwner")
+  groupMemberships GroupMember[]
+  
   @@map("users")
 }
 
@@ -93,15 +106,20 @@ enum UserRole {
 }
 
 // ==========================================
-// WALLET & ECONOMY (UNITY COINS - OFFCHAIN)
+// WALLET & ECONOMY (3-TOKEN SYSTEM)
 // ==========================================
 
 model Wallet {
   id          String   @id @default(uuid())
   userId      String   @unique
   
-  // UNITY Coin (off-chain until tokenization)
+  // UNITY Coin (legacy - off-chain)
   balance     Decimal  @default(0) @db.Decimal(18, 8)
+  
+  // VODeco 3-Token System
+  vodBalance     Decimal  @default(0) @db.Decimal(18, 8)  // Commodity
+  vodecoBalance  Decimal  @default(0) @db.Decimal(18, 8)  // Governance
+  vodcreditScore Int      @default(0)                     // Reputation
   
   // Staking info
   totalStaked Decimal  @default(0) @db.Decimal(18, 8)
@@ -120,6 +138,7 @@ model Transaction {
   userId      String
   
   type        TransactionType
+  tokenType   TokenType       @default(UNITY)  // UNITY, VOD, VODeco
   amount      Decimal         @db.Decimal(18, 8)
   
   // Context
@@ -139,27 +158,45 @@ model Transaction {
   @@map("transactions")
 }
 
+enum TokenType {
+  UNITY
+  VOD         // Commodity - backed by water
+  VODeco      // Governance
+}
+
 enum TransactionType {
-  REGISTRATION_BONUS    // Бонус за регистрацию
-  DAILY_BONUS          // Ежедневный бонус
-  REFERRAL_BONUS       // Бонус за реферала
+  // System
+  REGISTRATION_BONUS
+  DAILY_BONUS
+  REFERRAL_BONUS
   
-  ADD_OBJECT           // Добавление объекта
-  ADD_DATA             // Добавление данных
-  VALIDATE_DATA        // Валидация данных
+  // Actions
+  ADD_OBJECT
+  ADD_DATA
+  VALIDATE_DATA
   
-  MISSION_REWARD       // Награда за миссию
-  ACHIEVEMENT_REWARD   // Награда за достижение
+  // Rewards
+  MISSION_REWARD
+  ACHIEVEMENT_REWARD
   
-  STAKE                // Стейкинг
-  UNSTAKE              // Разстейкинг
-  STAKE_REWARD         // Награда за стейкинг
+  // Staking
+  STAKE
+  UNSTAKE
+  STAKE_REWARD
   
-  TRANSFER_IN          // Получение перевода
-  TRANSFER_OUT         // Отправка перевода
+  // Transfers
+  TRANSFER_IN
+  TRANSFER_OUT
   
-  PROJECT_CONTRIBUTION // Вклад в проект
-  PROJECT_REWARD       // Награда от проекта
+  // Projects
+  PROJECT_CONTRIBUTION
+  PROJECT_REWARD
+  
+  // Tokenomics v3
+  VOD_MINT          // Mint VOD (verified water)
+  VOD_BURN          // Burn VOD
+  VODECO_STAKE      // Stake governance
+  VODECO_UNSTAKE    // Unstake governance
 }
 
 enum TransactionStatus {
@@ -179,6 +216,7 @@ model Stake {
   projectId   String
   
   amount      Decimal     @db.Decimal(18, 8)
+  tokenType   TokenType   @default(VODeco)  // VODeco for governance
   apy         Decimal     @db.Decimal(5, 2) // Annual percentage yield
   
   startDate   DateTime    @default(now())
@@ -233,11 +271,12 @@ model Project {
   // Financial
   targetAmount    Decimal?        @db.Decimal(18, 2)
   raisedAmount    Decimal         @default(0) @db.Decimal(18, 2)
-  minStake        Decimal         @default(100) @db.Decimal(18, 8) // Minimum UNITY to stake
+  minStake        Decimal         @default(100) @db.Decimal(18, 8)
   
   // Returns
   expectedApy     Decimal?        @db.Decimal(5, 2)
   expectedReturn  Decimal?        @db.Decimal(18, 2)
+  irr             Decimal?        @db.Decimal(5, 2) // Internal Rate of Return
   
   // ESG & Impact
   esgScore        Int?            // 0-100
@@ -506,7 +545,7 @@ enum DataStatus {
 }
 
 // ==========================================
-// SOCIAL
+// SOCIAL NETWORK
 // ==========================================
 
 model Post {
@@ -524,6 +563,7 @@ model Post {
   
   likesCount    Int     @default(0)
   commentsCount Int     @default(0)
+  sharesCount   Int     @default(0)
   
   // Context
   projectId   String?
@@ -535,12 +575,27 @@ model Post {
   mentions    String[]  // @username
   hashtags    String[]
   
+  // Post type
+  type        PostType  @default(GENERAL)
+  priority    Int       @default(0)  // For feed algorithm
+  
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   
   @@index([authorId])
   @@index([createdAt])
+  @@index([type])
   @@map("posts")
+}
+
+enum PostType {
+  GENERAL       // Обычный пост
+  NEWS          // Новости
+  PROJECT_UPDATE // Обновление проекта
+  DATA_REPORT   // Отчет о данных
+  DAO_PROPOSAL  // Предложение DAO
+  ACHIEVEMENT   // Достижение
+  CRISIS_ALERT  // Кризисное уведомление
 }
 
 model Comment {
@@ -592,6 +647,180 @@ model Follow {
   
   @@unique([followerId, followingId])
   @@map("follows")
+}
+
+// ==========================================
+// CHATS & MESSAGING
+// ==========================================
+
+model Chat {
+  id          String    @id @default(uuid())
+  
+  type        ChatType  @default(DIRECT)
+  name        String?   // For groups
+  avatar      String?   // For groups
+  
+  // For project/group chats
+  projectId   String?
+  groupId     String?
+  
+  // Metadata
+  lastMessageAt DateTime @default(now())
+  lastMessage   String?  @db.Text
+  
+  // Relations
+  participants  ChatParticipant[]
+  messages      Message[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@map("chats")
+}
+
+enum ChatType {
+  DIRECT    // 1-on-1
+  GROUP     // Group chat
+  PROJECT   // Project channel
+  SUPPORT   // Support chat
+}
+
+model ChatParticipant {
+  id        String   @id @default(uuid())
+  
+  chatId    String
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  role      ChatRole @default(MEMBER)
+  
+  // Tracking
+  lastReadAt DateTime @default(now())
+  unreadCount Int    @default(0)
+  
+  joinedAt  DateTime @default(now())
+  
+  @@unique([chatId, userId])
+  @@map("chat_participants")
+}
+
+enum ChatRole {
+  MEMBER
+  MODERATOR
+  ADMIN
+  OWNER
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  
+  chatId    String
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  
+  senderId  String
+  sender    User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  
+  content   String   @db.Text
+  type      MessageType @default(TEXT)
+  
+  // Media
+  attachments String[] // URLs
+  
+  // Status
+  isEdited  Boolean  @default(false)
+  editedAt  DateTime?
+  
+  // Reply
+  replyToId String?
+  
+  createdAt DateTime @default(now())
+  
+  @@index([chatId])
+  @@index([createdAt])
+  @@map("messages")
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  FILE
+  SYSTEM    // System messages (user joined, etc)
+}
+
+// ==========================================
+// GROUPS & COMMUNITIES
+// ==========================================
+
+model Group {
+  id          String    @id @default(uuid())
+  
+  name        String
+  slug        String    @unique
+  description String    @db.Text
+  
+  // Media
+  avatar      String?
+  coverImage  String?
+  
+  // Settings
+  type        GroupType @default(PUBLIC)
+  category    GroupCategory @default(GENERAL)
+  
+  // Stats
+  membersCount Int      @default(0)
+  postsCount   Int      @default(0)
+  
+  // Relations
+  ownerId     String
+  owner       User      @relation(fields: [ownerId], references: [id], name: "GroupOwner")
+  
+  memberships GroupMember[]
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  @@map("groups")
+}
+
+enum GroupType {
+  PUBLIC      // Anyone can join
+  RESTRICTED  // Request to join
+  PRIVATE     // Invite only
+}
+
+enum GroupCategory {
+  GENERAL
+  REGIONAL      // By geography
+  PROJECT       // Project-related
+  SCIENTIFIC    // Research groups
+  EDUCATIONAL   // Learning
+  ACTIVIST      // Activism
+}
+
+model GroupMember {
+  id        String    @id @default(uuid())
+  
+  groupId   String
+  group     Group     @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  role      GroupMemberRole @default(MEMBER)
+  
+  joinedAt  DateTime  @default(now())
+  
+  @@unique([groupId, userId])
+  @@map("group_members")
+}
+
+enum GroupMemberRole {
+  MEMBER
+  CONTRIBUTOR
+  MODERATOR
+  ADMIN
 }
 
 // ==========================================
@@ -652,6 +881,7 @@ model Mission {
   // Rewards
   xpReward    Int
   unityReward Decimal  @default(0) @db.Decimal(18, 8)
+  vodReward   Decimal  @default(0) @db.Decimal(18, 8)
   
   // Availability
   startDate   DateTime?
@@ -767,7 +997,7 @@ model DaoVote {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   
   vote        VoteType
-  weight      Decimal  @db.Decimal(18, 8) // UNITY power
+  weight      Decimal  @db.Decimal(18, 8) // VODeco power
   
   reason      String?  @db.Text
   
@@ -839,7 +1069,46 @@ enum NotificationType {
   TRANSFER_RECEIVED
   POST_LIKE
   POST_COMMENT
+  POST_MENTION
   FOLLOW
   DAO_VOTE
   PROPOSAL_ENDED
+  CHAT_MESSAGE
+  GROUP_INVITE
+}
+
+// ==========================================
+// ACTIVITY LOG (for feed algorithm)
+// ==========================================
+
+model ActivityLog {
+  id          String   @id @default(uuid())
+  
+  userId      String
+  type        ActivityType
+  
+  // Context
+  metadata    Json?    // { projectId, postId, etc }
+  
+  // For scoring
+  score       Int      @default(0)
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([userId])
+  @@index([createdAt])
+  @@map("activity_logs")
+}
+
+enum ActivityType {
+  POST_CREATED
+  POST_LIKED
+  POST_COMMENTED
+  PROJECT_JOINED
+  DATA_ADDED
+  DATA_VALIDATED
+  MISSION_COMPLETED
+  ACHIEVEMENT_UNLOCKED
+  STAKE_CREATED
+  DAO_VOTED
 }

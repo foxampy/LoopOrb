@@ -1,17 +1,35 @@
 {
+  "_meta": {
+    "language": "Russian",
+    "version": "3.0",
+    "lastUpdated": "2026-03-15"
+  },
   "metadata": {
-    "title": "LoopOrb - Экосистема водных данных",
-    "description": "Децентрализованная платформа для мониторинга, управления и инвестирования в водные ресурсы"
+    "title": "LoopOrb - Глобальная экосистема управления водными ресурсами",
+    "description": "Децентрализованная платформа для мониторинга, управления и инвестирования в водные ресурсы. IoT, блокчейн, AI и сообщество для решения водного кризиса."
   },
   "nav": {
-    "landing": "Лендинг",
+    "landing": "Главная",
     "ecosystem": "Экосистема",
+    "feed": "Новости",
+    "chats": "Чаты",
+    "missions": "Миссии",
+    "achievements": "Достижения",
+    "cabinet": "Кабинет",
     "projecthub": "ProjectHub",
-    "tokenhub": "Токенхаб",
+    "tokenhub": "TokenHub",
     "staking": "Стейкинг",
     "tokenomics": "Токеномика",
     "dao": "DAO",
-    "profile": "Аккаунт"
+    "profile": "Профиль",
+    "wallet": "Кошелёк",
+    "settings": "Настройки",
+    "about": "О нас",
+    "litepaper": "Litepaper",
+    "vodlab": "VOD-Lab",
+    "objects": "Объекты",
+    "crisis": "Кризис-центр",
+    "admin": "Админ"
   },
   "common": {
     "loading": "Загрузка...",
@@ -31,29 +49,324 @@
     "apy": "APY",
     "stake": "Стейк",
     "earned": "Заработано",
-    "balance": "Баланс"
+    "balance": "Баланс",
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "sort": "Сортировка",
+    "refresh": "Обновить",
+    "share": "Поделиться",
+    "like": "Нравится",
+    "comment": "Комментарий",
+    "send": "Отправить",
+    "close": "Закрыть",
+    "open": "Открыть",
+    "next": "Далее",
+    "previous": "Назад",
+    "back": "Назад",
+    "confirm": "Подтвердить",
+    "reject": "Отклонить",
+    "approve": "Одобрить",
+    "pending": "В ожидании",
+    "active": "Активный",
+    "completed": "Завершено",
+    "cancelled": "Отменено",
+    "online": "В сети",
+    "offline": "Не в сети",
+    "typing": "печатает...",
+    "read": "Прочитано",
+    "unread": "Не прочитано",
+    "today": "Сегодня",
+    "yesterday": "Вчера"
   },
   "home": {
-    "title": "Экосистема водных данных",
-    "subtitle": "Децентрализованная платформа для мониторинга и управления водными ресурсами",
+    "title": "Глобальная экосистема управления водными ресурсами",
+    "subtitle": "Децентрализованная платформа, объединяющая IoT, блокчейн и искусственный интеллект для мониторинга, защиты и инвестирования в водные ресурсы",
+    "hero": {
+      "cta1": "Исследовать проекты",
+      "cta2": "Подключить кошелёк"
+    },
     "features": {
       "monitoring": {
-        "title": "Мониторинг",
-        "desc": "Отслеживание качества воды в реальном времени"
+        "title": "IoT Мониторинг",
+        "desc": "Real-time отслеживание качества воды через сеть автономных сенсоров"
       },
       "investing": {
-        "title": "Инвестирование",
-        "desc": "Поддержка R&D проектов через токенизацию"
+        "title": "Инвестиции R&D",
+        "desc": "Поддержка инновационных водных технологий с доходностью до 32% APY"
       },
       "governance": {
-        "title": "Управление",
-        "desc": "DAO для принятия решений сообществом"
+        "title": "DAO Управление",
+        "desc": "Децентрализованное принятие решений сообществом через токены VODeco"
+      },
+      "ai": {
+        "title": "AI Аналитика",
+        "desc": "Прогнозирование качества воды и оптимизация распределения ресурсов"
       }
+    },
+    "stats": {
+      "sensors": "Активных сенсоров",
+      "projects": "R&D проектов",
+      "investors": "Инвесторов",
+      "countries": "Стран"
     }
+  },
+  "feed": {
+    "title": "Новости водного мира",
+    "subtitle": "Актуальные новости из Узбекистана, Китая, Индии, Израиля и всего мира",
+    "scopes": {
+      "all": "Все",
+      "uzbekistan": "Узбекистан",
+      "central-asia": "Центральная Азия",
+      "china": "Китай",
+      "india": "Индия",
+      "israel": "Израиль",
+      "middle-east": "Ближний Восток",
+      "africa": "Африка",
+      "global": "Глобальные"
+    },
+    "types": {
+      "alert": "Алерт",
+      "project": "Проект",
+      "research": "Исследование",
+      "success": "Успех",
+      "policy": "Политика"
+    },
+    "actions": {
+      "like": "Нравится",
+      "comment": "Комментировать",
+      "share": "Поделиться",
+      "bookmark": "Сохранить",
+      "read": "Читать"
+    },
+    "trending": "Тренды",
+    "stats": {
+      "total": "Всего новостей",
+      "alerts": "Алерты",
+      "projects": "Проекты",
+      "research": "Исследования"
+    },
+    "subscribe": {
+      "title": "LoopOrb Daily",
+      "desc": "Получайте главные новости о воде каждое утро",
+      "button": "Подписаться"
+    }
+  },
+  "chats": {
+    "title": "Сообщения",
+    "search": "Поиск чатов...",
+    "newChat": "Новый чат",
+    "noMessages": "Нет сообщений",
+    "typeMessage": "Напишите сообщение...",
+    "online": "в сети",
+    "offline": "не в сети",
+    "typing": "печатает...",
+    "empty": "Выберите чат для начала общения",
+    "actions": {
+      "call": "Позвонить",
+      "video": "Видео",
+      "more": "Ещё",
+      "attach": "Прикрепить",
+      "send": "Отправить"
+    }
+  },
+  "missions": {
+    "title": "Миссии и задания",
+    "subtitle": "Получайте XP и токены за участие в экосистеме",
+    "types": {
+      "daily": "Ежедневные",
+      "weekly": "Еженедельные",
+      "monthly": "Ежемесячные",
+      "onetime": "Разовые",
+      "project": "Проектные"
+    },
+    "categories": {
+      "data_collection": "Сбор данных",
+      "validation": "Валидация",
+      "project_participation": "Проекты",
+      "social": "Социальное",
+      "education": "Образование",
+      "exploration": "Исследование"
+    },
+    "status": {
+      "active": "Активно",
+      "completed": "Выполнено",
+      "expired": "Истекло"
+    },
+    "actions": {
+      "start": "Начать",
+      "claim": "Забрать",
+      "progress": "В процессе"
+    },
+    "stats": {
+      "completed": "Выполнено",
+      "active": "Активно",
+      "xpEarned": "XP заработано"
+    },
+    "rewards": {
+      "xp": "XP",
+      "tokens": "Токены"
+    }
+  },
+  "achievements": {
+    "title": "Достижения",
+    "subtitle": "Зарабатывайте бейджи за активность в экосистеме",
+    "categories": {
+      "explorer": "Исследователь",
+      "scientist": "Учёный",
+      "activist": "Активист",
+      "investor": "Инвестор",
+      "influencer": "Лидер мнений",
+      "special": "Особые"
+    },
+    "status": {
+      "unlocked": "Разблокировано",
+      "locked": "Заблокировано"
+    },
+    "stats": {
+      "total": "Всего достижений",
+      "unlocked": "Разблокировано",
+      "xp": "XP получено",
+      "progress": "Прогресс"
+    },
+    "check": "Проверить новые достижения"
+  },
+  "cabinet": {
+    "title": "Личный кабинет",
+    "subtitle": "Управление профилем и доступ к функциям роли",
+    "roles": {
+      "citizen": "Гражданин",
+      "scientist": "Учёный",
+      "investor": "Инвестор",
+      "government": "Государственный",
+      "operator": "Оператор",
+      "admin": "Администратор"
+    },
+    "features": {
+      "missions": "Миссии",
+      "achievements": "Достижения",
+      "objects": "Объекты",
+      "data": "Данные",
+      "research": "Исследования",
+      "api": "API",
+      "portfolio": "Портфель",
+      "analytics": "Аналитика",
+      "dashboard": "Дашборд",
+      "crisis": "Кризис-центр",
+      "sensors": "Сенсоры",
+      "alerts": "Алерты"
+    },
+    "stats": {
+      "level": "Уровень",
+      "xp": "XP",
+      "reputation": "Репутация",
+      "balance": "Баланс",
+      "staked": "В стейкинге"
+    }
+  },
+  "crisis": {
+    "title": "Кризисный центр",
+    "subtitle": "Оперативный мониторинг и реагирование на чрезвычайные ситуации",
+    "levels": {
+      "critical": "Критический",
+      "high": "Высокий",
+      "medium": "Средний",
+      "low": "Низкий"
+    },
+    "categories": {
+      "pollution": "Загрязнение",
+      "drought": "Засуха",
+      "flood": "Наводнение",
+      "quality": "Качество воды"
+    },
+    "stats": {
+      "alerts": "Активные алерты",
+      "affected": "Затронуто людей",
+      "sensors": "Сенсоров онлайн"
+    },
+    "actions": {
+      "emergency": "Экстренный вызов",
+      "notify": "Массовое оповещение",
+      "protocol": "Активировать протокол",
+      "map": "На карте",
+      "coordinate": "Координация"
+    },
+    "protocol": {
+      "title": "Протокол реагирования",
+      "completed": "Выполнено",
+      "in_progress": "В процессе",
+      "pending": "Ожидает"
+    }
+  },
+  "vodlab": {
+    "title": "VOD-Lab Hardware",
+    "subtitle": "Edge AI + Blockchain верификация воды в реальном времени",
+    "models": {
+      "pro": {
+        "name": "VOD-Lab Pro",
+        "price": "$13,400",
+        "params": "100+ параметров"
+      },
+      "node": {
+        "name": "VOD-Lab Node",
+        "price": "$8,900",
+        "params": "50 параметров"
+      }
+    },
+    "specs": {
+      "parameters": "Параметры",
+      "accuracy": "Точность",
+      "throughput": "Производительность",
+      "automation": "Автоматизация",
+      "connectivity": "Связь",
+      "protection": "Защита",
+      "calibration": "Калибровка",
+      "power": "Энергопотребление"
+    },
+    "security": {
+      "title": "6 уровней безопасности",
+      "levels": ["Physical", "Edge", "Lab", "Network", "Consensus", "Blockchain"]
+    },
+    "cta": {
+      "invest": "Инвестировать в ноду",
+      "specs": "Техническая спецификация"
+    }
+  },
+  "globe": {
+    "title": "Глобальная карта воды",
+    "subtitle": "Интерактивная 3D визуализация водных объектов и инфраструктуры",
+    "layers": {
+      "all": "Все",
+      "objects": "Объекты",
+      "projects": "Проекты",
+      "stations": "Станции",
+      "labs": "Лаборатории"
+    },
+    "legend": {
+      "good": "Хорошее качество (70-100)",
+      "medium": "Среднее качество (50-69)",
+      "poor": "Плохое качество (0-49)",
+      "project": "Проект",
+      "lab": "VOD-Lab"
+    },
+    "stats": {
+      "objects": "Объектов",
+      "sensors": "Сенсоров онлайн"
+    }
+  },
+  "ai": {
+    "title": "VOD AI Assistant",
+    "subtitle": "Ваш интеллектуальный помощник в экосистеме воды",
+    "placeholder": "Спросите о токенах, проектах или водных технологиях...",
+    "suggestions": [
+      "Расскажи о токенах VOD",
+      "Какие проекты в Uzbekistan?",
+      "Что такое VOD-Lab?",
+      "Как участвовать в DAO?"
+    ]
   },
   "tokenhub": {
     "title": "Инвестируй в водные технологии",
-    "subtitle": "Поддерживай R&D проекты экосистемы LoopOrb и получай доход от реального внедрения технологий. Стейкай UNITY в проекты с APY до 32%.",
+    "subtitle": "Поддерживай R&D проекты экосистемы LoopOrb и получай доход от реального внедрения технологий",
     "stats": {
       "totalRaised": "Всего собрано",
       "goal": "Целевая сумма",
@@ -72,6 +385,7 @@
       "all": "Все проекты",
       "hardware": "Hardware / IoT",
       "software": "Software / AI",
+      "infrastructure": "Инфраструктура",
       "community": "Community",
       "search": "Поиск проектов..."
     },
@@ -79,7 +393,9 @@
       "status": {
         "active": "Активен",
         "fundraising": "Сбор средств",
-        "completed": "Завершён"
+        "completed": "Завершён",
+        "construction": "Строительство",
+        "planning": "Планирование"
       },
       "risk": {
         "low": "Низкий",
@@ -95,113 +411,18 @@
       "milestones": "Этапы проекта",
       "team": "Команда",
       "documents": "Документы",
+      "irr": "IRR",
       "esg": {
         "title": "ESG-метрики",
         "waterSaved": "Воды сохранено",
         "co2Avoided": "CO₂ избежано",
         "communities": "Сообществ"
       }
-    },
-    "howItWorks": {
-      "title": "Как работает инвестирование",
-      "step1": {
-        "title": "Выбери проект",
-        "desc": "Изучи R&D инициативы с полной прозрачностью данных"
-      },
-      "step2": {
-        "title": "Застейкай UNITY",
-        "desc": "Заблокируй токены в смарт-контракте проекта"
-      },
-      "step3": {
-        "title": "Получай доход",
-        "desc": "APY от 8% до 32% в зависимости от проекта"
-      },
-      "step4": {
-        "title": "Поддержи науку",
-        "desc": "Твои средства идут на реальные разработки"
-      }
-    },
-    "standard": {
-      "title": "Стандарт реализации VOD Token Standard",
-      "subtitle": "Техническая архитектура и интеграция с ProjectHub",
-      "architecture": {
-        "title": "Архитектура токенов",
-        "vod": {
-          "name": "VOD (Commodity)",
-          "desc": "1 VOD = 1 м³ верифицированной воды. Эмиссия только при физической верификации"
-        },
-        "vodeco": {
-          "name": "VODeco (Governance)",
-          "desc": "Управление DAO, стейкинг для валидаторов, фиксированная эмиссия 1B"
-        },
-        "vodcredit": {
-          "name": "VODcredit (SBT)",
-          "desc": "Репутация участников, нетрансферабельный, начисляется за вклад"
-        }
-      },
-      "integration": {
-        "title": "Интеграция с ProjectHub",
-        "pipeline": "ProjectHub → TokenHub Pipeline",
-        "pipelineDesc": "Проекты из ProjectHub (16 R&D инициатив) проходят через стадии: Concept → Prototype → Pilot → Production",
-        "stages": {
-          "concept": "Concept: $100-500K",
-          "prototype": "Prototype: $500K-2M",
-          "production": "Production: $2M+"
-        },
-        "rewards": {
-          "title": "Cross-Platform Rewards",
-          "desc": "Участие в проектах ProjectHub (данные, исследования) автоматически начисляет VODcredit → повышает множитель эмиссии VOD → увеличивает доходность инвестиций в TokenHub"
-        }
-      },
-      "swaps": {
-        "title": "Token Swaps",
-        "desc": "DEX-интеграция для обмена VOD ↔ VODeco. Ликвидность обеспечивается через пулы с APY 5-15%. Автоматические market makers для стабильности."
-      },
-      "pools": {
-        "title": "Liquidity Pools",
-        "desc": "VOD/TON, VODeco/TON, VOD/VODeco пулы. TVL растёт пропорционально количеству верифицированных источников воды в сети."
-      },
-      "security": {
-        "title": "Security",
-        "desc": "Multi-sig контракты, аудит CertiK, HSM-модули для hardware-нод. Слэшинг за недобросовестность валидаторов."
-      }
-    },
-    "structure": {
-      "title": "Взаимосвязанная структура токеномики",
-      "level1": {
-        "name": "Вода (VOD)",
-        "desc": "Базовый слой — физический актив. Каждый VOD backed 1м³ воды.",
-        "emission": "Алгоритмическая",
-        "tax": "2% годовых"
-      },
-      "level2": {
-        "name": "Управление (VODeco)",
-        "desc": "Голосование DAO, валидация, инвестиции в R&D через TokenHub.",
-        "supply": "1B фикс",
-        "stake": "100K для валидатора"
-      },
-      "level3": {
-        "name": "Репутация (VODcredit)",
-        "desc": "SBT токен за вклад. Влияет на эмиссию и привилегии.",
-        "type": "Soulbound",
-        "earning": "За активность"
-      },
-      "flows": {
-        "title": "Взаимосвязь компонентов",
-        "data": "Данные",
-        "dataDesc": "Сенсоры IoT",
-        "emission": "Эмиссия",
-        "emissionDesc": "VODcredit × Объём = VOD",
-        "governance": "Управление",
-        "governanceDesc": "VODeco + DAO",
-        "investing": "Инвестиции",
-        "investingDesc": "TokenHub → R&D"
-      }
     }
   },
   "tokenomics": {
     "title": "Три токена, три функции",
-    "subtitle": "Синхронизированная экономика: VOD (товар), VODeco (управление), VODcredit (репутация). Каждый токен выполняет свою роль в экосистеме.",
+    "subtitle": "Синхронизированная экономика: VOD (товар), VODeco (управление), VODcredit (репутация)",
     "tokens": {
       "vod": {
         "name": "VOD",
@@ -209,8 +430,8 @@
         "type": "Commodity",
         "description": "Право на 1 м³ верифицированной воды. Эмитируется только при верификации физического объёма.",
         "supply": "Неограниченная",
-        "backing": "1 м³ воды в лицензированном хранилище",
-        "emission": "Только при верификации физического объёма",
+        "backing": "1 м³ воды",
+        "emission": "Только при верификации",
         "holders": "Операторы, граждане, инвесторы"
       },
       "vodeco": {
@@ -218,10 +439,10 @@
         "fullName": "Governance Token",
         "type": "Governance",
         "description": "Токен управления DAO. Фиксированная эмиссия. Дает право голоса и участия в валидации.",
-        "supply": "1,000,000,000 (фиксированная)",
-        "backing": "Репутация + стейк в экосистеме",
-        "emission": "Фиксированная, полностью разморожена к 2027",
-        "holders": "DAO-участники, валидаторы, инвесторы"
+        "supply": "1,000,000,000",
+        "backing": "Репутация + стейк",
+        "emission": "Фиксированная",
+        "holders": "DAO-участники, валидаторы"
       },
       "vodcredit": {
         "name": "VODcredit",
@@ -229,162 +450,26 @@
         "type": "Reputation (SBT)",
         "description": "Нетрансферабельный токен репутации. Начисляется за вклад в экосистему.",
         "supply": "Неограниченная",
-        "backing": "Вклад в экосистему (данные, валидация, разработка)",
-        "emission": "Алгоритмически за полезные действия",
-        "holders": "Все участники экосистемы"
+        "backing": "Вклад в экосистему",
+        "emission": "Алгоритмически",
+        "holders": "Все участники"
       }
-    },
-    "emission": {
-      "title": "Формула эмиссии VOD",
-      "formula": "EMISSION = Объём × Качество × Актуальность × Репутация",
-      "volume": "Объём воды (м³)",
-      "quality": "Качество данных (0-1)",
-      "actuality": "Актуальность",
-      "reputation": "Репутация оператора",
-      "actualityOptions": {
-        "realtime": "Real-time (1.0)",
-        "hour": "Часовая задержка (0.5)",
-        "day": "Сутки (0.1)"
-      }
-    },
-    "allocation": {
-      "title": "Распределение VODeco",
-      "waterReserve": "Water Reserve",
-      "rdTreasury": "R&D Treasury",
-      "community": "Community",
-      "team": "Team & Foundation",
-      "investors": "Early Investors",
-      "liquidity": "Liquidity",
-      "daoTreasury": "DAO Treasury"
     },
     "dao": {
       "title": "Уровни DAO",
-      "l1": {
-        "name": "Constitutional",
-        "topic": "Изменение правил эмиссии",
-        "quorum": "66% VODeco + 51% валидаторов",
-        "mechanism": "Мультиподпись + 30 дней",
-        "time": "30 дней"
-      },
-      "l2": {
-        "name": "Economic",
-        "topic": "Параметры стейкинга, налогов",
-        "quorum": "51% VODeco",
-        "mechanism": "Прямое голосование",
-        "time": "7 дней"
-      },
-      "l3": {
-        "name": "Projects",
-        "topic": "Инвестиции, распределение",
-        "quorum": "40% VODeco + репутация",
-        "mechanism": "Квадратичное голосование",
-        "time": "14 дней"
-      },
-      "l4": {
-        "name": "Operational",
-        "topic": "Гранты, награды",
-        "quorum": "Делегаты",
-        "mechanism": "Жидкая демократия",
-        "time": "3 дня"
-      }
-    },
-    "ecosystem": {
-      "title": "Взаимосвязанная экосистема",
-      "projecthub": {
-        "title": "ProjectHub",
-        "subtitle": "16 R&D проектов",
-        "desc": "R&D инициативы от концепции до продакшена. Каждый проект проходит стадии верификации и может получить финансирование через TokenHub."
-      },
-      "tokenhub": {
-        "title": "TokenHub",
-        "subtitle": "Инвестиции & DeFi",
-        "desc": "B2I интерфейс для инвестирования в R&D проекты. Стейкинг с APY 8-32%, DEX-интеграция для обмена токенов, ликвидность для VOD/VODeco."
-      },
-      "daoGov": {
-        "title": "DAO Governance",
-        "subtitle": "4 уровня решений",
-        "desc": "Децентрализованное управление через VODeco. От конституционных решений до операционных — все прозрачно и верифицируемо на блокчейне."
-      },
-      "flows": {
-        "title": "Потоки стоимости"
-      },
-      "features": {
-        "waterBacked": {
-          "title": "Water-Backed",
-          "desc": "Каждый VOD обеспечен 1м³ воды"
-        },
-        "transparent": {
-          "title": "Transparent",
-          "desc": "Все операции на блокчейне"
-        },
-        "sustainable": {
-          "title": "Sustainable",
-          "desc": "ESG-ориентированная модель"
-        }
-      }
-    },
-    "cta": {
-      "title": "Готов участвовать в экономике воды?",
-      "subtitle": "Начни стейкинг в R&D проекты или получи VODcredit за вклад в экосистему.",
-      "invest": "Инвестировать в проекты",
-      "stake": "Стейкинг"
+      "l1": { "name": "Constitutional", "quorum": "66%", "time": "30 дней" },
+      "l2": { "name": "Economic", "quorum": "51%", "time": "7 дней" },
+      "l3": { "name": "Projects", "quorum": "40%", "time": "14 дней" },
+      "l4": { "name": "Operational", "quorum": "Делегаты", "time": "3 дня" }
     }
   },
   "staking": {
     "title": "Стейкинг UNITY",
-    "subtitle": "Заблокируй токены для поддержки сети и получения пассивного дохода",
+    "subtitle": "Заблокируйте токены для поддержки сети и получения пассивного дохода",
     "tiers": {
-      "title": "Уровни стейкинга",
-      "explorer": {
-        "name": "Explorer",
-        "apy": "8-12%",
-        "desc": "Базовый уровень для новых инвесторов"
-      },
-      "guardian": {
-        "name": "Guardian",
-        "apy": "12-18%",
-        "desc": "Оптимальный баланс риска и доходности"
-      },
-      "validator": {
-        "name": "Validator",
-        "apy": "18-25%",
-        "desc": "Максимальные награды для крупных стейкеров"
-      }
-    },
-    "calculator": {
-      "title": "Калькулятор доходности",
-      "amount": "Сумма стейкинга (UNITY)",
-      "period": "Период (месяцев)",
-      "baseApy": "Базовый APY",
-      "durationBonus": "Бонус срока",
-      "amountBonus": "Бонус суммы",
-      "totalApy": "Итоговый APY",
-      "estimated": "Ожидаемая прибыль"
-    },
-    "stats": {
-      "totalStaked": "Всего застейкано",
-      "yourStake": "Ваш стейк",
-      "yourEarnings": "Ваш заработок",
-      "lockPeriod": "Период блокировки"
-    }
-  },
-  "projecthub": {
-    "title": "Исследовательские проекты",
-    "subtitle": "R&D инициативы экосистемы LoopOrb от концепции до продакшена",
-    "categories": {
-      "hardware": "Hardware Innovation",
-      "treatment": "Water Treatment",
-      "analytics": "Data & Analytics",
-      "community": "Community Solutions"
-    },
-    "project": {
-      "status": "Статус",
-      "funding": "Финансирование",
-      "team": "Команда",
-      "timeline": "Таймлайн",
-      "documents": "Документы",
-      "invest": "Инвестировать",
-      "viewDetails": "Подробнее"
+      "explorer": { "name": "Explorer", "apy": "8-12%" },
+      "guardian": { "name": "Guardian", "apy": "12-18%" },
+      "validator": { "name": "Validator", "apy": "18-32%" }
     }
   },
   "dao": {
@@ -415,57 +500,22 @@
     "connectWallet": "Подключить кошелёк",
     "editProfile": "Редактировать профиль"
   },
-  "litepaper": {
-    "title": "VODeco: Вода как экономика",
-    "subtitle": "Многоуровневая экосистема мониторинга воды, объединяющая IoT, блокчейн и автоматические лаборатории",
-    "download": "Скачать PDF",
-    "sections": {
-      "overview": "Обзор",
-      "architecture": "Архитектура",
-      "tokens": "Токеномика",
-      "vodlab": "VOD-Lab",
-      "security": "Безопасность",
-      "roadmap": "Роадмап"
-    },
-    "problem": "Проблема",
-    "solution": "Решение",
-    "levels": {
-      "physical": "Уровень 1: Физика",
-      "data": "Уровень 2: Данные",
-      "protocols": "Уровень 3: Протоколы",
-      "apps": "Уровень 4: Приложения"
+  "pwa": {
+    "install": "Установить приложение",
+    "offline": "Вы офлайн",
+    "online": "Вы снова онлайн",
+    "update": "Доступно обновление",
+    "updateButton": "Обновить",
+    "notifications": {
+      "enable": "Включить уведомления",
+      "disabled": "Уведомления отключены"
     }
   },
-  "history": {
-    "title": "История VODeco",
-    "subtitle": "Путь от Culligan к глобальной водной экономике",
-    "milestones": "Ключевые вехи",
-    "phases": {
-      "vodprom": "Фаза 1: VODPROM",
-      "expansion": "Фаза 2: Расширение",
-      "future": "Фаза 3: Будущее"
-    }
-  },
-  "staking": {
-    "title": "Стейкинг UNITY",
-    "subtitle": "Заблокируйте токены для поддержки сети и получения пассивного дохода",
-    "amount": "Сумма",
-    "period": "Период",
-    "apy": "APY",
-    "rewards": "Награды",
-    "tier": "Уровень",
-    "estimated": "Ожидаемая прибыль"
-  },
-  "common": {
-    "loading": "Загрузка...",
-    "error": "Ошибка",
-    "success": "Успех",
-    "cancel": "Отмена",
-    "save": "Сохранить",
-    "submit": "Отправить",
-    "learnMore": "Подробнее",
-    "comingSoon": "Скоро",
-    "connect": "Подключить",
-    "invest": "Инвестировать"
+  "errors": {
+    "404": "Страница не найдена",
+    "500": "Внутренняя ошибка сервера",
+    "offline": "Проверьте подключение к интернету",
+    "auth": "Требуется авторизация",
+    "forbidden": "Доступ запрещён"
   }
 }

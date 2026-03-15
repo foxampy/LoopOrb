@@ -1,17 +1,35 @@
 {
+  "_meta": {
+    "language": "English",
+    "version": "3.0",
+    "lastUpdated": "2026-03-15"
+  },
   "metadata": {
-    "title": "LoopOrb - Water Data Ecosystem",
-    "description": "Decentralized platform for monitoring, managing and investing in water resources"
+    "title": "LoopOrb - Global Water Resource Management Ecosystem",
+    "description": "Decentralized platform for monitoring, managing and investing in water resources. IoT, blockchain, AI and community to solve the water crisis."
   },
   "nav": {
-    "landing": "Landing",
+    "landing": "Home",
     "ecosystem": "Ecosystem",
+    "feed": "News",
+    "chats": "Chats",
+    "missions": "Missions",
+    "achievements": "Achievements",
+    "cabinet": "Cabinet",
     "projecthub": "ProjectHub",
     "tokenhub": "TokenHub",
     "staking": "Staking",
     "tokenomics": "Tokenomics",
     "dao": "DAO",
-    "profile": "Account"
+    "profile": "Profile",
+    "wallet": "Wallet",
+    "settings": "Settings",
+    "about": "About",
+    "litepaper": "Litepaper",
+    "vodlab": "VOD-Lab",
+    "objects": "Objects",
+    "crisis": "Crisis Center",
+    "admin": "Admin"
   },
   "common": {
     "loading": "Loading...",
@@ -31,32 +49,327 @@
     "apy": "APY",
     "stake": "Stake",
     "earned": "Earned",
-    "balance": "Balance"
+    "balance": "Balance",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "refresh": "Refresh",
+    "share": "Share",
+    "like": "Like",
+    "comment": "Comment",
+    "send": "Send",
+    "close": "Close",
+    "open": "Open",
+    "next": "Next",
+    "previous": "Previous",
+    "back": "Back",
+    "confirm": "Confirm",
+    "reject": "Reject",
+    "approve": "Approve",
+    "pending": "Pending",
+    "active": "Active",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "online": "Online",
+    "offline": "Offline",
+    "typing": "typing...",
+    "read": "Read",
+    "unread": "Unread",
+    "today": "Today",
+    "yesterday": "Yesterday"
   },
   "home": {
-    "title": "Water Data Ecosystem",
-    "subtitle": "Decentralized platform for monitoring and managing water resources",
+    "title": "Global Water Resource Management Ecosystem",
+    "subtitle": "Decentralized platform combining IoT, blockchain and AI for monitoring, protecting and investing in water resources",
+    "hero": {
+      "cta1": "Explore Projects",
+      "cta2": "Connect Wallet"
+    },
     "features": {
       "monitoring": {
-        "title": "Monitoring",
-        "desc": "Real-time water quality tracking"
+        "title": "IoT Monitoring",
+        "desc": "Real-time water quality tracking through autonomous sensor networks"
       },
       "investing": {
-        "title": "Investing",
-        "desc": "Support R&D projects through tokenization"
+        "title": "R&D Investment",
+        "desc": "Support innovative water technologies with up to 32% APY returns"
       },
       "governance": {
-        "title": "Governance",
-        "desc": "DAO for community decision making"
+        "title": "DAO Governance",
+        "desc": "Decentralized decision-making by community through VODeco tokens"
+      },
+      "ai": {
+        "title": "AI Analytics",
+        "desc": "Predict water quality and optimize resource distribution"
       }
+    },
+    "stats": {
+      "sensors": "Active Sensors",
+      "projects": "R&D Projects",
+      "investors": "Investors",
+      "countries": "Countries"
     }
+  },
+  "feed": {
+    "title": "Water World News",
+    "subtitle": "Latest news from Uzbekistan, China, India, Israel and worldwide",
+    "scopes": {
+      "all": "All",
+      "uzbekistan": "Uzbekistan",
+      "central-asia": "Central Asia",
+      "china": "China",
+      "india": "India",
+      "israel": "Israel",
+      "middle-east": "Middle East",
+      "africa": "Africa",
+      "global": "Global"
+    },
+    "types": {
+      "alert": "Alert",
+      "project": "Project",
+      "research": "Research",
+      "success": "Success",
+      "policy": "Policy"
+    },
+    "actions": {
+      "like": "Like",
+      "comment": "Comment",
+      "share": "Share",
+      "bookmark": "Bookmark",
+      "read": "Read"
+    },
+    "trending": "Trending",
+    "stats": {
+      "total": "Total News",
+      "alerts": "Alerts",
+      "projects": "Projects",
+      "research": "Research"
+    },
+    "subscribe": {
+      "title": "LoopOrb Daily",
+      "desc": "Get the top water news every morning",
+      "button": "Subscribe"
+    }
+  },
+  "chats": {
+    "title": "Messages",
+    "search": "Search chats...",
+    "newChat": "New Chat",
+    "noMessages": "No messages",
+    "typeMessage": "Type a message...",
+    "online": "online",
+    "offline": "offline",
+    "typing": "typing...",
+    "empty": "Select a chat to start messaging",
+    "actions": {
+      "call": "Call",
+      "video": "Video",
+      "more": "More",
+      "attach": "Attach",
+      "send": "Send"
+    }
+  },
+  "missions": {
+    "title": "Missions & Tasks",
+    "subtitle": "Earn XP and tokens for participating in the ecosystem",
+    "types": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "onetime": "One-time",
+      "project": "Project"
+    },
+    "categories": {
+      "data_collection": "Data Collection",
+      "validation": "Validation",
+      "project_participation": "Projects",
+      "social": "Social",
+      "education": "Education",
+      "exploration": "Exploration"
+    },
+    "status": {
+      "active": "Active",
+      "completed": "Completed",
+      "expired": "Expired"
+    },
+    "actions": {
+      "start": "Start",
+      "claim": "Claim",
+      "progress": "In Progress"
+    },
+    "stats": {
+      "completed": "Completed",
+      "active": "Active",
+      "xpEarned": "XP Earned"
+    },
+    "rewards": {
+      "xp": "XP",
+      "tokens": "Tokens"
+    }
+  },
+  "achievements": {
+    "title": "Achievements",
+    "subtitle": "Earn badges for activity in the ecosystem",
+    "categories": {
+      "explorer": "Explorer",
+      "scientist": "Scientist",
+      "activist": "Activist",
+      "investor": "Investor",
+      "influencer": "Influencer",
+      "special": "Special"
+    },
+    "status": {
+      "unlocked": "Unlocked",
+      "locked": "Locked"
+    },
+    "stats": {
+      "total": "Total Achievements",
+      "unlocked": "Unlocked",
+      "xp": "XP Earned",
+      "progress": "Progress"
+    },
+    "check": "Check for new achievements"
+  },
+  "cabinet": {
+    "title": "Personal Cabinet",
+    "subtitle": "Manage profile and access role features",
+    "roles": {
+      "citizen": "Citizen",
+      "scientist": "Scientist",
+      "investor": "Investor",
+      "government": "Government",
+      "operator": "Operator",
+      "admin": "Administrator"
+    },
+    "features": {
+      "missions": "Missions",
+      "achievements": "Achievements",
+      "objects": "Objects",
+      "data": "Data",
+      "research": "Research",
+      "api": "API",
+      "portfolio": "Portfolio",
+      "analytics": "Analytics",
+      "dashboard": "Dashboard",
+      "crisis": "Crisis Center",
+      "sensors": "Sensors",
+      "alerts": "Alerts"
+    },
+    "stats": {
+      "level": "Level",
+      "xp": "XP",
+      "reputation": "Reputation",
+      "balance": "Balance",
+      "staked": "Staked"
+    }
+  },
+  "crisis": {
+    "title": "Crisis Center",
+    "subtitle": "Operational monitoring and emergency response",
+    "levels": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "categories": {
+      "pollution": "Pollution",
+      "drought": "Drought",
+      "flood": "Flood",
+      "quality": "Water Quality"
+    },
+    "stats": {
+      "alerts": "Active Alerts",
+      "affected": "People Affected",
+      "sensors": "Sensors Online"
+    },
+    "actions": {
+      "emergency": "Emergency Call",
+      "notify": "Mass Alert",
+      "protocol": "Activate Protocol",
+      "map": "On Map",
+      "coordinate": "Coordinate"
+    },
+    "protocol": {
+      "title": "Response Protocol",
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "pending": "Pending"
+    }
+  },
+  "vodlab": {
+    "title": "VOD-Lab Hardware",
+    "subtitle": "Edge AI + Blockchain water verification in real-time",
+    "models": {
+      "pro": {
+        "name": "VOD-Lab Pro",
+        "price": "$13,400",
+        "params": "100+ parameters"
+      },
+      "node": {
+        "name": "VOD-Lab Node",
+        "price": "$8,900",
+        "params": "50 parameters"
+      }
+    },
+    "specs": {
+      "parameters": "Parameters",
+      "accuracy": "Accuracy",
+      "throughput": "Throughput",
+      "automation": "Automation",
+      "connectivity": "Connectivity",
+      "protection": "Protection",
+      "calibration": "Calibration",
+      "power": "Power Consumption"
+    },
+    "security": {
+      "title": "6 Security Levels",
+      "levels": ["Physical", "Edge", "Lab", "Network", "Consensus", "Blockchain"]
+    },
+    "cta": {
+      "invest": "Invest in Node",
+      "specs": "Technical Specs"
+    }
+  },
+  "globe": {
+    "title": "Global Water Map",
+    "subtitle": "Interactive 3D visualization of water bodies and infrastructure",
+    "layers": {
+      "all": "All",
+      "objects": "Objects",
+      "projects": "Projects",
+      "stations": "Stations",
+      "labs": "Labs"
+    },
+    "legend": {
+      "good": "Good Quality (70-100)",
+      "medium": "Medium Quality (50-69)",
+      "poor": "Poor Quality (0-49)",
+      "project": "Project",
+      "lab": "VOD-Lab"
+    },
+    "stats": {
+      "objects": "Objects",
+      "sensors": "Sensors Online"
+    }
+  },
+  "ai": {
+    "title": "VOD AI Assistant",
+    "subtitle": "Your intelligent assistant in the water ecosystem",
+    "placeholder": "Ask about tokens, projects or water technologies...",
+    "suggestions": [
+      "Tell me about VOD tokens",
+      "What projects are in Uzbekistan?",
+      "What is VOD-Lab?",
+      "How to participate in DAO?"
+    ]
   },
   "tokenhub": {
     "title": "Invest in Water Technologies",
-    "subtitle": "Support LoopOrb ecosystem R&D projects and earn from real technology implementation. Stake UNITY in projects with APY up to 32%.",
+    "subtitle": "Support LoopOrb ecosystem R&D projects and earn returns from real technology deployment",
     "stats": {
       "totalRaised": "Total Raised",
-      "goal": "Funding Goal",
+      "goal": "Goal",
       "activeProjects": "Active Projects",
       "investors": "Investors"
     },
@@ -66,12 +379,13 @@
       "duration": "Duration (months)",
       "tier": "Tier",
       "annualYield": "Annual Yield",
-      "durationYield": "Yield for {months} months"
+      "durationYield": "Yield for {months} mo"
     },
     "filters": {
       "all": "All Projects",
       "hardware": "Hardware / IoT",
       "software": "Software / AI",
+      "infrastructure": "Infrastructure",
       "community": "Community",
       "search": "Search projects..."
     },
@@ -79,14 +393,16 @@
       "status": {
         "active": "Active",
         "fundraising": "Fundraising",
-        "completed": "Completed"
+        "completed": "Completed",
+        "construction": "Construction",
+        "planning": "Planning"
       },
       "risk": {
         "low": "Low",
         "medium": "Medium",
         "high": "High"
       },
-      "minStake": "Min Stake",
+      "minStake": "Min. Stake",
       "lockPeriod": "Lock Period",
       "backers": "investors",
       "invest": "Invest",
@@ -95,301 +411,70 @@
       "milestones": "Project Milestones",
       "team": "Team",
       "documents": "Documents",
+      "irr": "IRR",
       "esg": {
         "title": "ESG Metrics",
         "waterSaved": "Water Saved",
         "co2Avoided": "CO₂ Avoided",
         "communities": "Communities"
       }
-    },
-    "howItWorks": {
-      "title": "How Investing Works",
-      "step1": {
-        "title": "Choose Project",
-        "desc": "Explore R&D initiatives with full data transparency"
-      },
-      "step2": {
-        "title": "Stake UNITY",
-        "desc": "Lock tokens in the project smart contract"
-      },
-      "step3": {
-        "title": "Earn Returns",
-        "desc": "APY from 8% to 32% depending on the project"
-      },
-      "step4": {
-        "title": "Support Science",
-        "desc": "Your funds go to real development"
-      }
-    },
-    "standard": {
-      "title": "VOD Token Standard Implementation",
-      "subtitle": "Technical architecture and ProjectHub integration",
-      "architecture": {
-        "title": "Token Architecture",
-        "vod": {
-          "name": "VOD (Commodity)",
-          "desc": "1 VOD = 1 m³ of verified water. Emission only upon physical verification"
-        },
-        "vodeco": {
-          "name": "VODeco (Governance)",
-          "desc": "DAO governance, validator staking, fixed 1B supply"
-        },
-        "vodcredit": {
-          "name": "VODcredit (SBT)",
-          "desc": "Participant reputation, non-transferable, earned for contribution"
-        }
-      },
-      "integration": {
-        "title": "ProjectHub Integration",
-        "pipeline": "ProjectHub → TokenHub Pipeline",
-        "pipelineDesc": "Projects from ProjectHub (16 R&D initiatives) go through stages: Concept → Prototype → Pilot → Production",
-        "stages": {
-          "concept": "Concept: $100-500K",
-          "prototype": "Prototype: $500K-2M",
-          "production": "Production: $2M+"
-        },
-        "rewards": {
-          "title": "Cross-Platform Rewards",
-          "desc": "Participation in ProjectHub projects (data, research) automatically earns VODcredit → increases VOD emission multiplier → increases TokenHub investment returns"
-        }
-      },
-      "swaps": {
-        "title": "Token Swaps",
-        "desc": "DEX integration for VOD ↔ VODeco exchange. Liquidity provided through pools with APY 5-15%. Automatic market makers for stability."
-      },
-      "pools": {
-        "title": "Liquidity Pools",
-        "desc": "VOD/TON, VODeco/TON, VOD/VODeco pools. TVL grows proportionally to the number of verified water sources in the network."
-      },
-      "security": {
-        "title": "Security",
-        "desc": "Multi-sig contracts, CertiK audit, HSM modules for hardware nodes. Slashing for validator misconduct."
-      }
-    },
-    "structure": {
-      "title": "Interconnected Tokenomics Structure",
-      "level1": {
-        "name": "Water (VOD)",
-        "desc": "Base layer — physical asset. Each VOD backed by 1m³ of water.",
-        "emission": "Algorithmic",
-        "tax": "2% annually"
-      },
-      "level2": {
-        "name": "Governance (VODeco)",
-        "desc": "DAO voting, validation, R&D investments through TokenHub.",
-        "supply": "1B fixed",
-        "stake": "100K for validator"
-      },
-      "level3": {
-        "name": "Reputation (VODcredit)",
-        "desc": "SBT token for contribution. Affects emission and privileges.",
-        "type": "Soulbound",
-        "earning": "For activity"
-      },
-      "flows": {
-        "title": "Component Interconnection",
-        "data": "Data",
-        "dataDesc": "IoT Sensors",
-        "emission": "Emission",
-        "emissionDesc": "VODcredit × Volume = VOD",
-        "governance": "Governance",
-        "governanceDesc": "VODeco + DAO",
-        "investing": "Investing",
-        "investingDesc": "TokenHub → R&D"
-      }
     }
   },
   "tokenomics": {
     "title": "Three Tokens, Three Functions",
-    "subtitle": "Synchronized economy: VOD (commodity), VODeco (governance), VODcredit (reputation). Each token plays its role in the ecosystem.",
+    "subtitle": "Synchronized economy: VOD (commodity), VODeco (governance), VODcredit (reputation)",
     "tokens": {
       "vod": {
         "name": "VOD",
         "fullName": "Water Commodity Token",
         "type": "Commodity",
-        "description": "Right to 1 m³ of verified water. Emitted only upon physical volume verification.",
+        "description": "Right to 1 m³ of verified water. Issued only upon physical volume verification.",
         "supply": "Unlimited",
-        "backing": "1 m³ of water in licensed storage",
-        "emission": "Only upon physical volume verification",
+        "backing": "1 m³ of water",
+        "emission": "Verification only",
         "holders": "Operators, citizens, investors"
       },
       "vodeco": {
         "name": "VODeco",
         "fullName": "Governance Token",
         "type": "Governance",
-        "description": "DAO governance token. Fixed emission. Grants voting rights and validation participation.",
-        "supply": "1,000,000,000 (fixed)",
-        "backing": "Reputation + stake in ecosystem",
-        "emission": "Fixed, fully unfrozen by 2027",
-        "holders": "DAO participants, validators, investors"
+        "description": "DAO governance token. Fixed supply. Grants voting rights and validation participation.",
+        "supply": "1,000,000,000",
+        "backing": "Reputation + stake",
+        "emission": "Fixed",
+        "holders": "DAO members, validators"
       },
       "vodcredit": {
         "name": "VODcredit",
         "fullName": "Reputation SBT",
         "type": "Reputation (SBT)",
-        "description": "Non-transferable reputation token. Earned for ecosystem contribution.",
+        "description": "Non-transferable reputation token. Earned for ecosystem contributions.",
         "supply": "Unlimited",
-        "backing": "Ecosystem contribution (data, validation, development)",
-        "emission": "Algorithmically for useful actions",
-        "holders": "All ecosystem participants"
+        "backing": "Ecosystem contribution",
+        "emission": "Algorithmic",
+        "holders": "All participants"
       }
-    },
-    "emission": {
-      "title": "VOD Emission Formula",
-      "formula": "EMISSION = Volume × Quality × Actuality × Reputation",
-      "volume": "Water Volume (m³)",
-      "quality": "Data Quality (0-1)",
-      "actuality": "Actuality",
-      "reputation": "Operator Reputation",
-      "actualityOptions": {
-        "realtime": "Real-time (1.0)",
-        "hour": "Hour delay (0.5)",
-        "day": "Daily (0.1)"
-      }
-    },
-    "allocation": {
-      "title": "VODeco Allocation",
-      "waterReserve": "Water Reserve",
-      "rdTreasury": "R&D Treasury",
-      "community": "Community",
-      "team": "Team & Foundation",
-      "investors": "Early Investors",
-      "liquidity": "Liquidity",
-      "daoTreasury": "DAO Treasury"
     },
     "dao": {
       "title": "DAO Levels",
-      "l1": {
-        "name": "Constitutional",
-        "topic": "Emission rule changes",
-        "quorum": "66% VODeco + 51% validators",
-        "mechanism": "Multi-sig + 30 days",
-        "time": "30 days"
-      },
-      "l2": {
-        "name": "Economic",
-        "topic": "Staking, tax parameters",
-        "quorum": "51% VODeco",
-        "mechanism": "Direct voting",
-        "time": "7 days"
-      },
-      "l3": {
-        "name": "Projects",
-        "topic": "Investments, allocation",
-        "quorum": "40% VODeco + reputation",
-        "mechanism": "Quadratic voting",
-        "time": "14 days"
-      },
-      "l4": {
-        "name": "Operational",
-        "topic": "Grants, rewards",
-        "quorum": "Delegates",
-        "mechanism": "Liquid democracy",
-        "time": "3 days"
-      }
-    },
-    "ecosystem": {
-      "title": "Interconnected Ecosystem",
-      "projecthub": {
-        "title": "ProjectHub",
-        "subtitle": "16 R&D Projects",
-        "desc": "R&D initiatives from concept to production. Each project goes through verification stages and can receive funding through TokenHub."
-      },
-      "tokenhub": {
-        "title": "TokenHub",
-        "subtitle": "Investing & DeFi",
-        "desc": "B2I interface for investing in R&D projects. Staking with APY 8-32%, DEX integration for token exchange, liquidity for VOD/VODeco."
-      },
-      "daoGov": {
-        "title": "DAO Governance",
-        "subtitle": "4 decision levels",
-        "desc": "Decentralized governance through VODeco. From constitutional to operational decisions — everything is transparent and verifiable on blockchain."
-      },
-      "flows": {
-        "title": "Value Flows"
-      },
-      "features": {
-        "waterBacked": {
-          "title": "Water-Backed",
-          "desc": "Each VOD backed by 1m³ of water"
-        },
-        "transparent": {
-          "title": "Transparent",
-          "desc": "All operations on blockchain"
-        },
-        "sustainable": {
-          "title": "Sustainable",
-          "desc": "ESG-oriented model"
-        }
-      }
-    },
-    "cta": {
-      "title": "Ready to participate in water economy?",
-      "subtitle": "Start staking in R&D projects or earn VODcredit for ecosystem contribution.",
-      "invest": "Invest in Projects",
-      "stake": "Staking"
+      "l1": { "name": "Constitutional", "quorum": "66%", "time": "30 days" },
+      "l2": { "name": "Economic", "quorum": "51%", "time": "7 days" },
+      "l3": { "name": "Projects", "quorum": "40%", "time": "14 days" },
+      "l4": { "name": "Operational", "quorum": "Delegates", "time": "3 days" }
     }
   },
   "staking": {
     "title": "UNITY Staking",
     "subtitle": "Lock tokens to support the network and earn passive income",
     "tiers": {
-      "title": "Staking Tiers",
-      "explorer": {
-        "name": "Explorer",
-        "apy": "8-12%",
-        "desc": "Basic tier for new investors"
-      },
-      "guardian": {
-        "name": "Guardian",
-        "apy": "12-18%",
-        "desc": "Optimal risk-return balance"
-      },
-      "validator": {
-        "name": "Validator",
-        "apy": "18-25%",
-        "desc": "Maximum rewards for large stakers"
-      }
-    },
-    "calculator": {
-      "title": "Yield Calculator",
-      "amount": "Staking Amount (UNITY)",
-      "period": "Period (months)",
-      "baseApy": "Base APY",
-      "durationBonus": "Duration Bonus",
-      "amountBonus": "Amount Bonus",
-      "totalApy": "Total APY",
-      "estimated": "Estimated Profit"
-    },
-    "stats": {
-      "totalStaked": "Total Staked",
-      "yourStake": "Your Stake",
-      "yourEarnings": "Your Earnings",
-      "lockPeriod": "Lock Period"
-    }
-  },
-  "projecthub": {
-    "title": "Research Projects",
-    "subtitle": "LoopOrb ecosystem R&D initiatives from concept to production",
-    "categories": {
-      "hardware": "Hardware Innovation",
-      "treatment": "Water Treatment",
-      "analytics": "Data & Analytics",
-      "community": "Community Solutions"
-    },
-    "project": {
-      "status": "Status",
-      "funding": "Funding",
-      "team": "Team",
-      "timeline": "Timeline",
-      "documents": "Documents",
-      "invest": "Invest",
-      "viewDetails": "View Details"
+      "explorer": { "name": "Explorer", "apy": "8-12%" },
+      "guardian": { "name": "Guardian", "apy": "12-18%" },
+      "validator": { "name": "Validator", "apy": "18-32%" }
     }
   },
   "dao": {
     "title": "Decentralized Governance",
-    "subtitle": "Make decisions on ecosystem development through voting",
+    "subtitle": "Make decisions about ecosystem development through voting",
     "proposals": {
       "title": "Proposals",
       "active": "Active",
@@ -415,35 +500,22 @@
     "connectWallet": "Connect Wallet",
     "editProfile": "Edit Profile"
   },
-  "litepaper": {
-    "title": "VODeco: Water as Economy",
-    "subtitle": "Multi-level water monitoring ecosystem combining IoT, blockchain and automated laboratories",
-    "download": "Download PDF",
-    "sections": {
-      "overview": "Overview",
-      "architecture": "Architecture",
-      "tokens": "Tokenomics",
-      "vodlab": "VOD-Lab",
-      "security": "Security",
-      "roadmap": "Roadmap"
-    },
-    "problem": "Problem",
-    "solution": "Solution",
-    "levels": {
-      "physical": "Level 1: Physical",
-      "data": "Level 2: Data",
-      "protocols": "Level 3: Protocols",
-      "apps": "Level 4: Applications"
+  "pwa": {
+    "install": "Install App",
+    "offline": "You are offline",
+    "online": "You are back online",
+    "update": "Update available",
+    "updateButton": "Update",
+    "notifications": {
+      "enable": "Enable Notifications",
+      "disabled": "Notifications disabled"
     }
   },
-  "history": {
-    "title": "VODeco History",
-    "subtitle": "The journey from Culligan to global water economy",
-    "milestones": "Key Milestones",
-    "phases": {
-      "vodprom": "Phase 1: VODPROM",
-      "expansion": "Phase 2: Expansion",
-      "future": "Phase 3: Future"
-    }
+  "errors": {
+    "404": "Page Not Found",
+    "500": "Internal Server Error",
+    "offline": "Check your internet connection",
+    "auth": "Authentication Required",
+    "forbidden": "Access Forbidden"
   }
 }
