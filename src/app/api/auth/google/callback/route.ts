@@ -54,9 +54,8 @@ export async function GET(request: NextRequest) {
         data: {
           email: googleUser.email,
           name: googleUser.name || googleUser.email.split('@')[0],
-          image: googleUser.picture,
-          provider: 'google',
-          providerId: googleUser.id,
+          avatar: googleUser.picture,
+          googleId: googleUser.id,
           emailVerified: new Date(),
         },
       });
@@ -66,18 +65,14 @@ export async function GET(request: NextRequest) {
         where: { id: user.id },
         data: {
           name: googleUser.name || user.name,
-          image: googleUser.picture || user.image,
+          avatar: googleUser.picture || user.avatar,
           lastLoginAt: new Date(),
         },
       });
     }
 
     // Create session token
-    const token = await signJWT({
-      userId: user.id,
-      email: user.email,
-      role: user.role,
-    });
+    const token = signJWT(user.id, user.email, user.role);
 
     // Set cookie and redirect
     const response = NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/dashboard`);
