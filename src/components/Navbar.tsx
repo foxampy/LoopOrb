@@ -20,11 +20,11 @@ import {
   Gavel,
   Trophy,
   Gem,
-  Lock,
   Target,
   FileText,
   Users,
   Microscope,
+  BarChart3,
 } from "lucide-react";
 
 interface User {
@@ -37,6 +37,7 @@ interface User {
 }
 
 // Navigation items - labels will be translated in component
+// All pages are now accessible without authentication (guest mode)
 const getNavItems = (t: (key: string) => string) => [
   { href: "/landing", label: t("nav.landing"), icon: Globe },
   { href: "/ecosystem/feed", label: "Лента", icon: Newspaper },
@@ -44,13 +45,15 @@ const getNavItems = (t: (key: string) => string) => [
   { href: "/projecthub", label: t("nav.projecthub"), icon: FolderOpen },
   { href: "/staking", label: t("nav.staking"), icon: Gem },
   { href: "/dao", label: t("nav.dao"), icon: Gavel },
+  { href: "/analytics", label: "Аналитика", icon: BarChart3 },
   { href: "/ecosystem/missions", label: "Миссии", icon: Target },
   { href: "/ecosystem/achievements", label: "Достижения", icon: Trophy },
   { href: "/vod-lab", label: "VOD-Lab", icon: Microscope },
   { href: "/tokenomics", label: t("nav.tokenomics"), icon: Wallet },
   { href: "/litepaper", label: "Litepaper", icon: FileText },
   { href: "/about", label: "О нас", icon: Users },
-  { href: "/profile", label: t("nav.profile"), icon: User, requiresAuth: true },
+  { href: "/globe", label: "3D Глобус", icon: Globe },
+  { href: "/profile", label: t("nav.profile"), icon: User },
 ];
 
 export default function Navbar() {
@@ -59,7 +62,6 @@ export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const pathname = usePathname();
   
   const navItems = getNavItems(t);
@@ -97,14 +99,6 @@ export default function Navbar() {
   };
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
-
-  const handleNavClick = (item: typeof navItems[0]) => (e: React.MouseEvent) => {
-    if (item.requiresAuth && !user) {
-      e.preventDefault();
-      setShowLoginModal(true);
-      setIsSidebarOpen(false);
-    }
-  };
 
   return (
     <>
@@ -266,12 +260,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={(e) => {
-                      handleNavClick(item)(e);
-                      if (!item.requiresAuth || user) {
-                        setIsSidebarOpen(false);
-                      }
-                    }}
+                    onClick={() => setIsSidebarOpen(false)}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
                       isActive(item.href)
                         ? "bg-water-500/20 text-water-400"
@@ -280,9 +269,6 @@ export default function Navbar() {
                   >
                     <item.icon className="w-5 h-5" />
                     <span>{item.label}</span>
-                    {item.requiresAuth && !user && (
-                      <Lock className="w-3 h-3 ml-auto text-water-200/40" />
-                    )}
                   </Link>
                 ))}
               </div>
@@ -322,59 +308,6 @@ export default function Navbar() {
                   </button>
                 </div>
               )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Login Modal */}
-      <AnimatePresence>
-        {showLoginModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70"
-            onClick={() => setShowLoginModal(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="glass-card p-6 max-w-sm w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-water-500/20 flex items-center justify-center">
-                  <Lock className="w-8 h-8 text-water-400" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Требуется вход</h3>
-                <p className="text-water-200/70 mb-6">
-                  Для доступа к этой функции необходимо войти в аккаунт
-                </p>
-                <div className="space-y-2">
-                  <Link
-                    href="/login"
-                    className="block w-full btn-primary text-center"
-                    onClick={() => setShowLoginModal(false)}
-                  >
-                    Войти
-                  </Link>
-                  <Link
-                    href="/register"
-                    className="block w-full btn-outline text-center"
-                    onClick={() => setShowLoginModal(false)}
-                  >
-                    Создать аккаунт
-                  </Link>
-                  <button
-                    onClick={() => setShowLoginModal(false)}
-                    className="block w-full py-2 text-sm text-water-200/50 hover:text-white transition"
-                  >
-                    Продолжить как гость
-                  </button>
-                </div>
-              </div>
             </motion.div>
           </motion.div>
         )}
