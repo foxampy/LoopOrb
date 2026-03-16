@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Quest, questTypes, difficultyColors } from '../data/quests';
+import { Quest } from '../data/quests';
 import { Check, Clock, Lock, Gift, Star, Zap } from 'lucide-react';
 import { useState } from 'react';
 
@@ -11,11 +11,27 @@ interface QuestCardProps {
   compact?: boolean;
 }
 
+// Quest type configuration
+const typeConfig: Record<string, { label: string; icon: string; color: string }> = {
+  daily: { label: 'Ежедневный', icon: '📅', color: 'text-blue-400 bg-blue-500/10' },
+  weekly: { label: 'Еженедельный', icon: '📆', color: 'text-purple-400 bg-purple-500/10' },
+  story: { label: 'Сюжетный', icon: '📖', color: 'text-amber-400 bg-amber-500/10' },
+  family: { label: 'Семейный', icon: '👨‍👩‍👧‍👦', color: 'text-green-400 bg-green-500/10' },
+};
+
+// Difficulty colors (based on quest type as fallback)
+const difficultyColors: Record<string, string> = {
+  daily: 'bg-blue-500',
+  weekly: 'bg-purple-500',
+  story: 'bg-amber-500',
+  family: 'bg-green-500',
+};
+
 export default function QuestCard({ quest, onComplete, compact = false }: QuestCardProps) {
   const [isCompleting, setIsCompleting] = useState(false);
-  const typeInfo = questTypes[quest.type];
-  const progressPercent = quest.progress 
-    ? Math.min(100, (quest.progress.current / quest.progress.total) * 100)
+  const typeInfo = typeConfig[quest.type];
+  const progressPercent = quest.target > 0
+    ? Math.min(100, (quest.progress / quest.target) * 100)
     : 0;
 
   const handleComplete = () => {
@@ -38,11 +54,11 @@ export default function QuestCard({ quest, onComplete, compact = false }: QuestC
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
-        <div className={`w-10 h-10 rounded-lg ${difficultyColors[quest.difficulty]} bg-opacity-20 
+        <div className={`w-10 h-10 rounded-lg ${difficultyColors[quest.type]} bg-opacity-20
           flex items-center justify-center text-xl`}>
           {typeInfo.icon}
         </div>
-        
+
         <div className="flex-1 min-w-0">
           <h4 className="font-medium text-white truncate text-sm">{quest.title}</h4>
           <div className="flex items-center gap-2 mt-1">
@@ -65,7 +81,7 @@ export default function QuestCard({ quest, onComplete, compact = false }: QuestC
                 : 'bg-gray-700 text-gray-400 cursor-not-allowed'
             }`}
           >
-            {progressPercent >= 100 ? 'Забрать' : `${quest.progress?.current}/${quest.progress?.total}`}
+            {progressPercent >= 100 ? 'Забрать' : `${quest.progress}/${quest.target}`}
           </button>
         )}
       </motion.div>
@@ -84,7 +100,7 @@ export default function QuestCard({ quest, onComplete, compact = false }: QuestC
       animate={{ opacity: 1, y: 0 }}
     >
       {/* Difficulty indicator */}
-      <div className={`absolute top-0 left-0 w-1 h-full ${difficultyColors[quest.difficulty]}`} />
+      <div className={`absolute top-0 left-0 w-1 h-full ${difficultyColors[quest.type]}`} />
       
       <div className="p-5 pl-6">
         {/* Header */}
@@ -121,15 +137,15 @@ export default function QuestCard({ quest, onComplete, compact = false }: QuestC
         <p className="text-gray-400 text-sm mb-4">{quest.description}</p>
 
         {/* Progress */}
-        {quest.progress && !quest.completed && (
+        {quest.target && !quest.completed && (
           <div className="mb-4">
             <div className="flex justify-between text-xs text-gray-400 mb-1">
               <span>Прогресс</span>
-              <span>{quest.progress.current} / {quest.progress.total}</span>
+              <span>{quest.progress} / {quest.target}</span>
             </div>
             <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
               <motion.div
-                className={`h-full rounded-full ${difficultyColors[quest.difficulty]}`}
+                className={`h-full rounded-full ${difficultyColors[quest.type]}`}
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPercent}%` }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -138,13 +154,7 @@ export default function QuestCard({ quest, onComplete, compact = false }: QuestC
           </div>
         )}
 
-        {/* Cooldown indicator */}
-        {quest.cooldown && quest.completed && (
-          <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
-            <Clock className="w-3 h-3" />
-            <span>Через {quest.cooldown}ч будет доступно снова</span>
-          </div>
-        )}
+        {/* Cooldown indicator - removed as not in Quest interface */}
 
         {/* Action Button */}
         <motion.button
