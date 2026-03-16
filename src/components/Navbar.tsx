@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
+import LanguageSelector from "./LanguageSelector";
 import {
   Menu,
   X,
@@ -119,8 +120,12 @@ export default function Navbar() {
             <span className="text-xl font-bold gradient-text">LoopOrb</span>
           </Link>
 
-          {/* Right: Notifications */}
+          {/* Right: Notifications + Language + User */}
           <div className="flex items-center gap-2">
+            {/* Language Selector */}
+            <LanguageSelector />
+
+            {/* Notifications */}
             <Link
               href="/notifications"
               className="relative p-2 text-water-200/70 hover:text-white transition"

@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/i18n/I18nContext";
-import LanguageSelector from "@/components/LanguageSelector";
+import { useI18n } from "@/i18n/I18nContext";
+import Navbar from "@/components/Navbar";
 import {
-  Droplets, Shield, Globe, Users, TrendingUp, Lock, Unlock, Zap, 
-  Activity, ChevronDown, ArrowRight, CheckCircle2, AlertTriangle, 
-  Menu, X, Wallet, Microscope, Target, Gem, Eye, Award,
+  Droplets, Shield, Globe, Users, TrendingUp, Lock, Unlock, Zap,
+  Activity, ChevronDown, ArrowRight, CheckCircle2, AlertTriangle,
+  Wallet, Microscope, Target, Gem, Eye, Award,
   Calculator, ChevronRight, PieChart, Layers, Database, Server,
   Hexagon, Sparkles, Beaker, FlaskConical, ArrowUpRight,
   Clock, Percent, FileText, HelpCircle, Mail, ExternalLink,
@@ -44,123 +44,6 @@ function CountUp({ end, duration = 2, suffix = "", prefix = "" }: { end: number;
   }, [isVisible, end, duration]);
 
   return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
-}
-
-// --- NAVBAR ---
-function Navbar() {
-  const { t } = useI18n();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { href: "#crisis", label: t("crisis.label") },
-    { href: "#dao", label: t("dao.label") },
-    { href: "#staking", label: t("staking.label") },
-    { href: "#projecthub", label: t("projecthub.label") },
-    { href: "#faq", label: t("faq.label") },
-  ];
-
-  const pageLinks = [
-    { href: "/landing", label: "Staking" },
-    { href: "/ecosystem", label: "Ecosystem" },
-    { href: "/projecthub", label: "ProjectHub" },
-    { href: "/tokenomics", label: "Tokenomics" },
-    { href: "/dao", label: "DAO" },
-    { href: "/profile", label: "Account" },
-  ];
-
-  return (
-    <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-slate-950/95 backdrop-blur-xl border-b border-slate-800/50" : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center">
-                <Droplets className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
-              </div>
-              <span className="text-lg lg:text-xl font-bold text-white">VODeco</span>
-            </Link>
-
-            <div className="hidden lg:flex items-center gap-6">
-              {pageLinks.map((link) => (
-                <Link key={link.href} href={link.href} 
-                  className={`text-sm transition-colors ${link.href === '/landing' ? 'text-cyan-400' : 'text-slate-300 hover:text-cyan-400'}`}>
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-2 lg:gap-4">
-              <LanguageSelector />
-              <button className="hidden sm:flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold rounded-lg transition-colors text-sm">
-                <Wallet className="w-4 h-4" />
-                <span>{t("nav.connect")}</span>
-              </button>
-              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-2 text-slate-300">
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
-          </div>
-        </div>
-      </motion.nav>
-
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-16 z-40 bg-slate-950/98 backdrop-blur-xl border-b border-slate-800 lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto"
-          >
-            <div className="px-4 py-4">
-              {/* Page Links Grid */}
-              <div className="mb-4">
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2">Pages</div>
-                <div className="grid grid-cols-2 gap-2">
-                  {pageLinks.map((link) => (
-                    <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} 
-                       className="flex items-center gap-2 px-3 py-2.5 text-sm text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 rounded-lg transition-colors">
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Anchor Links */}
-              <div className="border-t border-slate-800 pt-3">
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2">On this page</div>
-                <div className="space-y-1">
-                  {navLinks.map((link) => (
-                    <a key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} 
-                       className="block text-sm text-slate-300 hover:text-cyan-400 transition-colors py-2 px-2">
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-              
-              <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold rounded-lg mt-4 transition-colors">
-                <Wallet className="w-5 h-5" />
-                {t("nav.connect")}
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
 }
 
 // --- HERO SECTION ---
@@ -756,7 +639,6 @@ function EcosystemArchitectureSection() {
 function LandingContent() {
   return (
     <main className="bg-slate-950 min-h-screen">
-      <Navbar />
       <HeroSection />
       <CrisisSection />
       <EcosystemArchitectureSection />
@@ -773,6 +655,7 @@ function LandingContent() {
 export default function LandingPage() {
   return (
     <I18nProvider>
+      <Navbar />
       <LandingContent />
     </I18nProvider>
   );
