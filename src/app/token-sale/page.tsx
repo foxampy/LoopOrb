@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
-import { 
-  Coins, 
-  TrendingUp, 
-  Shield, 
-  Clock, 
+import {
+  Coins,
+  TrendingUp,
+  Shield,
+  Clock,
   Wallet,
   ArrowRight,
   CheckCircle,
@@ -18,6 +18,7 @@ import {
   ExternalLink,
   Gem,
   Zap,
+  Target,
   Lock
 } from 'lucide-react';
 
