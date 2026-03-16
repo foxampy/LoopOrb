@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface WaterMascotProps {
   size?: "small" | "medium" | "large";
@@ -19,7 +19,7 @@ export function WaterMascot({
     large: "w-32 h-40",
   };
 
-  const animations: Record<string, Variants> = {
+  const animations: Record<string, any> = {
     happy: {
       y: [0, -5, 0],
       transition: { repeat: Infinity, duration: 2, ease: "easeInOut" as const },
@@ -39,7 +39,7 @@ export function WaterMascot({
     },
   };
 
-  const eyeAnimations: Record<string, Variants> = {
+  const eyeAnimations: Record<string, any> = {
     happy: { scaleY: [1, 0.3, 1], transition: { repeat: Infinity, duration: 3 } },
     excited: { scale: [1, 1.2, 1], transition: { repeat: Infinity, duration: 0.5 } },
     thinking: {},
