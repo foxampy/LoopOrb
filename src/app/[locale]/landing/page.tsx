@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useI18n } from "@/i18n/I18nContext";
+import { I18nProvider, useI18n } from "@/i18n/I18nContext";
 import Navbar from "@/components/Navbar";
 import {
   Droplets, Shield, Globe, Users, TrendingUp, Lock, Unlock, Zap,
