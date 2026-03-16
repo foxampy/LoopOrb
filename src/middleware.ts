@@ -7,7 +7,11 @@ import { routing } from "./i18n/routing";
 const handleI18nRouting = createMiddleware(routing);
 
 export async function middleware(request: NextRequest) {
-  // Handle i18n routing for all pages
+  // Handle i18n routing for all pages except API
+  if (request.nextUrl.pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
+  
   const response = handleI18nRouting(request);
   return response;
 }
@@ -15,9 +19,12 @@ export async function middleware(request: NextRequest) {
 // Match all routes except static files and API
 export const config = {
   matcher: [
-    // Match all routes except static files and api
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-    // Match API routes too
-    '/api/:path*'
+    // Enable a redirect to a matching locale at the start of the URL
+    '/',
+    // Set a cookie to remember the previous locale for
+    // all requests that have a locale prefix as their prefix
+    '/(ru|en)/:path*',
+    // Enable redirects that add missing locales
+    '/((?!_next|_vercel|.*\\..*).*)'
   ],
 };
