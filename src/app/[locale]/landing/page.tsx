@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/i18n/I18nContext";
+import { useI18n } from "@/i18n/I18nContext";
 import Navbar from "@/components/Navbar";
 import {
   Droplets, Shield, Globe, Users, TrendingUp, Lock, Unlock, Zap,
@@ -639,6 +639,7 @@ function EcosystemArchitectureSection() {
 function LandingContent() {
   return (
     <main className="bg-slate-950 min-h-screen">
+      <Navbar />
       <HeroSection />
       <CrisisSection />
       <EcosystemArchitectureSection />
@@ -654,9 +655,6 @@ function LandingContent() {
 
 export default function LandingPage() {
   return (
-    <I18nProvider>
-      <Navbar />
-      <LandingContent />
-    </I18nProvider>
+    <LandingContent />
   );
 }

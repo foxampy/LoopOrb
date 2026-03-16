@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import IntlProvider from "@/components/IntlProvider";
+import { I18nProvider } from "@/i18n/I18nContext";
 import { AIChatWidget } from "@/components/AIChat/AIChatWidget";
 
 const inter = Inter({
@@ -61,8 +62,10 @@ export default function RootLayout({
         className={`${inter.variable} font-sans antialiased bg-slate-950 text-white min-h-screen`}
       >
         <IntlProvider>
-          {children}
-          <AIChatWidget />
+          <I18nProvider>
+            {children}
+            <AIChatWidget />
+          </I18nProvider>
         </IntlProvider>
       </body>
     </html>
