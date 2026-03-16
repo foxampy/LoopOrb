@@ -1,52 +1,68 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Eye, EyeOff, Mail, Lock, ArrowLeft } from "lucide-react";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { 
+  Eye, 
+  EyeOff, 
+  Mail, 
+  Lock, 
+  ArrowLeft,
+  Chrome,
+  Send
+} from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("");
+    setError('');
 
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        router.push("/dashboard");
+        router.push('/dashboard');
         router.refresh();
       } else {
-        setError(data.error || "Invalid credentials");
+        setError(data.error || 'Invalid credentials');
       }
     } catch {
-      setError("Something went wrong");
+      setError('Something went wrong');
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleGoogleLogin = () => {
+    // Redirect to Google OAuth
+    window.location.href = '/api/auth/google';
+  };
+
+  const handleTelegramLogin = () => {
+    // Redirect to Telegram OAuth
+    window.location.href = '/api/auth/telegram';
+  };
+
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-gradient-to-b from-ocean-deep via-ocean-mid to-ocean-deep" />
-      
+    <main className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#0a1628] via-[#0d1f35] to-[#0a1628]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -54,16 +70,18 @@ export default function LoginPage() {
       >
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-water-200/80 hover:text-water-400 mb-8 transition"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 mb-8 transition"
         >
           <ArrowLeft className="w-4 h-4" />
           На главную
         </Link>
 
-        <div className="glass-card p-8">
+        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold gradient-text mb-2">Вход</h1>
-            <p className="text-water-200/70">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2">
+              Вход
+            </h1>
+            <p className="text-slate-400">
               Войдите в свою учетную запись LoopOrb
             </p>
           </div>
@@ -74,20 +92,47 @@ export default function LoginPage() {
             </div>
           )}
 
+          {/* Social Login Buttons */}
+          <div className="space-y-3 mb-6">
+            <button
+              onClick={handleGoogleLogin}
+              className="w-full flex items-center justify-center gap-3 py-3 bg-white hover:bg-gray-100 text-gray-900 font-medium rounded-xl transition-all"
+            >
+              <Chrome className="w-5 h-5" />
+              Войти через Google
+            </button>
+            <button
+              onClick={handleTelegramLogin}
+              className="w-full flex items-center justify-center gap-3 py-3 bg-[#0088cc] hover:bg-[#0099dd] text-white font-medium rounded-xl transition-all"
+            >
+              <Send className="w-5 h-5" />
+              Войти через Telegram
+            </button>
+          </div>
+
+          <div className="relative mb-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/10" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-[#0d1f35] text-slate-500">или</span>
+            </div>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-water-200/80 mb-1">
+              <label className="block text-sm font-medium text-slate-300 mb-1">
                 Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-water-200/50" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-water-500 transition"
+                  className="w-full bg-slate-900/50 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 transition"
                   placeholder="you@example.com"
                   required
                 />
@@ -95,25 +140,25 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-water-200/80 mb-1">
+              <label className="block text-sm font-medium text-slate-300 mb-1">
                 Пароль
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-water-200/50" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   value={formData.password}
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-12 text-white placeholder:text-white/30 focus:outline-none focus:border-water-500 transition"
+                  className="w-full bg-slate-900/50 border border-white/10 rounded-xl py-3 pl-10 pr-12 text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 transition"
                   placeholder="••••••••"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-water-200/50 hover:text-water-400 transition"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
                 >
                   {showPassword ? (
                     <EyeOff className="w-5 h-5" />
@@ -124,40 +169,44 @@ export default function LoginPage() {
               </div>
             </div>
 
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center gap-2 text-slate-400 cursor-pointer">
+                <input type="checkbox" className="rounded border-white/20 bg-slate-900/50" />
+                Запомнить меня
+              </label>
+              <Link
+                href="/forgot-password"
+                className="text-cyan-400 hover:text-cyan-300"
+              >
+                Забыли пароль?
+              </Link>
+            </div>
+
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full btn-primary py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? "Вход..." : "Войти"}
+              {isLoading ? 'Вход...' : 'Войти'}
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-water-200/70">
-              Еще нет аккаунта?{" "}
-              <Link
-                href="/register"
-                className="text-water-400 hover:text-water-300 transition"
-              >
-                Зарегистрироваться
-              </Link>
-            </p>
-          </div>
+          <p className="text-center text-slate-400 mt-6">
+            Нет аккаунта?{' '}
+            <Link href="/register" className="text-cyan-400 hover:text-cyan-300">
+              Зарегистрироваться
+            </Link>
+          </p>
 
-          <div className="mt-6 pt-6 border-t border-white/10">
-            <p className="text-center text-sm text-water-200/50 mb-4">
-              Или войдите через
-            </p>
-            <a
-              href={`https://t.me/${process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME || "LoopOrbBot"}?start=webapp`}
-              className="w-full btn-secondary py-3 inline-flex items-center justify-center gap-2"
+          {/* Public Access Note */}
+          <div className="mt-6 pt-6 border-t border-white/10 text-center">
+            <p className="text-slate-500 text-sm mb-2">Хотите посмотреть без регистрации?</p>
+            <Link 
+              href="/token-sale" 
+              className="text-cyan-400 hover:text-cyan-300 text-sm"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-              </svg>
-              Telegram
-            </a>
+              Открыть Token Sale →
+            </Link>
           </div>
         </div>
       </motion.div>
