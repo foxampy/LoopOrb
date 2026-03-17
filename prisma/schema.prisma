@@ -828,41 +828,52 @@ enum GroupMemberRole {
 // ==========================================
 
 model Achievement {
-  id          String   @id @default(uuid())
-  
-  name        String   @unique
-  description String   @db.Text
-  
-  category    AchievementCategory
-  icon        String
-  color       String
-  
+  id            String   @id @default(uuid())
+
+  name          String   @unique
+  description   String   @db.Text
+
+  category      AchievementCategory
+  rarity        AchievementRarity @default(COMMON)
+  nftMetal      NFDMetal @default(BRONZE)
+  icon          String
+  color         String
+
   // Requirements
-  xpReward    Int
-  unityReward Decimal  @default(0) @db.Decimal(18, 8)
-  
+  xpReward      Int
+  orbReward     Decimal  @default(0) @db.Decimal(18, 8)  // Renamed from unityReward
+  hasNFTBadge   Boolean  @default(true)
+
   // Unlock conditions
-  condition   Json     // { type: "projects_count", value: 5 }
+  condition     Json     // { type: "projects_count", value: 5 }
   
-  users       UserAchievement[]
-  
-  createdAt   DateTime @default(now())
-  
+  // Visual & Collection
+  visualDescription String? @db.Text
+  animationType String   @default("float")
+  collectionValue Int    @default(1)
+
+  users         UserAchievement[]
+
+  createdAt     DateTime @default(now())
+
   @@map("achievements")
 }
 
 model UserAchievement {
   id            String      @id @default(uuid())
-  
+
   userId        String
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
+
   achievementId String
   achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
-  
+
+  progress      Int         @default(0)
   unlockedAt    DateTime    @default(now())
-  
+
   @@unique([userId, achievementId])
+  @@index([userId])
+  @@index([achievementId])
   @@map("user_achievements")
 }
 
@@ -917,12 +928,31 @@ model UserMission {
 }
 
 enum AchievementCategory {
-  EXPLORER      // Исследователь
-  SCIENTIST     // Ученый
-  ACTIVIST      // Активист
-  INVESTOR      // Инвестор
-  INFLUENCER    // Лидер мнений
-  SPECIAL       // Особые
+  WATER_MONITORING   // Водный мониторинг
+  SOCIAL             // Социальные
+  PROJECT            // Проектные
+  RESEARCH           // Исследования
+  EDUCATION          // Образование
+  SPECIAL            // Специальные
+  EXPLORER           // Исследователь (legacy)
+  SCIENTIST          // Ученый (legacy)
+  ACTIVIST           // Активист (legacy)
+  INVESTOR           // Инвестор (legacy)
+  INFLUENCER         // Лидер мнений (legacy)
+}
+
+enum AchievementRarity {
+  COMMON
+  RARE
+  EPIC
+  LEGENDARY
+}
+
+enum NFDMetal {
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
 }
 
 enum MissionType {

@@ -1,122 +1,16 @@
 import { PrismaClient } from '@prisma/client';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 
 const prisma = new PrismaClient();
+const execAsync = promisify(exec);
 
 async function main() {
-  console.log('Start seeding...');
+  console.log('🌱 Start seeding...');
 
-  // Create achievements
-  const achievements = [
-    {
-      name: 'Первые шаги',
-      description: 'Создайте свой первый пост в ленте',
-      category: 'EXPLORER',
-      icon: 'Footprints',
-      color: 'blue',
-      xpReward: 50,
-      unityReward: 10,
-      condition: { type: 'posts_count', value: 1 },
-    },
-    {
-      name: 'Активный участник',
-      description: 'Создайте 10 постов',
-      category: 'EXPLORER',
-      icon: 'MessageSquare',
-      color: 'blue',
-      xpReward: 200,
-      unityReward: 50,
-      condition: { type: 'posts_count', value: 10 },
-    },
-    {
-      name: 'Сборщик данных',
-      description: 'Добавьте 5 записей данных о воде',
-      category: 'SCIENTIST',
-      icon: 'Database',
-      color: 'emerald',
-      xpReward: 300,
-      unityReward: 100,
-      condition: { type: 'data_count', value: 5 },
-    },
-    {
-      name: 'Исследователь',
-      description: 'Добавьте 25 записей данных о воде',
-      category: 'SCIENTIST',
-      icon: 'Microscope',
-      color: 'emerald',
-      xpReward: 1000,
-      unityReward: 500,
-      condition: { type: 'data_count', value: 25 },
-    },
-    {
-      name: 'Инвестор',
-      description: 'Инвестируйте в первый проект',
-      category: 'INVESTOR',
-      icon: 'TrendingUp',
-      color: 'purple',
-      xpReward: 500,
-      unityReward: 200,
-      condition: { type: 'stakes_count', value: 1 },
-    },
-    {
-      name: 'Портфельный игрок',
-      description: 'Инвестируйте в 5 проектов',
-      category: 'INVESTOR',
-      icon: 'PieChart',
-      color: 'purple',
-      xpReward: 2000,
-      unityReward: 1000,
-      condition: { type: 'stakes_count', value: 5 },
-    },
-    {
-      name: 'Участник проекта',
-      description: 'Присоединитесь к проекту',
-      category: 'ACTIVIST',
-      icon: 'Users',
-      color: 'orange',
-      xpReward: 100,
-      unityReward: 25,
-      condition: { type: 'projects_count', value: 1 },
-    },
-    {
-      name: 'Уровень 5',
-      description: 'Достигните 5 уровня',
-      category: 'SPECIAL',
-      icon: 'Star',
-      color: 'yellow',
-      xpReward: 500,
-      unityReward: 100,
-      condition: { type: 'level', value: 5 },
-    },
-    {
-      name: 'Уровень 10',
-      description: 'Достигните 10 уровня',
-      category: 'SPECIAL',
-      icon: 'Award',
-      color: 'yellow',
-      xpReward: 2000,
-      unityReward: 500,
-      condition: { type: 'level', value: 10 },
-    },
-    {
-      name: 'Уровень 20',
-      description: 'Достигните 20 уровня - статус Реки',
-      category: 'SPECIAL',
-      icon: 'Crown',
-      color: 'yellow',
-      xpReward: 10000,
-      unityReward: 2500,
-      condition: { type: 'level', value: 20 },
-    },
-  ];
-
-  for (const achievement of achievements) {
-    await prisma.achievement.upsert({
-      where: { name: achievement.name },
-      update: {},
-      create: achievement,
-    });
-  }
-  console.log(`Created ${achievements.length} achievements`);
+  // Run achievements seed
+  console.log('\n🏆 Seeding achievements...');
+  await execAsync('npx tsx prisma/seeds/achievements.seed.ts');
 
   // Create missions
   const missions = [
@@ -213,7 +107,7 @@ async function main() {
   }
   console.log(`Created ${missions.length} missions`);
 
-  console.log('Seeding finished!');
+  console.log('✅ Seeding finished!');
 }
 
 main()

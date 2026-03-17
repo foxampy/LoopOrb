@@ -1,84 +1,99 @@
 import { NextRequest } from "next/server";
 import { successResponse, errorResponse } from "@/lib/api";
 
-const demoNotifications = [
-  {
-    id: "n1",
-    type: "MISSION_COMPLETED",
-    title: "Миссия выполнена!",
-    message: "Вы успешно выполнили миссию 'Эколог недели' и получили 200 XP и 100 UNITY",
-    data: { missionId: "m1" },
-    isRead: false,
-    createdAt: "2026-02-20T09:00:00Z",
-  },
-  {
-    id: "n2",
-    type: "STAKE_REWARD",
-    title: "Награда за стейкинг",
-    message: "Вы получили 12.5 UNITY награды за стейкинг в проект 'Возрождение Арала'",
-    data: { projectId: "2" },
-    isRead: false,
-    createdAt: "2026-02-19T10:00:00Z",
-  },
-  {
-    id: "n3",
-    type: "PROJECT_UPDATE",
-    title: "Обновление проекта",
-    message: "Проект 'VOD Lab Israel' достиг 50% цели финансирования!",
-    data: { projectId: "1" },
-    isRead: true,
-    readAt: "2026-02-18T12:00:00Z",
-    createdAt: "2026-02-18T10:00:00Z",
-  },
-  {
-    id: "n4",
-    type: "DAO_VOTE",
-    title: "Новое голосование",
-    message: "Началось голосование по предложению 'Финансирование очистки реки Амударья'",
-    data: { proposalId: "p1" },
-    isRead: true,
-    readAt: "2026-02-15T14:00:00Z",
-    createdAt: "2026-02-15T10:00:00Z",
-  },
-];
-
+/**
+ * GET /api/notifications
+ * Возвращает уведомления пользователя
+ * 
+ * Статусы:
+ * - 200: Успешный ответ (пустой массив если нет уведомлений)
+ * - 401: Требуется авторизация
+ * - 503: Сервис недоступен
+ */
 export async function GET(req: NextRequest) {
   try {
+    // Проверка авторизации
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return successResponse({
+        notifications: [],
+        unreadCount: 0,
+      }, 200, {
+        isEmpty: true,
+        isAuthRequired: true,
+        message: "Требуется авторизация для просмотра уведомлений",
+      });
+    }
+
     const { searchParams } = new URL(req.url);
     const unreadOnly = searchParams.get("unread") === "true";
 
-    const notifications = unreadOnly 
-      ? demoNotifications.filter(n => !n.isRead)
-      : demoNotifications;
-    
-    const unreadCount = demoNotifications.filter(n => !n.isRead).length;
+    // Пустые данные - готов к подключению реального API
+    const notifications: any[] = [];
+    const unreadCount = 0;
 
-    return successResponse({ notifications, unreadCount });
+    const isEmpty = notifications.length === 0;
+
+    return successResponse({ notifications, unreadCount }, 200, isEmpty ? {
+      isEmpty: true,
+      message: "У вас нет новых уведомлений",
+    } : undefined);
   } catch (error) {
     console.error("Get notifications error:", error);
-    return errorResponse("Internal server error", 500);
+    return errorResponse("Internal server error", 503);
   }
 }
 
+/**
+ * PATCH /api/notifications
+ * Отметить уведомление как прочитанное
+ */
 export async function PATCH(req: NextRequest) {
   try {
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return errorResponse("Authorization required", 401);
+    }
+
     const { id } = await req.json();
-    
-    return successResponse({ message: "Marked as read", id });
+    if (!id) {
+      return errorResponse("Notification ID required", 400);
+    }
+
+    // Заглушка - вернуть ошибку 503 пока API не подключено
+    return errorResponse("Notification service is temporarily unavailable", 503, {
+      isError: true,
+      message: "Сервис уведомлений временно недоступен",
+    });
   } catch (error) {
     console.error("Mark read error:", error);
     return errorResponse("Internal server error", 500);
   }
 }
 
+/**
+ * DELETE /api/notifications
+ * Удалить уведомление
+ */
 export async function DELETE(req: NextRequest) {
   try {
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return errorResponse("Authorization required", 401);
+    }
+
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
 
-    if (!id) return errorResponse("ID required", 400);
+    if (!id) {
+      return errorResponse("Notification ID required", 400);
+    }
 
-    return successResponse({ message: "Deleted", id });
+    // Заглушка - вернуть ошибку 503 пока API не подключено
+    return errorResponse("Notification service is temporarily unavailable", 503, {
+      isError: true,
+      message: "Сервис уведомлений временно недоступен",
+    });
   } catch (error) {
     console.error("Delete notification error:", error);
     return errorResponse("Internal server error", 500);

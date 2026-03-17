@@ -52,6 +52,7 @@ const getNavItems = (t: (key: string) => string) => [
   { href: "/vod-lab", label: "VOD-Lab", icon: Microscope },
   { href: "/tokenomics", label: t("nav.tokenomics"), icon: Wallet },
   { href: "/litepaper", label: "Litepaper", icon: FileText },
+  { href: "/litepaper2", label: "Litepaper 2.0", icon: FileText },
   { href: "/about", label: "О нас", icon: Users },
   { href: "/globe", label: "3D Глобус", icon: Globe },
   { href: "/profile", label: t("nav.profile"), icon: User },

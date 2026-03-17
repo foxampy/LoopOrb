@@ -1,69 +1,15 @@
 import { NextRequest } from "next/server";
 import { successResponse, errorResponse, getPaginationParams, paginatedResponse } from "@/lib/api";
 
-const demoObjects = [
-  {
-    id: "o1",
-    name: "Амударья",
-    nameLocal: "Амударё",
-    type: "RIVER",
-    country: "Узбекистан",
-    region: "Сурхандарьинская область",
-    coordinates: { lat: 37.5, lng: 62.0 },
-    status: "ACTIVE",
-    qualityIndex: 65,
-    description: "Одна из двух крупнейших рек Средней Азии. Исторически впадала в Аральское море, сейчас основная часть воды используется для орошения.",
-    creator: { id: "1", name: "Айбек Токтомбаев" },
-    _count: { data: 45, projects: 3 },
-    createdAt: "2026-01-15T10:00:00Z",
-  },
-  {
-    id: "o2",
-    name: "Иссыл-Куль",
-    nameLocal: "Ысык-Көл",
-    type: "LAKE",
-    country: "Кыргызстан",
-    region: "Иссык-Кульская область",
-    coordinates: { lat: 42.4, lng: 77.2 },
-    status: "ACTIVE",
-    qualityIndex: 85,
-    description: "Крупнейшее озеро Киргизии, одно из крупнейших высокогорных озёр мира. Солёное озеро без стока.",
-    creator: { id: "2", name: "Светлана Ким" },
-    _count: { data: 128, projects: 2 },
-    createdAt: "2026-01-20T10:00:00Z",
-  },
-  {
-    id: "o3",
-    name: "Аральское море",
-    nameLocal: "Арал теңізі",
-    type: "LAKE",
-    country: "Узбекистан/Казахстан",
-    region: "Каракалпакстан",
-    coordinates: { lat: 45.0, lng: 60.0 },
-    status: "CRITICAL",
-    qualityIndex: 35,
-    description: "Ранее четвёртое по величине озеро в мире. К 2009 году обмелело более чем на 90%.",
-    creator: { id: "3", name: "Профессор Светлана Каримова" },
-    _count: { data: 234, projects: 5 },
-    createdAt: "2026-01-25T10:00:00Z",
-  },
-  {
-    id: "o4",
-    name: "Балхаш",
-    nameLocal: "Балқаш",
-    type: "LAKE",
-    country: "Казахстан",
-    region: "Алматинская область",
-    coordinates: { lat: 46.0, lng: 74.5 },
-    status: "MONITORING",
-    qualityIndex: 72,
-    description: "Одно из крупнейших озёр мира, частично пресное, частично солёное. Под угрозой обмеления.",
-    creator: { id: "4", name: "Нурлан Сериков" },
-    _count: { data: 67, projects: 2 },
-    createdAt: "2026-02-01T10:00:00Z",
-  },
-];
-
+/**
+ * GET /api/objects
+ * Возвращает список водных объектов
+ * 
+ * Статусы:
+ * - 200: Успешный ответ (может быть пустой массив)
+ * - 401: Требуется авторизация
+ * - 503: Данные недоступны
+ */
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -72,38 +18,67 @@ export async function GET(req: NextRequest) {
     const status = searchParams.get("status");
     const { page, limit } = getPaginationParams(req);
 
-    let filtered = [...demoObjects];
-    
-    if (type) filtered = filtered.filter(o => o.type === type);
-    if (country) filtered = filtered.filter(o => o.country === country);
-    if (status) filtered = filtered.filter(o => o.status === status);
+    // Пустой массив - готов к подключению реального API
+    let objects: any[] = [];
 
-    const total = filtered.length;
+    // Фильтрация будет применяться к реальным данным
+    if (type) objects = objects.filter(o => o.type === type);
+    if (country) objects = objects.filter(o => o.country === country);
+    if (status) objects = objects.filter(o => o.status === status);
+
+    const total = objects.length;
     const start = (page - 1) * limit;
     const end = start + limit;
-    const paginated = filtered.slice(start, end);
+    const paginated = objects.slice(start, end);
+    const isEmpty = objects.length === 0;
 
-    return successResponse(paginatedResponse(paginated, total, page, limit));
+    return successResponse(
+      paginatedResponse(paginated, total, page, limit),
+      200,
+      isEmpty ? {
+        isEmpty: true,
+        message: "Водные объекты отсутствуют. Добавьте первый объект!",
+      } : undefined
+    );
   } catch (error) {
     console.error("Get objects error:", error);
-    return errorResponse("Internal server error", 500);
+    return errorResponse("Internal server error", 503);
   }
 }
 
+/**
+ * POST /api/objects
+ * Создание нового водного объекта
+ * 
+ * Статусы:
+ * - 201: Объект создан
+ * - 400: Ошибка валидации
+ * - 401: Требуется авторизация
+ * - 503: Сервис недоступен
+ */
 export async function POST(req: NextRequest) {
   try {
+    // Проверка авторизации
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return errorResponse("Authorization required", 401, {
+        isAuthRequired: true,
+        message: "Необходимо войти в аккаунт для добавления объекта",
+      });
+    }
+
     const body = await req.json();
-    const newObject = {
-      id: "o" + Date.now(),
-      ...body,
-      status: "ACTIVE",
-      qualityIndex: null,
-      creator: { id: "demo", name: "Demo User" },
-      _count: { data: 0, projects: 0 },
-      createdAt: new Date().toISOString(),
-    };
-    
-    return successResponse({ object: newObject }, 201);
+
+    // Валидация данных
+    if (!body.name || !body.type || !body.coordinates) {
+      return errorResponse("Name, type and coordinates are required", 400);
+    }
+
+    // Заглушка - вернуть ошибку 503 пока API не подключено
+    return errorResponse("Object creation is temporarily unavailable", 503, {
+      isError: true,
+      message: "Создание объектов временно недоступно. Попробуйте позже.",
+    });
   } catch (error) {
     console.error("Create object error:", error);
     return errorResponse("Internal server error", 500);
