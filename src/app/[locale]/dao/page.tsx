@@ -51,7 +51,7 @@ import {
   X,
   Copy,
   Twitter,
-  Telegram,
+  Send as Telegram,
   Link as LinkIcon,
   UserCheck,
   Scale,

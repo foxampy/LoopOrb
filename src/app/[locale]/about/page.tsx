@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import {
   Droplets, Globe, Award, TrendingUp, Users, Clock,
   ChevronRight, ArrowRight, History, Target, Zap,
-  MapPin, Building2, Handshake, Calendar, DollarSign,
+  MapPin, Building2, HandHeart as Handshake, Calendar, DollarSign,
   Share2, Mail, Play, Download, FileText, ExternalLink,
   CheckCircle, Star, Factory, Landmark, Beaker,
   Playfair, ArrowUpRight, Video, Image as ImageIcon, X
