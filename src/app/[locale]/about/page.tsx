@@ -321,9 +321,10 @@ export default function AboutPage() {
                 </button>
               </motion.div>
             </div>
+          </div>
 
-            {/* Mission Cards */}
-            <motion.div
+          {/* Mission Cards */}
+          <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -362,8 +363,8 @@ export default function AboutPage() {
                 </p>
               </div>
             </motion.div>
-          </div>
-        </section>
+        </div>
+      </section>
 
         {/* Metrics Section */}
         <section className="px-4 sm:px-6 lg:px-8 py-12 border-b border-white/10">
