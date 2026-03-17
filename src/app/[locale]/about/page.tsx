@@ -322,7 +322,6 @@ export default function AboutPage() {
               </motion.div>
             </div>
           </div>
-
           {/* Mission Cards */}
           <motion.div
               initial={{ opacity: 0, y: 40 }}
