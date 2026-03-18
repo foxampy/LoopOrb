@@ -1,5 +1,6 @@
 "use client";
 
+// BUILD_ID: 2026-03-17-FIX-JSX-ABOUT-PAGE
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -10,7 +11,8 @@ import {
   MapPin, Building2, HandHeart as Handshake, Calendar, DollarSign,
   Share2, Mail, Play, Download, FileText, ExternalLink,
   CheckCircle, Star, Factory, Landmark, Beaker,
-  Playfair, ArrowUpRight, Video, Image as ImageIcon, X
+  Playfair, ArrowUpRight, Video, Image as ImageIcon, X, Bell,
+  NotebookPen
 } from "lucide-react";
 
 // Timeline data from "objects of path.md"
@@ -323,15 +325,16 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
         {/* Mission Cards */}
         <section className="px-4 sm:px-6 lg:px-8 py-12 border-b border-white/10">
           <div className="max-w-7xl mx-auto">
             <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="grid md:grid-cols-3 gap-6"
-              >
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="grid md:grid-cols-3 gap-6"
+            >
               <div className="glass-card p-6 text-center">
                 <div className="w-14 h-14 rounded-full bg-cyan-500/20 flex items-center justify-center mx-auto mb-4">
                   <Droplets className="w-7 h-7 text-cyan-400" />
@@ -773,4 +776,4 @@ export default function AboutPage() {
       </main>
     </>
   );
-}""  
+}  

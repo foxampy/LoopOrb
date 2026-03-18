@@ -22,6 +22,7 @@ import {
   Shield,
   Award,
   ArrowRight,
+  X,
 } from "lucide-react";
 
 // 📊 Детальные проекты из документов LoopOrb
@@ -859,7 +860,7 @@ function ProjectDetailModal({ project, onClose }: { project: typeof detailedProj
             onClick={onClose}
             className="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition"
           >
-            ✕
+            <X className="w-5 h-5" />
           </button>
           <div className="absolute bottom-4 left-6 right-6">
             <div className="flex items-center gap-2 mb-2">

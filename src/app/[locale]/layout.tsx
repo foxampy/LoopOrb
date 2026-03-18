@@ -53,11 +53,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
   return (
-    <html lang="ru" className="dark">
+    <html lang={params.locale} className="dark">
       <body
         className={`${inter.variable} font-sans antialiased bg-slate-950 text-white min-h-screen`}
       >
