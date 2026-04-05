@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Navbar from "@/components/Navbar";
 import {
   Wallet,
@@ -42,6 +43,7 @@ interface WalletData {
 }
 
 export default function WalletPage() {
+  const t = useTranslations();
   const [data, setData] = useState<WalletData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"overview" | "stakes" | "history">("overview");

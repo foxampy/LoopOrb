@@ -41,20 +41,20 @@ interface User {
 // All pages are now accessible without authentication (guest mode)
 const getNavItems = (t: (key: string) => string) => [
   { href: "/landing", label: t("nav.landing"), icon: Globe },
-  { href: "/ecosystem/feed", label: "Лента", icon: Newspaper },
+  { href: "/ecosystem/feed", label: t("nav.feed"), icon: Newspaper },
   { href: "/tokenhub", label: t("nav.tokenhub"), icon: Wallet },
   { href: "/projecthub", label: t("nav.projecthub"), icon: FolderOpen },
   { href: "/staking", label: t("nav.staking"), icon: Gem },
   { href: "/dao", label: t("nav.dao"), icon: Gavel },
-  { href: "/analytics", label: "Аналитика", icon: BarChart3 },
-  { href: "/ecosystem/missions", label: "Миссии", icon: Target },
-  { href: "/ecosystem/achievements", label: "Достижения", icon: Trophy },
-  { href: "/vod-lab", label: "VOD-Lab", icon: Microscope },
+  { href: "/analytics", label: t("nav.analytics"), icon: BarChart3 },
+  { href: "/ecosystem/missions", label: t("nav.missions"), icon: Target },
+  { href: "/ecosystem/achievements", label: t("nav.achievements"), icon: Trophy },
+  { href: "/vod-lab", label: t("nav.vodlab"), icon: Microscope },
   { href: "/tokenomics", label: t("nav.tokenomics"), icon: Wallet },
-  { href: "/litepaper", label: "Litepaper", icon: FileText },
-  { href: "/litepaper2", label: "Litepaper 2.0", icon: FileText },
-  { href: "/about", label: "О нас", icon: Users },
-  { href: "/globe", label: "3D Глобус", icon: Globe },
+  { href: "/litepaper", label: t("nav.litepaper"), icon: FileText },
+  { href: "/litepaper2", label: t("nav.litepaper") + " 2.0", icon: FileText },
+  { href: "/about", label: t("nav.about"), icon: Users },
+  { href: "/globe", label: t("nav.globe"), icon: Globe },
   { href: "/profile", label: t("nav.profile"), icon: User },
 ];
 
@@ -171,7 +171,7 @@ export default function Navbar() {
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <User className="w-4 h-4" />
-                        Профиль
+                        {t("profile.title")}
                       </Link>
                       <Link
                         href="/buy"
@@ -179,14 +179,14 @@ export default function Navbar() {
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <Gem className="w-4 h-4" />
-                        Купить UNITY
+                        {t("profile.buyUnity")}
                       </Link>
                       <button
                         onClick={handleLogout}
                         className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 transition"
                       >
                         <LogOut className="w-4 h-4" />
-                        Выйти
+                        {t("profile.logout")}
                       </button>
                     </motion.div>
                   )}
@@ -287,14 +287,14 @@ export default function Navbar() {
                     onClick={() => setIsSidebarOpen(false)}
                     className="block w-full btn-secondary text-center"
                   >
-                    Войти
+                    {t("profile.login")}
                   </Link>
                   <Link
                     href="/register"
                     onClick={() => setIsSidebarOpen(false)}
                     className="block w-full btn-primary text-center"
                   >
-                    Регистрация
+                    {t("profile.register")}
                   </Link>
                 </div>
               )}
@@ -310,7 +310,7 @@ export default function Navbar() {
                     className="w-full flex items-center justify-center gap-2 px-4 py-2 text-red-400 hover:bg-red-500/10 rounded-lg transition"
                   >
                     <LogOut className="w-4 h-4" />
-                    Выйти
+                    {t("profile.logout")}
                   </button>
                 </div>
               )}

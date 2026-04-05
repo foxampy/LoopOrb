@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
   X,
   AlertTriangle,
@@ -112,6 +113,7 @@ export function EmergencyModal({
   onClose: () => void;
   onSubmit: (data: EmergencyReportData) => Promise<void>;
 }) {
+  const t = useTranslations();
   const [currentStep, setCurrentStep] = useState<Step>("type");
   const [selectedType, setSelectedType] = useState<IncidentType | null>(null);
   const [description, setDescription] = useState("");
@@ -151,7 +153,7 @@ export function EmergencyModal({
    */
   const handleGetLocation = useCallback(() => {
     if (!navigator.geolocation) {
-      alert("Геолокация не поддерживается вашим браузером");
+      alert(t("emergency.geoNotSupported"));
       return;
     }
 
@@ -167,7 +169,7 @@ export function EmergencyModal({
       },
       (error) => {
         console.error("Ошибка получения геолокации:", error);
-        alert("Не удалось получить геолокацию. Убедитесь, что разрешили доступ.");
+        alert(t("emergency.geoPermissionDenied"));
         setIsGettingLocation(false);
       },
       {
@@ -176,7 +178,7 @@ export function EmergencyModal({
         maximumAge: 0,
       }
     );
-  }, []);
+  }, [t]);
 
   /**
    * Обработка выбора файлов
@@ -194,7 +196,7 @@ export function EmergencyModal({
     const validFiles = selectedFiles.filter(file => validTypes.includes(file.type));
 
     if (validFiles.length !== selectedFiles.length) {
-      alert("Некоторые файлы не были загружены. Поддерживаются только JPG, PNG, WebP, MP4, WebM");
+      alert(t("emergency.invalidFiles"));
     }
 
     // Создание превью
@@ -260,7 +262,7 @@ export function EmergencyModal({
       await onSubmit(reportData);
     } catch (error) {
       console.error("Ошибка отправки отчёта:", error);
-      alert("Произошла ошибка при отправке отчёта. Попробуйте снова.");
+      alert(t("emergency.submitError"));
     } finally {
       setIsSubmitting(false);
     }
@@ -312,7 +314,7 @@ export function EmergencyModal({
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
                   }}
                 >
-                  <Icon className="w-5 h-5 text-white" />
+                  {React.createElement(Icon, { className: "w-5 h-5 text-white" })}
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="font-semibold text-white text-sm mb-1">{type.label}</h4>
@@ -522,7 +524,7 @@ export function EmergencyModal({
           {selectedIncident && (
             <div className="flex items-center gap-3">
               <div className={`p-2 rounded-xl bg-gradient-to-br ${selectedIncident.color}`}>
-                <selectedIncident.icon className="w-4 h-4 text-white" />
+                {React.createElement(selectedIncident.icon, { className: "w-4 h-4 text-white" })}
               </div>
               <div>
                 <p className="text-xs text-slate-400">Тип происшествия</p>

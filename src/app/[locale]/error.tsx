@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Home, RefreshCw, AlertTriangle } from 'lucide-react';
 
 export default function Error({
@@ -12,6 +13,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = useTranslations();
+  
   useEffect(() => {
     console.error('Application error:', error);
   }, [error]);
@@ -38,7 +41,7 @@ export default function Error({
           transition={{ delay: 0.2 }}
           className="text-3xl md:text-4xl font-bold text-white mb-4"
         >
-          Что-то пошло не так
+          {t("common.error")}
         </motion.h1>
 
         {/* Description */}
@@ -48,7 +51,7 @@ export default function Error({
           transition={{ delay: 0.3 }}
           className="text-slate-400 text-lg mb-8"
         >
-          Произошла ошибка при загрузке страницы. Попробуйте обновить или вернитесь на главную.
+          {t("errors.general")}
         </motion.p>
 
         {/* Error Details (in development) */}
@@ -78,14 +81,14 @@ export default function Error({
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium rounded-xl transition-all duration-200 hover:scale-105"
           >
             <RefreshCw className="w-5 h-5" />
-            Попробовать снова
+            {t("common.refresh")}
           </button>
           <Link
             href="/"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-slate-300 font-medium rounded-xl border border-white/10 transition-all duration-200"
           >
             <Home className="w-5 h-5" />
-            На главную
+            {t("common.back")}
           </Link>
         </motion.div>
       </div>

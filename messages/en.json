@@ -29,7 +29,9 @@
     "vodlab": "VOD-Lab",
     "objects": "Objects",
     "crisis": "Crisis Center",
-    "admin": "Admin"
+    "admin": "Admin",
+    "analytics": "Analytics",
+    "globe": "3D Globe"
   },
   "common": {
     "loading": "Loading...",
@@ -498,7 +500,10 @@
     "settings": "Settings",
     "logout": "Logout",
     "connectWallet": "Connect Wallet",
-    "editProfile": "Edit Profile"
+    "editProfile": "Edit Profile",
+    "buyUnity": "Buy UNITY",
+    "login": "Login",
+    "register": "Register"
   },
   "pwa": {
     "install": "Install App",
@@ -514,8 +519,51 @@
   "errors": {
     "404": "Page Not Found",
     "500": "Internal Server Error",
+    "general": "An error occurred while loading the page. Please try refreshing or returning to the home page.",
+    "notFoundDescription": "Looks like you got lost in the water expanses. The requested page doesn't exist or has been moved.",
+    "orNavigateTo": "Or navigate to:",
     "offline": "Check your internet connection",
     "auth": "Authentication Required",
     "forbidden": "Access Forbidden"
+  },
+  "emergency": {
+    "geoNotSupported": "Geolocation is not supported by your browser",
+    "geoPermissionDenied": "Failed to get geolocation. Make sure you granted permission.",
+    "invalidFiles": "Some files were not uploaded. Only JPG, PNG, WebP, MP4, WebM are supported",
+    "submitError": "An error occurred while submitting the report. Please try again."
+  },
+  "wallet": {
+    "title": "Wallet",
+    "yourBalance": "Your Balance",
+    "available": "Available",
+    "staked": "Staked",
+    "earned": "Earned",
+    "tabs": {
+      "overview": "Overview",
+      "stakes": "Staking",
+      "history": "History"
+    },
+    "quickActions": "Quick Actions",
+    "stakeUnity": "Stake UNITY",
+    "investInProjects": "Invest in projects",
+    "buyUnity": "Buy UNITY",
+    "preSaleDiscount": "Pre-Sale with 33% discount",
+    "activeStakes": "Active Stakes",
+    "withdraw": "Withdraw",
+    "noActiveStakes": "You have no active stakes",
+    "stakeUnityButton": "Stake UNITY",
+    "unauthorizedTitle": "Authorization Required",
+    "unauthorizedDescription": "Wallet is available only for authorized users. Log in to manage your UNITY tokens.",
+    "login": "Login",
+    "register": "Create Account",
+    "failedToLoad": "Failed to load wallet data",
+    "transactionTypes": {
+      "REGISTRATION_BONUS": "Registration bonus",
+      "STAKE": "Staking",
+      "UNSTAKE": "Unstaking",
+      "STAKE_REWARD": "Staking reward",
+      "TRANSFER_IN": "Received",
+      "TRANSFER_OUT": "Sent"
+    }
   }
 }

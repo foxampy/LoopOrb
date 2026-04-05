@@ -2,9 +2,12 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Home, ArrowLeft, Globe, Droplets } from 'lucide-react';
 
 export default function NotFound() {
+  const t = useTranslations();
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0d1f35] to-[#0a1628] flex items-center justify-center px-4">
       <div className="max-w-2xl w-full text-center">
@@ -66,10 +69,10 @@ export default function NotFound() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Страница не найдена
+            {t("errors.404")}
           </h1>
           <p className="text-slate-400 text-lg mb-8 max-w-md mx-auto">
-            Похоже, вы заблудились в водных просторах. Запрашиваемая страница не существует или была перемещена.
+            {t("errors.notFoundDescription")}
           </p>
         </motion.div>
 
@@ -110,14 +113,14 @@ export default function NotFound() {
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium rounded-xl transition-all duration-200 hover:scale-105"
           >
             <Home className="w-5 h-5" />
-            На главную
+            {t("nav.landing")}
           </Link>
           <button
             onClick={() => window.history.back()}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-slate-300 font-medium rounded-xl border border-white/10 transition-all duration-200"
           >
             <ArrowLeft className="w-5 h-5" />
-            Назад
+            {t("common.back")}
           </button>
         </motion.div>
 
@@ -128,13 +131,13 @@ export default function NotFound() {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="mt-12 pt-8 border-t border-white/10"
         >
-          <p className="text-slate-500 text-sm mb-4">Или перейдите к:</p>
+          <p className="text-slate-500 text-sm mb-4">{t("errors.orNavigateTo")}</p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              { href: '/ecosystem/feed', label: 'Новости' },
-              { href: '/tokenhub', label: 'Инвестиции' },
-              { href: '/projecthub', label: 'Проекты' },
-              { href: '/ecosystem/chats', label: 'Чаты' },
+              { href: '/ecosystem/feed', label: t("nav.feed") },
+              { href: '/tokenhub', label: t("nav.tokenhub") },
+              { href: '/projecthub', label: t("nav.projecthub") },
+              { href: '/ecosystem/chats', label: t("nav.chats") },
             ].map((link) => (
               <Link
                 key={link.href}
