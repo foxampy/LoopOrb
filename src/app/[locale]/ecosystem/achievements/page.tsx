@@ -1981,10 +1981,9 @@ export default function AchievementsPage() {
                   }`}
                   style={activeRarity === rarity && rarity !== 'all' ? {
                     backgroundColor: `${rarityConfig.glow}10`,
-                    color: rarityConfig.color.includes('amber') ? '#fbbf24' : 
+                    color: rarityConfig.color.includes('amber') ? '#fbbf24' :
                            rarityConfig.color.includes('purple') ? '#a855f7' :
                            rarityConfig.color.includes('blue') ? '#3b82f6' : '#94a3b8',
-                    ringColor: rarityConfig.glow
                   } : {}}
                 >
                   {labels[rarity]}
@@ -2112,7 +2111,7 @@ function AchievementCard({ achievement, index, onClick, onShare }: AchievementCa
   const rarityConfig = RARITY_CONFIG[achievement.rarity];
   const Icon = categoryInfo?.icon || Award;
   const progressPercentage = (achievement.progress / achievement.target) * 100;
-  const isComplete = achievement.isUnlocked;
+  const isComplete = achievement.isUnlocked ?? false;
 
   return (
     <motion.div
@@ -2236,7 +2235,7 @@ function AchievementListItem({ achievement, index, onClick, onShare }: Achieveme
   const categoryInfo = CATEGORIES.find(c => c.id === achievement.category);
   const rarityConfig = RARITY_CONFIG[achievement.rarity];
   const Icon = categoryInfo?.icon || Award;
-  const isComplete = achievement.isUnlocked;
+  const isComplete = achievement.isUnlocked ?? false;
 
   return (
     <motion.div

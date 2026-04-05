@@ -1346,6 +1346,8 @@ export default function DashboardPage() {
   }
 
   const renderRoleDashboard = () => {
+    if (!data.user) return null;
+    
     switch (data.user.role) {
       case "CITIZEN":
         return <CitizenDashboard data={data} />;

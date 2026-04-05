@@ -687,7 +687,7 @@ function ReportModal({ post, onClose }: { post: Post; onClose: () => void }) {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center gap-3 mb-6">
-            <Report className="w-6 h-6 text-red-400" />
+            <Flag className="w-6 h-6 text-red-400" />
             <h3 className="text-lg font-semibold text-white">Пожаловаться</h3>
           </div>
 

@@ -1081,6 +1081,7 @@ const projects: Project[] = [
     progress: 48,
     icon: Factory,
     color: "from-amber-700 to-red-800",
+    features: [],
     specs: [
       { label: "Регион", value: "Бухарская обл." },
       { label: "Мощность", value: "55,000 м³/день" },
@@ -1112,6 +1113,7 @@ const projects: Project[] = [
     progress: 41,
     icon: Waves,
     color: "from-blue-700 to-cyan-800",
+    features: [],
     specs: [
       { label: "Источник", value: "Амударья" },
       { label: "Мощность", value: "60,000 м³/день" },
@@ -1255,7 +1257,7 @@ const projects: Project[] = [
     description: "Интеграция метеоданных, уровней рек, AI-прогнозирование. Автоматические алерты населению.",
     longDescription: "Система раннего предупреждения о наводнениях использует датчики уровня воды, осадков, почвенной влажности и AI-модели для прогнозирования за 72 часа.",
     price: "Government",
-    status: "beta",
+    status: "testing",
     progress: 64,
     icon: Radio,
     color: "from-blue-600 to-indigo-700",

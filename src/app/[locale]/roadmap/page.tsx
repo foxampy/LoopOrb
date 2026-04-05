@@ -633,7 +633,7 @@ function PhaseCard({ phase, index, isExpanded, onToggle }: {
                     <p className="text-slate-400 text-sm mb-2">{milestone.description}</p>
                     {milestone.projects.length > 0 && (
                       <div className="flex flex-wrap gap-2">
-                        {milestone.projects.map((project, pIndex) => (
+                        {milestone.projects.map((project: any, pIndex: number) => (
                           <span
                             key={pIndex}
                             className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300"
