@@ -77,7 +77,8 @@ export async function POST(request: NextRequest) {
             posts: true,
             data: true,
             stakes: true,
-            projects: true
+            projects: true,
+            objects: true
           }
         },
         achievements: {
