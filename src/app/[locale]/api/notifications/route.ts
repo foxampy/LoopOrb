@@ -18,11 +18,10 @@ export async function GET(req: NextRequest) {
       return successResponse({
         notifications: [],
         unreadCount: 0,
-      }, 200, {
         isEmpty: true,
         isAuthRequired: true,
         message: "Требуется авторизация для просмотра уведомлений",
-      });
+      }, 200);
     }
 
     const { searchParams } = new URL(req.url);
@@ -32,12 +31,7 @@ export async function GET(req: NextRequest) {
     const notifications: any[] = [];
     const unreadCount = 0;
 
-    const isEmpty = notifications.length === 0;
-
-    return successResponse({ notifications, unreadCount }, 200, isEmpty ? {
-      isEmpty: true,
-      message: "У вас нет новых уведомлений",
-    } : undefined);
+    return successResponse({ notifications, unreadCount }, 200);
   } catch (error) {
     console.error("Get notifications error:", error);
     return errorResponse("Internal server error", 503);
