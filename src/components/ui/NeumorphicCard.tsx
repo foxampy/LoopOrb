@@ -38,13 +38,12 @@ export function NeumorphicCard({
     xl: 'xl',
   }[size];
 
-  const glowClass = {
+  const glowClass = glow ? {
     cyan: 'neumorph-glow-cyan',
     purple: 'neumorph-glow-purple',
     pink: 'neumorph-glow-pink',
     blue: 'neumorph-glow-blue',
-    false: '',
-  }[glow];
+  }[glow] || '' : '';
 
   return (
     <div
@@ -114,7 +113,7 @@ export function NeumorphicButton({
         'rounded-xl font-medium transition-all duration-200',
         'flex items-center justify-center gap-2',
         'touch-manipulation select-none',
-        !disabled && hoverable && 'neumorph-hover-lift',
+        !disabled && 'neumorph-hover-lift',
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}

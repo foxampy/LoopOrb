@@ -112,7 +112,7 @@ export function EmptyState({
     >
       {/* Icon */}
       <div className={`w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br ${colorClass} flex items-center justify-center ${type === "loading" ? "animate-spin" : ""}`}>
-        {icon || <IconComponent className="w-8 h-8 text-white" />}
+        {icon || React.createElement(IconComponent as React.ComponentType<{ className?: string }>, { className: "w-8 h-8 text-white" })}
       </div>
 
       {/* Title */}
@@ -403,7 +403,7 @@ export function ContextualEmptyState({
   return (
     <EmptyState
       type="empty"
-      icon={<Icon className="w-8 h-8" />}
+      icon={React.createElement(Icon as React.ComponentType<{ className?: string }>, { className: "w-8 h-8" })}
       title={config.title}
       description={config.description}
       className={className}

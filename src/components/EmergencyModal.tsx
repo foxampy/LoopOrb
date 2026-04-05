@@ -541,7 +541,7 @@ export function EmergencyModal({
             <div>
               <p className="text-xs text-slate-400">Геолокация</p>
               <p className="text-sm font-semibold text-white">
-                {location.lat !== null
+                {location.lat !== null && location.lng !== null
                   ? `${location.lat.toFixed(4)}, ${location.lng.toFixed(4)}`
                   : "Не указана"}
               </p>
