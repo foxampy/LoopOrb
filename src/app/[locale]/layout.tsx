@@ -51,15 +51,17 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  
   return (
-    <html lang={params.locale} className="dark">
+    <html lang={locale} className="dark">
       <body
         className={`${inter.variable} font-sans antialiased bg-slate-950 text-white min-h-screen`}
       >
