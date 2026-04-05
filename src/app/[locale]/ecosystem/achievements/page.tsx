@@ -2347,10 +2347,10 @@ function AchievementDetailModal({ achievement, onClose, onShare }: AchievementDe
                 <ambientLight intensity={0.8} />
                 <pointLight position={[10, 10, 10]} intensity={1} />
                 <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-                  <NFTBadge3D 
+                  <NFTBadge3D
                     metal={achievement.nftMetal}
                     rarity={achievement.rarity}
-                    isUnlocked={achievement.isUnlocked}
+                    isUnlocked={achievement.isUnlocked ?? false}
                     animationType={achievement.animationType}
                   />
                 </Float>
