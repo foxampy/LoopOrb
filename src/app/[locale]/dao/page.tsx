@@ -1084,6 +1084,7 @@ function CreateProposalModal({
   const handleSubmit = () => {
     onSubmit({
       ...formData,
+      tags: Array.isArray(formData.tags) ? formData.tags : [formData.tags],
       level: selectedLevel,
       deposit: levelConfig.deposit,
     });
