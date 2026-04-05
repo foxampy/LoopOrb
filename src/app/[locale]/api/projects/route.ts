@@ -30,15 +30,10 @@ export async function GET(req: NextRequest) {
     const start = (page - 1) * limit;
     const end = start + limit;
     const paginated = projects.slice(start, end);
-    const isEmpty = projects.length === 0;
 
     return successResponse(
       paginatedResponse(paginated, total, page, limit),
-      200,
-      isEmpty ? {
-        isEmpty: true,
-        message: "Проекты отсутствуют. Станьте первым, кто создаст проект!",
-      } : undefined
+      200
     );
   } catch (error) {
     console.error("Get projects error:", error);

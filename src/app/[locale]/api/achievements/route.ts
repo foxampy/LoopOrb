@@ -152,7 +152,7 @@ export async function POST(request: NextRequest) {
           where: { id: auth.user.id },
           data: {
             xp: { increment: achievement.xpReward },
-            unityBalance: { increment: achievement.orbReward }
+            unityBalance: { increment: Number(achievement.orbReward) }
           }
         });
 
@@ -167,7 +167,7 @@ export async function POST(request: NextRequest) {
               achievementId: achievement.id,
               achievementName: achievement.name,
               xpReward: achievement.xpReward,
-              orbReward: achievement.orbReward,
+              orbReward: Number(achievement.orbReward),
             }
           }
         });

@@ -1,0 +1,37 @@
+{
+  "wallet": {
+    "title": "Кошелёк",
+    "yourBalance": "Ваш баланс",
+    "available": "Доступно",
+    "staked": "В стейкинге",
+    "earned": "Заработано",
+    "tabs": {
+      "overview": "Обзор",
+      "stakes": "Стейкинг",
+      "history": "История"
+    },
+    "quickActions": "Быстрые действия",
+    "stakeUnity": "Застейкать UNITY",
+    "investInProjects": "Инвестируйте в проекты",
+    "buyUnity": "Купить UNITY",
+    "preSaleDiscount": "Pre-Sale со скидкой 33%",
+    "activeStakes": "Активные стейки",
+    "withdraw": "Вывести",
+    "from": "С",
+    "noActiveStakes": "У вас нет активных стейков",
+    "stakeUnityButton": "Застейкать UNITY",
+    "unauthorizedTitle": "Требуется авторизация",
+    "unauthorizedDescription": "Кошелёк доступен только авторизованным пользователям. Войдите, чтобы управлять своими UNITY токенами.",
+    "login": "Войти",
+    "register": "Создать аккаунт",
+    "failedToLoad": "Не удалось загрузить данные кошелька",
+    "transactionTypes": {
+      "REGISTRATION_BONUS": "Бонус за регистрацию",
+      "STAKE": "Стейкинг",
+      "UNSTAKE": "Разстейкинг",
+      "STAKE_REWARD": "Награда за стейкинг",
+      "TRANSFER_IN": "Получение",
+      "TRANSFER_OUT": "Отправка"
+    }
+  }
+}

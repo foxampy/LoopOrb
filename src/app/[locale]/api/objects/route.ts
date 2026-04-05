@@ -30,15 +30,10 @@ export async function GET(req: NextRequest) {
     const start = (page - 1) * limit;
     const end = start + limit;
     const paginated = objects.slice(start, end);
-    const isEmpty = objects.length === 0;
 
     return successResponse(
       paginatedResponse(paginated, total, page, limit),
-      200,
-      isEmpty ? {
-        isEmpty: true,
-        message: "Водные объекты отсутствуют. Добавьте первый объект!",
-      } : undefined
+      200
     );
   } catch (error) {
     console.error("Get objects error:", error);

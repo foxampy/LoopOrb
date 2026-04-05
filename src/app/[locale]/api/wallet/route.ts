@@ -19,11 +19,7 @@ export async function GET(req: NextRequest) {
         wallet: null,
         transactions: [],
         stakes: [],
-      }, 200, {
-        isEmpty: true,
-        isAuthRequired: true,
-        message: "Требуется авторизация для просмотра данных кошелька",
-      });
+      }, 200);
     }
 
     // Пустые данные - готов к подключению реального API
@@ -33,12 +29,7 @@ export async function GET(req: NextRequest) {
       stakes: [],
     };
 
-    const isEmpty = !walletData.wallet && walletData.transactions.length === 0;
-
-    return successResponse(walletData, 200, isEmpty ? {
-      isEmpty: true,
-      message: "Данные кошелька загружаются. Совершите первую транзакцию!",
-    } : undefined);
+    return successResponse(walletData, 200);
   } catch (error) {
     console.error("Get wallet error:", error);
     return errorResponse("Internal server error", 503);
