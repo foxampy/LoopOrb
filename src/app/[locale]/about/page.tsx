@@ -33,7 +33,6 @@ import {
   Factory,
   Landmark,
   Beaker,
-  Playfair,
   ArrowUpRight,
   Video,
   Image as ImageIcon,
@@ -684,9 +683,9 @@ export default function AboutPage() {
                               <MapPin className="w-3 h-3 text-cyan-400 flex-shrink-0" />
                               <span>
                                 {project.name}{" "}
-                                {project.investment && (
+                                {(project as any).investment && (
                                   <span className="text-green-400">
-                                    ({project.investment})
+                                    ({(project as any).investment})
                                   </span>
                                 )}
                               </span>
