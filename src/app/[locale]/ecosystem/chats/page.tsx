@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import { useSocket } from "@/hooks/useSocket";
 import { 
   MessageCircle, 
   Search, 
@@ -43,61 +42,10 @@ interface Message {
   isRead?: boolean;
 }
 
-// Mock data for demo
-const mockChats: Chat[] = [
-  {
-    id: "chat-1",
-    name: "Uzbekistan Project Team",
-    lastMessage: "Station #2 update: sensors installed",
-    lastMessageAt: "2026-03-15T10:30:00Z",
-    unreadCount: 3,
-    type: "group",
-    isOnline: true,
-    participants: [
-      { id: "u1", name: "Alex Chen" },
-      { id: "u2", name: "Maria Rodriguez" },
-      { id: "u3", name: "John Smith" }
-    ]
-  },
-  {
-    id: "chat-2",
-    name: "Dr. Sarah Kim",
-    lastMessage: "Water analysis results look good",
-    lastMessageAt: "2026-03-15T09:15:00Z",
-    unreadCount: 0,
-    type: "direct",
-    isOnline: true
-  },
-  {
-    id: "chat-3",
-    name: "DAO Governance",
-    lastMessage: "New proposal: Budget Q2 2026",
-    lastMessageAt: "2026-03-14T18:45:00Z",
-    unreadCount: 1,
-    type: "group"
-  },
-  {
-    id: "chat-4",
-    name: "Israel VOD-Lab Operators",
-    lastMessage: "Maintenance scheduled for tomorrow",
-    lastMessageAt: "2026-03-14T14:20:00Z",
-    unreadCount: 0,
-    type: "group"
-  }
-];
+// Messaging system coming soon - no data yet
+const mockChats: Chat[] = [];
 
-const mockMessages: Record<string, Message[]> = {
-  "chat-1": [
-    { id: "m1", content: "Hi team, just finished the installation at Station #2", sender: { id: "u1", name: "Alex Chen" }, createdAt: "2026-03-15T10:00:00Z" },
-    { id: "m2", content: "Great work! How are the readings?", sender: { id: "u2", name: "Maria Rodriguez" }, createdAt: "2026-03-15T10:05:00Z" },
-    { id: "m3", content: "All sensors showing normal parameters. pH is 7.2, turbidity 0.8 NTU", sender: { id: "u1", name: "Alex Chen" }, createdAt: "2026-03-15T10:15:00Z" },
-    { id: "m4", content: "Station #2 update: sensors installed and calibrated", sender: { id: "u1", name: "Alex Chen" }, createdAt: "2026-03-15T10:30:00Z" }
-  ],
-  "chat-2": [
-    { id: "m5", content: "Hello! I've analyzed the samples from yesterday", sender: { id: "u4", name: "Dr. Sarah Kim" }, createdAt: "2026-03-15T09:00:00Z" },
-    { id: "m6", content: "Water analysis results look good - all within normal range", sender: { id: "u4", name: "Dr. Sarah Kim" }, createdAt: "2026-03-15T09:15:00Z" }
-  ]
-};
+const mockMessages: Record<string, Message[]> = {};
 
 export default function ChatsPage() {
   const [selectedChat, setSelectedChat] = useState<Chat | null>(null);
@@ -108,14 +56,11 @@ export default function ChatsPage() {
   const [isMobile, setIsMobile] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // For demo purposes - in production would use real auth
-  const { 
-    isConnected, 
-    isAuthenticated, 
-    sendMessage, 
-    sendTyping,
-    typingUsers 
-  } = useSocket("demo-user", "demo-token");
+  // WebSocket connection will be initialized when auth is available
+  // const { isConnected, isAuthenticated, sendMessage, sendTyping, typingUsers } = useSocket(userId, token);
+  const isConnected = false;
+  const isAuthenticated = false;
+  const typingUsers = new Map();
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -391,8 +336,10 @@ export default function ChatsPage() {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <MessageCircle className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-white mb-2">Select a chat</h3>
-                <p className="text-slate-400">Choose a conversation to start messaging</p>
+                <h3 className="text-lg font-medium text-white mb-2">Messaging Coming Soon</h3>
+                <p className="text-slate-400 max-w-md">
+                  The messaging system is currently under development. Soon you will be able to chat with project teams, DAO members, and other users.
+                </p>
               </div>
             </div>
           )}

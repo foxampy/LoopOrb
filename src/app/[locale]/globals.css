@@ -652,30 +652,159 @@
   .compact-padding {
     padding: var(--compact-padding, 12px);
   }
-  
+
   .compact-gap {
     gap: var(--compact-gap, 8px);
   }
-  
+
   /* Touch-friendly minimum sizes */
   .touch-target {
     min-height: var(--touch-target-min, 44px);
     min-width: var(--touch-target-min, 44px);
   }
-  
+
   .touch-target-comfortable {
     min-height: var(--touch-target-comfortable, 48px);
     min-width: var(--touch-target-comfortable, 48px);
   }
-  
+
   /* Reduce shadow intensity on mobile for performance */
   .neumorph-outset-lg,
   .neumorph-outset-xl {
     box-shadow: var(--shadow-neumorph-outset-md);
   }
-  
+
   .brutal-shadow {
     box-shadow: 2px 2px 0 var(--brutal-black, #000);
+  }
+
+  /* Optimize typography for mobile */
+  h1 {
+    font-size: 1.875rem !important; /* ~30px */
+    line-height: 2.25rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important; /* ~24px */
+    line-height: 2rem !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important; /* ~20px */
+    line-height: 1.75rem !important;
+  }
+
+  /* Improve readability on small screens */
+  p, span, div, li, td, th {
+    font-size: 0.9375rem !important; /* ~15px */
+  }
+
+  /* Optimize container padding for mobile */
+  .container,
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Stack flex columns on mobile */
+  .flex.flex-col.md\:flex-row,
+  .flex.flex-row.md\:flex-col {
+    flex-direction: column !important;
+  }
+
+  /* Optimize grid for mobile */
+  .grid.grid-cols-2,
+  .grid.grid-cols-3,
+  .grid.grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .grid.grid-cols-5,
+  .grid.grid-cols-6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Reduce padding on mobile */
+  .p-6, .p-8, .p-10, .p-12, .p-16, .p-20 {
+    padding: 1rem !important;
+  }
+
+  .px-6, .px-8, .px-10, .px-12, .px-16, .px-20 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .py-6, .py-8, .py-10, .py-12, .py-16, .py-20 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  /* Optimize modals for mobile */
+  .modal-content,
+  [role="dialog"] {
+    max-height: 90vh !important;
+    margin: 0.5rem !important;
+  }
+
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden !important;
+  }
+
+  html {
+    overflow-x: hidden !important;
+  }
+}
+
+/* Extra small devices (phones < 375px) */
+@media (max-width: 374px) {
+  h1 {
+    font-size: 1.5rem !important; /* ~24px */
+  }
+
+  h2 {
+    font-size: 1.25rem !important; /* ~20px */
+  }
+
+  h3 {
+    font-size: 1.125rem !important; /* ~18px */
+  }
+
+  p, span, div, li, td, th {
+    font-size: 0.875rem !important; /* ~14px */
+  }
+
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Tablet optimizations (641px - 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid.grid-cols-4,
+  .grid.grid-cols-5,
+  .grid.grid-cols-6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Safe area padding for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  @media (max-width: 640px) {
+    .container,
+    .max-w-7xl,
+    .max-w-6xl,
+    .max-w-5xl {
+      padding-left: max(1rem, env(safe-area-inset-left, 0px)) !important;
+      padding-right: max(1rem, env(safe-area-inset-right, 0px)) !important;
+    }
   }
 }
 

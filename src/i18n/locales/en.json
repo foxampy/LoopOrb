@@ -9,16 +9,37 @@
     "connect": "Connect Wallet"
   },
   "hero": {
-    "badge": "Water Crisis 2030",
+    "badge": "Platform in Development",
     "title": "The Last Drop",
     "subtitle": "Decides Everything",
-    "description": "By 2030, 50% of humanity will face water stress. VODeco is the decentralized infrastructure transforming water from a depleting resource into a sustainable digital economy.",
-    "cta_primary": "Start Staking",
-    "cta_secondary": "Explore ProjectHub"
+    "description": "VODeco is a decentralized infrastructure transforming water from a depleting resource into a sustainable digital economy. Sensor data digitizes water volumes, seals transparent metadata, packages into nodes, and emits water-information tokens.",
+    "cta_primary": "Book Seed Round Tokens",
+    "cta_secondary": "Explore Ecosystem"
   },
   "ecosystem": {
-    "label": "ARCHITECTURE",
-    "title": "6-Layer Water Economy"
+    "label": "ECOSYSTEM",
+    "title": "Unified Network of Everything",
+    "subtitle": "Objects, subjects, projects, systems—all connected through decentralized protocols",
+    "architecture_label": "ARCHITECTURE",
+    "architecture_title": "6-Layer Water Economy",
+    "layers": {
+      "physical": {
+        "name": "Physical Layer",
+        "items": ["IoT Sensors", "AquaCell Devices", "Monitoring Stations", "Treatment Units"]
+      },
+      "data": {
+        "name": "Data Layer",
+        "items": ["Real-time Collection", "Edge Computing", "IPFS Storage", "AI Validation"]
+      },
+      "blockchain": {
+        "name": "Blockchain Layer",
+        "items": ["VOD Chain", "Smart Contracts", "Data Anchoring", "Token Emission"]
+      },
+      "economic": {
+        "name": "Economic Layer",
+        "items": ["Staking Pools", "Project Bonds", "Data Markets", "Insurance"]
+      }
+    }
   },
   "crisis": {
     "label": "THE CRISIS",
@@ -149,29 +170,6 @@
     },
     "cta": "Browse All Projects"
   },
-  "ecosystem": {
-    "label": "ECOSYSTEM",
-    "title": "Unified Network of Everything",
-    "subtitle": "Objects, subjects, projects, systems—all connected through decentralized protocols",
-    "layers": {
-      "physical": {
-        "name": "Physical Layer",
-        "items": ["IoT Sensors", "AquaCell Devices", "Monitoring Stations", "Treatment Units"]
-      },
-      "data": {
-        "name": "Data Layer",
-        "items": ["Real-time Collection", "Edge Computing", "IPFS Storage", "AI Validation"]
-      },
-      "blockchain": {
-        "name": "Blockchain Layer",
-        "items": ["VOD Chain", "Smart Contracts", "Data Anchoring", "Token Emission"]
-      },
-      "economic": {
-        "name": "Economic Layer",
-        "items": ["Staking Pools", "Project Bonds", "Data Markets", "Insurance"]
-      }
-    }
-  },
   "token": {
     "label": "TOKEN",
     "title": "VOD: Water-Backed Digital Asset",
@@ -218,19 +216,19 @@
   },
   "cta": {
     "title": "Join the Water Revolution",
-    "subtitle": "Stake VOD. Fund Infrastructure. Secure the Future.",
-    "button": "Start Staking Now",
+    "subtitle": "Platform in Development — Seed Round Now Open. Book your tokens today and be part of the water data economy from day one.",
+    "button": "Book Seed Round Tokens",
     "secondary": "Read Whitepaper"
   },
   "footer": {
-    "tagline": "Decentralized Water Infrastructure for a Thriving Planet",
+    "tagline": "Developed by FoxampyLab",
     "links": {
       "ecosystem": "Ecosystem",
       "governance": "Governance",
       "developers": "Developers",
       "community": "Community"
     },
-    "copyright": "© 2025 VODeco DAO. Open Source Protocol."
+    "copyright": "© 2026 VODeco by FoxampyLab. All rights reserved."
   },
   "languages": {
     "en": "English",

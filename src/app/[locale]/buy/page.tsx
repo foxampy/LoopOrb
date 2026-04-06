@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { Link } from "next-intl/navigation";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import {
@@ -76,14 +76,15 @@ const paymentMethods = [
 ];
 
 const saleInfo = {
-  name: "Pre-Sale Round 1",
+  name: "Seed Round — Token Booking",
   price: 0.10,
   nextRoundPrice: 0.15,
   totalSupply: 100_000_000,
   sold: 12_450_000,
   hardCap: 5_000_000,
   raised: 1_245_000,
-  endDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
+  closedRound: "$100,000 (Completed by FoxampyLab Team)",
+  endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
 };
 
 export default function BuyTokensPage() {
@@ -198,9 +199,9 @@ export default function BuyTokensPage() {
             </Link>
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-white mb-2">Покупка UNITY</h1>
+                <h1 className="text-3xl font-bold text-white mb-2">Book Seed Round Tokens</h1>
                 <p className="text-water-200/70">
-                  Приобретите токены UNITY на Pre-Sale со скидкой
+                  Token booking for Seed Round — Tokens that carry verified water data. Developed by FoxampyLab.
                 </p>
               </div>
               <div className="glass-card px-4 py-2 flex items-center gap-3">
@@ -231,7 +232,7 @@ export default function BuyTokensPage() {
                     </div>
                     <div>
                       <h2 className="text-lg font-semibold text-white">{saleInfo.name}</h2>
-                      <p className="text-sm text-green-400">Действует скидка 33%</p>
+                      <p className="text-sm text-emerald-400">Platform in Development — First Anchor Investment Round</p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -280,6 +281,15 @@ export default function BuyTokensPage() {
                         </div>
                       ))}
                     </div>
+                  </div>
+                </div>
+
+                {/* Closed Round Info */}
+                <div className="mt-4 p-4 bg-slate-800/50 rounded-lg border border-slate-700 flex items-center gap-3">
+                  <Shield className="w-5 h-5 text-emerald-400" />
+                  <div>
+                    <div className="text-sm font-medium text-white">Closed Round: $100,000</div>
+                    <div className="text-xs text-water-200/60">Completed by FoxampyLab Team — Seed Round now open for booking</div>
                   </div>
                 </div>
               </motion.div>
@@ -460,9 +470,9 @@ export default function BuyTokensPage() {
                   />
                   <span className="text-sm text-water-200/70">
                     Я согласен с{" "}
-                    <Link href="#" className="text-water-400 hover:underline">Условиями использования</Link>{" "}
+                    <Link href="/saft" className="text-water-400 hover:underline">Условиями использования</Link>{" "}
                     и{" "}
-                    <Link href="#" className="text-water-400 hover:underline">Политикой конфиденциальности</Link>
+                    <Link href="/litepaper" className="text-water-400 hover:underline">Политикой конфиденциальности</Link>
                   </span>
                 </label>
 
@@ -480,7 +490,7 @@ export default function BuyTokensPage() {
                   ) : (
                     <>
                       <Zap className="w-5 h-5" />
-                      Купить UNITY
+                      Book Seed Round Tokens
                     </>
                   )}
                 </button>
@@ -499,14 +509,14 @@ export default function BuyTokensPage() {
                 transition={{ delay: 0.2 }}
                 className="glass-card p-6"
               >
-                <h4 className="font-medium text-white mb-3">Преимущества</h4>
+                <h4 className="font-medium text-white mb-3">Seed Round Benefits</h4>
                 <ul className="space-y-2 text-sm">
                   {[
-                    "Низкая цена на Pre-Sale",
-                    "Бонусные токены до 10%",
-                    "Ранний доступ к проектам",
-                    "Участие в DAO",
-                    "Стейкинг с APY до 20%",
+                    "Early access at Seed Round price",
+                    "Tokens that carry verified water data",
+                    "Priority access to future staking",
+                    "DAO governance participation",
+                    "Developed by FoxampyLab",
                   ].map((benefit, i) => (
                     <li key={i} className="flex items-center gap-2 text-water-200/70">
                       <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />

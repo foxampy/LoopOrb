@@ -2,20 +2,43 @@ import { NextRequest, NextResponse } from "next/server";
 import { authenticateRequest } from "@/lib/auth/api";
 
 // System prompt for VOD AI
-const SYSTEM_PROMPT = `You are VOD AI, the intelligent assistant for LoopOrb - a water resource management ecosystem.
+const SYSTEM_PROMPT = `You are VOD AI, the intelligent assistant for LoopOrb - a water resource management ecosystem currently in active development.
+
+About LoopOrb:
+- LoopOrb is a decentralized platform for monitoring, managing, and investing in water resources
+- Developed by FoxampyLab, building on experience since 2003
+- Currently in Foundation/ALPHA phase, raising seed round funding
+- Combines IoT, blockchain, AI, and community to solve the water crisis
+
+Key concepts to explain:
+1. Three-token system:
+   - VOD: Commodity token backed by 1 m³ of verified water
+   - VODeco: Governance token for DAO voting (fixed supply of 1 billion)
+   - VODcredit: Non-transferable reputation token (Soulbound Token)
+
+2. VOD-Lab Hardware:
+   - VOD-Lab Pro ($13,400): 100+ water parameters, Edge AI verification
+   - VOD-Lab Node ($8,900): 50 parameters, portable format
+
+3. Investment projects:
+   - Uzbekistan PPP pumping stations ($45M total investment)
+   - 10-year concession, 15-22% IRR
+   - Real infrastructure modernization
+
+4. DAO Governance:
+   - Community-driven decision making
+   - Constitutional (66%), Economic (51%), Project (40%), Operational (delegated) levels
+
+5. Staking:
+   - UNITY token staking with tier system
+   - Explorer (8-12%), Guardian (12-18%), Validator (18-32% APY)
 
 Your personality:
 - Professional yet approachable
 - Passionate about water conservation and sustainability
 - Knowledgeable about blockchain, IoT, and water technology
 - Always helpful and encouraging
-
-Key knowledge areas:
-1. Three-token system: VOD (commodity), VODeco (governance), VODcredit (reputation)
-2. VOD-Lab hardware for water quality verification
-3. Investment projects, especially Uzbekistan PPP pumping stations
-4. DAO governance structure
-5. Water crisis facts and solutions
+- Honest about the project being in development
 
 When answering:
 - Be concise but informative
@@ -23,160 +46,184 @@ When answering:
 - If unsure, acknowledge limitations and suggest where to find more info
 - Encourage users to participate in the ecosystem
 - Always respond in the same language as the user's query
+- Be transparent that the platform is in development and features are being built
 
-Current date: March 2026`;
+Current date: April 2026
+Project status: Seed round, active development of ALPHA phase`;
 
 // Simple response generator (fallback when OpenAI is not available)
 function generateLocalResponse(message: string): string {
   const lowerMsg = message.toLowerCase();
-  
+
   // Token-related queries
-  if (lowerMsg.includes('token') || lowerMsg.includes('вод') || lowerMsg.includes('токен')) {
+  if (lowerMsg.includes('token') || lowerMsg.includes('vod') || lowerMsg.includes('токен')) {
     if (lowerMsg.includes('vodeco')) {
-      return `**VODeco** — governance token экосистемы.
+      return `**VODeco** is the governance token of the LoopOrb ecosystem.
 
-• Назначение: голосование в DAO, управление проектами
-• Стейкинг: чем больше VODeco в стейке, тем выше сила голоса
-• Эмиссия: ограниченная, связана с репутацией
+**Purpose:** Voting in DAO, project management
+**Staking:** More VODeco staked = higher voting power
+**Supply:** Fixed at 1 billion tokens
 
-Хотите узнать как приобрести VODeco или как участвовать в голосованиях DAO?`;
+Want to know how to get VODeco or how to participate in DAO voting?`;
     }
-    if (lowerMsg.includes('vodcredit') || lowerMsg.includes('репутац')) {
-      return `**VODcredit** — Soulbound Token (SBT) репутации.
+    if (lowerMsg.includes('vodcredit') || lowerMsg.includes('репутац') || lowerMsg.includes('reputation')) {
+      return `**VODcredit** is a Soulbound Token (SBT) for reputation.
 
-• Не передаётся — привязан к вашему аккаунту
-• Начисляется за: валидацию данных, участие в проектах, научные публикации
-• Влияет на: доступ к привилегированным проектам, силу голоса в экспертных вопросах
+**Non-transferable** - tied to your account
+**Earned for:** Data validation, project participation, scientific publications
+**Benefits:** Access to privileged projects, higher voting weight in expert matters
 
-Репутация = доверие экосистемы к вам как к эксперту.`;
+Reputation = the ecosystem's trust in you as an expert.`;
     }
-    return `**Три токена экосистемы LoopOrb:**
+    return `**LoopOrb has three tokens:**
 
-1. **VOD** 💧 — commodity token
-   • Обеспечен 1 м³ реальной воды
-   • Эмитируется только после верификации
-   • Торгуется как цифровой актив
+1. **VOD** - Commodity Token
+   - Backed by 1 m³ of real verified water
+   - Issued only after volume verification
+   - Trades as a digital asset
 
-2. **VODeco** 🌊 — governance token  
-   • Для голосований в DAO
-   • Стейкинг для участия
-   • Управление проектами
+2. **VODeco** - Governance Token
+   - For DAO voting and governance
+   - Staking required for participation
+   - Fixed supply of 1 billion
 
-3. **VODcredit** ⭐ — reputation SBT
-   • Непередаваемый
-   • За вклад в экосистему
-   • Повышает доверие
+3. **VODcredit** - Reputation SBT
+   - Non-transferable
+   - Earned for ecosystem contributions
+   - Increases trust and voting weight
 
-Какой токен интересует подробнее?`;
+Which token would you like to learn more about?`;
   }
-  
+
   // Hardware queries
-  if (lowerMsg.includes('hardware') || lowerMsg.includes('lab') || lowerMsg.includes('оборудован')) {
+  if (lowerMsg.includes('hardware') || lowerMsg.includes('lab') || lowerMsg.includes('оборудован') || lowerMsg.includes('device')) {
     return `**VOD-Lab Hardware:**
 
-🏭 **VOD-Lab Pro** — $13,400
-• 100+ параметров воды
-• Edge AI верификация
-• Автоматическая калибровка
-• Для стационарных станций
+**VOD-Lab Pro** - $13,400
+- 100+ water parameters
+- Edge AI verification
+- Automatic calibration
+- For stationary monitoring stations
 
-📱 **VOD-Lab Node** — $8,900  
-• 50 основных параметров
-• Портативный формат
-• Быстрая замена картриджей
-• Для мобильного мониторинга
+**VOD-Lab Node** - $8,900
+- 50 key parameters
+- Portable format
+- Quick cartridge replacement
+- For mobile monitoring
 
-🔬 **Технологии:**
-• Спектрофотометрия
-• Электрохимические сенсоры
-• AI-анализ изображений
-• Блокчейн-анкоринг данных
+**Technologies:**
+- Spectrophotometry
+- Electrochemical sensors
+- AI image analysis
+- Blockchain data anchoring
 
-Хотите инвестировать в ноду или узнать спецификации?`;
+Interested in investing in a node or want technical specs?`;
   }
-  
+
   // Uzbekistan projects
-  if (lowerMsg.includes('uzbekistan') || lowerMsg.includes('узбекистан') || lowerMsg.includes('проект')) {
-    return `**Uzbekistan PPP Projects** 🇺🇿
+  if (lowerMsg.includes('uzbekistan') || lowerMsg.includes('узбекистан') || lowerMsg.includes('проект') || lowerMsg.includes('project')) {
+    return `**Uzbekistan PPP Projects**
 
-Инвестиции в модернизацию насосных станций:
+Investment in pumping station modernization:
 
-📍 **Станции:**
-• Station #2, Jizzakh — $6.2M, 18% IRR
-• Korovulbozor, Bukhara — $8.1M, 22% IRR  
-• Jondor, Bukhara — $12M, 20% IRR
-• PS #3, Navoi — $9.5M, 17% IRR
-• Dekhkanabad, Kashkadarya — $7.2M, 15% IRR
+**Stations:**
+- Station #2, Jizzakh - $6.2M, 18% IRR
+- Korovulbozor, Bukhara - $8.1M, 22% IRR
+- Jondor, Bukhara - $12M, 20% IRR
+- PS #3, Navoi - $9.5M, 17% IRR
+- Dekhkanabad, Kashkadarya - $7.2M, 15% IRR
 
-💰 **Общие показатели:**
-• Total investment: $45M
-• Концессия: 10 лет
-• Доходность: 15-22% IRR
-• ESG Impact: 2.5M человек получат чистую воду
+**Key metrics:**
+- Total investment: $45M
+- Concession period: 10 years
+- Returns: 15-22% IRR
+- ESG Impact: 2.5M people get clean water
 
-Хотите посмотреть детали проектов в TokenHub?`;
+Want to explore project details in TokenHub?`;
   }
-  
+
   // DAO queries
-  if (lowerMsg.includes('dao') || lowerMsg.includes('голосован') || lowerMsg.includes('управлен')) {
-    return `**DAO Governance LoopOrb** 🏛️
+  if (lowerMsg.includes('dao') || lowerMsg.includes('голосован') || lowerMsg.includes('управлен') || lowerMsg.includes('governance') || lowerMsg.includes('voting')) {
+    return `**DAO Governance in LoopOrb**
 
-**Уровни решений:**
+**Decision levels:**
 
-1. **Constitutional** (66% кворум)
-   • Изменения устава DAO
-   • Ключевые параметры системы
+1. **Constitutional** (66% quorum, 30 days)
+   - DAO charter changes
+   - Key system parameters
 
-2. **Economic** (51% кворум)  
-   • Распределение treasury
-   • Экономические параметры
+2. **Economic** (51% quorum, 7 days)
+   - Treasury distribution
+   - Economic parameters
 
-3. **Project** (40% кворум)
-   • Финансирование проектов
-   • Приоритизация инициатив
+3. **Project** (40% quorum, 14 days)
+   - Project funding
+   - Initiative prioritization
 
-4. **Operational** (делегировано)
-   • Технические решения
-   • Рабочие группы
+4. **Operational** (delegated, 3 days)
+   - Technical decisions
+   - Working groups
 
-**Как участвовать:**
-• Стейкайте VODeco
-• Создавайте предложения
-• Голосуйте за проекты
+**How to participate:**
+- Stake VODeco tokens
+- Create proposals
+- Vote for projects
 
-Текущие активные голосования есть в разделе DAO.`;
+Active votes are available in the DAO section once launched.`;
   }
-  
+
+  // Staking queries
+  if (lowerMsg.includes('stak') || lowerMsg.includes('стейк') || lowerMsg.includes('apy') || lowerMsg.includes('yield')) {
+    return `**UNITY Token Staking**
+
+**Staking tiers:**
+
+1. **Explorer** - 8-12% APY
+   - Entry-level tier
+   - Minimal lock period
+
+2. **Guardian** - 12-18% APY
+   - Mid-level commitment
+   - Better returns
+
+3. **Validator** - 18-32% APY
+   - Maximum commitment
+   - Highest returns
+   - Network validation role
+
+Staking helps secure the network while earning passive income. More details will be available when the staking module launches.`;
+  }
+
   // General greeting
-  if (lowerMsg.includes('привет') || lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
-    return `Привет! 👋 Я VOD AI, ваш помощник в экосистеме LoopOrb.
+  if (lowerMsg.includes('привет') || lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey')) {
+    return `Hi there! I'm VOD AI, your assistant for the LoopOrb ecosystem.
 
-Я могу рассказать о:
-• 💧 Токеномике (VOD, VODeco, VODcredit)
-• 🔬 Оборудовании VOD-Lab
-• 🌍 Проектах (Uzbekistan PPP и другие)
-• 🏛️ DAO и голосованиях
-• 📊 Инвестициях и ROI
+I can tell you about:
+- **Tokenomics** (VOD, VODeco, VODcredit)
+- **VOD-Lab** hardware for water testing
+- **Projects** (Uzbekistan PPP and more)
+- **DAO** governance and voting
+- **Staking** and investment returns
 
-Что вас интересует?`;
+What would you like to know?`;
   }
-  
+
   // Default response
-  return `Спасибо за вопрос! 🤔
+  return `Thanks for your question!
 
-Я VOD AI, помощник экосистемы LoopOrb. Моя специализация:
-• Водные ресурсы и экология
-• Блокчейн и токеномика
-• Инвестиционные проекты
-• IoT и мониторинг
+I'm VOD AI, assistant for the LoopOrb ecosystem. My expertise covers:
+- Water resources and ecology
+- Blockchain and tokenomics
+- Investment projects
+- IoT and monitoring
 
-К сожалению, я пока не могу ответить на этот конкретный вопрос. Попробуйте спросить о:
-- Токенах (VOD, VODeco, VODcredit)
-- Оборудовании VOD-Lab
-- Проектах Uzbekistan
-- DAO управлении
+I can't answer that specific question yet, but try asking about:
+- Tokens (VOD, VODeco, VODcredit)
+- VOD-Lab hardware
+- Uzbekistan projects
+- DAO governance and staking
 
-Или посетите наш Litepaper для подробной информации!`;
+Or visit our Litepaper for detailed information!`;
 }
 
 // POST /api/ai/chat - Chat with VOD AI

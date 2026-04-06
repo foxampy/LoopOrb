@@ -73,6 +73,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
+    // Try to get locale from URL path first (sync with next-intl)
+    const pathLocale = window.location.pathname.split('/')[1];
+    if (pathLocale && ['en', 'ru'].includes(pathLocale)) {
+      setLocaleState(pathLocale as LanguageCode);
+      return;
+    }
+    
     // Try to get saved locale from localStorage
     const savedLocale = localStorage.getItem("vod-locale") as LanguageCode;
     if (savedLocale && languages.some(l => l.code === savedLocale)) {

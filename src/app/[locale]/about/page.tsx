@@ -364,8 +364,14 @@ const partnersData = [
   },
 ];
 
-// Team members
+// Team data
 const teamData = [
+  {
+    name: "FoxampyLab",
+    role: "Development Team & Founders",
+    bio: "FoxampyLab is the development team behind VODeco. Completed the closed investment round at $100,000 and currently leading the platform development and Seed Round operations.",
+    image: "🦊",
+  },
   {
     name: "Tim Mackintosh",
     role: "Managing Director",
@@ -467,11 +473,11 @@ export default function AboutPage() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6"
               >
-                <History className="w-4 h-4 text-cyan-400" />
-                <span className="text-sm text-cyan-400 font-medium">
-                  Наша история
+                <Zap className="w-4 h-4 text-emerald-400" />
+                <span className="text-sm text-emerald-400 font-medium">
+                  Platform in Development — Seed Round Open
                 </span>
               </motion.div>
 
@@ -490,8 +496,8 @@ export default function AboutPage() {
                 transition={{ delay: 0.2 }}
                 className="text-xl text-water-200/70 max-w-3xl mx-auto mb-8"
               >
-                Более 20 лет опыта в водоподготовке от Culligan к глобальной
-                децентрализованной экосистеме VODeco
+                Developed by FoxampyLab — building a global decentralized water monitoring ecosystem.
+                Currently in development stage with Seed Round investment opportunities available.
               </motion.p>
 
               <motion.div
@@ -772,14 +778,14 @@ export default function AboutPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Команда
+                Команда — FoxampyLab
               </h2>
               <p className="text-water-200/70 max-w-2xl mx-auto">
-                Лидеры, которые ведут нас к цели
+                FoxampyLab — команда разработки и основатели проекта. Лидеры, которые ведут нас к цели
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {teamData.map((member, index) => (
                 <motion.div
                   key={member.name}

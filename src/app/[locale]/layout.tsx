@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LoopOrb - Глобальная экосистема управления водными ресурсами",
+  title: "LoopOrb - Global Water Resource Management Ecosystem",
   description:
-    "LoopOrb — децентрализованная платформа для мониторинга, инвестирования и управления водными ресурсами. Стейкинг токенов UNITY, инвестирование в водные проекты и заработок через верифицированные данные о воде.",
+    "LoopOrb is a decentralized platform for monitoring, investing, and managing water resources. Stake UNITY tokens, invest in water projects, and earn through verified water data.",
   keywords: [
     "water",
     "blockchain",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "LoopOrb - Water-Backed Digital Economy",
-    description: "Превратите воду из истощаемого ресурса в устойчивую цифровую экономику",
+    description: "Transform water from a depleted resource into a sustainable digital economy",
     type: "website",
   },
   icons: {

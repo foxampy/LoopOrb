@@ -65,32 +65,32 @@ const colorMap: Record<EmptyStateType, string> = {
 };
 
 const titleMap: Record<EmptyStateType, string> = {
-  empty: "Пусто",
-  loading: "Загрузка...",
-  "auth-required": "Требуется авторизация",
-  "no-data": "Нет данных",
-  error: "Произошла ошибка",
-  success: "Успешно",
-  info: "Информация",
-  locked: "Доступ ограничен",
-  "search-empty": "Ничего не найдено",
+  empty: "Empty",
+  loading: "Loading...",
+  "auth-required": "Authentication Required",
+  "no-data": "No Data",
+  error: "An Error Occurred",
+  success: "Success",
+  info: "Information",
+  locked: "Access Restricted",
+  "search-empty": "No Results Found",
 };
 
 const descriptionMap: Record<EmptyStateType, string> = {
-  empty: "Здесь пока ничего нет",
-  loading: "Пожалуйста, подождите...",
-  "auth-required": "Войдите в аккаунт для доступа к этой информации",
-  "no-data": "Данные отсутствуют или ещё не загружены",
-  error: "Что-то пошло не так. Попробуйте снова",
-  success: "Операция успешно выполнена",
-  info: "Обратите внимание на эту информацию",
-  locked: "Этот контент доступен только авторизованным пользователям",
-  "search-empty": "По вашему запросу ничего не найдено",
+  empty: "Nothing here yet",
+  loading: "Please wait...",
+  "auth-required": "Sign in to access this information",
+  "no-data": "No data available or not yet loaded",
+  error: "Something went wrong. Please try again",
+  success: "Operation completed successfully",
+  info: "Pay attention to this information",
+  locked: "This content is only available to authenticated users",
+  "search-empty": "No results found for your query",
 };
 
 /**
- * Универсальный компонент Empty State
- * Используется для отображения пустых состояний, загрузки, ошибок и других статусов
+ * Universal Empty State Component
+ * Used for displaying empty states, loading, errors and other statuses
  */
 export function EmptyState({
   type = "empty",
@@ -142,7 +142,7 @@ export function EmptyState({
 }
 
 /**
- * Компонент для отображения скелетона загрузки
+ * Skeleton loader component
  */
 export function SkeletonLoader({
   className = "",
@@ -172,7 +172,7 @@ export function SkeletonLoader({
 }
 
 /**
- * Компонент карточки-скелетона для списков
+ * Skeleton card component for lists
  */
 export function SkeletonCard({
   lines = 3,
@@ -198,7 +198,7 @@ export function SkeletonCard({
 }
 
 /**
- * Компонент для отображения состояния "Требуется авторизация"
+ * Authentication required component
  */
 export function AuthRequired({
   title,
@@ -219,7 +219,7 @@ export function AuthRequired({
       title={title}
       description={
         description ||
-        "Для доступа к этой информации необходимо войти в аккаунт или зарегистрироваться"
+        "Sign in or register to access this information"
       }
       className={className}
       action={
@@ -228,13 +228,13 @@ export function AuthRequired({
             href={loginLink}
             className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium rounded-lg transition"
           >
-            Войти
+            Sign In
           </a>
           <a
             href={registerLink}
             className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-medium rounded-lg transition"
           >
-            Регистрация
+            Register
           </a>
         </div>
       }
@@ -243,7 +243,7 @@ export function AuthRequired({
 }
 
 /**
- * Компонент для отображения состояния "Нет данных"
+ * No data available component
  */
 export function NoDataAvailable({
   title,
@@ -260,7 +260,7 @@ export function NoDataAvailable({
     <EmptyState
       type="no-data"
       title={title}
-      description={description || "Данные загружаются... Попробуйте обновить страницу"}
+      description={description || "Data is loading... Try refreshing the page"}
       className={className}
       action={
         action || (
@@ -269,7 +269,7 @@ export function NoDataAvailable({
             className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-medium rounded-lg transition flex items-center gap-2"
           >
             <RefreshCw className="w-4 h-4" />
-            Обновить
+            Refresh
           </button>
         )
       }
@@ -278,7 +278,7 @@ export function NoDataAvailable({
 }
 
 /**
- * Компонент для отображения состояния загрузки
+ * Loading state component
  */
 export function LoadingState({
   title,
@@ -300,7 +300,7 @@ export function LoadingState({
 }
 
 /**
- * Компонент для отображения ошибки
+ * Error state component
  */
 export function ErrorState({
   title,
@@ -317,7 +317,7 @@ export function ErrorState({
     <EmptyState
       type="error"
       title={title}
-      description={description || "Произошла непредвиденная ошибка"}
+      description={description || "An unexpected error occurred"}
       className={className}
       action={
         retryAction ? (
@@ -326,7 +326,7 @@ export function ErrorState({
             className="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 font-medium rounded-lg transition flex items-center gap-2"
           >
             <RefreshCw className="w-4 h-4" />
-            Попробовать снова
+            Try Again
           </button>
         ) : undefined
       }
@@ -335,7 +335,7 @@ export function ErrorState({
 }
 
 /**
- * Компонент для контекстно-зависимых empty states
+ * Contextual empty states component
  */
 export function ContextualEmptyState({
   context,
@@ -356,44 +356,44 @@ export function ContextualEmptyState({
     {
       projects: {
         icon: FolderOpen,
-        title: "Нет проектов",
-        description: "Вы ещё не участвуете ни в одном проекте",
-        action: "Начать инвестировать",
+        title: "No Projects",
+        description: "You are not participating in any projects yet",
+        action: "Start Investing",
       },
       notifications: {
         icon: Bell,
-        title: "Нет уведомлений",
-        description: "У вас нет новых уведомлений",
+        title: "No Notifications",
+        description: "You have no new notifications",
       },
       messages: {
         icon: MessageSquare,
-        title: "Нет сообщений",
-        description: "Начните общение или выберите чат",
+        title: "No Messages",
+        description: "Start a conversation or select a chat",
       },
       achievements: {
         icon: Award,
-        title: "Нет достижений",
-        description: "Выполняйте миссии и получайте награды",
+        title: "No Achievements",
+        description: "Complete missions to earn rewards",
       },
       missions: {
         icon: Target,
-        title: "Нет активных миссий",
-        description: "Все доступные миссии выполнены",
+        title: "No Active Missions",
+        description: "All available missions completed",
       },
       sensors: {
         icon: Activity,
-        title: "Нет данных сенсоров",
-        description: "Данные с датчиков ещё не загружены",
+        title: "No Sensor Data",
+        description: "Sensor data not yet available",
       },
       friends: {
         icon: Users,
-        title: "Нет друзей",
-        description: "Пригласите друзей или найдите новых",
+        title: "No Friends",
+        description: "Invite friends or find new ones",
       },
       wallet: {
         icon: Wallet,
-        title: "Пустой кошелёк",
-        description: "Совершите первую транзакцию",
+        title: "Empty Wallet",
+        description: "Make your first transaction",
       },
     };
 

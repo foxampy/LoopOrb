@@ -16,8 +16,8 @@ async function main() {
   const missions = [
     // Daily missions
     {
-      title: 'Утренняя проверка',
-      description: 'Зайдите на платформу сегодня',
+      title: 'Morning Check',
+      description: 'Log into the platform today',
       type: 'DAILY',
       category: 'EXPLORATION',
       xpReward: 10,
@@ -25,8 +25,8 @@ async function main() {
       requirements: { action: 'login', count: 1 },
     },
     {
-      title: 'Проверьте воду',
-      description: 'Добавьте запись о качестве воды',
+      title: 'Check the Water',
+      description: 'Add a water quality record',
       type: 'DAILY',
       category: 'DATA_COLLECTION',
       xpReward: 50,
@@ -34,8 +34,8 @@ async function main() {
       requirements: { action: 'add_data', count: 1 },
     },
     {
-      title: 'Поделитесь новостью',
-      description: 'Создайте пост в ленте',
+      title: 'Share News',
+      description: 'Create a post in the feed',
       type: 'DAILY',
       category: 'SOCIAL',
       xpReward: 30,
@@ -44,8 +44,8 @@ async function main() {
     },
     // Weekly missions
     {
-      title: 'Активная неделя',
-      description: 'Создайте 5 постов за неделю',
+      title: 'Active Week',
+      description: 'Create 5 posts in a week',
       type: 'WEEKLY',
       category: 'SOCIAL',
       xpReward: 200,
@@ -53,8 +53,8 @@ async function main() {
       requirements: { action: 'create_post', count: 5 },
     },
     {
-      title: 'Сбор данных',
-      description: 'Добавьте 10 записей о воде',
+      title: 'Data Collection',
+      description: 'Add 10 water records',
       type: 'WEEKLY',
       category: 'DATA_COLLECTION',
       xpReward: 300,
@@ -62,8 +62,8 @@ async function main() {
       requirements: { action: 'add_data', count: 10 },
     },
     {
-      title: 'Пригласи друзей',
-      description: 'Поделитесь платформой с 3 друзьями',
+      title: 'Invite Friends',
+      description: 'Share the platform with 3 friends',
       type: 'WEEKLY',
       category: 'SOCIAL',
       xpReward: 150,
@@ -72,8 +72,8 @@ async function main() {
     },
     // One-time missions
     {
-      title: 'Первый вклад',
-      description: 'Инвестируйте в любой проект',
+      title: 'First Investment',
+      description: 'Invest in any project',
       type: 'ONETIME',
       category: 'PROJECT_PARTICIPATION',
       xpReward: 500,
@@ -81,8 +81,8 @@ async function main() {
       requirements: { action: 'stake', count: 1 },
     },
     {
-      title: 'Пройдите обучение',
-      description: 'Изучите материалы VOD Academy',
+      title: 'Complete Training',
+      description: 'Study VOD Academy materials',
       type: 'ONETIME',
       category: 'EDUCATION',
       xpReward: 300,
@@ -90,8 +90,8 @@ async function main() {
       requirements: { action: 'complete_course', count: 1 },
     },
     {
-      title: 'Исследователь',
-      description: 'Добавьте данные из 5 разных локаций',
+      title: 'Explorer',
+      description: 'Add data from 5 different locations',
       type: 'ONETIME',
       category: 'EXPLORATION',
       xpReward: 400,

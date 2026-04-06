@@ -57,16 +57,16 @@ export const quests: Quest[] = [
   { id: 'd1', title: 'Проверь качество воды', description: 'Сделай измерение сегодня', type: 'daily', xpReward: 20, progress: 0, target: 1, icon: '💧', completed: false },
   { id: 'd2', title: 'Узнай что-то новое', description: 'Прочитай факт о воде', type: 'daily', xpReward: 10, progress: 0, target: 1, icon: '📚', completed: false },
   { id: 'd3', title: 'Поделись знаниями', description: 'Поделись фактом с другом', type: 'daily', xpReward: 30, progress: 0, target: 1, icon: '📤', completed: false },
-  
+
   // Weekly quests
   { id: 'w1', title: 'Мастер измерений', description: 'Сделай 5 измерений за неделю', type: 'weekly', xpReward: 100, progress: 0, target: 5, icon: '📊', completed: false },
   { id: 'w2', title: 'Ученик', description: 'Пройди 3 урока', type: 'weekly', xpReward: 150, progress: 0, target: 3, icon: '🎓', completed: false },
   { id: 'w3', title: 'Социальный герой', description: 'Пригласи 2 друзей', type: 'weekly', xpReward: 200, badgeReward: 'Друг воды', progress: 0, target: 2, icon: '👥', completed: false },
-  
+
   // Story quests
   { id: 's1', title: 'Спаси реку', description: 'Найди источник загрязнения в реке', type: 'story', xpReward: 500, badgeReward: 'Спаситель рек', itemReward: '🔱 Трезубец защитника', progress: 0, target: 1, icon: '🌊', completed: false },
   { id: 's2', title: 'Тайна озера', description: 'Исследуй загадочное озеро', type: 'story', xpReward: 400, itemReward: '🔍 Лупа исследователя', progress: 0, target: 1, icon: '🏞️', completed: false },
-  
+
   // Family quests
   { id: 'f1', title: 'Семейный выходной', description: 'Вся семья делает измерения', type: 'family', xpReward: 300, badgeReward: 'Семейная команда', progress: 0, target: 3, icon: '👨‍👩‍👧', completed: false },
   { id: 'f2', title: 'Эко-челлендж', description: 'Неделя без пластика', type: 'family', xpReward: 500, progress: 0, target: 7, icon: '♻️', completed: false },

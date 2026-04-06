@@ -21,11 +21,11 @@ interface Message {
 }
 
 const SUGGESTIONS = [
-  "Расскажи о токенах VOD",
-  "Какие проекты в Uzbekistan?",
-  "Что такое VOD-Lab?",
-  "Как участвовать в DAO?",
-  "Какая доходность инвестиций?"
+  "Tell me about VOD tokens",
+  "What projects are in Uzbekistan?",
+  "What is VOD-Lab?",
+  "How to participate in DAO?",
+  "What is the investment return?"
 ];
 
 export function AIChatWidget() {
@@ -35,7 +35,7 @@ export function AIChatWidget() {
     {
       id: "welcome",
       role: "assistant",
-      content: "Привет! 👋 Я VOD AI, ваш помощник в экосистеме LoopOrb.\n\nЯ могу рассказать о:\n• 💧 Токеномике\n• 🔬 Оборудовании VOD-Lab\n• 🌍 Инвестиционных проектах\n• 🏛️ DAO управлении\n\nЧто вас интересует?",
+      content: "Hi there! I'm VOD AI, your assistant for the LoopOrb ecosystem.\n\nI can tell you about:\n• Tokenomics (VOD, VODeco, VODcredit)\n• VOD-Lab hardware\n• Investment projects\n• DAO governance\n\nWhat would you like to know?",
       timestamp: new Date()
     }
   ]);
@@ -95,7 +95,7 @@ export function AIChatWidget() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: "Извините, произошла ошибка. Попробуйте ещё раз позже.",
+        content: "Sorry, an error occurred. Please try again later.",
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -121,7 +121,7 @@ export function AIChatWidget() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-water-500 to-cyan-500 rounded-full shadow-lg shadow-water-500/30 flex items-center justify-center hover:scale-110 transition-transform"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 bg-gradient-to-r from-water-500 to-cyan-500 rounded-full shadow-lg shadow-water-500/30 flex items-center justify-center hover:scale-110 transition-transform"
           >
             <Bot className="w-7 h-7 text-white" />
             <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-ocean-900" />
@@ -134,14 +134,14 @@ export function AIChatWidget() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0, 
+            animate={{
+              opacity: 1,
+              y: 0,
               scale: 1,
-              height: isMinimized ? "auto" : "600px"
+              height: isMinimized ? "auto" : "min(600px, calc(100vh - 80px))"
             }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-50 w-[400px] max-w-[calc(100vw-48px)] bg-ocean-900/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden flex flex-col"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[400px] max-w-[calc(100vw-32px)] sm:max-w-[calc(100vw-48px)] bg-ocean-900/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10 bg-white/5">
@@ -154,7 +154,7 @@ export function AIChatWidget() {
                     VOD AI
                     <Sparkles className="w-4 h-4 text-yellow-400" />
                   </h3>
-                  <p className="text-xs text-slate-400">Ваш помощник</p>
+                  <p className="text-xs text-slate-400">Your assistant</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
@@ -180,7 +180,7 @@ export function AIChatWidget() {
             {/* Messages */}
             {!isMinimized && (
               <>
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 max-h-[400px]">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ maxHeight: "calc(min(600px, calc(100vh - 80px)) - 200px)" }}>
                   {messages.map((message) => (
                     <div
                       key={message.id}
@@ -196,7 +196,7 @@ export function AIChatWidget() {
                         }`}
                       >
                         {message.role === "user" ? (
-                          <span className="text-xs text-water-400 font-medium">Вы</span>
+                          <span className="text-xs text-water-400 font-medium">You</span>
                         ) : (
                           <Bot className="w-4 h-4 text-white" />
                         )}
@@ -228,7 +228,7 @@ export function AIChatWidget() {
                 {/* Suggestions (show only at start) */}
                 {messages.length < 3 && (
                   <div className="px-4 pb-2">
-                    <p className="text-xs text-slate-500 mb-2">Попробуйте спросить:</p>
+                    <p className="text-xs text-slate-500 mb-2">Try asking:</p>
                     <div className="flex flex-wrap gap-2">
                       {SUGGESTIONS.map((suggestion) => (
                         <button
@@ -251,7 +251,7 @@ export function AIChatWidget() {
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      placeholder="Напишите сообщение..."
+                      placeholder="Type a message..."
                       className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-water-500/50"
                     />
                     <button

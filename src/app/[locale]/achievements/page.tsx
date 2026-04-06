@@ -32,20 +32,20 @@ interface UserStats {
 }
 
 const categories = [
-  { id: "all", label: "Все", icon: Trophy },
-  { id: "explorer", label: "Исследователь", icon: Compass },
-  { id: "scientist", label: "Учёный", icon: Droplets },
-  { id: "activist", label: "Активист", icon: Flame },
-  { id: "investor", label: "Инвестор", icon: Gem },
-  { id: "influencer", label: "Лидер", icon: Crown },
+  { id: "all", label: "All", icon: Trophy },
+  { id: "explorer", label: "Explorer", icon: Compass },
+  { id: "scientist", label: "Scientist", icon: Droplets },
+  { id: "activist", label: "Activist", icon: Flame },
+  { id: "investor", label: "Investor", icon: Gem },
+  { id: "influencer", label: "Leader", icon: Crown },
 ];
 
 const tiers = {
-  bronze: { label: "Бронза", color: "from-amber-700 to-amber-600", textColor: "text-amber-600", bgColor: "bg-amber-500/10" },
-  silver: { label: "Серебро", color: "from-slate-400 to-slate-300", textColor: "text-slate-300", bgColor: "bg-slate-500/10" },
-  gold: { label: "Золото", color: "from-yellow-500 to-yellow-400", textColor: "text-yellow-400", bgColor: "bg-yellow-500/10" },
-  platinum: { label: "Платина", color: "from-cyan-400 to-cyan-300", textColor: "text-cyan-300", bgColor: "bg-cyan-500/10" },
-  diamond: { label: "Алмаз", color: "from-purple-500 to-pink-400", textColor: "text-purple-400", bgColor: "bg-purple-500/10" },
+  bronze: { label: "Bronze", color: "from-amber-700 to-amber-600", textColor: "text-amber-600", bgColor: "bg-amber-500/10" },
+  silver: { label: "Silver", color: "from-slate-400 to-slate-300", textColor: "text-slate-300", bgColor: "bg-slate-500/10" },
+  gold: { label: "Gold", color: "from-yellow-500 to-yellow-400", textColor: "text-yellow-400", bgColor: "bg-yellow-500/10" },
+  platinum: { label: "Platinum", color: "from-cyan-400 to-cyan-300", textColor: "text-cyan-300", bgColor: "bg-cyan-500/10" },
+  diamond: { label: "Diamond", color: "from-purple-500 to-pink-400", textColor: "text-purple-400", bgColor: "bg-purple-500/10" },
 };
 
 const iconMap: Record<string, any> = {
@@ -59,8 +59,8 @@ const defaultAchievements: Achievement[] = [
     id: "first-steps",
     category: "explorer",
     tier: "bronze",
-    title: "Первые шаги",
-    description: "Заполните свой профиль и присоединитесь к сообществу",
+    title: "First Steps",
+    description: "Complete your profile and join the community",
     icon: "MapPin",
     progress: 0,
     target: 1,
@@ -71,8 +71,8 @@ const defaultAchievements: Achievement[] = [
     id: "data-collector",
     category: "scientist",
     tier: "bronze",
-    title: "Сборщик данных",
-    description: "Добавьте первое измерение качества воды",
+    title: "Data Collector",
+    description: "Add your first water quality measurement",
     icon: "Droplets",
     progress: 0,
     target: 1,
@@ -83,8 +83,8 @@ const defaultAchievements: Achievement[] = [
     id: "first-stake",
     category: "investor",
     tier: "bronze",
-    title: "Первый вклад",
-    description: "Застейкайте UNITY в любой проект",
+    title: "First Contribution",
+    description: "Stake UNITY in any project",
     icon: "Gem",
     progress: 0,
     target: 1,
@@ -95,8 +95,8 @@ const defaultAchievements: Achievement[] = [
     id: "community-member",
     category: "influencer",
     tier: "bronze",
-    title: "Член сообщества",
-    description: "Пригласите 1 друга на платформу",
+    title: "Community Member",
+    description: "Invite 1 friend to the platform",
     icon: "Users",
     progress: 0,
     target: 1,
@@ -143,7 +143,7 @@ function AchievementCard({ achievement, index }: { achievement: Achievement; ind
 
             <div className="mb-3">
               <div className="flex justify-between text-xs mb-1">
-                <span className="text-water-200/50">Прогресс</span>
+                <span className="text-water-200/50">Progress</span>
                 <span className={achievement.unlocked ? "text-green-400" : "text-water-200/70"}>
                   {achievement.progress} / {achievement.target}
                 </span>
@@ -171,7 +171,7 @@ function AchievementCard({ achievement, index }: { achievement: Achievement; ind
               {achievement.unlocked ? (
                 <div className="flex items-center gap-1 text-green-400 text-sm">
                   <CheckCircle className="w-4 h-4" />
-                  <span>Получено</span>
+                  <span>Unlocked</span>
                 </div>
               ) : (
                 <Lock className="w-4 h-4 text-water-200/30" />
@@ -195,18 +195,18 @@ function EmptyAchievementsState({ onExplore }: { onExplore: () => void }) {
       <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-water-500/20 to-cyan-glow/20 flex items-center justify-center">
         <Trophy className="w-12 h-12 text-water-400" />
       </div>
-      <h2 className="text-2xl font-bold text-white mb-3">Начните свой путь!</h2>
+      <h2 className="text-2xl font-bold text-white mb-3">Start Your Journey!</h2>
       <p className="text-water-200/60 max-w-md mx-auto mb-8">
-        Достижения открываются по мере использования платформы. 
-        Заполните профиль, добавьте данные или инвестируйте в проекты.
+        Achievements unlock as you use the platform.
+        Complete your profile, add data, or invest in projects.
       </p>
-      
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto mb-8">
         {[
-          { icon: MapPin, text: "Заполните профиль", reward: "+50 XP" },
-          { icon: Droplets, text: "Добавьте данные", reward: "+100 XP" },
-          { icon: Gem, text: "Застейкайте токены", reward: "+200 XP" },
-          { icon: Users, text: "Пригласите друга", reward: "+100 XP" },
+          { icon: MapPin, text: "Complete your profile", reward: "+50 XP" },
+          { icon: Droplets, text: "Add data", reward: "+100 XP" },
+          { icon: Gem, text: "Stake tokens", reward: "+200 XP" },
+          { icon: Users, text: "Invite a friend", reward: "+100 XP" },
         ].map((item, i) => (
           <div key={i} className="glass-card p-4 text-center">
             <item.icon className="w-8 h-8 text-cyan-glow mx-auto mb-2" />
@@ -218,7 +218,7 @@ function EmptyAchievementsState({ onExplore }: { onExplore: () => void }) {
 
       <button onClick={onExplore} className="btn-primary inline-flex items-center gap-2">
         <Sparkles className="w-4 h-4" />
-        Начать зарабатывать XP
+        Start Earning XP
       </button>
     </motion.div>
   );
@@ -286,9 +286,9 @@ export default function AchievementsPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-3xl font-bold text-white mb-2">Достижения</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Achievements</h1>
           <p className="text-water-200/70">
-            Выполняйте задания и получайте XP и награды
+            Complete tasks to earn XP and rewards
           </p>
         </motion.div>
 
@@ -306,7 +306,7 @@ export default function AchievementsPage() {
               </div>
               <div>
                 <div className="text-2xl font-bold text-white">{userStats.unlockedCount}</div>
-                <div className="text-sm text-water-200/70">Разблокировано</div>
+                <div className="text-sm text-water-200/70">Unlocked</div>
               </div>
             </div>
 
@@ -316,7 +316,7 @@ export default function AchievementsPage() {
               </div>
               <div>
                 <div className="text-2xl font-bold text-white">{userStats.progressPercent}%</div>
-                <div className="text-sm text-water-200/70">Прогресс</div>
+                <div className="text-sm text-water-200/70">Progress</div>
               </div>
             </div>
 
@@ -326,7 +326,7 @@ export default function AchievementsPage() {
               </div>
               <div>
                 <div className="text-2xl font-bold text-white">{userStats.totalRewards}</div>
-                <div className="text-sm text-water-200/70">XP получено</div>
+                <div className="text-sm text-water-200/70">XP earned</div>
               </div>
             </div>
 
@@ -336,7 +336,7 @@ export default function AchievementsPage() {
               </div>
               <div>
                 <div className="text-2xl font-bold text-white">{userStats.diamondCount}</div>
-                <div className="text-sm text-water-200/70">Алмазных</div>
+                <div className="text-sm text-water-200/70">Diamond</div>
               </div>
             </div>
           </motion.div>
@@ -386,10 +386,10 @@ export default function AchievementsPage() {
                   onChange={(e) => setShowLocked(e.target.checked)}
                   className="w-4 h-4 rounded border-white/20 bg-white/5 text-water-500"
                 />
-                <span className="text-sm text-water-200/70">Показывать заблокированные</span>
+                <span className="text-sm text-water-200/70">Show locked</span>
               </label>
               <div className="text-sm text-water-200/50">
-                Показано: {filteredAchievements.length}
+                Showing: {filteredAchievements.length}
               </div>
             </motion.div>
 
@@ -403,8 +403,8 @@ export default function AchievementsPage() {
             {filteredAchievements.length === 0 && (
               <div className="text-center py-12">
                 <Trophy className="w-16 h-16 text-water-200/20 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">Нет достижений</h3>
-                <p className="text-water-200/50">Измените фильтры, чтобы увидеть больше</p>
+                <h3 className="text-xl font-semibold text-white mb-2">No achievements</h3>
+                <p className="text-water-200/50">Change filters to see more</p>
               </div>
             )}
           </>
@@ -417,12 +417,12 @@ export default function AchievementsPage() {
           transition={{ delay: 0.4 }}
           className="mt-8 glass-card p-6 text-center"
         >
-          <h3 className="text-lg font-semibold text-white mb-2">Хотите больше наград?</h3>
+          <h3 className="text-lg font-semibold text-white mb-2">Want more rewards?</h3>
           <p className="text-water-200/70 mb-4">
-            Выполняйте миссии и получайте XP, токены и эксклюзивные NFT
+            Complete missions to earn XP, tokens, and exclusive NFTs
           </p>
           <Link href="/missions" className="btn-secondary inline-flex items-center gap-2">
-            Перейти к миссиям
+            Go to missions
             <ChevronRight className="w-4 h-4" />
           </Link>
         </motion.div>

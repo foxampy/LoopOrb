@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "next-intl/navigation";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
@@ -116,7 +116,7 @@ export default function Navbar() {
           </button>
 
           {/* Center: Logo */}
-          <Link href="/" className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
+          <Link href="/" locale={false} className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
             <Droplets className="w-7 h-7 text-water-400" />
             <span className="text-xl font-bold gradient-text">LoopOrb</span>
           </Link>

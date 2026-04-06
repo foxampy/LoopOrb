@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { Link } from "next-intl/navigation";
 import { useI18n } from "@/i18n/I18nContext";
 import Navbar from "@/components/Navbar";
 import {
@@ -69,9 +69,15 @@ function HeroSection() {
 
       <motion.div style={{ y, opacity }} className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/30 mb-6">
-          <AlertTriangle className="w-4 h-4 text-red-400" />
-          <span className="text-sm text-red-300 font-medium">{t("hero.badge")}</span>
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6">
+          <Zap className="w-4 h-4 text-emerald-400" />
+          <span className="text-sm text-emerald-300 font-medium">{t("hero.badge")}</span>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-6 ml-3">
+          <Sparkles className="w-4 h-4 text-cyan-400" />
+          <span className="text-sm text-cyan-300 font-medium">Seed Round Now Open — Developed by FoxampyLab</span>
         </motion.div>
 
         <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
@@ -93,7 +99,7 @@ function HeroSection() {
             <Zap className="w-5 h-5" />
             {t("hero.cta_primary")}
           </a>
-          <a href="#projecthub" className="w-full sm:w-auto px-6 py-3 bg-slate-800/50 hover:bg-slate-800 text-white font-medium rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2">
+          <a href="#ecosystem" className="w-full sm:w-auto px-6 py-3 bg-slate-800/50 hover:bg-slate-800 text-white font-medium rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2">
             <Microscope className="w-5 h-5" />
             {t("hero.cta_secondary")}
           </a>
@@ -428,14 +434,14 @@ function CTASection() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">{t("cta.title")}</h2>
           <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">{t("cta.subtitle")}</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#staking" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-900 font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+            <Link href="/buy" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-900 font-bold rounded-xl transition-all flex items-center justify-center gap-2">
               <Zap className="w-5 h-5" />
               {t("cta.button")}
-            </a>
-            <button className="w-full sm:w-auto px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white font-medium rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2">
+            </Link>
+            <Link href="/litepaper" className="w-full sm:w-auto px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white font-medium rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2">
               <FileText className="w-5 h-5" />
               {t("cta.secondary")}
-            </button>
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -457,7 +463,7 @@ function Footer() {
             </div>
             <div>
               <span className="font-bold text-white">VODeco</span>
-              <p className="text-xs text-slate-500">{t("footer.tagline")}</p>
+              <p className="text-xs text-slate-500">Developed by FoxampyLab</p>
             </div>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400">
@@ -482,56 +488,56 @@ function EcosystemArchitectureSection() {
     {
       id: "physical",
       title: "Physical Layer",
-      subtitle: "Физический слой",
+      subtitle: "Physical layer",
       icon: Droplets,
       color: "from-blue-500 to-cyan-500",
       items: ["AquaCell", "AquaHome", "AquaDrones", "Industrial IoT"],
-      description: "Устройства сбора данных о качестве воды"
+      description: "Water quality data collection devices"
     },
     {
       id: "transmission",
       title: "Data Transmission",
-      subtitle: "Передача данных",
+      subtitle: "Data transmission",
       icon: Activity,
       color: "from-cyan-500 to-teal-500",
-      items: ["Bluetooth 5.0", "WiFi", "LoRaWAN", "4G/5G", "QR-код"],
-      description: "Шифрованная передача данных с датчиков"
+      items: ["Bluetooth 5.0", "WiFi", "LoRaWAN", "4G/5G", "QR-code"],
+      description: "Encrypted data transmission from sensors"
     },
     {
       id: "validation",
       title: "Validation Layer",
-      subtitle: "Валидация",
+      subtitle: "Validation",
       icon: Shield,
       color: "from-teal-500 to-emerald-500",
       items: ["Validation Nodes", "Peer Verification", "USGS API", "Anomaly Detection"],
-      description: "Проверка достоверности данных"
+      description: "Data authenticity verification"
     },
     {
       id: "blockchain",
       title: "Blockchain Layer",
-      subtitle: "Блокчейн",
+      subtitle: "Blockchain",
       icon: Database,
       color: "from-emerald-500 to-green-500",
       items: ["Data Anchoring", "SHA-256 Hashing", "IPFS Storage", "Smart Contracts"],
-      description: "Запечатывание данных в блокчейне"
+      description: "Data sealing in blockchain"
     },
     {
       id: "token",
       title: "Token Emission",
-      subtitle: "Эмиссия токена",
+      subtitle: "Token emission",
       icon: Zap,
       color: "from-green-500 to-lime-500",
-      items: ["10 VOD/m³ Base", "Quality Multiplier", "Staking Rewards", "DAO Governance"],
-      description: "Выпуск VOD токенов за верифицированные м³"
+      items: ["10 VOD/m3 Base", "Quality Multiplier", "Staking Rewards", "DAO Governance"],
+      description: "VOD token issuance for verified m3"
     },
     {
       id: "application",
       title: "Application Layer",
-      subtitle: "Приложения",
+      subtitle: "Applications",
       icon: Globe,
       color: "from-lime-500 to-yellow-500",
       items: ["ProjectHub", "Data Marketplace", "DeSci Research", "B2B API"],
-      description: "Продукты и сервисы экосистемы"
+      description: "Ecosystem products and services"
     }
   ];
 
@@ -555,7 +561,7 @@ function EcosystemArchitectureSection() {
             {t("ecosystem.title") || "6-Layer Water Economy"}
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            От физического кубометра воды до цифрового токена — полный цикл верификации и эмиссии
+            Sensors installed on water objects digitize water volumes, securely seal transparent data in metadata, package into nodes, and emit tokens containing water information
           </p>
         </motion.div>
 
@@ -621,11 +627,11 @@ function EcosystemArchitectureSection() {
             </div>
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                Ключевой принцип: 1 VOD = 1 м³ верифицированной воды
+                Tokens that carry verified water data
               </h3>
               <p className="text-slate-400">
-                Токен выходит в эмиссию только после полного цикла: оцифровка → валидация → хэширование → запечатывание.
-                Никакой эмиссии без реального физического обеспечения.
+                When sensors are installed to water objects/subjects, they digitize water volumes, securely seal transparent data in metadata, package into nodes, and emit tokens containing water information.
+                Platform is currently in development — Seed Round is now open for early investors.
               </p>
             </div>
           </div>

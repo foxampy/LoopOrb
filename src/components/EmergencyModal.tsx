@@ -24,12 +24,12 @@ import {
 } from "lucide-react";
 
 /**
- * Типы происшествий
+ * Incident types
  */
 export type IncidentType = "spill" | "fish_death" | "color_change" | "other";
 
 /**
- * Данные отчёта о чрезвычайной ситуации
+ * Emergency report data
  */
 export interface EmergencyReportData {
   incidentType: IncidentType;
@@ -46,12 +46,12 @@ export interface EmergencyReportData {
 }
 
 /**
- * Шаги модального окна
+ * Modal window steps
  */
 type Step = "type" | "media" | "confirm";
 
 /**
- * Опции типов происшествий
+ * Incident type options
  */
 const INCIDENT_TYPES: {
   id: IncidentType;
@@ -63,32 +63,32 @@ const INCIDENT_TYPES: {
 }[] = [
   {
     id: "spill",
-    label: "Разлив веществ",
-    description: "Химический разлив, нефтепродукты, опасные вещества",
+    label: "Chemical Spill",
+    description: "Chemical spill, petroleum products, hazardous substances",
     icon: Droplets,
     color: "from-amber-500 to-orange-600",
     rewardRange: "$100-500",
   },
   {
     id: "fish_death",
-    label: "Гибель рыбы",
-    description: "Массовая гибель водных организмов",
+    label: "Fish Kill",
+    description: "Mass mortality of aquatic organisms",
     icon: Fish,
     color: "from-red-500 to-rose-600",
     rewardRange: "$50-300",
   },
   {
     id: "color_change",
-    label: "Изменение цвета воды",
-    description: "Неестественное изменение цвета, цветение водорослей",
+    label: "Water Color Change",
+    description: "Unnatural water color change, algae bloom",
     icon: Palette,
     color: "from-purple-500 to-violet-600",
     rewardRange: "$50-200",
   },
   {
     id: "other",
-    label: "Другое",
-    description: "Иные критические загрязнения",
+    label: "Other",
+    description: "Other critical contamination",
     icon: AlertTriangle,
     color: "from-slate-500 to-gray-600",
     rewardRange: "$50-150",
@@ -96,15 +96,15 @@ const INCIDENT_TYPES: {
 ];
 
 /**
- * EmergencyModal - Модальное окно для сообщения о критических загрязнениях
- * 
- * 3 шага:
- * 1. Выбор типа происшествия
- * 2. Загрузка фото/видео + геолокация
- * 3. Подтверждение и отправка
- * 
- * Дизайн: неоморфизм + ретрофутуризм
- * Мобильная адаптация: bottom sheet на мобильных устройствах
+ * EmergencyModal - Modal window for reporting critical pollution incidents
+ *
+ * 3 steps:
+ * 1. Select incident type
+ * 2. Upload photo/video + geolocation
+ * 3. Confirm and submit
+ *
+ * Design: neomorphism + retrofuturism
+ * Mobile adaptation: bottom sheet on mobile devices
  */
 export function EmergencyModal({
   onClose,
@@ -131,7 +131,7 @@ export function EmergencyModal({
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Закрытие по Escape
+  // Close on Escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -140,7 +140,7 @@ export function EmergencyModal({
     return () => document.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
-  // Блокировка прокрутки фона
+  // Block background scroll
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -149,7 +149,7 @@ export function EmergencyModal({
   }, []);
 
   /**
-   * Получение геолокации
+   * Get geolocation
    */
   const handleGetLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -168,7 +168,7 @@ export function EmergencyModal({
         setIsGettingLocation(false);
       },
       (error) => {
-        console.error("Ошибка получения геолокации:", error);
+        console.error("Geolocation error:", error);
         alert(t("emergency.geoPermissionDenied"));
         setIsGettingLocation(false);
       },
@@ -181,17 +181,17 @@ export function EmergencyModal({
   }, [t]);
 
   /**
-   * Обработка выбора файлов
+   * Handle file selection
    */
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     if (files.length === 0) return;
 
-    // Валидация: максимум 5 файлов
+    // Validation: maximum 5 files
     const totalFiles = Math.min(files.length, 5 - mediaFiles.length);
     const selectedFiles = files.slice(0, totalFiles);
 
-    // Валидация типов
+    // Validate types
     const validTypes = ["image/jpeg", "image/png", "image/webp", "video/mp4", "video/webm"];
     const validFiles = selectedFiles.filter(file => validTypes.includes(file.type));
 
@@ -199,7 +199,7 @@ export function EmergencyModal({
       alert(t("emergency.invalidFiles"));
     }
 
-    // Создание превью
+    // Create previews
     const previews = validFiles.map(file => URL.createObjectURL(file));
 
     setMediaFiles(prev => [...prev, ...validFiles]);
@@ -207,7 +207,7 @@ export function EmergencyModal({
   }, [mediaFiles.length]);
 
   /**
-   * Удаление медиафайла
+   * Remove media file
    */
   const handleRemoveMedia = useCallback((index: number) => {
     setMediaFiles(prev => prev.filter((_, i) => i !== index));
@@ -219,7 +219,7 @@ export function EmergencyModal({
   }, []);
 
   /**
-   * Переход к следующему шагу
+   * Navigate to next step
    */
   const handleNext = useCallback(() => {
     if (currentStep === "type" && selectedType) {
@@ -230,7 +230,7 @@ export function EmergencyModal({
   }, [currentStep, selectedType]);
 
   /**
-   * Переход к предыдущему шагу
+   * Navigate to previous step
    */
   const handleBack = useCallback(() => {
     if (currentStep === "media") {
@@ -241,7 +241,7 @@ export function EmergencyModal({
   }, [currentStep]);
 
   /**
-   * Отправка отчёта
+   * Submit report
    */
   const handleSubmit = useCallback(async () => {
     if (!selectedType) return;
@@ -261,7 +261,7 @@ export function EmergencyModal({
 
       await onSubmit(reportData);
     } catch (error) {
-      console.error("Ошибка отправки отчёта:", error);
+      console.error("Error submitting report:", error);
       alert(t("emergency.submitError"));
     } finally {
       setIsSubmitting(false);
@@ -269,7 +269,7 @@ export function EmergencyModal({
   }, [selectedType, description, mediaFiles, mediaPreviews, location, contactEmail, contactPhone, onSubmit]);
 
   /**
-   * Проверка возможности перехода
+   * Check if can proceed to next step
    */
   const canProceed = () => {
     if (currentStep === "type") return !!selectedType;
@@ -277,12 +277,12 @@ export function EmergencyModal({
     return true;
   };
 
-  // Рендер шага выбора типа
+  // Render type selection step
   const renderTypeStep = () => (
     <div className="space-y-4">
       <div className="text-center mb-6">
-        <h3 className="text-xl font-bold text-white mb-2">Тип происшествия</h3>
-        <p className="text-slate-400 text-sm">Выберите категорию загрязнения</p>
+        <h3 className="text-xl font-bold text-white mb-2">Incident Type</h3>
+        <p className="text-slate-400 text-sm">Select the pollution category</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -339,7 +339,7 @@ export function EmergencyModal({
         })}
       </div>
 
-      {/* Награда за репорт */}
+      {/* Reward for report */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -354,25 +354,25 @@ export function EmergencyModal({
             <DollarSign className="w-5 h-5 text-amber-400" />
           </div>
           <div>
-            <p className="text-sm font-semibold text-amber-200">Награда после верификации</p>
-            <p className="text-xs text-amber-400/70">$50-500 VOD в зависимости от типа и подтверждённости</p>
+            <p className="text-sm font-semibold text-amber-200">Reward After Verification</p>
+            <p className="text-xs text-amber-400/70">$50-500 VOD depending on type and confirmation</p>
           </div>
         </div>
       </motion.div>
     </div>
   );
 
-  // Рендер шага загрузки медиа
+  // Render media upload step
   const renderMediaStep = () => (
     <div className="space-y-4">
       <div className="text-center mb-4">
-        <h3 className="text-xl font-bold text-white mb-2">Фото/Видео и геолокация</h3>
-        <p className="text-slate-400 text-sm">Добавьте доказательства и укажите место</p>
+        <h3 className="text-xl font-bold text-white mb-2">Photo/Video & Geolocation</h3>
+        <p className="text-slate-400 text-sm">Add evidence and specify location</p>
       </div>
 
-      {/* Загрузка файлов */}
+      {/* File upload */}
       <div className="space-y-3">
-        <label className="block text-sm font-medium text-slate-300">Медиафайлы</label>
+        <label className="block text-sm font-medium text-slate-300">Media Files</label>
         
         <motion.div
           onClick={() => fileInputRef.current?.click()}
@@ -395,12 +395,12 @@ export function EmergencyModal({
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/5 mb-3">
               <Upload className="w-6 h-6 text-cyan-400" />
             </div>
-            <p className="text-sm text-white font-medium">Нажмите для загрузки</p>
-            <p className="text-xs text-slate-400 mt-1">JPG, PNG, WebP, MP4, WebM (макс. 5 файлов)</p>
+            <p className="text-sm text-white font-medium">Click to Upload</p>
+            <p className="text-xs text-slate-400 mt-1">JPG, PNG, WebP, MP4, WebM (max 5 files)</p>
           </div>
         </motion.div>
 
-        {/* Превью загруженных файлов */}
+        {/* Media previews */}
         {mediaPreviews.length > 0 && (
           <div className="grid grid-cols-3 gap-2">
             {mediaPreviews.map((preview, index) => {
@@ -440,10 +440,10 @@ export function EmergencyModal({
         )}
       </div>
 
-      {/* Геолокация */}
+      {/* Geolocation */}
       <div className="space-y-3">
-        <label className="block text-sm font-medium text-slate-300">Геолокация</label>
-        
+        <label className="block text-sm font-medium text-slate-300">Geolocation</label>
+
         <motion.button
           onClick={handleGetLocation}
           disabled={isGettingLocation}
@@ -457,7 +457,7 @@ export function EmergencyModal({
           {isGettingLocation ? (
             <>
               <Loader2 className="w-5 h-5 text-cyan-400 animate-spin" />
-              <span className="text-white font-medium">Получение координат...</span>
+              <span className="text-white font-medium">Getting coordinates...</span>
             </>
           ) : location.lat !== null ? (
             <>
@@ -465,7 +465,7 @@ export function EmergencyModal({
                 <Check className="w-5 h-5 text-green-400" />
               </div>
               <div className="text-left">
-                <p className="text-white font-medium">Геолокация получена</p>
+                <p className="text-white font-medium">Geolocation acquired</p>
                 <p className="text-xs text-slate-400">
                   {location.lat?.toFixed(6)}, {location.lng?.toFixed(6)}
                 </p>
@@ -477,7 +477,7 @@ export function EmergencyModal({
               <div className="p-2 rounded-xl bg-cyan-500/20">
                 <MapPin className="w-5 h-5 text-cyan-400" />
               </div>
-              <span className="text-white font-medium">Определить местоположение</span>
+              <span className="text-white font-medium">Determine location</span>
               <Navigation className="w-5 h-5 text-cyan-400 ml-auto" />
             </>
           )}
@@ -485,18 +485,18 @@ export function EmergencyModal({
 
         {location.lat === null && (
           <p className="text-xs text-slate-500 text-center">
-            Геолокация будет автоматически добавлена к отчёту
+            Geolocation will be automatically added to the report
           </p>
         )}
       </div>
 
-      {/* Описание */}
+      {/* Description */}
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-slate-300">Описание (опционально)</label>
+        <label className="block text-sm font-medium text-slate-300">Description (optional)</label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Опишите, что произошло..."
+          placeholder="Describe what happened..."
           rows={3}
           className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-slate-500 outline-none focus:border-cyan-400/50 transition-colors resize-none"
           style={{
@@ -507,76 +507,76 @@ export function EmergencyModal({
     </div>
   );
 
-  // Рендер шага подтверждения
+  // Render confirmation step
   const renderConfirmStep = () => {
     const selectedIncident = INCIDENT_TYPES.find(t => t.id === selectedType);
 
     return (
       <div className="space-y-4">
         <div className="text-center mb-4">
-          <h3 className="text-xl font-bold text-white mb-2">Подтверждение</h3>
-          <p className="text-slate-400 text-sm">Проверьте данные перед отправкой</p>
+          <h3 className="text-xl font-bold text-white mb-2">Confirmation</h3>
+          <p className="text-slate-400 text-sm">Review data before submitting</p>
         </div>
 
-        {/* Сводка */}
+        {/* Summary */}
         <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-          {/* Тип происшествия */}
+          {/* Incident type */}
           {selectedIncident && (
             <div className="flex items-center gap-3">
               <div className={`p-2 rounded-xl bg-gradient-to-br ${selectedIncident.color}`}>
                 {React.createElement(selectedIncident.icon, { className: "w-4 h-4 text-white" })}
               </div>
               <div>
-                <p className="text-xs text-slate-400">Тип происшествия</p>
+                <p className="text-xs text-slate-400">Incident type</p>
                 <p className="text-sm font-semibold text-white">{selectedIncident.label}</p>
               </div>
             </div>
           )}
 
-          {/* Геолокация */}
+          {/* Geolocation */}
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-xl bg-cyan-500/20">
               <MapPin className="w-4 h-4 text-cyan-400" />
             </div>
             <div>
-              <p className="text-xs text-slate-400">Геолокация</p>
+              <p className="text-xs text-slate-400">Geolocation</p>
               <p className="text-sm font-semibold text-white">
                 {location.lat !== null && location.lng !== null
                   ? `${location.lat.toFixed(4)}, ${location.lng.toFixed(4)}`
-                  : "Не указана"}
+                  : "Not specified"}
               </p>
             </div>
           </div>
 
-          {/* Медиафайлы */}
+          {/* Media files */}
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-xl bg-purple-500/20">
               <Camera className="w-4 h-4 text-purple-400" />
             </div>
             <div>
-              <p className="text-xs text-slate-400">Медиафайлы</p>
-              <p className="text-sm font-semibold text-white">{mediaFiles.length} файл(ов)</p>
+              <p className="text-xs text-slate-400">Media files</p>
+              <p className="text-sm font-semibold text-white">{mediaFiles.length} file(s)</p>
             </div>
           </div>
 
-          {/* Награда */}
+          {/* Reward */}
           {selectedIncident && (
             <div className="flex items-center gap-3 pt-3 border-t border-white/10">
               <div className="p-2 rounded-xl bg-amber-500/20">
                 <Trophy className="w-4 h-4 text-amber-400" />
               </div>
               <div>
-                <p className="text-xs text-slate-400">Возможная награда</p>
+                <p className="text-xs text-slate-400">Potential reward</p>
                 <p className="text-sm font-bold text-amber-400">{selectedIncident.rewardRange} VOD</p>
               </div>
             </div>
           )}
         </div>
 
-        {/* Контактные данные */}
+        {/* Contact details */}
         <div className="space-y-3">
           <p className="text-xs text-slate-400 text-center">
-            Укажите контакты для связи (опционально)
+            Provide contact info (optional)
           </p>
           <input
             type="email"
@@ -592,7 +592,7 @@ export function EmergencyModal({
             type="tel"
             value={contactPhone}
             onChange={(e) => setContactPhone(e.target.value)}
-            placeholder="Телефон"
+            placeholder="Phone"
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 outline-none focus:border-cyan-400/50 transition-colors text-sm"
             style={{
               boxShadow: "inset 0 2px 8px rgba(0, 0, 0, 0.2)",
@@ -600,10 +600,10 @@ export function EmergencyModal({
           />
         </div>
 
-        {/* Предупреждение */}
+        {/* Warning */}
         <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
           <p className="text-xs text-amber-200 text-center">
-            ⚠️ За заведомо ложное сообщение предусмотрена ответственность
+            ⚠️ False reporting is subject to liability
           </p>
         </div>
       </div>
@@ -677,14 +677,14 @@ export function EmergencyModal({
                   <AlertTriangle className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-white">Экстренный репорт</h2>
-                  <p className="text-xs text-slate-400">Шаг {currentStep === "type" ? 1 : currentStep === "media" ? 2 : 3} из 3</p>
+                  <h2 className="text-lg font-bold text-white">Emergency Report</h2>
+                  <p className="text-xs text-slate-400">Step {currentStep === "type" ? 1 : currentStep === "media" ? 2 : 3} of 3</p>
                 </div>
               </div>
               <button
                 onClick={onClose}
                 className="p-2 rounded-xl hover:bg-white/10 transition-colors"
-                aria-label="Закрыть"
+                aria-label="Close"
               >
                 <X className="w-5 h-5 text-slate-400" />
               </button>
@@ -744,7 +744,7 @@ export function EmergencyModal({
                   }}
                 >
                   <ChevronLeft className="w-4 h-4" />
-                  Назад
+                  Back
                 </motion.button>
               ) : (
                 <div />
@@ -763,7 +763,7 @@ export function EmergencyModal({
                   whileHover={{ scale: canProceed() ? 1.02 : 1 }}
                   whileTap={{ scale: canProceed() ? 0.98 : 1 }}
                 >
-                  Далее
+                  Next
                   <ChevronRight className="w-4 h-4" />
                 </motion.button>
               ) : (
@@ -782,12 +782,12 @@ export function EmergencyModal({
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      Отправка...
+                      Submitting...
                     </>
                   ) : (
                     <>
                       <Sparkles className="w-4 h-4" />
-                      Отправить репорт
+                      Submit Report
                     </>
                   )}
                 </motion.button>

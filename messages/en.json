@@ -357,14 +357,21 @@
   },
   "ai": {
     "title": "VOD AI Assistant",
-    "subtitle": "Your intelligent assistant in the water ecosystem",
-    "placeholder": "Ask about tokens, projects or water technologies...",
+    "subtitle": "Your intelligent assistant for the LoopOrb ecosystem",
+    "placeholder": "Type a message...",
     "suggestions": [
       "Tell me about VOD tokens",
       "What projects are in Uzbekistan?",
       "What is VOD-Lab?",
-      "How to participate in DAO?"
-    ]
+      "How to participate in DAO?",
+      "What is the investment return?"
+    ],
+    "welcome": "Hi there! I'm VOD AI, your assistant for the LoopOrb ecosystem.\n\nI can tell you about:\n• Tokenomics (VOD, VODeco, VODcredit)\n• VOD-Lab hardware\n• Investment projects\n• DAO governance\n\nWhat would you like to know?",
+    "assistantLabel": "Your assistant",
+    "userLabel": "You",
+    "tryAsking": "Try asking:",
+    "errorMsg": "Sorry, an error occurred. Please try again later.",
+    "loadingLabel": "AI is thinking..."
   },
   "tokenhub": {
     "title": "Invest in Water Technologies",
@@ -550,6 +557,7 @@
     "preSaleDiscount": "Pre-Sale with 33% discount",
     "activeStakes": "Active Stakes",
     "withdraw": "Withdraw",
+    "from": "From",
     "noActiveStakes": "You have no active stakes",
     "stakeUnityButton": "Stake UNITY",
     "unauthorizedTitle": "Authorization Required",

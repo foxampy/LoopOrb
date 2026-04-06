@@ -123,18 +123,18 @@ export default function WalletPage() {
                 <Lock className="w-10 h-10 text-water-400" />
               </div>
               <h1 className="text-2xl font-bold text-white mb-4">
-                Требуется авторизация
+                Authorization Required
               </h1>
               <p className="text-water-200/70 mb-8">
-                Кошелёк доступен только авторизованным пользователям. 
-                Войдите, чтобы управлять своими UNITY токенами.
+                Wallet is available only to authorized users.
+                Sign in to manage your UNITY tokens.
               </p>
               <div className="space-y-3">
                 <Link href="/login" className="block w-full btn-primary text-center">
-                  Войти
+                  Sign In
                 </Link>
                 <Link href="/register" className="block w-full btn-outline text-center">
-                  Создать аккаунт
+                  Create Account
                 </Link>
               </div>
             </motion.div>
@@ -149,7 +149,7 @@ export default function WalletPage() {
       <>
         <Navbar />
         <main className="min-h-screen pt-20 flex items-center justify-center">
-          <div className="text-water-200/50">Не удалось загрузить данные кошелька</div>
+          <div className="text-water-200/50">Failed to load wallet data</div>
         </main>
       </>
     );
@@ -159,12 +159,12 @@ export default function WalletPage() {
   const totalBalance = wallet.balance + wallet.totalStaked;
 
   const transactionTypes: Record<string, { label: string; color: string; icon: typeof ArrowDownLeft }> = {
-    REGISTRATION_BONUS: { label: "Бонус за регистрацию", color: "text-green-400", icon: Plus },
-    STAKE: { label: "Стейкинг", color: "text-orange-400", icon: ArrowUpRight },
-    UNSTAKE: { label: "Разстейкинг", color: "text-blue-400", icon: ArrowDownLeft },
-    STAKE_REWARD: { label: "Награда за стейкинг", color: "text-green-400", icon: TrendingUp },
-    TRANSFER_IN: { label: "Получение", color: "text-green-400", icon: ArrowDownLeft },
-    TRANSFER_OUT: { label: "Отправка", color: "text-red-400", icon: ArrowUpRight },
+    REGISTRATION_BONUS: { label: "Registration Bonus", color: "text-green-400", icon: Plus },
+    STAKE: { label: "Staking", color: "text-orange-400", icon: ArrowUpRight },
+    UNSTAKE: { label: "Unstaking", color: "text-blue-400", icon: ArrowDownLeft },
+    STAKE_REWARD: { label: "Staking Reward", color: "text-green-400", icon: TrendingUp },
+    TRANSFER_IN: { label: "Received", color: "text-green-400", icon: ArrowDownLeft },
+    TRANSFER_OUT: { label: "Sent", color: "text-red-400", icon: ArrowUpRight },
   };
 
   return (
@@ -183,7 +183,7 @@ export default function WalletPage() {
             <div className="relative">
               <div className="flex items-center gap-3 mb-2">
                 <Wallet className="w-6 h-6 text-water-400" />
-                <span className="text-water-200/70">Ваш баланс</span>
+                <span className="text-water-200/70">Your Balance</span>
               </div>
               <div className="text-5xl font-bold gradient-text mb-6">
                 {totalBalance.toFixed(2)} UNITY
@@ -191,19 +191,19 @@ export default function WalletPage() {
 
               <div className="grid grid-cols-3 gap-4">
                 <div className="p-4 bg-white/5 rounded-lg">
-                  <div className="text-sm text-water-200/50 mb-1">Доступно</div>
+                  <div className="text-sm text-water-200/50 mb-1">Available</div>
                   <div className="text-xl font-semibold text-white">
                     {wallet.balance.toFixed(2)}
                   </div>
                 </div>
                 <div className="p-4 bg-white/5 rounded-lg">
-                  <div className="text-sm text-water-200/50 mb-1">В стейкинге</div>
+                  <div className="text-sm text-water-200/50 mb-1">Staked</div>
                   <div className="text-xl font-semibold text-orange-400">
                     {wallet.totalStaked.toFixed(2)}
                   </div>
                 </div>
                 <div className="p-4 bg-white/5 rounded-lg">
-                  <div className="text-sm text-water-200/50 mb-1">Заработано</div>
+                  <div className="text-sm text-water-200/50 mb-1">Earned</div>
                   <div className="text-xl font-semibold text-green-400">
                     {wallet.totalEarned.toFixed(2)}
                   </div>
@@ -215,9 +215,9 @@ export default function WalletPage() {
           {/* Tabs */}
           <div className="flex gap-2 mb-6">
             {[
-              { id: "overview", label: "Обзор" },
-              { id: "stakes", label: "Стейкинг" },
-              { id: "history", label: "История" },
+              { id: "overview", label: "Overview" },
+              { id: "stakes", label: "Stakes" },
+              { id: "history", label: "History" },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -242,7 +242,7 @@ export default function WalletPage() {
           >
             {activeTab === "overview" && (
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-white">Быстрые действия</h3>
+                <h3 className="text-lg font-semibold text-white">Quick Actions</h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <a
                     href="/projects"
@@ -252,9 +252,9 @@ export default function WalletPage() {
                       <TrendingUp className="w-6 h-6 text-orange-400" />
                     </div>
                     <div>
-                      <div className="font-medium text-white">Застейкать UNITY</div>
+                      <div className="font-medium text-white">Stake UNITY</div>
                       <div className="text-sm text-water-200/60">
-                        Инвестируйте в проекты
+                        Invest in projects
                       </div>
                     </div>
                     <ChevronRight className="w-5 h-5 text-water-200/30 ml-auto" />
@@ -268,9 +268,9 @@ export default function WalletPage() {
                       <ArrowDownLeft className="w-6 h-6 text-green-400" />
                     </div>
                     <div>
-                      <div className="font-medium text-white">Купить UNITY</div>
+                      <div className="font-medium text-white">Buy UNITY</div>
                       <div className="text-sm text-water-200/60">
-                        Pre-Sale со скидкой 33%
+                        Pre-Sale with 33% discount
                       </div>
                     </div>
                     <ChevronRight className="w-5 h-5 text-water-200/30 ml-auto" />
@@ -279,7 +279,7 @@ export default function WalletPage() {
 
                 {stakes.length > 0 && (
                   <>
-                    <h3 className="text-lg font-semibold text-white mt-8">Активные стейки</h3>
+                    <h3 className="text-lg font-semibold text-white mt-8">Active Stakes</h3>
                     <div className="space-y-3">
                       {stakes.slice(0, 3).map((stake) => (
                         <div
@@ -298,7 +298,7 @@ export default function WalletPage() {
                             onClick={() => handleUnstake(stake.id)}
                             className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition"
                           >
-                            Вывести
+                            Withdraw
                           </button>
                         </div>
                       ))}
@@ -325,7 +325,7 @@ export default function WalletPage() {
                             {stake.project.name}
                           </div>
                           <div className="text-sm text-water-200/60">
-                            С {new Date(stake.startDate).toLocaleDateString("ru-RU")}
+                            Since {new Date(stake.startDate).toLocaleDateString("en-US")}
                           </div>
                         </div>
                       </div>
@@ -339,19 +339,19 @@ export default function WalletPage() {
                         onClick={() => handleUnstake(stake.id)}
                         className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition ml-4"
                       >
-                        Вывести
+                        Withdraw
                       </button>
                     </div>
                   ))
                 ) : (
                   <div className="text-center py-12">
                     <TrendingUp className="w-16 h-16 text-water-200/20 mx-auto mb-4" />
-                    <p className="text-water-200/50">У вас нет активных стейков</p>
+                    <p className="text-water-200/50">You have no active stakes</p>
                     <a
                       href="/projects"
                       className="inline-block mt-4 btn-primary"
                     >
-                      Застейкать UNITY
+                      Stake UNITY
                     </a>
                   </div>
                 )}
@@ -401,7 +401,7 @@ export default function WalletPage() {
                             {tx.amount.toFixed(2)} UNITY
                           </div>
                           <div className="text-xs text-water-200/40">
-                            {new Date(tx.createdAt).toLocaleDateString("ru-RU")}
+                            {new Date(tx.createdAt).toLocaleDateString("en-US")}
                           </div>
                         </div>
                       </div>
@@ -410,7 +410,7 @@ export default function WalletPage() {
                 ) : (
                   <div className="text-center py-12">
                     <Clock className="w-16 h-16 text-water-200/20 mx-auto mb-4" />
-                    <p className="text-water-200/50">История транзакций пуста</p>
+                    <p className="text-water-200/50">Transaction history is empty</p>
                   </div>
                 )}
               </div>

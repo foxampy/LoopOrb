@@ -79,7 +79,7 @@ import {
 import Link from "next/link";
 
 // ============================================================================
-// ДАННЫЕ УСТРОЙСТВ ИЗ LITEPAPER
+// DEVICE DATA FROM LITEPAPER
 // ============================================================================
 
 interface DeviceSpec {
@@ -489,27 +489,27 @@ const devices: Device[] = [
 ];
 
 // ============================================================================
-// ДАННЫЕ ДЛЯ СРАВНЕНИЯ
+// COMPARISON DATA
 // ============================================================================
 
 const comparisonFeatures = [
-  { feature: "Параметры", pro: "100+", node: "50", mini: "25", sensor: "10" },
-  { feature: "Точность pH", pro: "±0.01", node: "±0.05", mini: "±0.1", sensor: "±0.2" },
-  { feature: "Турбидиметр", pro: "Лазерный ±0.01 NTU", node: "Оптический ±0.1 NTU", mini: "Оптический ±0.5 NTU", sensor: "Оптический ±1 NTU" },
-  { feature: "Производительность", pro: "500/день", node: "200/день", mini: "50/день", sensor: "Real-time" },
-  { feature: "Автоматизация", pro: "Полная 24/7", node: "Полуавтомат", mini: "Автомат", sensor: "Автономный" },
-  { feature: "Спектрофотометр", pro: "UV-Vis-NIR", node: "UV-Vis", mini: "Vis 8 каналов", sensor: "—" },
-  { feature: "Edge AI", pro: "NVIDIA Jetson 32 TOPS", node: "ARM Cortex-A78", mini: "ESP32-S3", sensor: "—" },
-  { feature: "Связь", pro: "5G+Satellite", node: "4G/5G+WiFi", mini: "4G+LoRaWAN", sensor: "BT+LoRaWAN" },
-  { feature: "Защита", pro: "IP68", node: "IP65", mini: "IP66", sensor: "IP68" },
-  { feature: "Температура", pro: "-40°C..+60°C", node: "-20°C..+50°C", mini: "-10°C..+45°C", sensor: "0°C..+50°C" },
-  { feature: "Вес", pro: "25 кг", node: "8 кг", mini: "4 кг", sensor: "0.5 кг" },
-  { feature: "Питание", pro: "Солнце 200W", node: "AC+батарея", mini: "AC+солнце", sensor: "Батарея" },
-  { feature: "Цена", pro: "$13,400", node: "$8,900", mini: "$4,500", sensor: "$299" },
+  { feature: "Parameters", pro: "100+", node: "50", mini: "25", sensor: "10" },
+  { feature: "pH Accuracy", pro: "+/-0.01", node: "+/-0.05", mini: "+/-0.1", sensor: "+/-0.2" },
+  { feature: "Turbidimeter", pro: "Laser +/-0.01 NTU", node: "Optical +/-0.1 NTU", mini: "Optical +/-0.5 NTU", sensor: "Optical +/-1 NTU" },
+  { feature: "Throughput", pro: "500/day", node: "200/day", mini: "50/day", sensor: "Real-time" },
+  { feature: "Automation", pro: "Full 24/7", node: "Semi-auto", mini: "Auto", sensor: "Autonomous" },
+  { feature: "Spectrophotometer", pro: "UV-Vis-NIR", node: "UV-Vis", mini: "Vis 8 channels", sensor: "-" },
+  { feature: "Edge AI", pro: "NVIDIA Jetson 32 TOPS", node: "ARM Cortex-A78", mini: "ESP32-S3", sensor: "-" },
+  { feature: "Connectivity", pro: "5G+Satellite", node: "4G/5G+WiFi", mini: "4G+LoRaWAN", sensor: "BT+LoRaWAN" },
+  { feature: "Protection", pro: "IP68", node: "IP65", mini: "IP66", sensor: "IP68" },
+  { feature: "Temperature", pro: "-40C..+60C", node: "-20C..+50C", mini: "-10C..+45C", sensor: "0C..+50C" },
+  { feature: "Weight", pro: "25 kg", node: "8 kg", mini: "4 kg", sensor: "0.5 kg" },
+  { feature: "Power", pro: "Solar 200W", node: "AC+battery", mini: "AC+solar", sensor: "Battery" },
+  { feature: "Price", pro: "$13,400", node: "$8,900", mini: "$4,500", sensor: "$299" },
 ];
 
 // ============================================================================
-// ОТЗЫВЫ
+// REVIEWS
 // ============================================================================
 
 interface Review {
@@ -527,69 +527,69 @@ interface Review {
 const reviews: Review[] = [
   {
     id: 1,
-    author: "Д-р Алексей Петров",
-    role: "Гидрохимик, МГУ",
+    author: "Dr. Alexey Petrov",
+    role: "Hydrochemist, Moscow State University",
     device: "VOD-Lab Pro",
     rating: 5,
-    date: "15 февраля 2025",
-    text: "Используем VOD-Lab Pro для мониторинга Москвы-реки. Точность сопоставима с лабораторными анализами, но данные в реальном времени. Edge AI отлично справляется с верификацией. За 6 месяцев работы — ни одного ложного срабатывания.",
+    date: "February 15, 2025",
+    text: "We use VOD-Lab Pro for monitoring the Moscow River. Accuracy is comparable to laboratory analyses, but data is real-time. Edge AI handles verification excellently. In 6 months of operation - not a single false trigger.",
     helpful: 47,
-    avatar: "АП",
+    avatar: "AP",
   },
   {
     id: 2,
-    author: "Мария Иванова",
-    role: "Экологический инспектор",
+    author: "Maria Ivanova",
+    role: "Environmental Inspector",
     device: "VOD-Lab Node",
     rating: 5,
-    date: "3 марта 2025",
-    text: "Node — идеальный инструмент для выездных проверок. Разворачиваем за 15 минут, получаем результаты через 5 минут. GPS-тегирование и автоматическая выгрузка в блокчейн — незаменимо для официальных отчётов.",
+    date: "March 3, 2025",
+    text: "Node is the perfect tool for field inspections. We deploy in 15 minutes, get results in 5 minutes. GPS tagging and automatic blockchain upload - indispensable for official reports.",
     helpful: 32,
-    avatar: "МИ",
+    avatar: "MI",
   },
   {
     id: 3,
-    author: "Фермерское хозяйство «Зелёная долина»",
-    role: "Агропредприятие",
+    author: "Green Valley Farm",
+    role: "Agricultural Enterprise",
     device: "VOD-Lab Mini",
     rating: 4,
-    date: "20 января 2025",
-    text: "Mini контролирует воду для орошения 24/7. Автоматические уведомления о превышении нитратов спасли урожай дважды. Хотелось бы больше параметров для почвы, но для воды — отлично.",
+    date: "January 20, 2025",
+    text: "Mini monitors irrigation water 24/7. Automatic nitrate exceedance notifications saved the harvest twice. Would like more soil parameters, but for water it is excellent.",
     helpful: 28,
-    avatar: "ФЗ",
+    avatar: "GV",
   },
   {
     id: 4,
-    author: "Дмитрий Соколов",
-    role: "Владелец частного колодца",
+    author: "Dmitry Sokolov",
+    role: "Private well owner",
     device: "Smart Sensor",
     rating: 5,
-    date: "10 февраля 2025",
-    text: "Установил Smart Sensor в колодец 3 месяца назад. Теперь вижу качество воды в приложении. Когда после дождей вода ухудшалась — получил уведомление. За свои $299 — лучшая инвестиция в здоровье семьи.",
+    date: "February 10, 2025",
+    text: "Installed Smart Sensor in my well 3 months ago. Now I can see water quality in the app. When water quality deteriorated after rains - I got a notification. For $299 - the best investment in my family's health.",
     helpful: 89,
-    avatar: "ДС",
+    avatar: "DS",
   },
   {
     id: 5,
-    author: "Экспедиция «Чистая Волга»",
-    role: "Научно-исследовательская группа",
+    author: "Clean Volga Expedition",
+    role: "Research Group",
     device: "Water Expeditor",
     rating: 5,
-    date: "5 марта 2025",
-    text: "Прошли 3000 км по Волге с Water Expeditor. Лаборатория в чемодане — не метафора. Микробиологию определяли прямо на берегу, спектрофотометр работал без нареканий. Спутниковая связь — спасение в глуши.",
+    date: "March 5, 2025",
+    text: "We traveled 3,000 km along the Volga with Water Expeditor. A laboratory in a suitcase is not a metaphor. Microbiology was determined right on the shore, the spectrophotometer worked flawlessly. Satellite communication is a lifesaver in remote areas.",
     helpful: 56,
-    avatar: "ЭЧ",
+    avatar: "CE",
   },
   {
     id: 6,
-    author: "Елена Козлова",
-    role: "Эко-активистка",
+    author: "Elena Kozlova",
+    role: "Eco-activist",
     device: "VOD Check",
     rating: 5,
-    date: "28 февраля 2025",
-    text: "VOD Check изменил моё понимание экологии. Загружаю замеры воды из парка — получаю VODcredit. Накопила уже 500 монет, обменяла на тест-наборы. Соседская сеть показала, что у 30% жителей района вода с превышением железа. Вместе добились проверки водоканала!",
+    date: "February 28, 2025",
+    text: "VOD Check changed my understanding of ecology. I upload water measurements from the park - earn VODcredit. Already accumulated 500 coins, exchanged for test kits. The neighborhood network showed that 30% of residents in our area have iron exceedance. Together we achieved water utility inspection!",
     helpful: 124,
-    avatar: "ЕК",
+    avatar: "EK",
   },
 ];
 
@@ -599,36 +599,36 @@ const reviews: Review[] = [
 
 const faqs = [
   {
-    question: "Как часто нужна калибровка устройств?",
-    answer: "VOD-Lab Pro калибруется автоматически раз в сутки по эталонным образцам NIST. VOD-Lab Node и Mini — раз в неделю (автоматически). Smart Sensor — раз в 3 месяца (ручная калибровка через приложение). Water Expeditor калибруется перед каждой экспедицией.",
+    question: "How often does device calibration need?",
+    answer: "VOD-Lab Pro calibrates automatically daily using NIST reference samples. VOD-Lab Node and Mini - weekly (automatic). Smart Sensor - every 3 months (manual calibration via app). Water Expeditor calibrates before each expedition.",
   },
   {
-    question: "Можно ли интегрировать устройства с существующими SCADA-системами?",
-    answer: "Да, все устройства VOD-Lab поддерживают Modbus TCP/RTU, OPC UA, MQTT. Предоставляем REST API и WebSocket для интеграции с любыми системами. Готовые драйверы для Siemens, Schneider Electric, Rockwell Automation.",
+    question: "Can devices be integrated with existing SCADA systems?",
+    answer: "Yes, all VOD-Lab devices support Modbus TCP/RTU, OPC UA, MQTT. We provide REST API and WebSocket for integration with any systems. Ready drivers for Siemens, Schneider Electric, Rockwell Automation.",
   },
   {
-    question: "Как работает гарантия и обслуживание?",
-    answer: "Гарантия: Pro/Node/Expeditor — 3-5 лет, Mini — 2 года, Smart Sensor — 1 год. Обслуживание: автоматическая диагностика, уведомления о необходимости замены картриджей/реагентов. Выезд инженера в течение 72 часов (для Pro/Node).",
+    question: "How does warranty and service work?",
+    answer: "Warranty: Pro/Node/Expeditor - 3-5 years, Mini - 2 years, Smart Sensor - 1 year. Service: automatic diagnostics, notifications about cartridge/reagent replacement needs. Engineer dispatch within 72 hours (for Pro/Node).",
   },
   {
-    question: "Можно ли купить устройства в лизинг?",
-    answer: "Да, предлагаем лизинг от $800/мес для VOD-Lab Pro (включая обслуживание и картриджи). Для образовательных учреждений и НКО — специальные условия (скидка до 30%).",
+    question: "Can devices be purchased on lease?",
+    answer: "Yes, we offer leasing from $800/month for VOD-Lab Pro (including service and cartridges). Special conditions for educational institutions and NGOs (up to 30% discount).",
   },
   {
-    question: "Как данные попадают в блокчейн?",
-    answer: "Каждое устройство подписывает данные через HSM-модуль (ECDSA secp256k1). Данные передаются в сеть валидаторов через LoRaWAN/спутник/4G. После верификации 2/3 валидаторов данные записываются в VOD Chain (≈30 секунд).",
+    question: "How does data get into the blockchain?",
+    answer: "Each device signs data via HSM module (ECDSA secp256k1). Data is transmitted to the validator network via LoRaWAN/satellite/4G. After verification by 2/3 of validators, data is recorded in VOD Chain (approximately 30 seconds).",
   },
   {
-    question: "Что если устройство выйдет из строя?",
-    answer: "Автоматическая диагностика предупреждает о проблемах за 24-72 часа. При критической поломке — автоматическое переключение на резервный узел (если есть в сети). Замена устройства в течение 7 дней (для Pro/Node).",
+    question: "What if a device fails?",
+    answer: "Automatic diagnostics warns about problems 24-72 hours in advance. In case of critical failure - automatic switch to backup node (if available in network). Device replacement within 7 days (for Pro/Node).",
   },
   {
-    question: "Можно ли использовать устройства за пределами сети VODeco?",
-    answer: "Да, устройства работают автономно. Но подключение к VODeco даёт: автоматическую верификацию данных, эмиссию VOD за качественные данные, доступ к карте качества воды, участие в DAO. Без подключения — только локальные данные.",
+    question: "Can devices be used outside the VODeco network?",
+    answer: "Yes, devices work autonomously. But connecting to VODeco provides: automatic data verification, VOD emission for quality data, access to the water quality map, DAO participation. Without connection - only local data.",
   },
   {
-    question: "Есть ли образовательные программы по работе с устройствами?",
-    answer: "Да, VOD-Academy предлагает курсы: «Оператор VOD-Lab» (120 часов, $500), «Данные в водном хозяйстве» (80 часов, $300). После обучения — NFT-сертификат + VODeco токены + доступ к B2B-функциям.",
+    question: "Are there educational programs for working with devices?",
+    answer: "Yes, VOD-Academy offers courses: 'VOD-Lab Operator' (120 hours, $500), 'Data in Water Management' (80 hours, $300). After training - NFT certificate + VODeco tokens + access to B2B features.",
   },
 ];
 

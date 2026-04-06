@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { z } from "zod";
-import { successResponse, errorResponse } from "@/lib/api";
+import { errorResponse } from "@/lib/api";
 
 const stakeSchema = z.object({
   projectId: z.string(),
@@ -16,20 +16,8 @@ export async function POST(req: NextRequest) {
       return errorResponse("Validation failed", 400, result.error.flatten());
     }
 
-    const { projectId, amount } = result.data;
-
-    // Demo mode - просто возвращаем success
-    const stake = {
-      id: "stake" + Date.now(),
-      userId: "demo-user-001",
-      projectId,
-      amount,
-      apy: 10,
-      status: "ACTIVE",
-      startDate: new Date().toISOString(),
-    };
-
-    return successResponse({ stake, message: "Successfully staked " + amount + " UNITY" }, 201);
+    // Staking is not yet available. The platform is in development.
+    return errorResponse("Staking is not yet available. The platform is in development.", 503);
   } catch (error) {
     console.error("Create stake error:", error);
     return errorResponse("Internal server error", 500);

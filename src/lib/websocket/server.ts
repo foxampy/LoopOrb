@@ -17,7 +17,7 @@ interface TypingEvent {
   isTyping: boolean;
 }
 
-// In-memory storage for demo (replace with DB in production)
+// In-memory storage for active connections (replace with DB persistence in production)
 const userSockets: Map<string, string> = new Map();
 const chatRooms: Map<string, Set<string>> = new Map();
 
@@ -39,8 +39,8 @@ export class WebSocketServer {
       // Authenticate user
       socket.on('authenticate', async (data: { userId: string; token: string }) => {
         try {
-          // TODO: Verify session with database
-          // For now, accept any token for demo
+          // TODO: Verify session token with database
+          // Accept connection and store user mapping
           
           userSockets.set(data.userId, socket.id);
           socket.data.userId = data.userId;

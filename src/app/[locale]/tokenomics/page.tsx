@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "next-intl/navigation";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -19,26 +19,26 @@ const tokens = [
     name: "VOD",
     fullName: "Water Commodity Token",
     type: "Commodity",
-    description: "Право на 1 м³ верифицированной воды. Эмитируется только при верификации физического объёма.",
+    description: "Token that carries verified water data. Emitted when sensors digitize water volumes, seal metadata, and package into nodes.",
     icon: Droplets,
     color: "from-cyan-500 to-blue-500",
     bgColor: "bg-cyan-500/20",
     textColor: "text-cyan-400",
-    supply: "Неограниченная",
-    backing: "1 м³ воды в лицензированном хранилище",
-    emission: "Только при верификации физического объёма",
-    holders: "Операторы, граждане, инвесторы",
+    supply: "Unlimited",
+    backing: "1 m3 of water in a licensed storage",
+    emission: "Only upon physical volume verification",
+    holders: "Operators, citizens, investors",
     useCases: [
-      "Оплата 1 м³ воды (1 VOD = 1 м³)",
-      "Стейкинг в инфраструктурные проекты",
-      "Торговля на TokenHub",
-      "Оплата услуг экосистемы"
+      "Pay for 1 m3 of water (1 VOD = 1 m3)",
+      "Staking in infrastructure projects",
+      "Trading on TokenHub",
+      "Ecosystem service payments"
     ],
     mechanics: [
-      "Эмиссия = Объём × Качество данных × Актуальность × Репутация",
-      "Налог на хранение: 2% годовых (стимул к использованию)",
-      "Regional caps: макс 10% ресурсов региона на 1 holder",
-      "Сжигание при выкупе воды или услуг"
+      "Emission = Volume x Data Quality x Actuality x Reputation",
+      "Storage tax: 2% per year (use incentive)",
+      "Regional caps: max 10% of regional resources per 1 holder",
+      "Burning on water or service buyback"
     ]
   },
   {
@@ -46,26 +46,26 @@ const tokens = [
     name: "VODeco",
     fullName: "Governance Token",
     type: "Governance",
-    description: "Токен управления DAO. Фиксированная эмиссия. Дает право голоса и участия в валидации.",
+    description: "DAO governance token. Fixed emission. Grants voting rights and validation participation.",
     icon: Shield,
     color: "from-emerald-500 to-green-500",
     bgColor: "bg-emerald-500/20",
     textColor: "text-emerald-400",
-    supply: "1,000,000,000 (фиксированная)",
-    backing: "Репутация + стейк в экосистеме",
-    emission: "Фиксированная, полностью разморожена к 2027",
-    holders: "DAO-участники, валидаторы, инвесторы",
+    supply: "1,000,000,000 (fixed)",
+    backing: "Reputation + stake in ecosystem",
+    emission: "Fixed, fully unlocked by 2027",
+    holders: "DAO participants, validators, investors",
     useCases: [
-      "Голосование в DAO (L1-L4 решения)",
-      "Стейкинг для Validator Node (100,000 VODeco)",
-      "Делегирование голосов",
-      "Участие в квадратичном голосовании"
+      "DAO voting (L1-L4 decisions)",
+      "Staking for Validator Node (100,000 VODeco)",
+      "Vote delegation",
+      "Quadratic voting participation"
     ],
     mechanics: [
-      "Стейк для валидаторов: 100,000 VODeco",
-      "Слэшинг за недобросовестность",
-      "Награды пропорционально стейку и uptime",
-      "Право вето у Government SBT на критической инфраструктуре"
+      "Validator stake: 100,000 VODeco",
+      "Slashing for misconduct",
+      "Rewards proportional to stake and uptime",
+      "Government SBT veto on critical infrastructure"
     ]
   },
   {
@@ -73,39 +73,39 @@ const tokens = [
     name: "VODcredit",
     fullName: "Reputation SBT",
     type: "Reputation (SBT)",
-    description: "Нетрансферабельный токен репутации. Начисляется за вклад в экосистему.",
+    description: "Non-transferable reputation token. Awarded for ecosystem contributions.",
     icon: Award,
     color: "from-amber-500 to-orange-500",
     bgColor: "bg-amber-500/20",
     textColor: "text-amber-400",
-    supply: "Неограниченная",
-    backing: "Вклад в экосистему (данные, валидация, разработка)",
-    emission: "Алгоритмически за полезные действия",
-    holders: "Все участники экосистемы",
+    supply: "Unlimited",
+    backing: "Ecosystem contribution (data, validation, development)",
+    emission: "Algorithmic for useful actions",
+    holders: "All ecosystem participants",
     useCases: [
-      "Повышение репутации в DAO",
-      "Увеличенные награды за данные",
-      "Доступ к привилегированным функциям",
-      "Кэшбэк и бонусы в экосистеме"
+      "Reputation boost in DAO",
+      "Increased data rewards",
+      "Access to privileged features",
+      "Cashback and bonuses in ecosystem"
     ],
     mechanics: [
-      "Нельзя продать или передать (Soulbound)",
-      "Начисляется за данные, валидацию, обучение",
-      "Влияет на множитель эмиссии VOD",
-      "Может быть снижен за недобросовестность"
+      "Cannot be sold or transferred (Soulbound)",
+      "Awarded for data, validation, learning",
+      "Affects VOD emission multiplier",
+      "Can be reduced for misconduct"
     ]
   }
 ];
 
 // --- TOKEN ALLOCATION ---
 const allocation = [
-  { category: "Water Reserve", percentage: 35, amount: "350M VODeco", color: "#00d4ff", desc: "Физическое обеспечение водными ресурсами" },
-  { category: "R&D Treasury", percentage: 25, amount: "250M VODeco", color: "#7c3aed", desc: "Финансирование проектов TokenHub" },
-  { category: "Community", percentage: 15, amount: "150M VODeco", color: "#10b981", desc: "Стимулы, аирдропы, награды" },
-  { category: "Team & Foundation", percentage: 12, amount: "120M VODeco", color: "#f59e0b", desc: "Команда и фонд развития (вестинг 4 года)" },
-  { category: "Early Investors", percentage: 8, amount: "80M VODeco", color: "#ef4444", desc: "Pre-seed и Seed раунды (вестинг 2 года)" },
-  { category: "Liquidity", percentage: 3, amount: "30M VODeco", color: "#6366f1", desc: "Ликвидность и маркет-мейкинг" },
-  { category: "DAO Treasury", percentage: 2, amount: "20M VODeco", color: "#ec4899", desc: "Казна управления" },
+  { category: "Water Reserve", percentage: 35, amount: "350M VODeco", color: "#00d4ff", desc: "Physical backing with water resources" },
+  { category: "R&D Treasury", percentage: 25, amount: "250M VODeco", color: "#7c3aed", desc: "TokenHub project funding" },
+  { category: "Community", percentage: 15, amount: "150M VODeco", color: "#10b981", desc: "Incentives, airdrops, rewards" },
+  { category: "Team & Foundation", percentage: 12, amount: "120M VODeco", color: "#f59e0b", desc: "Team and development fund (4-year vesting)" },
+  { category: "Early Investors", percentage: 8, amount: "80M VODeco", color: "#ef4444", desc: "Seed round — open for booking. Closed round $100K completed by FoxampyLab team" },
+  { category: "Liquidity", percentage: 3, amount: "30M VODeco", color: "#6366f1", desc: "Liquidity and market making" },
+  { category: "DAO Treasury", percentage: 2, amount: "20M VODeco", color: "#ec4899", desc: "Governance treasury" },
 ];
 
 // --- EMISSION FORMULA ---
@@ -121,16 +121,16 @@ function EmissionFormula() {
     <div className="glass-card p-6">
       <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
         <Activity className="w-5 h-5 text-cyan-400" />
-        Формула эмиссии VOD
+        VOD Emission Formula
       </h3>
 
       <div className="p-4 bg-slate-900/50 rounded-xl mb-6 font-mono text-sm text-cyan-400">
-        EMISSION = Объём × Качество × Актуальность × Репутация
+        EMISSION = Volume x Quality x Actuality x Reputation
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 mb-6">
         <div>
-          <label className="block text-sm text-water-200/70 mb-2">Объём воды (м³)</label>
+          <label className="block text-sm text-water-200/70 mb-2">Water volume (m3)</label>
           <input
             type="number"
             value={volume}
@@ -139,7 +139,7 @@ function EmissionFormula() {
           />
         </div>
         <div>
-          <label className="block text-sm text-water-200/70 mb-2">Качество данных (0-1)</label>
+          <label className="block text-sm text-water-200/70 mb-2">Data quality (0-1)</label>
           <input
             type="range"
             min="0.5"
@@ -152,19 +152,19 @@ function EmissionFormula() {
           <div className="text-center text-cyan-400 font-mono mt-1">{quality.toFixed(2)}</div>
         </div>
         <div>
-          <label className="block text-sm text-water-200/70 mb-2">Актуальность</label>
+          <label className="block text-sm text-water-200/70 mb-2">Actuality</label>
           <select
             value={actuality}
             onChange={(e) => setActuality(Number(e.target.value))}
             className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white"
           >
             <option value={1.0}>Real-time (1.0)</option>
-            <option value={0.5}>Часовая задержка (0.5)</option>
-            <option value={0.1}>Сутки (0.1)</option>
+            <option value={0.5}>Hourly delay (0.5)</option>
+            <option value={0.1}>Daily (0.1)</option>
           </select>
         </div>
         <div>
-          <label className="block text-sm text-water-200/70 mb-2">Репутация оператора</label>
+          <label className="block text-sm text-water-200/70 mb-2">Operator reputation</label>
           <input
             type="range"
             min="0.5"
@@ -179,9 +179,9 @@ function EmissionFormula() {
       </div>
 
       <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 rounded-xl border border-cyan-500/30 text-center">
-        <div className="text-sm text-water-200/50 mb-2">Эмиссия VOD</div>
+        <div className="text-sm text-water-200/50 mb-2">VOD Emission</div>
         <div className="text-4xl font-black text-cyan-400">{emission.toLocaleString()} VOD</div>
-        <div className="text-sm text-water-200/50 mt-2">за {volume.toLocaleString()} м³ верифицированной воды</div>
+        <div className="text-sm text-water-200/50 mt-2">for {volume.toLocaleString()} m3 of verified water</div>
       </div>
     </div>
   );
@@ -300,7 +300,7 @@ function AllocationChart() {
     <div className="glass-card p-6">
       <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
         <PieChart className="w-5 h-5 text-cyan-400" />
-        Распределение VODeco
+        VODeco Distribution
       </h3>
 
       <div className="grid md:grid-cols-2 gap-8">
@@ -372,17 +372,17 @@ function AllocationChart() {
 // --- DAO LEVELS ---
 function DAOLevels() {
   const levels = [
-    { level: "L1", name: "Constitutional", topic: "Изменение правил эмиссии", quorum: "66% VODeco + 51% валидаторов", mechanism: "Мультиподпись + 30 дней", time: "30 дней" },
-    { level: "L2", name: "Economic", topic: "Параметры стейкинга, налогов", quorum: "51% VODeco", mechanism: "Прямое голосование", time: "7 дней" },
-    { level: "L3", name: "Projects", topic: "Инвестиции, распределение", quorum: "40% VODeco + репутация", mechanism: "Квадратичное голосование", time: "14 дней" },
-    { level: "L4", name: "Operational", topic: "Гранты, награды", quorum: "Делегаты", mechanism: "Жидкая демократия", time: "3 дня" },
+    { level: "L1", name: "Constitutional", topic: "Emission rule changes", quorum: "66% VODeco + 51% validators", mechanism: "Multisig + 30 days", time: "30 days" },
+    { level: "L2", name: "Economic", topic: "Staking parameters, taxes", quorum: "51% VODeco", mechanism: "Direct voting", time: "7 days" },
+    { level: "L3", name: "Projects", topic: "Investments, distribution", quorum: "40% VODeco + reputation", mechanism: "Quadratic voting", time: "14 days" },
+    { level: "L4", name: "Operational", topic: "Grants, rewards", quorum: "Delegates", mechanism: "Liquid democracy", time: "3 days" },
   ];
 
   return (
     <div className="glass-card p-6">
       <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
         <Shield className="w-5 h-5 text-cyan-400" />
-        Уровни DAO
+        DAO Levels
       </h3>
 
       <div className="grid gap-4">
@@ -405,15 +405,15 @@ function DAOLevels() {
                 </div>
                 <div className="grid grid-cols-3 gap-4 text-xs">
                   <div>
-                    <span className="text-water-200/50">Кворум:</span>
+                    <span className="text-water-200/50">Quorum:</span>
                     <span className="text-white ml-1">{l.quorum}</span>
                   </div>
                   <div>
-                    <span className="text-water-200/50">Механизм:</span>
+                    <span className="text-water-200/50">Mechanism:</span>
                     <span className="text-white ml-1">{l.mechanism}</span>
                   </div>
                   <div>
-                    <span className="text-water-200/50">Срок:</span>
+                    <span className="text-water-200/50">Duration:</span>
                     <span className="text-white ml-1">{l.time}</span>
                   </div>
                 </div>
@@ -452,6 +452,16 @@ export default function TokenomicsPage() {
             <p className="text-lg text-water-200/70 max-w-2xl mx-auto">
               {t("subtitle")}
             </p>
+            <div className="mt-6 inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+              <span className="text-emerald-400 font-semibold">Seed Round Now Open</span>
+              <span className="text-water-200/50">|</span>
+              <span className="text-water-200/70 text-sm">Tokens that carry verified water data</span>
+              <span className="text-water-200/50">|</span>
+              <span className="text-water-200/70 text-sm">Developed by FoxampyLab</span>
+            </div>
+            <div className="mt-4 inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-800/50 border border-slate-700">
+              <span className="text-slate-300 text-sm">Closed Round: $100,000 — Completed by FoxampyLab Team</span>
+            </div>
           </motion.div>
 
           {/* Three Tokens */}
@@ -486,7 +496,7 @@ export default function TokenomicsPage() {
           >
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <Globe className="w-6 h-6 text-cyan-400" />
-              Взаимосвязанная экосистема
+              Interconnected Ecosystem
             </h2>
 
             <div className="grid lg:grid-cols-3 gap-6 mb-8">
@@ -497,12 +507,12 @@ export default function TokenomicsPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-white">ProjectHub</h3>
-                    <p className="text-xs text-water-200/50">16 R&D проектов</p>
+                    <p className="text-xs text-water-200/50">16 R&D projects</p>
                   </div>
                 </div>
                 <p className="text-sm text-water-200/70 mb-4">
-                  R&D инициативы от концепции до продакшена. Каждый проект проходит 
-                  стадии верификации и может получить финансирование через TokenHub.
+                  R&D initiatives from concept to production. Each project goes through
+                  verification stages and can receive funding via TokenHub.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-2 py-1 bg-cyan-500/10 text-cyan-400 text-xs rounded">Hardware</span>
@@ -518,15 +528,15 @@ export default function TokenomicsPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-white">TokenHub</h3>
-                    <p className="text-xs text-water-200/50">Инвестиции & DeFi</p>
+                    <p className="text-xs text-water-200/50">Investment & DeFi</p>
                   </div>
                 </div>
                 <p className="text-sm text-water-200/70 mb-4">
-                  B2I интерфейс для инвестирования в R&D проекты. Стейкинг с APY 8-32%, 
-                  DEX-интеграция для обмена токенов, ликвидность для VOD/VODeco.
+                  B2I interface for investing in R&D projects. Staking with APY 8-32%,
+                  DEX integration for token swapping, liquidity for VOD/VODeco.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-xs rounded">Стейкинг</span>
+                  <span className="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-xs rounded">Staking</span>
                   <span className="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-xs rounded">DEX</span>
                   <span className="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-xs rounded">Liquidity</span>
                 </div>
@@ -539,12 +549,12 @@ export default function TokenomicsPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-white">DAO Governance</h3>
-                    <p className="text-xs text-water-200/50">4 уровня решений</p>
+                    <p className="text-xs text-water-200/50">4 decision levels</p>
                   </div>
                 </div>
                 <p className="text-sm text-water-200/70 mb-4">
-                  Децентрализованное управление через VODeco. От конституционных решений 
-                  до операционных — все прозрачно и верифицируемо на блокчейне.
+                  Decentralized governance via VODeco. From constitutional decisions
+                  to operational - all transparent and verifiable on the blockchain.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-2 py-1 bg-amber-500/10 text-amber-400 text-xs rounded">L1-L4</span>
@@ -555,12 +565,12 @@ export default function TokenomicsPage() {
             </div>
 
             <div className="p-6 bg-gradient-to-r from-cyan-500/5 via-emerald-500/5 to-amber-500/5 rounded-xl border border-white/10">
-              <h3 className="text-lg font-bold text-white mb-4">Потоки стоимости</h3>
+              <h3 className="text-lg font-bold text-white mb-4">Value Flows</h3>
               <div className="grid md:grid-cols-5 gap-4 text-center">
                 <div className="p-4">
                   <div className="text-2xl mb-2">📊</div>
-                  <div className="font-medium text-white text-sm">Данные</div>
-                  <div className="text-xs text-water-200/50">Сенсоры IoT</div>
+                  <div className="font-medium text-white text-sm">Data</div>
+                  <div className="text-xs text-water-200/50">IoT Sensors</div>
                 </div>
                 <div className="flex items-center justify-center">
                   <ArrowRight className="w-5 h-5 text-cyan-400" />
@@ -568,7 +578,7 @@ export default function TokenomicsPage() {
                 <div className="p-4">
                   <div className="text-2xl mb-2">💧</div>
                   <div className="font-medium text-white text-sm">VOD</div>
-                  <div className="text-xs text-water-200/50">Эмиссия</div>
+                  <div className="text-xs text-water-200/50">Emission</div>
                 </div>
                 <div className="flex items-center justify-center">
                   <ArrowRight className="w-5 h-5 text-cyan-400" />
@@ -576,7 +586,7 @@ export default function TokenomicsPage() {
                 <div className="p-4">
                   <div className="text-2xl mb-2">⚡</div>
                   <div className="font-medium text-white text-sm">VODeco</div>
-                  <div className="text-xs text-water-200/50">Гovernance</div>
+                  <div className="text-xs text-water-200/50">Governance</div>
                 </div>
               </div>
               <div className="flex justify-center my-2">
@@ -586,7 +596,7 @@ export default function TokenomicsPage() {
                 <div className="p-4">
                   <div className="text-2xl mb-2">🏆</div>
                   <div className="font-medium text-white text-sm">VODcredit</div>
-                  <div className="text-xs text-water-200/50">Репутация</div>
+                  <div className="text-xs text-water-200/50">Reputation</div>
                 </div>
                 <div className="flex items-center justify-center">
                   <ArrowRight className="w-5 h-5 text-cyan-400 rotate-180" />
@@ -602,7 +612,7 @@ export default function TokenomicsPage() {
                 <div className="p-4">
                   <div className="text-2xl mb-2">💰</div>
                   <div className="font-medium text-white text-sm">TokenHub</div>
-                  <div className="text-xs text-water-200/50">Инвестиции</div>
+                  <div className="text-xs text-water-200/50">Investment</div>
                 </div>
               </div>
             </div>
@@ -612,21 +622,21 @@ export default function TokenomicsPage() {
                 <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                 <div>
                   <div className="font-medium text-white text-sm">Water-Backed</div>
-                  <div className="text-xs text-water-200/50">Каждый VOD обеспечен 1м³ воды</div>
+                  <div className="text-xs text-water-200/50">Each VOD backed by 1 m3 of water</div>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl">
                 <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                 <div>
                   <div className="font-medium text-white text-sm">Transparent</div>
-                  <div className="text-xs text-water-200/50">Все операции на блокчейне</div>
+                  <div className="text-xs text-water-200/50">All operations on blockchain</div>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl">
                 <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                 <div>
                   <div className="font-medium text-white text-sm">Sustainable</div>
-                  <div className="text-xs text-water-200/50">ESG-ориентированная модель</div>
+                  <div className="text-xs text-water-200/50">ESG-oriented model</div>
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
-import Link from "next/link";
+import { Link } from "next-intl/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
@@ -266,9 +266,9 @@ const mockRetroDrops: RetroDrop[] = [
 ];
 
 const mockRecommendations: Recommendation[] = [
-  { id: "rec1", type: "project", title: "Спасение Аральского моря", description: "Соответствует вашим интересам: восстановление экосистем", matchScore: 95, image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=400", href: "/projects/aral-sea-restoration" },
-  { id: "rec2", type: "mission", title: "Ежедневный мониторинг", description: "Добавьте 5 показаний сенсоров сегодня", matchScore: 88, href: "/missions/daily-monitoring" },
-  { id: "rec3", type: "dao", title: "Голосование: Фонд очистки океанов", description: "Предложение #42: выделение $5M на очистку", matchScore: 82, href: "/dao/proposals/42" },
+  { id: "rec1", type: "project", title: "Спасение Аральского моря", description: "Соответствует вашим интересам: восстановление экосистем", matchScore: 95, image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=400", href: "/projecthub" },
+  { id: "rec2", type: "mission", title: "Ежедневный мониторинг", description: "Добавьте 5 показаний сенсоров сегодня", matchScore: 88, href: "/ecosystem/missions" },
+  { id: "rec3", type: "dao", title: "Голосование: Фонд очистки океанов", description: "Предложение #42: выделение $5M на очистку", matchScore: 82, href: "/dao" },
 ];
 
 const typeIcons: Record<string, any> = {
@@ -1156,14 +1156,14 @@ export default function HomePage() {
                       </>
                     ) : (
                       <>
-                        Добро пожаловать в <span className="gradient-text">LoopOrb</span>
+                        Добро пожаловать в <span className="gradient-text">VODeco</span>
                       </>
                     )}
                   </motion.h1>
                   <p className="text-water-200/70">
-                    {user 
+                    {user
                       ? `Уровень ${user.level} • ${user.xp} XP до следующего уровня`
-                      : "Глобальная экосистема управления водными ресурсами"
+                      : "Platform in Development — Seed Round Now Open. Developed by FoxampyLab"
                     }
                   </p>
                 </div>
@@ -1288,7 +1288,7 @@ export default function HomePage() {
                   </Link>
                   
                   {/* Projects */}
-                  <Link href="/projects" className="glass-card p-4 group hover:bg-white/10 transition">
+                  <Link href="/projecthub" className="glass-card p-4 group hover:bg-white/10 transition">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
                         <FolderOpen className="w-5 h-5 text-green-400" />
@@ -1329,7 +1329,7 @@ export default function HomePage() {
               >
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-lg font-semibold text-white">Активные проекты</h2>
-                  <Link href="/projects" className="text-sm text-water-400 hover:text-water-300 transition">
+                  <Link href="/projecthub" className="text-sm text-water-400 hover:text-water-300 transition">
                     Все проекты →
                   </Link>
                 </div>
@@ -1367,7 +1367,7 @@ export default function HomePage() {
                         <Plus className="w-8 h-8 text-water-200/30" />
                       </div>
                       <p className="text-water-200/70 mb-4">Пока нет активных проектов</p>
-                      <Link href="/projects" className="text-water-400 hover:text-water-300 text-sm font-medium">
+                      <Link href="/projecthub" className="text-water-400 hover:text-water-300 text-sm font-medium">
                         Обзор проектов →
                       </Link>
                     </div>

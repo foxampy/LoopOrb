@@ -45,6 +45,7 @@ import {
 } from "lucide-react";
 import { formatDistanceToNow, format } from "date-fns";
 import { ru } from "date-fns/locale";
+import { EmptyState } from "@/components/ui/EmptyState";
 
 // ==================== TYPES ====================
 
@@ -138,312 +139,8 @@ interface FeedStats {
   alerts: number;
 }
 
-// ==================== MOCK DATA ====================
-
-const mockUser: User = {
-  id: "user-1",
-  name: "Алексей Иванов",
-  handle: "@alexey",
-  avatar: "",
-  level: 5,
-  reputation: 1250,
-};
-
-const mockPosts: Post[] = [
-  {
-    id: "post-1",
-    type: "CRISIS_ALERT",
-    priority: 10,
-    content:
-      "🚨 КРИТИЧЕСКОЕ СОСТОЯНИЕ: Уровень воды в reservoir-001 достиг критической отметки. Требуется немедленное вмешательство.",
-    images: ["https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800"],
-    createdAt: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
-    author: {
-      id: "sensor-bot",
-      name: "Система Мониторинга",
-      handle: "@sensor-bot",
-      level: 10,
-      reputation: 9999,
-    },
-    sensorData: {
-      type: "water_quality",
-      value: 2.3,
-      unit: "pH",
-      status: "critical",
-      location: "Резервуар #001, Ташкент",
-    },
-    tags: ["кризис", "вода", "мониторинг"],
-    mentions: [],
-    likesCount: 234,
-    commentsCount: 89,
-    repostsCount: 156,
-    isLiked: false,
-    isBookmarked: false,
-    isReposted: false,
-  },
-  {
-    id: "post-2",
-    type: "DAO_PROPOSAL",
-    priority: 9,
-    content:
-      "🗳️ Новое предложение DAO: Выделить $50,000 из фонда сообщества на установку 100 IoT-датчиков качества воды в сельских районах Узбекистана.",
-    images: [],
-    createdAt: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
-    author: {
-      id: "dao-council",
-      name: "DAO Council",
-      handle: "@dao",
-      level: 15,
-      reputation: 50000,
-    },
-    poll: {
-      question: "Поддерживаете ли вы данное предложение?",
-      options: [
-        { id: "1", text: "✅ Да, полностью поддерживаю", votes: 1234, percentage: 67 },
-        { id: "2", text: "⚠️ Да, но с изменениями", votes: 345, percentage: 19 },
-        { id: "3", text: "❌ Нет, не поддерживаю", votes: 256, percentage: 14 },
-      ],
-      totalVotes: 1835,
-      endsAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3).toISOString(),
-    },
-    tags: ["dao", "голосование", "iot", "узбекистан"],
-    mentions: [],
-    likesCount: 567,
-    commentsCount: 234,
-    repostsCount: 89,
-    isLiked: true,
-    isBookmarked: false,
-    isReposted: false,
-  },
-  {
-    id: "post-3",
-    type: "PROJECT_MILESTONE",
-    priority: 8,
-    content:
-      "🎉 Проект 'Чистая Река' достиг важной вехи: очищено 10,000 м³ воды! Спасибо всем волонтерам и спонсорам. Это только начало!",
-    images: [
-      "https://images.unsplash.com/photo-1538300342682-cf57afb97285?w=800",
-      "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?w=800",
-    ],
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
-    author: {
-      id: "proj-1",
-      name: "ЭкоПроект UZ",
-      handle: "@ecoproject",
-      level: 8,
-      reputation: 3400,
-    },
-    project: {
-      id: "proj-1",
-      name: "Чистая Река",
-      slug: "clean-river",
-      coverImage: "https://images.unsplash.com/photo-1538300342682-cf57afb97285?w=800",
-    },
-    tags: ["проект", "milestone", "волонтеры"],
-    mentions: ["@volunteer1", "@sponsor_uz"],
-    likesCount: 1234,
-    commentsCount: 156,
-    repostsCount: 234,
-    isLiked: false,
-    isBookmarked: true,
-    isReposted: true,
-  },
-  {
-    id: "post-4",
-    type: "FRIEND_ACTIVITY",
-    priority: 7,
-    content:
-      "Друзья, только что установил новый датчик качества воздуха у себя на даче. Данные уже доступны в реальном времени! 🌱",
-    images: ["https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800"],
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 4).toISOString(),
-    author: {
-      id: "friend-1",
-      name: "Дмитрий Петров",
-      handle: "@dmitry",
-      level: 6,
-      reputation: 890,
-    },
-    sensorData: {
-      type: "air_quality",
-      value: 42,
-      unit: "AQI",
-      status: "normal",
-      location: "Дача, Бостанлык",
-    },
-    tags: ["датчик", "воздух", "iot"],
-    mentions: [],
-    likesCount: 89,
-    commentsCount: 23,
-    repostsCount: 12,
-    isLiked: false,
-    isBookmarked: false,
-    isReposted: false,
-  },
-  {
-    id: "post-5",
-    type: "TRENDING",
-    priority: 6,
-    content:
-      "🔥 Тренды недели: #СпасиАрал набирает обороты! Более 5000 постов за последнюю неделю. Присоединяйтесь к движению!",
-    images: ["https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"],
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 6).toISOString(),
-    author: {
-      id: "trends-bot",
-      name: "LoopOrb Trends",
-      handle: "@trends",
-      level: 20,
-      reputation: 100000,
-    },
-    tags: ["спасиарал", "тренды", "экология"],
-    mentions: [],
-    likesCount: 2345,
-    commentsCount: 456,
-    repostsCount: 789,
-    isLiked: false,
-    isBookmarked: false,
-    isReposted: false,
-  },
-  {
-    id: "post-6",
-    type: "EDUCATIONAL",
-    priority: 5,
-    content:
-      "📚 Образовательный модуль: 'Основы водного баланса'. Узнайте, как рассчитать потребление воды вашей семьей и найти способы экономии.",
-    images: ["https://images.unsplash.com/photo-1520962922320-2038eebab146?w=800"],
-    video: "https://example.com/educational-video.mp4",
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 12).toISOString(),
-    author: {
-      id: "edu-1",
-      name: "VOD-Lab Education",
-      handle: "@vodlab",
-      level: 12,
-      reputation: 8900,
-    },
-    tags: ["образование", "вода", "экономия"],
-    mentions: [],
-    likesCount: 678,
-    commentsCount: 89,
-    repostsCount: 234,
-    isLiked: false,
-    isBookmarked: false,
-    isReposted: false,
-  },
-  {
-    id: "post-7",
-    type: "ACHIEVEMENT",
-    priority: 4,
-    content:
-      "🏆 Достижение разблокировано: 'Хранитель Воды'! Поздравляем @maria за вклад в очистку 1000 литров воды через проект 'Чистый Источник'.",
-    images: ["https://images.unsplash.com/photo-1595642527943-ec82f34b2e9c?w=800"],
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 18).toISOString(),
-    author: {
-      id: "achievements",
-      name: "Система Достижений",
-      handle: "@achievements",
-      level: 100,
-      reputation: 999999,
-    },
-    tags: ["достижение", "награда", "герой"],
-    mentions: ["@maria"],
-    likesCount: 456,
-    commentsCount: 67,
-    repostsCount: 34,
-    isLiked: true,
-    isBookmarked: false,
-    isReposted: false,
-  },
-  {
-    id: "post-8",
-    type: "USER_POST",
-    priority: 3,
-    content:
-      "Кто знает хорошие места для рыбалки в Ташкентской области? Хочу взять детей на выходные 🎣",
-    images: [],
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
-    author: {
-      id: "user-2",
-      name: "Сергей Ким",
-      handle: "@sergey",
-      level: 3,
-      reputation: 120,
-    },
-    tags: ["рыбалка", "вопрос", "ташкент"],
-    mentions: [],
-    likesCount: 23,
-    commentsCount: 45,
-    repostsCount: 5,
-    isLiked: false,
-    isBookmarked: false,
-    isReposted: false,
-  },
-  {
-    id: "post-9",
-    type: "RECOMMENDED",
-    priority: 2,
-    content:
-      "💡 Рекомендуем: Проект 'Умный Полив' использует AI для оптимизации расхода воды на фермах. Экономия до 40%!",
-    images: ["https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800"],
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 36).toISOString(),
-    author: {
-      id: "ai-recommender",
-      name: "AI Рекомендации",
-      handle: "@ai",
-      level: 50,
-      reputation: 500000,
-    },
-    project: {
-      id: "proj-smart",
-      name: "Умный Полив",
-      slug: "smart-irrigation",
-    },
-    tags: ["ai", "ирригация", "рекомендации"],
-    mentions: [],
-    likesCount: 890,
-    commentsCount: 123,
-    repostsCount: 234,
-    isLiked: false,
-    isBookmarked: false,
-    isReposted: false,
-  },
-  {
-    id: "post-10",
-    type: "SENSOR_DATA",
-    priority: 1,
-    content:
-      "📊 Данные с датчика #WS-042: Температура воды: 18.5°C, pH: 7.2, Растворенный кислород: 8.3 мг/л. Все показатели в норме.",
-    images: [],
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(),
-    author: {
-      id: "sensor-042",
-      name: "Датчик WS-042",
-      handle: "@sensor-042",
-      level: 1,
-      reputation: 500,
-    },
-    sensorData: {
-      type: "water_quality",
-      value: 18.5,
-      unit: "°C",
-      status: "normal",
-      location: "Река Чирчик, пост #042",
-    },
-    tags: ["датчик", "данные", "мониторинг"],
-    mentions: [],
-    likesCount: 34,
-    commentsCount: 5,
-    repostsCount: 8,
-    isLiked: false,
-    isBookmarked: false,
-    isReposted: false,
-  },
-];
-
-const mockStats: FeedStats = {
-  totalPosts: 15420,
-  newToday: 234,
-  trending: 12,
-  alerts: 3,
-};
+// Feed data is loaded from the backend API
+// No mock data - platform is in development
 
 // ==================== CONSTANTS ====================
 
@@ -496,40 +193,40 @@ const typeColors: Record<PostType, string> = {
 };
 
 const typeLabels: Record<PostType, string> = {
-  NEWS: "Новости",
-  SENSOR_DATA: "Данные датчиков",
-  PROJECT_ANNOUNCEMENT: "Объявление проекта",
-  DAO_PROPOSAL: "Голосование DAO",
-  ACHIEVEMENT: "Достижение",
-  EDUCATIONAL: "Образование",
-  USER_POST: "Пост пользователя",
-  CRISIS_ALERT: "Тревога",
-  PROJECT_MILESTONE: "Веха проекта",
-  FRIEND_ACTIVITY: "Активность друзей",
-  TRENDING: "Тренды",
-  RECOMMENDED: "Рекомендуем",
-  GENERAL: "Общее",
+  NEWS: "News",
+  SENSOR_DATA: "Sensor Data",
+  PROJECT_ANNOUNCEMENT: "Project Announcement",
+  DAO_PROPOSAL: "DAO Vote",
+  ACHIEVEMENT: "Achievement",
+  EDUCATIONAL: "Education",
+  USER_POST: "User Post",
+  CRISIS_ALERT: "Alert",
+  PROJECT_MILESTONE: "Project Milestone",
+  FRIEND_ACTIVITY: "Friend Activity",
+  TRENDING: "Trending",
+  RECOMMENDED: "Recommended",
+  GENERAL: "General",
 };
 
 const filterOptions = [
-  { id: "all" as FeedFilter, label: "Все", icon: Globe },
-  { id: "projects" as FeedFilter, label: "Проекты", icon: Building2 },
-  { id: "sensors" as FeedFilter, label: "Датчики", icon: Droplets },
-  { id: "following" as FeedFilter, label: "Подписки", icon: Users },
-  { id: "my-posts" as FeedFilter, label: "Мои посты", icon: Newspaper },
+  { id: "all" as FeedFilter, label: "All", icon: Globe },
+  { id: "projects" as FeedFilter, label: "Projects", icon: Building2 },
+  { id: "sensors" as FeedFilter, label: "Sensors", icon: Droplets },
+  { id: "following" as FeedFilter, label: "Following", icon: Users },
+  { id: "my-posts" as FeedFilter, label: "My Posts", icon: Newspaper },
 ];
 
 const sortOptions = [
-  { id: "popular" as FeedSort, label: "Популярные", icon: TrendingUp },
-  { id: "new" as FeedSort, label: "Новые", icon: SortAsc },
-  { id: "discussed" as FeedSort, label: "Обсуждаемые", icon: MessageCircle },
+  { id: "popular" as FeedSort, label: "Popular", icon: TrendingUp },
+  { id: "new" as FeedSort, label: "New", icon: SortAsc },
+  { id: "discussed" as FeedSort, label: "Discussed", icon: MessageCircle },
 ];
 
 const timePeriods = [
-  { id: "day" as TimePeriod, label: "День", icon: Calendar },
-  { id: "week" as TimePeriod, label: "Неделя", icon: Calendar },
-  { id: "month" as TimePeriod, label: "Месяц", icon: Calendar },
-  { id: "all" as TimePeriod, label: "Все время", icon: Calendar },
+  { id: "day" as TimePeriod, label: "Day", icon: Calendar },
+  { id: "week" as TimePeriod, label: "Week", icon: Calendar },
+  { id: "month" as TimePeriod, label: "Month", icon: Calendar },
+  { id: "all" as TimePeriod, label: "All time", icon: Calendar },
 ];
 
 // ==================== COMPONENTS ====================
@@ -579,7 +276,7 @@ function ShareModal({ post, onClose }: { post: Post; onClose: () => void }) {
         ),
     },
     {
-      name: "Копировать",
+      name: "Copy",
       icon: copied ? Check : Copy,
       color: "bg-slate-600",
       action: handleCopy,
@@ -604,7 +301,7 @@ function ShareModal({ post, onClose }: { post: Post; onClose: () => void }) {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-white">Поделиться</h3>
+            <h3 className="text-lg font-semibold text-white">Share</h3>
             <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
               <X className="w-5 h-5 text-slate-400" />
             </button>
@@ -638,7 +335,7 @@ function ShareModal({ post, onClose }: { post: Post; onClose: () => void }) {
               }}
               className="w-full py-3 bg-water-500 hover:bg-water-600 text-white rounded-xl font-medium transition-colors"
             >
-              Еще способы
+              More options
             </button>
           </div>
         </motion.div>
@@ -654,11 +351,11 @@ function ReportModal({ post, onClose }: { post: Post; onClose: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const reportReasons = [
-    { id: "spam", label: "Спам", icon: TrendingUp },
-    { id: "harassment", label: "Оскорбления", icon: Users },
-    { id: "misinformation", label: "Дезинформация", icon: AlertTriangle },
-    { id: "nsfw", label: "Неприемлемый контент", icon: Flag },
-    { id: "other", label: "Другое", icon: MoreHorizontal },
+    { id: "spam", label: "Spam", icon: TrendingUp },
+    { id: "harassment", label: "Harassment", icon: Users },
+    { id: "misinformation", label: "Misinformation", icon: AlertTriangle },
+    { id: "nsfw", label: "Inappropriate content", icon: Flag },
+    { id: "other", label: "Other", icon: MoreHorizontal },
   ];
 
   const handleSubmit = async () => {
@@ -688,11 +385,11 @@ function ReportModal({ post, onClose }: { post: Post; onClose: () => void }) {
         >
           <div className="flex items-center gap-3 mb-6">
             <Flag className="w-6 h-6 text-red-400" />
-            <h3 className="text-lg font-semibold text-white">Пожаловаться</h3>
+            <h3 className="text-lg font-semibold text-white">Report</h3>
           </div>
 
           <p className="text-slate-400 text-sm mb-4">
-            Выберите причину жалобы на этот пост от {post.author.name}:
+            Select a reason for reporting this post from {post.author.name}:
           </p>
 
           <div className="space-y-2 mb-4">
@@ -716,7 +413,7 @@ function ReportModal({ post, onClose }: { post: Post; onClose: () => void }) {
           <textarea
             value={reason}
             onChange={(e) => setReason(e.target.value)}
-            placeholder="Дополнительные детали (необязательно)"
+            placeholder="Additional details (optional)"
             className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white placeholder-slate-500 resize-none focus:outline-none focus:border-water-500"
             rows={3}
           />
@@ -726,14 +423,14 @@ function ReportModal({ post, onClose }: { post: Post; onClose: () => void }) {
               onClick={onClose}
               className="flex-1 py-3 bg-white/5 hover:bg-white/10 text-white rounded-xl font-medium transition-colors"
             >
-              Отмена
+              Cancel
             </button>
             <button
               onClick={handleSubmit}
               disabled={!selectedReason || isSubmitting}
               className="flex-1 py-3 bg-red-500 hover:bg-red-600 disabled:bg-slate-700 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
             >
-              {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Отправить"}
+              {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Submit"}
             </button>
           </div>
         </motion.div>
@@ -836,7 +533,7 @@ function CommentsSection({ post, onClose }: { post: Post; onClose: () => void })
             ) : comments.length === 0 ? (
               <div className="text-center py-8 text-slate-400">
                 <MessageCircle className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                <p>Будьте первым, кто прокомментирует</p>
+                <p>Be the first to comment</p>
               </div>
             ) : (
               comments.map((comment) => (
@@ -853,7 +550,7 @@ function CommentsSection({ post, onClose }: { post: Post; onClose: () => void })
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSubmitComment()}
-                placeholder="Написать комментарий..."
+                placeholder="Write a comment..."
                 className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-water-500"
               />
               <button
@@ -917,7 +614,7 @@ function CommentItem({ comment }: { comment: Comment }) {
               {likesCount}
             </button>
             <button className="text-xs text-slate-500 hover:text-water-400 transition-colors">
-              Ответить
+              Reply
             </button>
           </div>
         </div>
@@ -939,18 +636,8 @@ function InviteModal({ onClose }: { onClose: () => void }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFriends, setSelectedFriends] = useState<string[]>([]);
 
-  const mockFriends = [
-    { id: "f1", name: "Мария Иванова", handle: "@maria", avatar: "" },
-    { id: "f2", name: "Дмитрий Петров", handle: "@dmitry", avatar: "" },
-    { id: "f3", name: "Анна Сидорова", handle: "@anna", avatar: "" },
-    { id: "f4", name: "Сергей Ким", handle: "@sergey", avatar: "" },
-  ];
-
-  const filteredFriends = mockFriends.filter(
-    (f) =>
-      f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      f.handle.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Friends list will be loaded from API when social features are available
+  const filteredFriends: { id: string; name: string; handle: string; avatar: string }[] = [];
 
   const toggleFriend = (id: string) => {
     setSelectedFriends((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]));
@@ -978,7 +665,7 @@ function InviteModal({ onClose }: { onClose: () => void }) {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Пригласить друзей</h3>
+            <h3 className="text-lg font-semibold text-white">Invite Friends</h3>
             <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
               <X className="w-5 h-5 text-slate-400" />
             </button>
@@ -988,7 +675,7 @@ function InviteModal({ onClose }: { onClose: () => void }) {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Поиск друзей..."
+            placeholder="Search friends..."
             className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-water-500 mb-4"
           />
 
@@ -1026,14 +713,14 @@ function InviteModal({ onClose }: { onClose: () => void }) {
               onClick={onClose}
               className="flex-1 py-3 bg-white/5 hover:bg-white/10 text-white rounded-xl font-medium transition-colors"
             >
-              Отмена
+              Cancel
             </button>
             <button
               onClick={handleInvite}
               disabled={selectedFriends.length === 0}
               className="flex-1 py-3 bg-water-500 hover:bg-water-600 disabled:bg-slate-700 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
             >
-              Пригласить ({selectedFriends.length})
+              Invite ({selectedFriends.length})
             </button>
           </div>
         </motion.div>
@@ -1095,10 +782,10 @@ function PollCard({ poll, onVote }: { poll: Post["poll"]; onVote: (optionId: str
         })}
       </div>
       <div className="mt-3 text-xs text-slate-500">
-        {poll.totalVotes.toLocaleString()} голосов •{" "}
+        {poll.totalVotes.toLocaleString()} votes •{" "}
         {poll.endsAt
-          ? `Завершается через ${formatDistanceToNow(new Date(poll.endsAt), { locale: ru })}`
-          : "Голосование завершено"}
+          ? `Ends ${formatDistanceToNow(new Date(poll.endsAt))}`
+          : "Voting has ended"}
       </div>
     </div>
   );
@@ -1237,7 +924,7 @@ function PostCardComponent({
                       className="w-full flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-white/5 transition-colors"
                     >
                       <BookmarkCheck className="w-4 h-4" />
-                      {isBookmarked ? "Удалить из избранного" : "В избранное"}
+                      {isBookmarked ? "Remove from bookmarks" : "Bookmark"}
                     </button>
                     <button
                       onClick={() => {
@@ -1247,7 +934,7 @@ function PostCardComponent({
                       className="w-full flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-white/5 transition-colors"
                     >
                       <Share2 className="w-4 h-4" />
-                      Поделиться
+                      Share
                     </button>
                     <button
                       onClick={() => {
@@ -1257,7 +944,7 @@ function PostCardComponent({
                       className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition-colors"
                     >
                       <Flag className="w-4 h-4" />
-                      Пожаловаться
+                      Report
                     </button>
                   </motion.div>
                 )}
@@ -1305,10 +992,10 @@ function PostCardComponent({
                 }`}
               >
                 {post.sensorData.status === "critical"
-                  ? "Критично"
+                  ? "Critical"
                   : post.sensorData.status === "warning"
-                  ? "Внимание"
-                  : "Норма"}
+                  ? "Warning"
+                  : "Normal"}
               </div>
             </div>
           </div>
@@ -1438,22 +1125,22 @@ function PostCardComponent({
 function FeedStatsCard({ stats }: { stats: FeedStats }) {
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-4">
-      <h3 className="font-semibold text-white mb-4">Статистика ленты</h3>
+      <h3 className="font-semibold text-white mb-4">Feed Stats</h3>
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <span className="text-slate-400 text-sm">Всего постов</span>
+          <span className="text-slate-400 text-sm">Total posts</span>
           <span className="text-white font-medium">{stats.totalPosts.toLocaleString()}</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-slate-400 text-sm">Новых сегодня</span>
+          <span className="text-slate-400 text-sm">New today</span>
           <span className="text-green-400 font-medium">+{stats.newToday}</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-slate-400 text-sm">В тренде</span>
+          <span className="text-slate-400 text-sm">Trending</span>
           <span className="text-orange-400 font-medium">{stats.trending}</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-slate-400 text-sm">Тревоги</span>
+          <span className="text-slate-400 text-sm">Alerts</span>
           <span className="text-red-400 font-medium">{stats.alerts}</span>
         </div>
       </div>
@@ -1467,7 +1154,7 @@ function TrendingTagsCard({ tags }: { tags: { tag: string; count: number }[] }) 
     <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-4">
       <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
         <TrendingUp className="w-4 h-4 text-water-400" />
-        Тренды
+        Trends
       </h3>
       <div className="flex flex-wrap gap-2">
         {tags.map(({ tag, count }) => (
@@ -1498,7 +1185,7 @@ export default function FeedPage() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [trendingTags, setTrendingTags] = useState<{ tag: string; count: number }[]>([]);
-  const [stats, setStats] = useState<FeedStats>(mockStats);
+  const [stats, setStats] = useState<FeedStats>({ totalPosts: 0, newToday: 0, trending: 0, alerts: 0 });
   const [showFilters, setShowFilters] = useState(false);
 
   const observerTarget = useRef<HTMLDivElement>(null);
@@ -1554,10 +1241,13 @@ export default function FeedPage() {
   const loadFeed = async () => {
     setIsLoading(true);
     try {
-      // Simulate API call with mock data
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      setPosts(mockPosts);
-      applyFiltersAndSort(mockPosts);
+      // TODO: Fetch from API when backend is ready
+      // const res = await fetch(`/api/feed?filter=${activeFilter}&sort=${sortBy}&page=${page}`);
+      // const data = await res.json();
+      // setPosts(data.data.posts);
+      // applyFiltersAndSort(data.data.posts);
+      setPosts([]);
+      setFilteredPosts([]);
     } catch (error) {
       console.error("Feed load error:", error);
     } finally {
@@ -1580,19 +1270,8 @@ export default function FeedPage() {
   };
 
   const calculateTrendingTags = () => {
-    const tagCounts: Record<string, number> = {};
-    mockPosts.forEach((post) => {
-      post.tags.forEach((tag) => {
-        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
-      });
-    });
-
-    const sorted = Object.entries(tagCounts)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 10)
-      .map(([tag, count]) => ({ tag, count }));
-
-    setTrendingTags(sorted);
+    // Will be calculated from real posts when backend is ready
+    setTrendingTags([]);
   };
 
   const applyFiltersAndSort = (postsToFilter: Post[]) => {
@@ -1612,7 +1291,8 @@ export default function FeedPage() {
       // In production, filter by followed users
       filtered = filtered.filter((p) => p.type === "FRIEND_ACTIVITY");
     } else if (activeFilter === "my-posts") {
-      filtered = filtered.filter((p) => p.author.id === mockUser.id);
+      // TODO: Filter by authenticated user when auth is implemented
+      filtered = [];
     }
 
     // Filter by time period
@@ -1673,7 +1353,7 @@ export default function FeedPage() {
             <div className="bg-water-500/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2">
               <RefreshCw className={`w-4 h-4 text-water-400 ${isRefreshing ? "animate-spin" : ""}`} />
               <span className="text-sm text-water-400">
-                {pullDistance > 80 ? "Отпустите для обновления" : "Тяните для обновления"}
+                {pullDistance > 80 ? "Release to refresh" : "Pull to refresh"}
               </span>
             </div>
           </div>
@@ -1688,10 +1368,10 @@ export default function FeedPage() {
                 <div>
                   <h1 className="text-2xl font-bold text-white flex items-center gap-2">
                     <Newspaper className="w-6 h-6 text-water-400" />
-                    Лента экосистемы
+                    Ecosystem Feed
                   </h1>
                   <p className="text-slate-400 text-sm">
-                    Новости, данные датчиков, голосования DAO и многое другое
+                    News, sensor data, DAO votes and more
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -1752,7 +1432,7 @@ export default function FeedPage() {
                     >
                       <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full text-sm">
                         <SortAsc className="w-4 h-4 text-slate-400" />
-                        <span className="text-slate-400">Сортировка:</span>
+                        <span className="text-slate-400">Sort:</span>
                         {sortOptions.map((option) => {
                           const Icon = option.icon;
                           return (
@@ -1774,7 +1454,7 @@ export default function FeedPage() {
 
                       <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full text-sm">
                         <Calendar className="w-4 h-4 text-slate-400" />
-                        <span className="text-slate-400">Период:</span>
+                        <span className="text-slate-400">Period:</span>
                         {timePeriods.map((option) => {
                           const Icon = option.icon;
                           return (
@@ -1803,6 +1483,13 @@ export default function FeedPage() {
                 <div className="flex justify-center py-12">
                   <Loader2 className="w-8 h-8 text-water-500 animate-spin" />
                 </div>
+              ) : filteredPosts.length === 0 ? (
+                <EmptyState
+                  type="empty"
+                  title="Feed Coming Soon"
+                  description="The LoopOrb feed is currently under development. Soon you'll see news, sensor data, DAO votes, project updates, and community posts here. Stay tuned!"
+                  className="py-16"
+                />
               ) : (
                 <div className="space-y-4">
                   <AnimatePresence mode="popLayout">
@@ -1824,7 +1511,7 @@ export default function FeedPage() {
                     {hasMore ? (
                       <Loader2 className="w-6 h-6 text-slate-600 animate-spin" />
                     ) : (
-                      <p className="text-slate-500 text-sm">Больше постов нет</p>
+                      <p className="text-slate-500 text-sm">No more posts</p>
                     )}
                   </div>
                 </div>
@@ -1833,8 +1520,8 @@ export default function FeedPage() {
               {!isLoading && filteredPosts.length === 0 && (
                 <div className="text-center py-12">
                   <Globe className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-white mb-2">Нет постов</h3>
-                  <p className="text-slate-400">Попробуйте изменить фильтры</p>
+                  <h3 className="text-lg font-medium text-white mb-2">No posts</h3>
+                  <p className="text-slate-400">Try changing filters</p>
                 </div>
               )}
             </div>
@@ -1846,7 +1533,7 @@ export default function FeedPage() {
 
               {/* Quick Actions */}
               <div className="bg-gradient-to-br from-water-500/10 to-cyan-500/10 rounded-xl border border-water-500/20 p-4">
-                <h3 className="font-semibold text-white mb-3">Быстрые действия</h3>
+                <h3 className="font-semibold text-white mb-3">Quick Actions</h3>
                 <div className="space-y-2">
                   <Link
                     href="/ecosystem/missions"
@@ -1854,8 +1541,8 @@ export default function FeedPage() {
                   >
                     <Target className="w-5 h-5 text-water-400" />
                     <div>
-                      <div className="text-sm font-medium text-white">Миссии</div>
-                      <div className="text-xs text-slate-400">Зарабатывайте UNITY</div>
+                      <div className="text-sm font-medium text-white">Missions</div>
+                      <div className="text-xs text-slate-400">Earn UNITY</div>
                     </div>
                   </Link>
                   <Link
@@ -1865,7 +1552,7 @@ export default function FeedPage() {
                     <Gavel className="w-5 h-5 text-purple-400" />
                     <div>
                       <div className="text-sm font-medium text-white">DAO</div>
-                      <div className="text-xs text-slate-400">Участвуйте в голосованиях</div>
+                      <div className="text-xs text-slate-400">Participate in votes</div>
                     </div>
                   </Link>
                   <Link
@@ -1874,8 +1561,8 @@ export default function FeedPage() {
                   >
                     <Building2 className="w-5 h-5 text-emerald-400" />
                     <div>
-                      <div className="text-sm font-medium text-white">Проекты</div>
-                      <div className="text-xs text-slate-400">Найдите проект по душе</div>
+                      <div className="text-sm font-medium text-white">Projects</div>
+                      <div className="text-xs text-slate-400">Find a project you like</div>
                     </div>
                   </Link>
                 </div>
@@ -1888,10 +1575,10 @@ export default function FeedPage() {
                   <h3 className="font-semibold text-white">LoopOrb Daily</h3>
                 </div>
                 <p className="text-slate-400 text-sm mb-4">
-                  Получайте главные новости о воде каждое утро
+                  Get the top water news every morning
                 </p>
                 <button className="w-full py-2 bg-water-500 hover:bg-water-600 text-white rounded-lg text-sm font-medium transition-colors">
-                  Подписаться
+                  Subscribe
                 </button>
               </div>
             </div>
