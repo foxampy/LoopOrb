@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Link } from "next-intl/navigation";
+import { Link } from "@/navigation";
 import { useI18n } from "@/i18n/I18nContext";
 import Navbar from "@/components/Navbar";
 import {

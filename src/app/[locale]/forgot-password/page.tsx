@@ -1,7 +1,7 @@
 "use client";
 
 import { EmptyState } from "@/components/ui/EmptyState";
-import { useRouter } from "next-intl/navigation";
+import { useRouter } from "@/navigation";
 
 export default function ForgotPasswordPage() {
   const router = useRouter();

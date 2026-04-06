@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "next-intl/navigation";
+import { Link } from "@/navigation";
 import { ComponentProps } from "react";
 
 /**

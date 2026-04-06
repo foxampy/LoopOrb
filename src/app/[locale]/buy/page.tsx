@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Link } from "next-intl/navigation";
+import { Link } from "@/navigation";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import {
