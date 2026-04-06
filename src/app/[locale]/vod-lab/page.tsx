@@ -366,7 +366,7 @@ const devices: Device[] = [
     dimensions: "8x8x15 cm",
     weight: "0.5 kg",
     power: "CR2032 battery (6 months) + solar panel (optional)",
-    connectivity: ["Bluetooth 5.0", "LoRaWAN", "NFC (for setup)",
+    connectivity: ["Bluetooth 5.0", "LoRaWAN", "NFC (for setup)"],
     protection: "IP68, submersion up to 10m",
     tempRange: "0°C to +50°C",
     warranty: "1 year warranty, 3 years lifespan",
