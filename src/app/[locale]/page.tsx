@@ -79,7 +79,7 @@ const Globe3D = dynamic(() => import("@/components/Globe3D"), {
     <div className="h-[400px] bg-ocean-deep/50 rounded-xl flex items-center justify-center">
       <div className="text-center">
         <div className="w-12 h-12 border-4 border-water-500/30 border-t-water-500 rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-water-200/70 text-sm">Загрузка 3D глобуса...</p>
+        <p className="text-water-200/70 text-sm">Loading 3D globe...</p>
       </div>
     </div>
   ),
@@ -213,63 +213,7 @@ interface Recommendation {
   href: string;
 }
 
-// ==================== MOCK DATA ====================
-
-const mockNewsFeed: FeedItem[] = [
-  {
-    id: "1",
-    type: "news",
-    title: "ООН: К 2025 году половина мирового населения будет жить в условиях водного стресса",
-    summary: "Новый доклад ООН по водным ресурсам предупреждает о растущем кризисе.",
-    author: { id: "un", name: "UN Water", level: 10 },
-    likesCount: 1245,
-    commentsCount: 89,
-    isLiked: false,
-    createdAt: "2 часа назад",
-  },
-  {
-    id: "2",
-    type: "project",
-    title: "Запущен глобальный проект по очистке океанов от пластика",
-    summary: "Ocean Cleanup начал новую фазу операции по удалению пластика из Тихого океана.",
-    author: { id: "oc", name: "The Ocean Cleanup", level: 8 },
-    project: { id: "p1", name: "Ocean Cleanup", slug: "ocean-cleanup", coverImage: "https://images.unsplash.com/photo-1621451537084-482c73073a0f?w=800" },
-    likesCount: 3421,
-    commentsCount: 256,
-    isLiked: false,
-    createdAt: "5 часов назад",
-  },
-  {
-    id: "3",
-    type: "alert",
-    title: "Уровень воды в озере Балхаш достиг критической отметки",
-    summary: "Экологи бьют тревогу: за последние 10 лет площадь озера сократилась на 15%.",
-    author: { id: "kgm", name: "Казгидромет", level: 7 },
-    likesCount: 456,
-    commentsCount: 89,
-    isLiked: false,
-    createdAt: "6 часов назад",
-  },
-];
-
-const mockSensorData: SensorData[] = [
-  { id: "s1", name: "Датчик pH #42", location: "Амударья, Узбекистан", type: "pH", value: 7.2, unit: "pH", status: "online", lastUpdate: "1 мин назад", trend: "stable" },
-  { id: "s2", name: "Датчик мутности #17", location: "Сырдарья, Казахстан", type: "turbidity", value: 12.5, unit: "NTU", status: "online", lastUpdate: "2 мин назад", trend: "up" },
-  { id: "s3", name: "Датчик кислорода #89", location: "Иссык-Куль, Кыргызстан", type: "oxygen", value: 8.9, unit: "mg/L", status: "online", lastUpdate: "30 сек назад", trend: "down" },
-  { id: "s4", name: "Датчик температуры #23", location: "Балхаш, Казахстан", type: "temperature", value: 18.5, unit: "°C", status: "warning", lastUpdate: "5 мин назад", trend: "up" },
-];
-
-const mockRetroDrops: RetroDrop[] = [
-  { id: "r1", title: "Ранний последователь", description: "За активность в первые 90 дней работы платформы", reward: 500, token: "VOD", progress: 75, target: 100, endsAt: "2026-04-01", isActive: true },
-  { id: "r2", title: "Эко-воин", description: "За добавление 100 точек данных о воде", reward: 1000, token: "UNITY", progress: 45, target: 100, endsAt: "2026-05-15", isActive: true },
-  { id: "r3", title: "Инвестор года", description: "За инвестиции в 10+ эко-проектов", reward: 2500, token: "VODECO", progress: 30, target: 100, endsAt: "2026-12-31", isActive: true },
-];
-
-const mockRecommendations: Recommendation[] = [
-  { id: "rec1", type: "project", title: "Спасение Аральского моря", description: "Соответствует вашим интересам: восстановление экосистем", matchScore: 95, image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=400", href: "/projecthub" },
-  { id: "rec2", type: "mission", title: "Ежедневный мониторинг", description: "Добавьте 5 показаний сенсоров сегодня", matchScore: 88, href: "/ecosystem/missions" },
-  { id: "rec3", type: "dao", title: "Голосование: Фонд очистки океанов", description: "Предложение #42: выделение $5M на очистку", matchScore: 82, href: "/dao" },
-];
+// ==================== NO MOCK DATA - PLATFORM IN DEVELOPMENT ====================
 
 const typeIcons: Record<string, any> = {
   news: Globe,
@@ -456,7 +400,7 @@ function MissionCard({ mission, index }: { mission: Mission; index: number }) {
       {mission.userProgress && (
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-water-200/60">Прогресс</span>
+            <span className="text-water-200/60">Progress</span>
             <span className="text-white">{mission.userProgress.progress}/{mission.userProgress.target}</span>
           </div>
           <div className="h-2 bg-white/10 rounded-full overflow-hidden">
@@ -473,7 +417,7 @@ function MissionCard({ mission, index }: { mission: Mission; index: number }) {
               animate={{ opacity: 1, y: 0 }}
               className="w-full py-2 bg-green-500/20 border border-green-500/30 text-green-400 rounded-lg text-sm font-medium hover:bg-green-500/30 transition"
             >
-              Забрать награду
+              Claim Reward
             </motion.button>
           )}
         </div>
@@ -481,7 +425,7 @@ function MissionCard({ mission, index }: { mission: Mission; index: number }) {
       
       {!mission.userProgress && (
         <button className="w-full py-2 bg-water-500/20 border border-water-500/30 text-water-400 rounded-lg text-sm font-medium hover:bg-water-500/30 transition">
-          Начать миссию
+          Start Mission
         </button>
       )}
     </motion.div>
@@ -514,12 +458,12 @@ function RetroDropCard({ drop, index }: { drop: RetroDrop; index: number }) {
             </div>
             <span className="text-lg font-bold text-white">{drop.reward} {drop.token}</span>
           </div>
-          <span className="text-xs text-water-200/50">до {new Date(drop.endsAt).toLocaleDateString("ru-RU")}</span>
+          <span className="text-xs text-water-200/50">until {new Date(drop.endsAt).toLocaleDateString("en-US")}</span>
         </div>
         
         <div className="space-y-1">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-water-200/60">Прогресс</span>
+            <span className="text-water-200/60">Progress</span>
             <span className="text-white">{drop.progress}%</span>
           </div>
           <div className="h-2 bg-white/10 rounded-full overflow-hidden">
@@ -680,7 +624,7 @@ function ShareModal({ isOpen, onClose, url, title }: { isOpen: boolean; onClose:
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-white">Поделиться</h3>
+            <h3 className="text-xl font-bold text-white">Share</h3>
             <button onClick={onClose} className="text-water-200/50 hover:text-white transition">
               <X className="w-6 h-6" />
             </button>
@@ -694,7 +638,7 @@ function ShareModal({ isOpen, onClose, url, title }: { isOpen: boolean; onClose:
               className="flex flex-col items-center gap-2 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition"
             >
               <Twitter className="w-8 h-8 text-blue-400" />
-              <span className="text-xs text-water-200/60">Twitter</span>
+              <span className="text-xs text-water-200/60">X/Twitter</span>
             </a>
             <a
               href={shareLinks.facebook}
@@ -739,7 +683,7 @@ function ShareModal({ isOpen, onClose, url, title }: { isOpen: boolean; onClose:
               }`}
             >
               <Copy className="w-4 h-4" />
-              {copied ? "Скопировано" : "Копировать"}
+              {copied ? "Copied" : "Copy"}
             </button>
           </div>
         </motion.div>
@@ -783,8 +727,8 @@ function InviteModal({ isOpen, onClose, user }: { isOpen: boolean; onClose: () =
                 <UserPlus className="w-6 h-6 text-ocean-deep" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Пригласить друга</h3>
-                <p className="text-xs text-water-200/60">Получите бонусы за каждого друга</p>
+                <h3 className="text-xl font-bold text-white">Invite a Friend</h3>
+                <p className="text-xs text-water-200/60">Earn bonuses for every friend</p>
               </div>
             </div>
             <button onClick={onClose} className="text-water-200/50 hover:text-white transition">
@@ -796,16 +740,16 @@ function InviteModal({ isOpen, onClose, user }: { isOpen: boolean; onClose: () =
             <div className="p-4 bg-gradient-to-r from-water-500/10 to-cyan-500/10 rounded-xl border border-water-500/20">
               <div className="flex items-center gap-3 mb-3">
                 <Gift className="w-5 h-5 text-yellow-400" />
-                <span className="text-sm font-medium text-white">Ваши награды:</span>
+                <span className="text-sm font-medium text-white">Your Rewards:</span>
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-water-200/70">100 UNITY за регистрацию</span>
+                  <span className="text-water-200/70">100 UNITY for signing up</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-400" />
-                  <span className="text-water-200/70">5% от первых ставок друга</span>
+                  <span className="text-water-200/70">5% of friend's first stakes</span>
                 </div>
               </div>
             </div>
@@ -824,13 +768,13 @@ function InviteModal({ isOpen, onClose, user }: { isOpen: boolean; onClose: () =
                 }`}
               >
                 <Copy className="w-4 h-4" />
-                {copied ? "Скопировано" : "Копировать"}
+                {copied ? "Copied" : "Copy"}
               </button>
             </div>
             
             <button className="w-full py-3 bg-gradient-to-r from-water-500 to-cyan-500 rounded-xl font-medium text-white hover:opacity-90 transition flex items-center justify-center gap-2">
               <Mail className="w-5 h-5" />
-              Отправить по email
+              Send via Email
             </button>
           </div>
         </motion.div>
@@ -876,8 +820,8 @@ function CreateMissionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 <Target className="w-6 h-6 text-ocean-deep" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Создать миссию</h3>
-                <p className="text-xs text-water-200/60">Предложите задание сообществу</p>
+                <h3 className="text-xl font-bold text-white">Create Mission</h3>
+                <p className="text-xs text-water-200/60">Propose a task to the community</p>
               </div>
             </div>
             <button onClick={onClose} className="text-water-200/50 hover:text-white transition">
@@ -887,7 +831,7 @@ function CreateMissionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
           
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-white mb-2">Тип миссии</label>
+              <label className="block text-sm font-medium text-white mb-2">Mission Type</label>
               <div className="grid grid-cols-3 gap-2">
                 {(["DAILY", "WEEKLY", "ONETIME"] as const).map((type) => (
                   <button
@@ -900,30 +844,30 @@ function CreateMissionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                         : "bg-white/5 text-water-200/60 hover:bg-white/10"
                     }`}
                   >
-                    {type === "DAILY" ? "Ежедневная" : type === "WEEKLY" ? "Еженедельная" : "Разовая"}
+                    {type === "DAILY" ? "Daily" : type === "WEEKLY" ? "Weekly" : "One-Time"}
                   </button>
                 ))}
               </div>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-white mb-2">Название</label>
+              <label className="block text-sm font-medium text-white mb-2">Title</label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Например: Добавить 10 показаний сенсоров"
+                placeholder="e.g., Add 10 sensor readings"
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-water-200/30 outline-none focus:border-water-500 transition"
                 required
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-white mb-2">Описание</label>
+              <label className="block text-sm font-medium text-white mb-2">Description</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Опишите, что нужно сделать..."
+                placeholder="Describe what needs to be done..."
                 rows={3}
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-water-200/30 outline-none focus:border-water-500 transition resize-none"
                 required
@@ -936,13 +880,13 @@ function CreateMissionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 onClick={onClose}
                 className="flex-1 py-3 bg-white/5 text-white rounded-lg font-medium hover:bg-white/10 transition"
               >
-                Отмена
+                Cancel
               </button>
               <button
                 type="submit"
                 className="flex-1 py-3 bg-gradient-to-r from-water-500 to-cyan-500 rounded-lg font-medium text-white hover:opacity-90 transition"
               >
-                Создать миссию
+                Create Mission
               </button>
             </div>
           </form>
@@ -955,11 +899,11 @@ function CreateMissionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
 // Mobile Bottom Navigation
 function MobileBottomNav({ activeTab, setActiveTab }: { activeTab: string; setActiveTab: (tab: string) => void }) {
   const tabs = [
-    { id: "home", icon: Home, label: "Главная" },
-    { id: "explore", icon: Compass, label: "Обзор" },
-    { id: "activity", icon: Activity, label: "Активность" },
-    { id: "messages", icon: MessageSquare, label: "Сообщения" },
-    { id: "profile", icon: User, label: "Профиль" },
+    { id: "home", icon: Home, label: "Home" },
+    { id: "explore", icon: Compass, label: "Explore" },
+    { id: "activity", icon: Activity, label: "Activity" },
+    { id: "messages", icon: MessageSquare, label: "Messages" },
+    { id: "profile", icon: User, label: "Profile" },
   ];
 
   return (
@@ -1000,8 +944,8 @@ export default function HomePage() {
   const [user, setUser] = useState<User | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
   const [missions, setMissions] = useState<Mission[]>([]);
-  const [feed, setFeed] = useState<FeedItem[]>(mockNewsFeed);
-  const [sensors, setSensors] = useState<SensorData[]>(mockSensorData);
+  const [feed, setFeed] = useState<FeedItem[]>([]);
+  const [sensors, setSensors] = useState<SensorData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   
@@ -1043,49 +987,28 @@ export default function HomePage() {
   const handleRefresh = useCallback(async () => {
     setIsRefreshing(true);
     await fetchData();
-    // Simulate sensor data update
-    setSensors(prev => prev.map(s => ({
-      ...s,
-      value: s.value + (Math.random() - 0.5) * 2,
-      lastUpdate: "только что",
-    })));
     setIsRefreshing(false);
   }, [fetchData]);
 
   useEffect(() => {
     fetchData();
-    
-    // Simulate real-time sensor updates
-    const interval = setInterval(() => {
-      setSensors(prev => prev.map(s => ({
-        ...s,
-        value: s.type === "temperature" 
-          ? Math.max(0, Math.min(40, s.value + (Math.random() - 0.5) * 0.5))
-          : s.type === "pH"
-          ? Math.max(0, Math.min(14, s.value + (Math.random() - 0.5) * 0.1))
-          : Math.max(0, s.value + (Math.random() - 0.5) * 2),
-        lastUpdate: `${Math.floor(Math.random() * 3) + 1} мин назад`,
-      })));
-    }, 30000);
-
-    return () => clearInterval(interval);
   }, [fetchData]);
 
   // Quick actions
   const quickActions: QuickAction[] = useMemo(() => [
-    { id: "add-data", label: "Данные воды", icon: Droplets, href: "/vod-lab", color: "bg-blue-500/20 text-blue-400" },
-    { id: "invite", label: "Пригласить", icon: UserPlus, onClick: () => setInviteModalOpen(true), color: "bg-green-500/20 text-green-400" },
-    { id: "share", label: "Поделиться", icon: Share2, onClick: () => setShareModalOpen(true), color: "bg-purple-500/20 text-purple-400" },
-    { id: "create-mission", label: "Миссия", icon: Target, onClick: () => setCreateMissionModalOpen(true), color: "bg-orange-500/20 text-orange-400" },
+    { id: "add-data", label: "Water Data", icon: Droplets, href: "/vod-lab", color: "bg-blue-500/20 text-blue-400" },
+    { id: "invite", label: "Invite", icon: UserPlus, onClick: () => setInviteModalOpen(true), color: "bg-green-500/20 text-green-400" },
+    { id: "share", label: "Share", icon: Share2, onClick: () => setShareModalOpen(true), color: "bg-purple-500/20 text-purple-400" },
+    { id: "create-mission", label: "Mission", icon: Target, onClick: () => setCreateMissionModalOpen(true), color: "bg-orange-500/20 text-orange-400" },
   ], []);
 
-  // Stats data
+  // Stats data - all zeros since platform is in development
   const stats: StatCard[] = useMemo(() => [
-    { label: "Всего проектов", value: projects.length, change: 12, icon: FolderOpen, color: "bg-green-500/20 text-green-400" },
-    { label: "Активных миссий", value: missions.filter(m => m.userProgress?.status === "ACTIVE").length, change: 5, icon: Target, color: "bg-orange-500/20 text-orange-400" },
-    { label: "Предложений DAO", value: 7, change: -2, icon: Gavel, color: "bg-purple-500/20 text-purple-400" },
-    { label: "Сенсоров онлайн", value: sensors.filter(s => s.status === "online").length, icon: Activity, color: "bg-cyan-500/20 text-cyan-400" },
-  ], [projects, missions, sensors]);
+    { label: "Total Projects", value: "0", icon: FolderOpen, color: "bg-green-500/20 text-green-400" },
+    { label: "Active Missions", value: "0", icon: Target, color: "bg-orange-500/20 text-orange-400" },
+    { label: "DAO Proposals", value: "0", icon: Gavel, color: "bg-purple-500/20 text-purple-400" },
+    { label: "Sensors Online", value: "0", icon: Activity, color: "bg-cyan-500/20 text-cyan-400" },
+  ], []);
 
   // User level progress
   const xpForNextLevel = user?.level ? user.level * 1000 : 1000;
@@ -1099,7 +1022,7 @@ export default function HomePage() {
         <main className="min-h-screen pt-20 flex items-center justify-center">
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-water-500/30 border-t-water-500 rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-water-200/70">Загрузка экосистемы...</p>
+            <p className="text-water-200/70">Loading ecosystem...</p>
           </div>
         </main>
       </>
@@ -1121,7 +1044,7 @@ export default function HomePage() {
           >
             <div className="glass-card px-4 py-2 flex items-center gap-2">
               <RefreshCw className="w-4 h-4 text-water-400 animate-spin" />
-              <span className="text-sm text-white">Обновление...</span>
+              <span className="text-sm text-white">Refreshing...</span>
             </div>
           </motion.div>
         )}
@@ -1152,17 +1075,17 @@ export default function HomePage() {
                   >
                     {user ? (
                       <>
-                        С возвращением, <span className="gradient-text">{user.name.split(" ")[0]}</span>!
+                        Welcome back, <span className="gradient-text">{user.name.split(" ")[0]}</span>!
                       </>
                     ) : (
                       <>
-                        Добро пожаловать в <span className="gradient-text">VODeco</span>
+                        Welcome to <span className="gradient-text">VODeco</span>
                       </>
                     )}
                   </motion.h1>
                   <p className="text-water-200/70">
                     {user
-                      ? `Уровень ${user.level} • ${user.xp} XP до следующего уровня`
+                      ? `Level ${user.level} • ${user.xp} XP to next level`
                       : "Platform in Development — Seed Round Now Open. Developed by FoxampyLab"
                     }
                   </p>
@@ -1182,14 +1105,14 @@ export default function HomePage() {
                           {user.level}
                         </div>
                         <div>
-                          <div className="font-medium text-white">Уровень {user.level}</div>
+                          <div className="font-medium text-white">Level {user.level}</div>
                           <div className="text-xs text-water-200/60">{user.xp} / {xpForNextLevel} XP</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-4 text-sm">
                         <div className="text-center">
                           <div className="font-bold text-white">{user.reputation}</div>
-                          <div className="text-xs text-water-200/60">Репутация</div>
+                          <div className="text-xs text-water-200/60">Reputation</div>
                         </div>
                         <div className="text-center">
                           <div className="font-bold text-cyan-400">{user.unityBalance.toLocaleString()}</div>
@@ -1241,7 +1164,7 @@ export default function HomePage() {
                     className="flex items-center justify-center gap-2 w-full py-3 bg-white/10 backdrop-blur-sm rounded-xl text-white font-medium hover:bg-white/20 transition"
                   >
                     <Globe className="w-5 h-5" />
-                    Открыть полный глобус
+                    Open Full Globe
                   </Link>
                 </div>
               </motion.div>
@@ -1263,10 +1186,10 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-semibold text-white flex items-center gap-2">
                     <Wallet className="w-5 h-5 text-water-400" />
-                    Мои активы
+                    My Assets
                   </h2>
                   <Link href="/profile" className="text-sm text-water-400 hover:text-water-300 transition">
-                    Все активы →
+                    All Assets →
                   </Link>
                 </div>
                 
@@ -1279,7 +1202,7 @@ export default function HomePage() {
                       </div>
                       <div>
                         <div className="font-medium text-white">UNITY</div>
-                        <div className="text-xs text-water-200/60">Основной токен</div>
+                        <div className="text-xs text-water-200/60">Core Token</div>
                       </div>
                     </div>
                     <div className="text-2xl font-bold text-white">
@@ -1294,8 +1217,8 @@ export default function HomePage() {
                         <FolderOpen className="w-5 h-5 text-green-400" />
                       </div>
                       <div>
-                        <div className="font-medium text-white">Проекты</div>
-                        <div className="text-xs text-water-200/60">Ваши инвестиции</div>
+                        <div className="font-medium text-white">Projects</div>
+                        <div className="text-xs text-water-200/60">Your Investments</div>
                       </div>
                     </div>
                     <div className="text-2xl font-bold text-white">
@@ -1310,8 +1233,8 @@ export default function HomePage() {
                         <Target className="w-5 h-5 text-orange-400" />
                       </div>
                       <div>
-                        <div className="font-medium text-white">Миссии</div>
-                        <div className="text-xs text-water-200/60">Активные задания</div>
+                        <div className="font-medium text-white">Missions</div>
+                        <div className="text-xs text-water-200/60">Active Tasks</div>
                       </div>
                     </div>
                     <div className="text-2xl font-bold text-white">
@@ -1328,9 +1251,9 @@ export default function HomePage() {
                 transition={{ delay: 0.5 }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-white">Активные проекты</h2>
+                  <h2 className="text-lg font-semibold text-white">Active Projects</h2>
                   <Link href="/projecthub" className="text-sm text-water-400 hover:text-water-300 transition">
-                    Все проекты →
+                    All Projects →
                   </Link>
                 </div>
 
@@ -1366,9 +1289,9 @@ export default function HomePage() {
                       <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-3">
                         <Plus className="w-8 h-8 text-water-200/30" />
                       </div>
-                      <p className="text-water-200/70 mb-4">Пока нет активных проектов</p>
+                      <p className="text-water-200/70 mb-4">No active projects yet</p>
                       <Link href="/projecthub" className="text-water-400 hover:text-water-300 text-sm font-medium">
-                        Обзор проектов →
+                        Browse Projects →
                       </Link>
                     </div>
                   )}
@@ -1384,10 +1307,10 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Flame className="w-5 h-5 text-orange-400" />
-                    <h2 className="text-lg font-semibold text-white">Ежедневные задания</h2>
+                    <h2 className="text-lg font-semibold text-white">Daily Missions</h2>
                   </div>
                   <Link href="/missions" className="text-sm text-water-400 hover:text-water-300 transition">
-                    Все миссии →
+                    All Missions →
                   </Link>
                 </div>
 
@@ -1399,7 +1322,7 @@ export default function HomePage() {
                   ) : (
                     <div className="glass-card p-6 text-center">
                       <Target className="w-12 h-12 text-water-200/30 mx-auto mb-3" />
-                      <p className="text-water-200/70">Нет доступных миссий</p>
+                      <p className="text-water-200/70">No available missions</p>
                     </div>
                   )}
                 </div>
@@ -1414,14 +1337,15 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-purple-400" />
-                    <h2 className="text-lg font-semibold text-white">Рекомендации для вас</h2>
+                    <h2 className="text-lg font-semibold text-white">Recommendations for You</h2>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  {mockRecommendations.map((rec, index) => (
-                    <RecommendationCard key={rec.id} rec={rec} index={index} />
-                  ))}
+                  <div className="glass-card p-6 text-center">
+                    <Sparkles className="w-12 h-12 text-water-200/30 mx-auto mb-3" />
+                    <p className="text-water-200/70">Recommendations will appear as the platform develops</p>
+                  </div>
                 </div>
               </motion.section>
 
@@ -1434,14 +1358,14 @@ export default function HomePage() {
               >
                 <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                   <Target className="w-5 h-5 text-water-400" />
-                  Инструменты управления
+                  Management Tools
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {[
-                    { icon: Globe, title: "3D Глобус", desc: "Изучайте водные объекты", href: "/globe", color: "bg-blue-500/20 text-blue-400" },
-                    { icon: FolderOpen, title: "Проекты", desc: "Инвестируйте в экологию", href: "/projects", color: "bg-green-500/20 text-green-400" },
-                    { icon: Gavel, title: "DAO", desc: "Управление экосистемой", href: "/dao", color: "bg-purple-500/20 text-purple-400" },
-                    { icon: Microscope, title: "VOD-Lab", desc: "Данные сенсоров", href: "/vod-lab", color: "bg-cyan-500/20 text-cyan-400" },
+                    { icon: Globe, title: "3D Globe", desc: "Explore water bodies", href: "/globe", color: "bg-blue-500/20 text-blue-400" },
+                    { icon: FolderOpen, title: "Projects", desc: "Invest in ecology", href: "/projects", color: "bg-green-500/20 text-green-400" },
+                    { icon: Gavel, title: "DAO", desc: "Ecosystem governance", href: "/dao", color: "bg-purple-500/20 text-purple-400" },
+                    { icon: Microscope, title: "VOD-Lab", desc: "Sensor data", href: "/vod-lab", color: "bg-cyan-500/20 text-cyan-400" },
                   ].map((tool) => (
                     <Link
                       key={tool.title}
@@ -1471,7 +1395,7 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Activity className="w-5 h-5 text-cyan-400" />
-                    <h2 className="text-lg font-semibold text-white">Датчики Live</h2>
+                    <h2 className="text-lg font-semibold text-white">Sensors</h2>
                   </div>
                   <span className={`flex items-center gap-2 text-xs ${isConnected ? "text-green-400" : "text-yellow-400"}`}>
                     <span className={`w-2 h-2 rounded-full ${isConnected ? "bg-green-400 animate-pulse" : "bg-yellow-400"}`} />
@@ -1480,16 +1404,20 @@ export default function HomePage() {
                 </div>
 
                 <div className="space-y-2">
-                  {sensors.map((sensor, index) => (
-                    <SensorWidget key={sensor.id} sensor={sensor} index={index} />
-                  ))}
+                  <div className="glass-card p-8 text-center">
+                    <div className="w-16 h-16 bg-water-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Activity className="w-8 h-8 text-water-400/50" />
+                    </div>
+                    <p className="text-water-200/70 mb-2">Sensors Coming Soon</p>
+                    <p className="text-water-200/50 text-sm">VOD-Lab devices in development</p>
+                  </div>
                 </div>
 
                 <Link
                   href="/vod-lab"
                   className="block mt-3 text-center py-2 bg-water-500/20 border border-water-500/30 text-water-400 rounded-lg text-sm font-medium hover:bg-water-500/30 transition"
                 >
-                  Все датчики →
+                  Learn More About VOD-Lab →
                 </Link>
               </motion.section>
 
@@ -1502,17 +1430,18 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Crown className="w-5 h-5 text-yellow-400" />
-                    <h2 className="text-lg font-semibold text-white">Ретродропы</h2>
+                    <h2 className="text-lg font-semibold text-white">Retro Drops</h2>
                   </div>
                   <Link href="/achievements" className="text-sm text-water-400 hover:text-water-300 transition">
-                    Все →
+                    Coming Soon →
                   </Link>
                 </div>
 
                 <div className="space-y-3">
-                  {mockRetroDrops.map((drop, index) => (
-                    <RetroDropCard key={drop.id} drop={drop} index={index} />
-                  ))}
+                  <div className="glass-card p-6 text-center">
+                    <Crown className="w-12 h-12 text-water-200/30 mx-auto mb-3" />
+                    <p className="text-water-200/70">Retro Drops will be announced when the platform launches</p>
+                  </div>
                 </div>
               </motion.section>
 
@@ -1525,21 +1454,22 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Clock className="w-5 h-5 text-water-400" />
-                    <h2 className="text-lg font-semibold text-white">Лента событий</h2>
+                    <h2 className="text-lg font-semibold text-white">News Feed</h2>
                   </div>
                   <Link href="/feed" className="text-sm text-water-400 hover:text-water-300 transition">
-                    Все новости →
+                    Coming Soon →
                   </Link>
                 </div>
 
                 <div className="space-y-4">
-                  {feed.map((item, index) => (
-                    <FeedCard key={item.id} item={item} index={index} />
-                  ))}
+                  <div className="glass-card p-6 text-center">
+                    <Clock className="w-12 h-12 text-water-200/30 mx-auto mb-3" />
+                    <p className="text-water-200/70">News feed will appear as the platform develops</p>
+                  </div>
                 </div>
 
                 <button className="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 rounded-xl text-white font-medium transition flex items-center justify-center gap-2">
-                  Загрузить ещё
+                  Load More
                   <ChevronDown className="w-4 h-4" />
                 </button>
               </motion.section>
@@ -1553,34 +1483,34 @@ export default function HomePage() {
               >
                 <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                   <BarChart3 className="w-5 h-5 text-water-400" />
-                  Экосистема сегодня
+                  Ecosystem Today
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-water-200/70">Новых объектов</span>
-                    <span className="text-water-400 font-semibold">+12</span>
+                    <span className="text-water-200/70">New Features</span>
+                    <span className="text-water-400 font-semibold">In Development</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-water-200/70">Активных миссий</span>
-                    <span className="text-green-400 font-semibold">24</span>
+                    <span className="text-water-200/70">Active Missions</span>
+                    <span className="text-green-400 font-semibold">0</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-water-200/70">Предложений DAO</span>
-                    <span className="text-purple-400 font-semibold">7</span>
+                    <span className="text-water-200/70">DAO Proposals</span>
+                    <span className="text-purple-400 font-semibold">0</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-water-200/70">Сенсоров онлайн</span>
-                    <span className="text-cyan-400 font-semibold">{sensors.filter(s => s.status === "online").length}</span>
+                    <span className="text-water-200/70">Sensors Online</span>
+                    <span className="text-cyan-400 font-semibold">0</span>
                   </div>
                 </div>
                 <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
                   <Link href="/dao" className="flex items-center gap-2 text-sm text-water-400 hover:text-water-300 transition">
                     <Gavel className="w-4 h-4" />
-                    Проголосовать в DAO
+                    Vote in DAO
                   </Link>
                   <Link href="/analytics" className="flex items-center gap-2 text-sm text-water-400 hover:text-water-300 transition">
                     <TrendingUp className="w-4 h-4" />
-                    Полная аналитика
+                    Full Analytics
                   </Link>
                 </div>
               </motion.section>
@@ -1597,7 +1527,7 @@ export default function HomePage() {
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
         url={typeof window !== "undefined" ? window.location.href : "https://looporb.com"}
-        title="LoopOrb - Глобальная экосистема управления водными ресурсами"
+        title="VODeco - Global Water Resource Management Ecosystem"
       />
       
       <InviteModal

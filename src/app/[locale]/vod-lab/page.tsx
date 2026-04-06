@@ -123,368 +123,368 @@ const devices: Device[] = [
     name: "VOD-Lab Pro",
     price: 13400,
     priceFormatted: "$13,400",
-    description: "Профессиональная распределённая лаборатория для стационарного мониторинга с максимальной точностью и Edge AI верификацией",
+    description: "Professional distributed laboratory for stationary monitoring with maximum accuracy and Edge AI verification",
     parameters: "100+",
-    samplesPerDay: "500 образцов/день",
-    accuracy: "±0.1% для pH, ±0.01 NTU",
+    samplesPerDay: "500 samples/day",
+    accuracy: "±0.1% for pH, ±0.01 NTU",
     deployment: "Station-based",
     image: "pro",
     rating: 4.9,
     reviews: 127,
-    inStock: true,
+    inStock: false,
     category: "lab",
     specs: [
-      { label: "Параметры", value: "100+ показателей", category: "chemical" },
-      { label: "Точность pH", value: "±0.01", category: "physical" },
-      { label: "Точность турбидиметра", value: "±0.01 NTU", category: "physical" },
-      { label: "Производительность", value: "500 образцов/день", category: "physical" },
-      { label: "Автоматизация", value: "Полная (24/7)", category: "ai" },
-      { label: "Спектрофотометр", value: "UV-Vis-NIR (190-2500 нм)", category: "chemical" },
-      { label: "Флуориметр", value: "220-900 нм (Ex/Em)", category: "chemical" },
-      { label: "Потоковый цитометр", value: "Для микробиологии", category: "micro" },
-      { label: "Радиометр", value: "α, β, γ-излучение", category: "radio" },
-      { label: "ИК-спектрометр", value: "2.5-14 мкм", category: "organic" },
-      { label: "Связь", value: "5G, LoRaWAN, Satellite", category: "ai" },
-      { label: "Защита", value: "IP68, -40°C до +60°C", category: "physical" },
-      { label: "Калибровка", value: "Автоматическая (AI)", category: "ai" },
-      { label: "Энергопотребление", value: "150W среднее", category: "physical" },
+      { label: "Parameters", value: "100+ indicators", category: "chemical" },
+      { label: "pH Accuracy", value: "±0.01", category: "physical" },
+      { label: "Turbidimeter Accuracy", value: "±0.01 NTU", category: "physical" },
+      { label: "Throughput", value: "500 samples/day", category: "physical" },
+      { label: "Automation", value: "Full (24/7)", category: "ai" },
+      { label: "Spectrophotometer", value: "UV-Vis-NIR (190-2500 nm)", category: "chemical" },
+      { label: "Fluorimeter", value: "220-900 nm (Ex/Em)", category: "chemical" },
+      { label: "Flow Cytometer", value: "For microbiology", category: "micro" },
+      { label: "Radiometer", value: "α, β, γ radiation", category: "radio" },
+      { label: "IR Spectrometer", value: "2.5-14 μm", category: "organic" },
+      { label: "Connectivity", value: "5G, LoRaWAN, Satellite", category: "ai" },
+      { label: "Protection", value: "IP68, -40°C to +60°C", category: "physical" },
+      { label: "Calibration", value: "Automatic (AI)", category: "ai" },
+      { label: "Power Consumption", value: "150W average", category: "physical" },
     ],
     sensors: [
-      "Спектрофотометр (UV-Vis-NIR, 190-2500 нм)",
-      "Электрохимические сенсоры (pH, ORP, EC, ISE)",
-      "Турбидиметр лазерный (0-1000 NTU)",
-      "Флуориметр (algae, бактерии, органика)",
-      "Газовые сенсоры (CO2, H2S, CH4, O2)",
-      "Тяжёлые металлы (ASV, ICP-MS подготовка)",
-      "Микробиология (PCR-ready, потоковая цитометрия)",
-      "Радиометр (α, β, γ-активность)",
-      "ИК-спектрометр (нефтепродукты, органика)",
-      "Потоковый цитометр (общее микробное число)",
+      "Spectrophotometer (UV-Vis-NIR, 190-2500 nm)",
+      "Electrochemical sensors (pH, ORP, EC, ISE)",
+      "Laser turbidimeter (0-1000 NTU)",
+      "Fluorimeter (algae, bacteria, organics)",
+      "Gas sensors (CO2, H2S, CH4, O2)",
+      "Heavy metals (ASV, ICP-MS preparation)",
+      "Microbiology (PCR-ready, flow cytometry)",
+      "Radiometer (α, β, γ activity)",
+      "IR spectrometer (petroleum products, organics)",
+      "Flow cytometer (total microbial count)",
     ],
     ai: [
-      "Edge AI чип NVIDIA Jetson AGX Xavier (32 TOPS)",
-      "Верификация данных на месте (HSM secp256k1)",
-      "Автоматическая диагностика и предиктивное обслуживание",
-      "AI-анализ аномалий (градиент, корреляция, спутник)",
-      "Автоматическая калибровка по эталонным образцам NIST",
-      "Анонимизация данных (MPC для чувствительных)",
-      "Автономное обновление через мультиподпись DAO",
+      "Edge AI chip NVIDIA Jetson AGX Xavier (32 TOPS)",
+      "On-site data verification (HSM secp256k1)",
+      "Automatic diagnostics and predictive maintenance",
+      "AI anomaly analysis (gradient, correlation, satellite)",
+      "Automatic calibration using NIST reference samples",
+      "Data anonymization (MPC for sensitive data)",
+      "Autonomous updates via DAO multisignature",
     ],
     useCases: [
-      "Городские системы водоснабжения (непрерывный мониторинг)",
-      "Промышленные стоки (автоматический контроль сбросов)",
-      "Очистные сооружения (вход/выход контроль)",
-      "Трансграничные реки (межгосударственный мониторинг)",
-      "Водохранилища и резервуары (стратегические запасы)",
-      "Научные исследования (эталонные данные)",
+      "Urban water systems (continuous monitoring)",
+      "Industrial wastewater (automatic discharge control)",
+      "Treatment facilities (inlet/outlet control)",
+      "Transboundary rivers (interstate monitoring)",
+      "Reservoirs and tanks (strategic reserves)",
+      "Scientific research (reference data)",
     ],
-    dimensions: "60×40×30 см",
-    weight: "25 кг",
-    power: "Солнечная панель 200W + LiFePO4 4 кВт·ч (3 дня автономии)",
-    connectivity: ["LoRaWAN", "Starlink", "4G/5G", "Оптоволокно", "Mesh WiFi"],
-    protection: "IP68, IK10, нержавеющая сталь 316L",
-    tempRange: "-40°C до +60°C",
-    warranty: "5 лет гарантия, 10 лет срок службы",
-    delivery: "4-6 недель",
+    dimensions: "60x40x30 cm",
+    weight: "25 kg",
+    power: "Solar panel 200W + LiFePO4 4 kWh (3 days autonomy)",
+    connectivity: ["LoRaWAN", "Starlink", "4G/5G", "Fiber Optic", "Mesh WiFi"],
+    protection: "IP68, IK10, stainless steel 316L",
+    tempRange: "-40°C to +60°C",
+    warranty: "5 years warranty, 10 years lifespan",
+    delivery: "4-6 weeks",
   },
   {
     id: "vod-lab-node",
     name: "VOD-Lab Node",
     price: 8900,
     priceFormatted: "$8,900",
-    description: "Портативная нода для мобильного мониторинга и быстрого развёртывания с Cloud AI верификацией",
+    description: "Portable node for mobile monitoring and rapid deployment with Cloud AI verification",
     parameters: "50",
-    samplesPerDay: "200 образцов/день",
-    accuracy: "±0.5% для pH, ±0.1 NTU",
+    samplesPerDay: "200 samples/day",
+    accuracy: "±0.5% for pH, ±0.1 NTU",
     deployment: "Portable/Mobile",
     image: "node",
     rating: 4.7,
     reviews: 89,
-    inStock: true,
+    inStock: false,
     category: "portable",
     specs: [
-      { label: "Параметры", value: "50 ключевых показателей", category: "chemical" },
-      { label: "Точность pH", value: "±0.05", category: "physical" },
-      { label: "Точность турбидиметра", value: "±0.1 NTU", category: "physical" },
-      { label: "Производительность", value: "200 образцов/день", category: "physical" },
-      { label: "Автоматизация", value: "Полуавтоматическая", category: "ai" },
-      { label: "Спектрофотометр", value: "UV-Vis (190-1100 нм)", category: "chemical" },
-      { label: "Мультиспектральный анализ", value: "12 каналов", category: "chemical" },
-      { label: "Связь", value: "4G/5G, WiFi, Bluetooth", category: "ai" },
-      { label: "Защита", value: "IP65, -20°C до +50°C", category: "physical" },
-      { label: "Калибровка", value: "Картриджная система", category: "ai" },
-      { label: "Энергопотребление", value: "50W среднее", category: "physical" },
+      { label: "Parameters", value: "50 key indicators", category: "chemical" },
+      { label: "pH Accuracy", value: "±0.05", category: "physical" },
+      { label: "Turbidimeter Accuracy", value: "±0.1 NTU", category: "physical" },
+      { label: "Throughput", value: "200 samples/day", category: "physical" },
+      { label: "Automation", value: "Semi-automatic", category: "ai" },
+      { label: "Spectrophotometer", value: "UV-Vis (190-1100 nm)", category: "chemical" },
+      { label: "Multispectral Analysis", value: "12 channels", category: "chemical" },
+      { label: "Connectivity", value: "4G/5G, WiFi, Bluetooth", category: "ai" },
+      { label: "Protection", value: "IP65, -20°C to +50°C", category: "physical" },
+      { label: "Calibration", value: "Cartridge-based system", category: "ai" },
+      { label: "Power Consumption", value: "50W average", category: "physical" },
     ],
     sensors: [
-      "Мультиспектральный анализатор (UV-Vis, 12 каналов)",
-      "pH/EC/Temp комбинированный сенсор",
-      "Турбидиметр оптический (0-4000 NTU)",
-      "Растворённый кислород (оптический, люминесцентный)",
-      "Органические соединения (TOC, УФ-окисление)",
-      "Нитраты/фосфаты (фотометрия, молибденовая реакция)",
-      "Ион-селективные электроды (NH4+, NO3-, F-)",
-      "Иммунофлуоресцентный детектор (E.coli, колиформы)",
+      "Multispectral analyzer (UV-Vis, 12 channels)",
+      "pH/EC/Temp combined sensor",
+      "Optical turbidimeter (0-4000 NTU)",
+      "Dissolved oxygen (optical, luminescent)",
+      "Organic compounds (TOC, UV oxidation)",
+      "Nitrates/phosphates (photometry, molybdenum reaction)",
+      "Ion-selective electrodes (NH4+, NO3-, F-)",
+      "Immunofluorescent detector (E.coli, coliforms)",
     ],
     ai: [
-      "ARM Cortex-A78 процессор (8 ядер)",
-      "Cloud AI верификация (сравнение с сетью)",
-      "GPS/GLONASS тегирование (точность 0.5 м)",
-      "Offline режим работы (до 72 часов)",
-      "Мгновенные результаты (1-5 минут)",
-      "Автоматическая генерация отчётов",
+      "ARM Cortex-A78 processor (8 cores)",
+      "Cloud AI verification (network comparison)",
+      "GPS/GLONASS tagging (0.5m accuracy)",
+      "Offline mode (up to 72 hours)",
+      "Instant results (1-5 minutes)",
+      "Automatic report generation",
     ],
     useCases: [
-      "Экологические инспекции (выездные проверки)",
-      "Мобильные лаборатории (экспедиции)",
-      "Быстрое развёртывание в ЧС",
-      "Образовательные учреждения (обучение)",
-      "Фермерские хозяйства (контроль орошения)",
-      "Горнодобывающие компании (мониторинг сбросов)",
+      "Environmental inspections (field checks)",
+      "Mobile laboratories (expeditions)",
+      "Rapid deployment in emergencies",
+      "Educational institutions (training)",
+      "Farming operations (irrigation control)",
+      "Mining companies (discharge monitoring)",
     ],
-    dimensions: "35×25×20 см",
-    weight: "8 кг",
-    power: "AC 220V + встроенный аккумулятор 24V/10Ah (8 часов)",
+    dimensions: "35x25x20 cm",
+    weight: "8 kg",
+    power: "AC 220V + built-in battery 24V/10Ah (8 hours)",
     connectivity: ["4G/5G", "WiFi 6", "Bluetooth 5.0", "USB-C"],
-    protection: "IP65, ударопрочный корпус",
-    tempRange: "-20°C до +50°C",
-    warranty: "3 года гарантия, 7 лет срок службы",
-    delivery: "2-4 недели",
+    protection: "IP65, shockproof case",
+    tempRange: "-20°C to +50°C",
+    warranty: "3 years warranty, 7 years lifespan",
+    delivery: "2-4 weeks",
   },
   {
     id: "vod-lab-mini",
     name: "VOD-Lab Mini",
     price: 4500,
     priceFormatted: "$4,500",
-    description: "Компактная система для базового мониторинга с ключевыми параметрами и автоматической передачей данных",
+    description: "Compact system for basic monitoring with key parameters and automatic data transmission",
     parameters: "25",
-    samplesPerDay: "50 образцов/день",
-    accuracy: "±1% для pH, ±0.5 NTU",
+    samplesPerDay: "50 samples/day",
+    accuracy: "±1% for pH, ±0.5 NTU",
     deployment: "Compact Station",
     image: "mini",
     rating: 4.5,
     reviews: 156,
-    inStock: true,
+    inStock: false,
     category: "lab",
     specs: [
-      { label: "Параметры", value: "25 базовых показателей", category: "chemical" },
-      { label: "Точность pH", value: "±0.1", category: "physical" },
-      { label: "Точность турбидиметра", value: "±0.5 NTU", category: "physical" },
-      { label: "Производительность", value: "50 образцов/день", category: "physical" },
-      { label: "Автоматизация", value: "Автоматическая", category: "ai" },
-      { label: "Фотометр", value: "Vis (400-700 нм, 8 каналов)", category: "chemical" },
-      { label: "Связь", value: "4G, WiFi, LoRaWAN", category: "ai" },
-      { label: "Защита", value: "IP66, -10°C до +45°C", category: "physical" },
-      { label: "Калибровка", value: "Автоматическая (раз в неделю)", category: "ai" },
-      { label: "Энергопотребление", value: "25W среднее", category: "physical" },
+      { label: "Parameters", value: "25 basic indicators", category: "chemical" },
+      { label: "pH Accuracy", value: "±0.1", category: "physical" },
+      { label: "Turbidimeter Accuracy", value: "±0.5 NTU", category: "physical" },
+      { label: "Throughput", value: "50 samples/day", category: "physical" },
+      { label: "Automation", value: "Automatic", category: "ai" },
+      { label: "Photometer", value: "Vis (400-700 nm, 8 channels)", category: "chemical" },
+      { label: "Connectivity", value: "4G, WiFi, LoRaWAN", category: "ai" },
+      { label: "Protection", value: "IP66, -10°C to +45°C", category: "physical" },
+      { label: "Calibration", value: "Automatic (weekly)", category: "ai" },
+      { label: "Power Consumption", value: "25W average", category: "physical" },
     ],
     sensors: [
-      "Многоканальный фотометр (8 длин волн)",
-      "Комбинированный pH/EC/Temp сенсор",
-      "Турбидиметр (0-1000 NTU)",
-      "Растворённый кислород (гальванический)",
-      "ОВП (окислительно-восстановительный потенциал)",
-      "Хлор свободный/общий (амперометрический)",
-      "Нитраты/нитриты/фосфаты (фотометрия)",
-      "Аммоний (ион-селективный электрод)",
+      "Multi-channel photometer (8 wavelengths)",
+      "Combined pH/EC/Temp sensor",
+      "Turbidimeter (0-1000 NTU)",
+      "Dissolved oxygen (galvanic)",
+      "ORP (oxidation-reduction potential)",
+      "Free/total chlorine (amperometric)",
+      "Nitrates/nitrites/phosphates (photometry)",
+      "Ammonium (ion-selective electrode)",
     ],
     ai: [
-      "ESP32-S3 микроконтроллер (AI-ускоритель)",
-      "Cloud верификация (сравнение с соседними узлами)",
-      "Автоматическая калибровка (раз в неделю)",
-      "Предиктивная диагностика (уведомления)",
-      "Автоматическая передача данных в блокчейн",
+      "ESP32-S3 microcontroller (AI accelerator)",
+      "Cloud verification (comparison with neighboring nodes)",
+      "Automatic calibration (weekly)",
+      "Predictive diagnostics (notifications)",
+      "Automatic data transmission to blockchain",
     ],
     useCases: [
-      "Малые населённые пункты (контроль водопровода)",
-      "Бассейны и аквапарки (контроль качества)",
-      "Рыбоводческие хозяйства (аквакультура)",
-      "Школы и университеты (образование)",
-      "Гостиницы и курорты (контроль воды)",
-      "Пищевые производства (входной контроль)",
+      "Small settlements (water supply control)",
+      "Pools and water parks (quality control)",
+      "Fish farms (aquaculture)",
+      "Schools and universities (education)",
+      "Hotels and resorts (water control)",
+      "Food production (incoming control)",
     ],
-    dimensions: "25×20×15 см",
-    weight: "4 кг",
-    power: "AC 220V + солнечная панель 50W (опционально)",
+    dimensions: "25x20x15 cm",
+    weight: "4 kg",
+    power: "AC 220V + solar panel 50W (optional)",
     connectivity: ["4G", "WiFi", "LoRaWAN", "Ethernet"],
-    protection: "IP66, поликарбонатный корпус",
-    tempRange: "-10°C до +45°C",
-    warranty: "2 года гарантия, 5 лет срок службы",
-    delivery: "1-2 недели",
+    protection: "IP66, polycarbonate case",
+    tempRange: "-10°C to +45°C",
+    warranty: "2 years warranty, 5 years lifespan",
+    delivery: "1-2 weeks",
   },
   {
     id: "smart-sensor",
     name: "Smart Sensor",
     price: 299,
     priceFormatted: "$299",
-    description: "Персональный сенсор для непрерывного мониторинга с передачей данных в реальном времени и интеграцией в сеть VODeco",
+    description: "Personal sensor for continuous monitoring with real-time data transmission and integration into VODeco network",
     parameters: "10",
-    samplesPerDay: "Real-time (каждые 5 мин)",
-    accuracy: "±2% для pH, ±1 NTU",
+    samplesPerDay: "Real-time (every 5 min)",
+    accuracy: "±2% for pH, ±1 NTU",
     deployment: "Personal/Consumer",
     image: "sensor",
     rating: 4.3,
     reviews: 423,
-    inStock: true,
+    inStock: false,
     category: "sensor",
     specs: [
-      { label: "Параметры", value: "10 базовых показателей", category: "physical" },
-      { label: "Точность pH", value: "±0.2", category: "physical" },
-      { label: "Точность турбидиметра", value: "±1 NTU", category: "physical" },
-      { label: "Частота замеров", value: "Каждые 5 минут", category: "ai" },
-      { label: "Автономность", value: "До 6 месяцев", category: "physical" },
-      { label: "Связь", value: "Bluetooth + LoRaWAN", category: "ai" },
-      { label: "Защита", value: "IP68, погружение до 10 м", category: "physical" },
-      { label: "Калибровка", value: "Раз в 3 месяца", category: "ai" },
+      { label: "Parameters", value: "10 basic indicators", category: "physical" },
+      { label: "pH Accuracy", value: "±0.2", category: "physical" },
+      { label: "Turbidimeter Accuracy", value: "±1 NTU", category: "physical" },
+      { label: "Measurement Frequency", value: "Every 5 minutes", category: "ai" },
+      { label: "Battery Life", value: "Up to 6 months", category: "physical" },
+      { label: "Connectivity", value: "Bluetooth + LoRaWAN", category: "ai" },
+      { label: "Protection", value: "IP68, submersion up to 10m", category: "physical" },
+      { label: "Calibration", value: "Every 3 months", category: "ai" },
     ],
     sensors: [
-      "pH (стеклянный электрод ISFET)",
-      "Температура (термистор PT1000, ±0.1°C)",
-      "Электропроводность (0-100 мСм/см)",
-      "Мутность (оптическое рассеяние 90°)",
-      "Растворённый кислород (оптический)",
-      "ОВП (платиновый электрод)",
-      "Солёность (расчётная)",
-      "TDS (общее солесодержание)",
-      "Уровень воды (давление)",
-      "GPS координаты (при синхронизации)",
+      "pH (ISFET glass electrode)",
+      "Temperature (PT1000 thermistor, ±0.1°C)",
+      "Electrical conductivity (0-100 mS/cm)",
+      "Turbidity (90° optical scattering)",
+      "Dissolved oxygen (optical)",
+      "ORP (platinum electrode)",
+      "Salinity (calculated)",
+      "TDS (total dissolved solids)",
+      "Water level (pressure)",
+      "GPS coordinates (when synchronized)",
     ],
     ai: [
-      "Bluetooth 5.0 + LoRaWAN (дальность до 10 км)",
-      "Интеграция с VOD Check (мобильное приложение)",
-      "Автоматическая передача в сеть VODeco",
-      "Уведомления при выходе за пределы нормы",
-      "История данных в облаке (бесплатно 1 год)",
+      "Bluetooth 5.0 + LoRaWAN (range up to 10 km)",
+      "Integration with VOD Check (mobile app)",
+      "Automatic transmission to VODeco network",
+      "Notifications when out of range",
+      "Cloud data history (free for 1 year)",
     ],
     useCases: [
-      "Домашние колодцы и скважины",
-      "Аквариумы и пруды",
-      "Личные участки (полив, бассейн)",
-      "Образовательные проекты (школы)",
-      "Гражданская наука (волонтёрский мониторинг)",
-      "Рыбалка и отдых (выбор мест)",
+      "Home wells and boreholes",
+      "Aquariums and ponds",
+      "Private plots (irrigation, pool)",
+      "Educational projects (schools)",
+      "Citizen science (volunteer monitoring)",
+      "Fishing and recreation (site selection)",
     ],
-    dimensions: "8×8×15 см",
-    weight: "0.5 кг",
-    power: "Батарея CR2032 (6 месяцев) + солнечная панель (опционально)",
-    connectivity: ["Bluetooth 5.0", "LoRaWAN", "NFC (для настройки)"],
-    protection: "IP68, погружение до 10 м",
-    tempRange: "0°C до +50°C",
-    warranty: "1 год гарантия, 3 года срок службы",
-    delivery: "В наличии",
+    dimensions: "8x8x15 cm",
+    weight: "0.5 kg",
+    power: "CR2032 battery (6 months) + solar panel (optional)",
+    connectivity: ["Bluetooth 5.0", "LoRaWAN", "NFC (for setup)",
+    protection: "IP68, submersion up to 10m",
+    tempRange: "0°C to +50°C",
+    warranty: "1 year warranty, 3 years lifespan",
+    delivery: "Pre-order",
   },
   {
     id: "water-expeditor",
     name: "Water Expeditor",
     price: 18000,
     priceFormatted: "$18,000",
-    description: "Портативный полевой анализатор в защищённом кейсе — лаборатория в чемодане для экспедиций и инспекций",
+    description: "Portable field analyzer in a rugged case - a laboratory in a suitcase for expeditions and inspections",
     parameters: "50+",
-    samplesPerDay: "100 образцов/день (полевых)",
-    accuracy: "Лабораторная точность",
+    samplesPerDay: "100 samples/day (field)",
+    accuracy: "Laboratory accuracy",
     deployment: "Field Expedition",
     image: "expeditor",
     rating: 4.8,
     reviews: 67,
-    inStock: true,
+    inStock: false,
     category: "portable",
     specs: [
-      { label: "Параметры", value: "50+ показателей", category: "chemical" },
-      { label: "Спектрофотометр", value: "UV-Vis-NIR (190-2500 нм)", category: "chemical" },
-      { label: "Микробиология", value: "Автоматическая культивация (8 образцов)", category: "micro" },
-      { label: "Быстрые тесты", value: "Результат за 5-15 минут", category: "chemical" },
-      { label: "Автономность", value: "8 часов работы", category: "physical" },
-      { label: "Вес комплекта", value: "12 кг", category: "physical" },
-      { label: "Защита", value: "Pelican Case, IP67", category: "physical" },
+      { label: "Parameters", value: "50+ indicators", category: "chemical" },
+      { label: "Spectrophotometer", value: "UV-Vis-NIR (190-2500 nm)", category: "chemical" },
+      { label: "Microbiology", value: "Automatic cultivation (8 samples)", category: "micro" },
+      { label: "Quick Tests", value: "Results in 5-15 minutes", category: "chemical" },
+      { label: "Battery Life", value: "8 hours operation", category: "physical" },
+      { label: "Kit Weight", value: "12 kg", category: "physical" },
+      { label: "Protection", value: "Pelican Case, IP67", category: "physical" },
     ],
     sensors: [
-      "Портативный спектрофотометр (UV-Vis-NIR, 190-2500 нм, 3.2 кг)",
-      "Автоматический микробиологический анализатор (флуоресценция, 4-18 часов)",
-      "Набор быстрых тест-полосок (10 параметров, 5-15 минут)",
-      "Цифровой фотометр для считывания (смартфон + адаптер)",
-      "Химические тесты (pH, твёрдость, хлор, железо)",
-      "Погружной насос (0-30 м)",
-      "Пробоотборники стерильные (различные объёмы)",
-      "Фильтры, реагенты, расходники на 100 анализов",
+      "Portable spectrophotometer (UV-Vis-NIR, 190-2500 nm, 3.2 kg)",
+      "Automatic microbiological analyzer (fluorescence, 4-18 hours)",
+      "Quick test strip set (10 parameters, 5-15 minutes)",
+      "Digital photometer for reading (smartphone + adapter)",
+      "Chemical tests (pH, hardness, chlorine, iron)",
+      "Submersible pump (0-30 m)",
+      "Sterile samplers (various volumes)",
+      "Filters, reagents, consumables for 100 tests",
     ],
     ai: [
-      "Защищённый планшет (IP67, -20°C до +60°C, 1.2 кг)",
-      "GPS/ГЛОНАСС/BeiDou (точность 0.5 м)",
-      "Связь: спутниковый терминал (Iridium), 4G, WiFi",
-      "ПО: VOD Check Pro (офлайн-режим, синхронизация)",
-      "HSM-модуль для подписи данных",
-      "Опционально: дрон для пробоотбора (2 кг полезной нагрузки, 5 км)",
+      "Rugged tablet (IP67, -20°C to +60°C, 1.2 kg)",
+      "GPS/GLONASS/BeiDou (0.5m accuracy)",
+      "Connectivity: satellite terminal (Iridium), 4G, WiFi",
+      "Software: VOD Check Pro (offline mode, sync)",
+      "HSM module for data signing",
+      "Optional: sampling drone (2 kg payload, 5 km)",
     ],
     useCases: [
-      "Экологические инспекции (государственные)",
-      "Научные экспедиции (полевые исследования)",
-      "НКО (мониторинг рек, озёр)",
-      "Страховые компании (оценка рисков)",
-      "Горнодобывающие компании (контроль сбросов)",
-      "ЧС и катастрофы (быстрая оценка)",
+      "Environmental inspections (government)",
+      "Scientific expeditions (field research)",
+      "NGOs (river, lake monitoring)",
+      "Insurance companies (risk assessment)",
+      "Mining companies (discharge monitoring)",
+      "Emergencies and disasters (rapid assessment)",
     ],
-    dimensions: "50×40×25 см (кейс)",
-    weight: "12 кг (полный комплект)",
-    power: "Встроенный аккумулятор 24V/10Ah (8 часов) + автомобильный адаптер 12V",
-    connectivity: ["Iridium (спутник)", "4G/5G", "WiFi", "Bluetooth", "USB-C"],
-    protection: "Pelican Case, IP67, ударопрочный",
-    tempRange: "-20°C до +60°C",
-    warranty: "3 года гарантия",
-    delivery: "4-6 недель",
+    dimensions: "50x40x25 cm (case)",
+    weight: "12 kg (full kit)",
+    power: "Built-in battery 24V/10Ah (8 hours) + 12V car adapter",
+    connectivity: ["Iridium (satellite)", "4G/5G", "WiFi", "Bluetooth", "USB-C"],
+    protection: "Pelican Case, IP67, shockproof",
+    tempRange: "-20°C to +60°C",
+    warranty: "3 years warranty",
+    delivery: "4-6 weeks",
   },
   {
     id: "vod-check",
     name: "VOD Check",
     price: 0,
     priceFormatted: "Free",
-    description: "Мобильное приложение для граждан — проверяй воду, зарабатывай VODcredit, участвуй в голосованиях DAO",
-    parameters: "15 (с тест-наборами)",
-    samplesPerDay: "Неограниченно",
-    accuracy: "Зависит от тест-наборов",
+    description: "Mobile app for citizens - check water, earn VODcredit, participate in DAO votes",
+    parameters: "15 (with test kits)",
+    samplesPerDay: "Unlimited",
+    accuracy: "Depends on test kits",
     deployment: "Mobile App",
     image: "app",
     rating: 4.6,
     reviews: 2847,
-    inStock: true,
+    inStock: false,
     category: "app",
     specs: [
-      { label: "Параметры", value: "15 с тест-наборами", category: "chemical" },
-      { label: "Платформы", value: "iOS, Android", category: "ai" },
-      { label: "Языки", value: "20+ языков", category: "ai" },
-      { label: "Награды", value: "VODcredit за данные", category: "ai" },
-      { label: "Интеграция", value: "Smart Sensor, VOD-Lab", category: "ai" },
+      { label: "Parameters", value: "15 with test kits", category: "chemical" },
+      { label: "Platforms", value: "iOS, Android", category: "ai" },
+      { label: "Languages", value: "20+ languages", category: "ai" },
+      { label: "Rewards", value: "VODcredit for data", category: "ai" },
+      { label: "Integration", value: "Smart Sensor, VOD-Lab", category: "ai" },
     ],
     sensors: [
-      "Камера смартфона (анализ тест-полосок)",
-      "GPS (геолокация замеров)",
-      "Bluetooth (подключение Smart Sensor)",
-      "Акселерометр (контроль качества фото)",
-      "NFC (считывание тест-наборов)",
+      "Smartphone camera (test strip analysis)",
+      "GPS (measurement geolocation)",
+      "Bluetooth (Smart Sensor connection)",
+      "Accelerometer (photo quality control)",
+      "NFC (test kit reading)",
     ],
     ai: [
-      "AI распознавание тест-полосок (точность 95%)",
-      "AI анализ фото воды (мутность, цвет, запах)",
-      "Автоматическая верификация данных (репутация)",
-      "Геймификация (ачивки, рейтинги, NFT)",
-      "Социальные функции (соседская сеть, петиции)",
-      "Доступ к карте качества воды (все источники)",
-      "Голосование в DAO (L4 решения)",
+      "AI test strip recognition (95% accuracy)",
+      "AI water photo analysis (turbidity, color, odor)",
+      "Automatic data verification (reputation)",
+      "Gamification (achievements, ratings, NFT)",
+      "Social features (neighbor network, petitions)",
+      "Access to water quality map (all sources)",
+      "DAO voting (L4 decisions)",
     ],
     useCases: [
-      "Проверка воды из крана (ежедневно)",
-      "Контроль колодцев и скважин",
-      "Отдых на водоёмах (безопасность)",
-      "Экологический активизм (петиции)",
-      "Образование (курсы, квесты)",
-      "Заработок VODcredit (продажа данных)",
+      "Tap water checking (daily)",
+      "Well and borehole monitoring",
+      "Water recreation (safety)",
+      "Environmental activism (petitions)",
+      "Education (courses, quests)",
+      "Earning VODcredit (data sales)",
     ],
-    dimensions: "Мобильное приложение",
-    weight: "Зависит от устройства",
-    power: "Заряд устройства",
+    dimensions: "Mobile app",
+    weight: "Depends on device",
+    power: "Device charge",
     connectivity: ["4G/5G", "WiFi", "Bluetooth", "GPS"],
-    protection: "Зависит от устройства",
-    tempRange: "Зависит от устройства",
-    warranty: "Бесплатно",
-    delivery: "Мгновенная загрузка",
+    protection: "Depends on device",
+    tempRange: "Depends on device",
+    warranty: "Free",
+    delivery: "Instant download",
   },
 ];
 
@@ -633,7 +633,7 @@ const faqs = [
 ];
 
 // ============================================================================
-// КОМПОНЕНТ СТРАНИЦЫ
+// PAGE COMPONENT
 // ============================================================================
 
 export default function VodLabPage() {
@@ -693,16 +693,35 @@ export default function VodLabPage() {
   });
 
   const videos = [
-    { title: "VOD-Lab Pro: Обзор возможностей", duration: "12:34", views: "15K" },
-    { title: "Установка и настройка VOD-Lab Node", duration: "8:45", views: "8K" },
-    { title: "Smart Sensor: Личный мониторинг воды", duration: "5:20", views: "23K" },
-    { title: "Water Expeditor в экспедиции", duration: "15:10", views: "6K" },
+    { title: "VOD-Lab Pro: Feature Overview", duration: "12:34", views: "15K" },
+    { title: "VOD-Lab Node: Installation and Setup", duration: "8:45", views: "8K" },
+    { title: "Smart Sensor: Personal Water Monitoring", duration: "5:20", views: "23K" },
+    { title: "Water Expeditor: In the Field", duration: "15:10", views: "6K" },
   ];
 
   return (
     <>
       <Navbar />
       <main className="min-h-screen pt-20 pb-8">
+        {/* ============================================================================
+            DEVELOPMENT BANNER
+        ============================================================================ */}
+        <div className="bg-gradient-to-r from-amber-500/20 via-yellow-500/20 to-amber-500/20 border-b border-amber-500/30 py-4 px-4">
+          <div className="max-w-5xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Wrench className="w-6 h-6 text-amber-400" />
+              <h2 className="text-xl md:text-2xl font-bold text-amber-300 uppercase tracking-wide">All Devices In Development</h2>
+              <Wrench className="w-6 h-6 text-amber-400" />
+            </div>
+            <p className="text-amber-200/90 max-w-3xl mx-auto">
+              All devices are in development stage. No devices are currently available for purchase. Pre-orders and staking available.
+            </p>
+            <p className="text-amber-200/70 text-sm mt-2">
+              VOD-Lab devices are currently in active development. You can pre-order or invest in the staking pool to support development.
+            </p>
+          </div>
+        </div>
+
         {/* ============================================================================
             HERO SECTION
         ============================================================================ */}
@@ -719,21 +738,21 @@ export default function VodLabPage() {
                 <span className="text-sm font-medium">VOD-Lab Hardware</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Лаборатория будущего
+                The Laboratory of the Future
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-water-400 to-cyan-400">
-                  для мониторинга воды
+                  for Water Monitoring
                 </span>
               </h1>
               <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-8">
-                Edge AI + Blockchain верификация воды в реальном времени.
-                От 10 до 100+ параметров с автоматической калибровкой.
+                Edge AI + Blockchain water verification in real time.
+                From 10 to 100+ parameters with automatic calibration.
               </p>
               <div className="flex flex-wrap justify-center gap-4 mb-12">
                 <button
                   onClick={() => setDemoModalOpen(true)}
                   className="px-8 py-4 bg-water-500 hover:bg-water-600 text-white rounded-xl font-semibold transition-colors flex items-center gap-2"
                 >
-                  Запросить демонстрацию
+                  Request a Demo
                   <ArrowRight className="w-5 h-5" />
                 </button>
                 <button
@@ -741,7 +760,7 @@ export default function VodLabPage() {
                   className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold transition-colors flex items-center gap-2"
                 >
                   <Calculator className="w-5 h-5" />
-                  Калькулятор ROI
+                  ROI Calculator
                 </button>
                 <button className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold transition-colors flex items-center gap-2">
                   <Download className="w-5 h-5" />
@@ -752,10 +771,10 @@ export default function VodLabPage() {
               {/* Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
                 {[
-                  { value: "6", label: "Устройств в каталоге" },
-                  { value: "100+", label: "Параметров анализа" },
-                  { value: "5000+", label: "Узлов в сети" },
-                  { value: "99.9%", label: "Точность данных" },
+                  { value: "6", label: "Devices in catalog" },
+                  { value: "100+", label: "Analysis parameters" },
+                  { value: "5000+", label: "Nodes in network" },
+                  { value: "99.9%", label: "Data accuracy" },
                 ].map((stat, i) => (
                   <motion.div
                     key={i}
@@ -774,14 +793,14 @@ export default function VodLabPage() {
         </section>
 
         {/* ============================================================================
-            КАТАЛОГ УСТРОЙСТВ
+            DEVICE CATALOG
         ============================================================================ */}
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Каталог устройств</h2>
+              <h2 className="text-3xl font-bold text-white mb-4">Device Catalog</h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                От персональных сенсоров до профессиональных лабораторий — выберите решение для ваших задач
+                From personal sensors to professional laboratories — choose a solution for your needs. All devices are in development.
               </p>
             </div>
 
@@ -790,7 +809,7 @@ export default function VodLabPage() {
               <div className="flex-1 min-w-[250px] relative">
                 <input
                   type="text"
-                  placeholder="Поиск устройств..."
+                  placeholder="Search devices..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full px-4 py-3 pl-12 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-water-500"
@@ -798,11 +817,11 @@ export default function VodLabPage() {
                 <Filter className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
               </div>
               {[
-                { id: "all", label: "Все" },
-                { id: "lab", label: "Лаборатории" },
-                { id: "portable", label: "Портативные" },
-                { id: "sensor", label: "Сенсоры" },
-                { id: "app", label: "Приложения" },
+                { id: "all", label: "All" },
+                { id: "lab", label: "Laboratories" },
+                { id: "portable", label: "Portable" },
+                { id: "sensor", label: "Sensors" },
+                { id: "app", label: "Apps" },
               ].map(cat => (
                 <button
                   key={cat.id}
@@ -843,16 +862,20 @@ export default function VodLabPage() {
 
                     {/* Badges */}
                     <div className="absolute top-4 right-4 flex flex-col gap-2">
+                      <div className="px-3 py-1 bg-amber-500/20 border border-amber-500/30 rounded-full text-amber-400 text-xs font-medium animate-pulse">
+                        <Wrench className="w-3 h-3 inline mr-1" />
+                        IN DEVELOPMENT
+                      </div>
                       {device.inStock && (
                         <div className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-medium">
                           <CheckCircle2 className="w-3 h-3 inline mr-1" />
-                          В наличии
+                          In Stock
                         </div>
                       )}
                       {device.rating >= 4.8 && (
                         <div className="px-3 py-1 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-yellow-400 text-xs font-medium">
                           <Star className="w-3 h-3 inline mr-1" />
-                          Выбор покупателей
+                          Top Rated
                         </div>
                       )}
                     </div>
@@ -862,28 +885,28 @@ export default function VodLabPage() {
                       <button
                         onClick={() => setSelectedDevice(device)}
                         className="p-3 bg-white/10 hover:bg-water-500 rounded-xl transition-colors"
-                        title="Изучить"
+                        title="Explore"
                       >
                         <Eye className="w-5 h-5 text-white" />
                       </button>
                       <button
                         onClick={() => toggleCart(device.id)}
                         className="p-3 bg-white/10 hover:bg-water-500 rounded-xl transition-colors"
-                        title={cart.includes(device.id) ? "Удалить из корзины" : "В корзину"}
+                        title={cart.includes(device.id) ? "Remove from cart" : "Add to cart"}
                       >
                         <ShoppingCart className="w-5 h-5 text-white" />
                       </button>
                       <button
                         onClick={() => toggleFavorite(device.id)}
                         className="p-3 bg-white/10 hover:bg-water-500 rounded-xl transition-colors"
-                        title={favorites.includes(device.id) ? "Удалить из избранного" : "В избранное"}
+                        title={favorites.includes(device.id) ? "Remove from favorites" : "Add to favorites"}
                       >
                         <HeartIcon className={`w-5 h-5 text-white ${favorites.includes(device.id) ? "fill-red-500 text-red-500" : ""}`} />
                       </button>
                       <button
                         onClick={() => setShareModalOpen(true)}
                         className="p-3 bg-white/10 hover:bg-water-500 rounded-xl transition-colors"
-                        title="Поделиться"
+                        title="Share"
                       >
                         <Share2 className="w-5 h-5 text-white" />
                       </button>
@@ -897,19 +920,19 @@ export default function VodLabPage() {
                     {/* Key specs */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       <div className="text-sm">
-                        <div className="text-slate-500">Параметры</div>
+                        <div className="text-slate-500">Parameters</div>
                         <div className="font-semibold text-white">{device.parameters}</div>
                       </div>
                       <div className="text-sm">
-                        <div className="text-slate-500">Производительность</div>
+                        <div className="text-slate-500">Throughput</div>
                         <div className="font-semibold text-white">{device.samplesPerDay}</div>
                       </div>
                       <div className="text-sm">
-                        <div className="text-slate-500">Точность</div>
+                        <div className="text-slate-500">Accuracy</div>
                         <div className="font-semibold text-white">{device.accuracy}</div>
                       </div>
                       <div className="text-sm">
-                        <div className="text-slate-500">Доставка</div>
+                        <div className="text-slate-500">Delivery</div>
                         <div className="font-semibold text-white">{device.delivery}</div>
                       </div>
                     </div>
@@ -919,7 +942,7 @@ export default function VodLabPage() {
                       <div className="flex items-center gap-2">
                         <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                         <span className="font-semibold text-white">{device.rating}</span>
-                        <span className="text-slate-400 text-sm">({device.reviews} отзывов)</span>
+                        <span className="text-slate-400 text-sm">({device.reviews} reviews)</span>
                       </div>
                     </div>
 
@@ -927,9 +950,10 @@ export default function VodLabPage() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => setSelectedDevice(device)}
-                        className="flex-1 px-4 py-3 bg-water-500 hover:bg-water-600 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 px-4 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
                       >
-                        Изучить
+                        <Wrench className="w-4 h-4" />
+                        Pre-order / Stake
                         <ChevronRight className="w-4 h-4" />
                       </button>
                       <button
@@ -965,7 +989,7 @@ export default function VodLabPage() {
                   <div className="flex items-center gap-2">
                     <BarChart3 className="w-5 h-5 text-water-400" />
                     <span className="text-white font-medium">
-                      Сравнение: {selectedDevices.length}/3
+                      Compare: {selectedDevices.length}/3
                     </span>
                   </div>
                   <div className="flex -space-x-2">
@@ -985,7 +1009,7 @@ export default function VodLabPage() {
                     onClick={() => setCompareModalOpen(true)}
                     className="px-4 py-2 bg-water-500 hover:bg-water-600 text-white rounded-lg font-medium transition-colors"
                   >
-                    Сравнить
+                    Compare
                   </button>
                   <button
                     onClick={() => setSelectedDevices([])}
@@ -1005,9 +1029,9 @@ export default function VodLabPage() {
         <section className="py-20 bg-white/5">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Детальные спецификации</h2>
+              <h2 className="text-3xl font-bold text-white mb-4">Detailed Specifications</h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                Технические характеристики профессиональных лабораторий VOD-Lab
+                Technical specifications of professional VOD-Lab laboratories. All devices are in development stage.
               </p>
             </div>
 
@@ -1059,13 +1083,13 @@ export default function VodLabPage() {
                 </div>
 
                 {/* Floating badges */}
-                <div className="absolute -top-4 -right-4 px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-400 text-sm font-medium">
-                  <CheckCircle2 className="w-4 h-4 inline mr-1" />
-                  В наличии
+                <div className="absolute -top-4 -right-4 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full text-amber-400 text-sm font-medium animate-pulse">
+                  <Wrench className="w-4 h-4 inline mr-1" />
+                  IN DEVELOPMENT
                 </div>
                 <div className="absolute -bottom-4 -left-4 px-4 py-2 bg-water-500/20 border border-water-500/30 rounded-full text-water-400 text-sm font-medium">
                   <Award className="w-4 h-4 inline mr-1" />
-                  Выбор профессионалов
+                  Professional Choice
                 </div>
               </div>
 
@@ -1074,7 +1098,7 @@ export default function VodLabPage() {
                 <div>
                   <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                     <Database className="w-5 h-5 text-water-400" />
-                    Технические характеристики
+                    Technical Specifications
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
                     {activeSpec.specs.slice(0, 8).map((spec, index) => (
@@ -1092,7 +1116,7 @@ export default function VodLabPage() {
                 <div>
                   <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                     <Beaker className="w-5 h-5 text-water-400" />
-                    Сенсоры и анализаторы
+                    Sensors & Analyzers
                   </h3>
                   <ul className="space-y-2">
                     {activeSpec.sensors.map((sensor, index) => (
@@ -1110,7 +1134,7 @@ export default function VodLabPage() {
                 <div>
                   <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                     <Cpu className="w-5 h-5 text-water-400" />
-                    AI и автоматизация
+                    AI & Automation
                   </h3>
                   <ul className="space-y-2">
                     {activeSpec.ai.map((item, index) => (
@@ -1135,13 +1159,13 @@ export default function VodLabPage() {
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-3xl font-bold text-center text-white mb-12">
-              Сравнение моделей
+              Model Comparison
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-white/10">
-                    <th className="text-left py-4 px-6 text-slate-400 font-medium">Характеристика</th>
+                    <th className="text-left py-4 px-6 text-slate-400 font-medium">Feature</th>
                     <th className="text-center py-4 px-6 text-water-400 font-semibold">
                       <div className="flex flex-col items-center gap-1">
                         <Microscope className="w-6 h-6" />
@@ -1193,9 +1217,9 @@ export default function VodLabPage() {
         <section className="py-20 bg-white/5">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Сценарии использования</h2>
+              <h2 className="text-3xl font-bold text-white mb-4">Use Cases</h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                Реальные применения устройств VOD-Lab по всему миру
+                Real-world applications of VOD-Lab devices around the globe
               </p>
             </div>
 
@@ -1203,38 +1227,38 @@ export default function VodLabPage() {
               {[
                 {
                   icon: Droplets,
-                  title: "Городские системы",
-                  description: "Непрерывный мониторинг водопровода, обнаружение загрязнений в реальном времени",
+                  title: "Urban Systems",
+                  description: "Continuous water supply monitoring, real-time contamination detection",
                   devices: ["VOD-Lab Pro", "VOD-Lab Mini"],
                 },
                 {
                   icon: FlaskConical,
-                  title: "Промышленность",
-                  description: "Контроль промышленных стоков, автоматическая отчётность регуляторам",
+                  title: "Industry",
+                  description: "Industrial discharge control, automated regulatory reporting",
                   devices: ["VOD-Lab Pro", "VOD-Lab Node"],
                 },
                 {
                   icon: Leaf,
-                  title: "Сельское хозяйство",
-                  description: "Мониторинг орошения, контроль нитратов, оптимизация полива",
+                  title: "Agriculture",
+                  description: "Irrigation monitoring, nitrate control, irrigation optimization",
                   devices: ["VOD-Lab Mini", "Smart Sensor"],
                 },
                 {
                   icon: Truck,
-                  title: "Экспедиции",
-                  description: "Полевые исследования, экологические инспекции, ЧС",
+                  title: "Expeditions",
+                  description: "Field research, environmental inspections, emergencies",
                   devices: ["Water Expeditor", "VOD-Lab Node"],
                 },
                 {
                   icon: Smartphone,
-                  title: "Гражданская наука",
-                  description: "Волонтёрский мониторинг, эко-активизм, образование",
+                  title: "Citizen Science",
+                  description: "Volunteer monitoring, eco-activism, education",
                   devices: ["VOD Check", "Smart Sensor"],
                 },
                 {
                   icon: GraduationCap,
-                  title: "Образование",
-                  description: "Университеты, школы, курсы VOD-Academy",
+                  title: "Education",
+                  description: "Universities, schools, VOD-Academy courses",
                   devices: ["VOD-Lab Node", "VOD-Lab Mini"],
                 },
               ].map((useCase, index) => (
@@ -1274,10 +1298,10 @@ export default function VodLabPage() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-white mb-4">
-                Безопасность и верификация
+                Security & Verification
               </h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                6 уровней защиты данных от физического сенсора до блокчейна
+                6 levels of data protection from physical sensor to blockchain
               </p>
             </div>
 
@@ -1310,87 +1334,31 @@ export default function VodLabPage() {
         </section>
 
         {/* ============================================================================
-            ОТЗЫВЫ И РЕЙТИНГИ
+            REVIEWS REMOVED - No real reviews yet, devices in development
         ============================================================================ */}
         <section className="py-20 bg-white/5">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Отзывы владельцев</h2>
-              <p className="text-slate-400 max-w-2xl mx-auto">
-                Реальный опыт использования устройств VOD-Lab
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <div className="bg-gradient-to-r from-amber-500/10 to-yellow-500/10 rounded-3xl p-12 border border-amber-500/20">
+              <MessageSquare className="w-16 h-16 text-amber-400 mx-auto mb-6" />
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Reviews Coming Soon
+              </h2>
+              <p className="text-slate-400 mb-8 max-w-xl mx-auto">
+                VOD-Lab devices are still in development. Real reviews from actual users will be posted once devices ship. Until then, you can pre-order or stake to support development.
               </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {reviews.map((review, index) => (
-                <motion.div
-                  key={review.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="p-6 bg-gradient-to-br from-ocean-800 to-ocean-900 rounded-2xl border border-white/10"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-water-400 to-cyan-glow flex items-center justify-center text-ocean-deep font-bold">
-                      {review.avatar}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white">{review.author}</div>
-                      <div className="text-xs text-slate-400">{review.role}</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < review.rating
-                            ? "fill-yellow-400 text-yellow-400"
-                            : "text-slate-600"
-                        }`}
-                      />
-                    ))}
-                    <span className="text-sm text-slate-400 ml-2">{review.date}</span>
-                  </div>
-
-                  <div className="px-3 py-1 bg-water-500/20 rounded-full text-xs text-water-400 inline-block mb-3">
-                    {review.device}
-                  </div>
-
-                  <p className="text-slate-300 mb-4">{review.text}</p>
-
-                  <div className="flex items-center justify-between">
-                    <button className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
-                      <ThumbsUp className="w-4 h-4" />
-                      {review.helpful}
-                    </button>
-                    <button className="text-slate-400 hover:text-white transition-colors text-sm">
-                      <MessageSquare className="w-4 h-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="text-center mt-8">
-              <button className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold transition-colors flex items-center gap-2 mx-auto">
-                <Users className="w-5 h-5" />
-                Все отзывы ({reviews.reduce((acc, r) => acc + r.helpful, 0)}+)
-              </button>
             </div>
           </div>
         </section>
 
         {/* ============================================================================
-            ОБРАЗОВАТЕЛЬНЫЙ КОНТЕНТ
+            EDUCATIONAL CONTENT
         ============================================================================ */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Обучение и поддержка</h2>
+              <h2 className="text-3xl font-bold text-white mb-4">Training & Support</h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                Видеообзоры, инструкции, FAQ и сервисная поддержка
+                Video reviews, instructions, FAQ and service support
               </p>
             </div>
 
@@ -1398,7 +1366,7 @@ export default function VodLabPage() {
             <div className="mb-16">
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                 <Video className="w-5 h-5 text-water-400" />
-                Видеообзоры
+                Video Reviews
               </h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {videos.map((video, index) => (
@@ -1421,7 +1389,7 @@ export default function VodLabPage() {
                     <h4 className="font-medium text-white mt-3 mb-1 group-hover:text-water-400 transition-colors">
                       {video.title}
                     </h4>
-                    <div className="text-sm text-slate-400">{video.views} просмотров</div>
+                    <div className="text-sm text-slate-400">{video.views} views</div>
                   </motion.div>
                 ))}
               </div>
@@ -1431,7 +1399,7 @@ export default function VodLabPage() {
             <div>
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-water-400" />
-                Часто задаваемые вопросы
+                Frequently Asked Questions
               </h3>
               <div className="space-y-4 max-w-4xl mx-auto">
                 {faqs.map((faq, index) => (
@@ -1472,18 +1440,18 @@ export default function VodLabPage() {
               {[
                 {
                   icon: BookOpen,
-                  title: "Инструкции",
-                  description: "Пошаговые руководства по установке и эксплуатации",
+                  title: "Instructions",
+                  description: "Step-by-step guides for installation and operation",
                 },
                 {
                   icon: Wrench,
-                  title: "Сервис",
-                  description: "Гарантийное и постгарантийное обслуживание",
+                  title: "Service",
+                  description: "Warranty and post-warranty maintenance",
                 },
                 {
                   icon: MessageSquare,
-                  title: "Поддержка 24/7",
-                  description: "Техническая поддержка через чат, email, телефон",
+                  title: "24/7 Support",
+                  description: "Technical support via chat, email, phone",
                 },
               ].map((item, index) => (
                 <motion.div
@@ -1513,25 +1481,26 @@ export default function VodLabPage() {
             <div className="bg-gradient-to-r from-water-500/10 to-cyan-500/10 rounded-3xl p-12 border border-water-500/20">
               <Award className="w-16 h-16 text-water-400 mx-auto mb-6" />
               <h2 className="text-3xl font-bold text-white mb-4">
-                Станьте оператором VOD-Lab
+                Become a VOD-Lab Operator
               </h2>
               <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-                Установите ноду у себя в регионе, получайте доход от верификации данных
-                и участвуйте в глобальной сети мониторинга воды.
+                Install a node in your region, earn income from data verification,
+                and participate in the global water monitoring network. Devices are in development — stake now to secure your spot.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/tokenhub"
-                  className="px-8 py-4 bg-water-500 hover:bg-water-600 text-white rounded-xl font-semibold transition-colors"
+                  className="px-8 py-4 bg-water-500 hover:bg-water-600 text-white rounded-xl font-semibold transition-colors flex items-center gap-2"
                 >
-                  Инвестировать сейчас
+                  <Wrench className="w-5 h-5" />
+                  Invest in Development
                 </Link>
                 <button
                   onClick={() => setDemoModalOpen(true)}
                   className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold transition-colors flex items-center gap-2"
                 >
                   <ExternalLink className="w-5 h-5" />
-                  Запросить демонстрацию
+                  Request a Demo
                 </button>
               </div>
             </div>
@@ -1540,7 +1509,7 @@ export default function VodLabPage() {
       </main>
 
       {/* ============================================================================
-          МОДАЛЬНЫЕ ОКНА
+          MODALS
       ============================================================================ */}
 
       {/* Compare Modal */}
@@ -1561,7 +1530,7 @@ export default function VodLabPage() {
               onClick={e => e.stopPropagation()}
             >
               <div className="p-6 border-b border-white/10 flex items-center justify-between sticky top-0 bg-ocean-900">
-                <h3 className="text-2xl font-bold text-white">Сравнение устройств</h3>
+                <h3 className="text-2xl font-bold text-white">Device Comparison</h3>
                 <button
                   onClick={() => setCompareModalOpen(false)}
                   className="p-2 text-slate-400 hover:text-white transition-colors"
@@ -1574,7 +1543,7 @@ export default function VodLabPage() {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-4 px-6 text-slate-400 font-medium">Характеристика</th>
+                        <th className="text-left py-4 px-6 text-slate-400 font-medium">Feature</th>
                         {selectedDevices.map(id => {
                           const d = devices.find(dev => dev.id === id);
                           return (
@@ -1595,16 +1564,16 @@ export default function VodLabPage() {
                     </thead>
                     <tbody>
                       {[
-                        { label: "Цена", key: "priceFormatted" },
-                        { label: "Параметры", key: "parameters" },
-                        { label: "Производительность", key: "samplesPerDay" },
-                        { label: "Точность", key: "accuracy" },
-                        { label: "Вес", key: "weight" },
-                        { label: "Защита", key: "protection" },
-                        { label: "Температура", key: "tempRange" },
-                        { label: "Питание", key: "power" },
-                        { label: "Гарантия", key: "warranty" },
-                        { label: "Рейтинг", key: "rating", format: (v: any) => `⭐ ${v}` },
+                        { label: "Price", key: "priceFormatted" },
+                        { label: "Parameters", key: "parameters" },
+                        { label: "Throughput", key: "samplesPerDay" },
+                        { label: "Accuracy", key: "accuracy" },
+                        { label: "Weight", key: "weight" },
+                        { label: "Protection", key: "protection" },
+                        { label: "Temperature", key: "tempRange" },
+                        { label: "Power", key: "power" },
+                        { label: "Warranty", key: "warranty" },
+                        { label: "Rating", key: "rating", format: (v: any) => `⭐ ${v}` },
                       ].map((row, i) => (
                         <tr key={i} className="border-b border-white/5">
                           <td className="py-4 px-6 text-slate-300">{row.label}</td>
@@ -1648,7 +1617,7 @@ export default function VodLabPage() {
               <div className="p-6 border-b border-white/10 flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-white flex items-center gap-2">
                   <Calculator className="w-6 h-6 text-water-400" />
-                  Калькулятор ROI
+                  ROI Calculator
                 </h3>
                 <button
                   onClick={() => setRoiModalOpen(false)}
@@ -1659,7 +1628,7 @@ export default function VodLabPage() {
               </div>
               <div className="p-6 space-y-6">
                 <div>
-                  <label className="block text-sm text-slate-400 mb-2">Устройство</label>
+                  <label className="block text-sm text-slate-400 mb-2">Device</label>
                   <select
                     value={roiDevice}
                     onChange={e => setRoiDevice(e.target.value)}
@@ -1675,7 +1644,7 @@ export default function VodLabPage() {
 
                 <div>
                   <label className="block text-sm text-slate-400 mb-2">
-                    Объём анализов в год (образцов)
+                    Annual analysis volume (samples)
                   </label>
                   <input
                     type="number"
@@ -1687,7 +1656,7 @@ export default function VodLabPage() {
 
                 <div>
                   <label className="block text-sm text-slate-400 mb-2">
-                    Текущая стоимость одного анализа ($)
+                    Current cost per analysis ($)
                   </label>
                   <input
                     type="number"
@@ -1699,7 +1668,7 @@ export default function VodLabPage() {
 
                 <div>
                   <label className="block text-sm text-slate-400 mb-2">
-                    Годовые затраты на персонал ($)
+                    Annual personnel costs ($)
                   </label>
                   <input
                     type="number"
@@ -1714,35 +1683,35 @@ export default function VodLabPage() {
                   const device = devices.find(d => d.id === roiDevice);
                   if (!device) return null;
                   const currentAnnualCost = roiWaterVolume * roiCurrentCost + roiLaborCost;
-                  const vodLabAnnualCost = roiWaterVolume * 5 + 800 * 12; // $5/анализ + обслуживание
+                  const vodLabAnnualCost = roiWaterVolume * 5 + 800 * 12; // $5/analysis + maintenance
                   const annualSavings = currentAnnualCost - vodLabAnnualCost;
                   const paybackMonths = Math.ceil(device.price / (annualSavings / 12));
                   const roi5Years = ((annualSavings * 5 - device.price) / device.price) * 100;
 
                   return (
                     <div className="p-6 bg-water-500/10 rounded-xl border border-water-500/30">
-                      <h4 className="font-bold text-white mb-4">Результаты расчёта</h4>
+                      <h4 className="font-bold text-white mb-4">Calculation Results</h4>
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <div className="text-sm text-slate-400">Текущие затраты/год</div>
+                          <div className="text-sm text-slate-400">Current costs/year</div>
                           <div className="text-2xl font-bold text-white">${currentAnnualCost.toLocaleString()}</div>
                         </div>
                         <div>
-                          <div className="text-sm text-slate-400">С VOD-Lab/год</div>
+                          <div className="text-sm text-slate-400">With VOD-Lab/year</div>
                           <div className="text-2xl font-bold text-white">${vodLabAnnualCost.toLocaleString()}</div>
                         </div>
                         <div>
-                          <div className="text-sm text-slate-400">Экономия/год</div>
+                          <div className="text-sm text-slate-400">Savings/year</div>
                           <div className="text-2xl font-bold text-emerald-400">${annualSavings.toLocaleString()}</div>
                         </div>
                         <div>
-                          <div className="text-sm text-slate-400">Окупаемость</div>
-                          <div className="text-2xl font-bold text-water-400">{paybackMonths} мес.</div>
+                          <div className="text-sm text-slate-400">Payback</div>
+                          <div className="text-2xl font-bold text-water-400">{paybackMonths} mo.</div>
                         </div>
                       </div>
                       <div className="mt-4 pt-4 border-t border-water-500/30">
                         <div className="flex items-center justify-between">
-                          <span className="text-slate-400">ROI за 5 лет</span>
+                          <span className="text-slate-400">5-year ROI</span>
                           <span className="text-3xl font-bold text-emerald-400">{roi5Years.toFixed(0)}%</span>
                         </div>
                       </div>
@@ -1773,7 +1742,7 @@ export default function VodLabPage() {
               onClick={e => e.stopPropagation()}
             >
               <div className="p-6 border-b border-white/10 flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-white">Запрос демонстрации</h3>
+                <h3 className="text-2xl font-bold text-white">Request a Demo</h3>
                 <button
                   onClick={() => setDemoModalOpen(false)}
                   className="p-2 text-slate-400 hover:text-white transition-colors"
@@ -1784,7 +1753,7 @@ export default function VodLabPage() {
               <div className="p-6 space-y-4">
                 <input
                   type="text"
-                  placeholder="Ваше имя"
+                  placeholder="Your name"
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-water-500"
                 />
                 <input
@@ -1794,23 +1763,23 @@ export default function VodLabPage() {
                 />
                 <input
                   type="tel"
-                  placeholder="Телефон"
+                  placeholder="Phone"
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-water-500"
                 />
                 <select className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-water-500">
-                  <option value="" className="bg-ocean-900">Выберите устройство</option>
+                  <option value="" className="bg-ocean-900">Select a device</option>
                   {devices.map(d => (
                     <option key={d.id} value={d.id} className="bg-ocean-900">{d.name}</option>
                   ))}
                 </select>
                 <textarea
-                  placeholder="Комментарий (необязательно)"
+                  placeholder="Comment (optional)"
                   rows={4}
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-water-500 resize-none"
                 />
                 <button className="w-full px-6 py-4 bg-water-500 hover:bg-water-600 text-white rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
                   <Send className="w-5 h-5" />
-                  Отправить заявку
+                  Submit Request
                 </button>
               </div>
             </motion.div>
@@ -1836,7 +1805,7 @@ export default function VodLabPage() {
               onClick={e => e.stopPropagation()}
             >
               <div className="p-6 border-b border-white/10 flex items-center justify-between">
-                <h3 className="text-xl font-bold text-white">Поделиться устройством</h3>
+                <h3 className="text-xl font-bold text-white">Share Device</h3>
                 <button
                   onClick={() => setShareModalOpen(false)}
                   className="p-2 text-slate-400 hover:text-white transition-colors"
@@ -1860,7 +1829,7 @@ export default function VodLabPage() {
                   LinkedIn
                 </button>
                 <div className="pt-4 border-t border-white/10">
-                  <label className="block text-sm text-slate-400 mb-2">Или скопируйте ссылку</label>
+                  <label className="block text-sm text-slate-400 mb-2">Or copy the link</label>
                   <div className="flex gap-2">
                     <input
                       type="text"
@@ -1897,7 +1866,7 @@ export default function VodLabPage() {
               onClick={e => e.stopPropagation()}
             >
               <div className="p-6 border-b border-white/10 flex items-center justify-between">
-                <h3 className="text-xl font-bold text-white">Пригласить к покупке</h3>
+                <h3 className="text-xl font-bold text-white">Invite to Purchase</h3>
                 <button
                   onClick={() => setInviteModalOpen(false)}
                   className="p-2 text-slate-400 hover:text-white transition-colors"
@@ -1908,18 +1877,18 @@ export default function VodLabPage() {
               <div className="p-6 space-y-4">
                 <input
                   type="email"
-                  placeholder="Email получателя"
+                  placeholder="Recipient email"
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-water-500"
                 />
                 <textarea
-                  placeholder="Ваше сообщение (необязательно)"
+                  placeholder="Your message (optional)"
                   rows={4}
-                  defaultValue="Привет! Нашёл отличное устройство для мониторинга воды. Посмотри, думаю тебе будет интересно."
+                  defaultValue="Hi! I found a great device for water monitoring. Check it out, I think you'd be interested."
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-water-500 resize-none"
                 />
                 <button className="w-full px-6 py-4 bg-water-500 hover:bg-water-600 text-white rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
                   <Send className="w-5 h-5" />
-                  Отправить приглашение
+                  Send Invite
                 </button>
               </div>
             </motion.div>
