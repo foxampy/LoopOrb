@@ -573,5 +573,79 @@
       "TRANSFER_IN": "Получение",
       "TRANSFER_OUT": "Отправка"
     }
+  },
+  "missionsPage": {
+    "title": "Миссии",
+    "subtitle": "Выполняйте миссии и получайте XP, UNITY и токены VOD",
+    "comingSoon": "Скоро",
+    "missions": {
+      "invite": {
+        "title": "Приглашай друзей и зарабатывай",
+        "description": "Реферальная программа — получай % от покуток токенов приглашённых",
+        "badge": "Реферал"
+      },
+      "airdrop": {
+        "title": "Airdrop Mission",
+        "description": "Выполняйте задания и получайте аирдропы токенов VOD",
+        "badge": "Airdrop"
+      },
+      "retrodrop": {
+        "title": "Retrodrop Rewards",
+        "description": "Ранние сторонники получают ретроактивные дропы токенов",
+        "badge": "Retro"
+      },
+      "partner": {
+        "title": "Партнёрская программа",
+        "description": "Зарабатывайте комиссии за привлечение партнёров",
+        "badge": "Партнёр"
+      },
+      "bounties": {
+        "title": "Developer Bounties",
+        "description": "Получайте вознаграждение за вклад в код",
+        "badge": "Баунти"
+      }
+    },
+    "startMission": "Начать миссию",
+    "learnMore": "Подробнее"
+  },
+  "team": {
+    "title": "Присоединяйся к команде",
+    "subtitle": "Мы строим будущее воды. Присоединяйся к FoxampyLab.",
+    "apply": "Откликнуться",
+    "emailNote": "Отправьте портфолио/резюме на",
+    "positions": {
+      "frontend": {
+        "title": "Frontend-разработчик",
+        "tech": "React/Next.js"
+      },
+      "backend": {
+        "title": "Backend-разработчик",
+        "tech": "Node.js/Python"
+      },
+      "web3": {
+        "title": "Web3-разработчик",
+        "tech": "Solidity/Blockchain"
+      },
+      "marketing": {
+        "title": "Маркетолог",
+        "tech": "Growth"
+      },
+      "designer": {
+        "title": "UI/UX дизайнер",
+        "tech": "Дизайн"
+      },
+      "rnd": {
+        "title": "Инженер R&D",
+        "tech": "IoT/Сенсоры"
+      },
+      "community": {
+        "title": "Менеджер сообщества",
+        "tech": "Комьюнити"
+      },
+      "datascientist": {
+        "title": "Data Scientist",
+        "tech": "AI/ML"
+      }
+    }
   }
 }

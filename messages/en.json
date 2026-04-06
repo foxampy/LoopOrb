@@ -573,5 +573,79 @@
       "TRANSFER_IN": "Received",
       "TRANSFER_OUT": "Sent"
     }
+  },
+  "missionsPage": {
+    "title": "Missions",
+    "subtitle": "Complete missions to earn XP, UNITY, and VOD tokens",
+    "comingSoon": "Coming Soon",
+    "missions": {
+      "invite": {
+        "title": "Invite Friends & Earn",
+        "description": "Refer friends and get % of their token purchases",
+        "badge": "Referral"
+      },
+      "airdrop": {
+        "title": "Airdrop Mission",
+        "description": "Complete tasks to earn VOD token airdrops",
+        "badge": "Airdrop"
+      },
+      "retrodrop": {
+        "title": "Retrodrop Rewards",
+        "description": "Early supporters receive retroactive token drops",
+        "badge": "Retro"
+      },
+      "partner": {
+        "title": "Partner Program",
+        "description": "Earn commissions for bringing in partners",
+        "badge": "Partner"
+      },
+      "bounties": {
+        "title": "Developer Bounties",
+        "description": "Get rewarded for contributing code",
+        "badge": "Bounty"
+      }
+    },
+    "startMission": "Start Mission",
+    "learnMore": "Learn More"
+  },
+  "team": {
+    "title": "Join the Team",
+    "subtitle": "We're building the future of water. Join FoxampyLab.",
+    "apply": "Apply",
+    "emailNote": "Send your portfolio/CV to",
+    "positions": {
+      "frontend": {
+        "title": "Frontend Developer",
+        "tech": "React/Next.js"
+      },
+      "backend": {
+        "title": "Backend Developer",
+        "tech": "Node.js/Python"
+      },
+      "web3": {
+        "title": "Web3 Developer",
+        "tech": "Solidity/Blockchain"
+      },
+      "marketing": {
+        "title": "Marketing Specialist",
+        "tech": "Growth"
+      },
+      "designer": {
+        "title": "UI/UX Designer",
+        "tech": "Design"
+      },
+      "rnd": {
+        "title": "R&D Engineer",
+        "tech": "IoT/Sensors"
+      },
+      "community": {
+        "title": "Community Manager",
+        "tech": "Community"
+      },
+      "datascientist": {
+        "title": "Data Scientist",
+        "tech": "AI/ML"
+      }
+    }
   }
 }

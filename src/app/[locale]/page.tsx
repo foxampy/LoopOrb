@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import { useSocket } from "@/hooks/useSocket";
+import { useTranslations } from "next-intl";
 import {
   Droplets,
   ArrowRight,
@@ -70,6 +71,12 @@ import {
   Pause,
   Volume2,
   VolumeX,
+  Code,
+  UsersRound,
+  Palette,
+  Cpu,
+  Megaphone,
+  BrainCircuit,
 } from "lucide-react";
 
 // Dynamically import Globe3D to avoid SSR issues
@@ -896,6 +903,81 @@ function CreateMissionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
   );
 }
 
+// Mission Info Card (Coming Soon)
+function MissionInfoCard({ mission, index }: { mission: { id: string; title: string; description: string; badge: string; icon: any; color: string }; index: number }) {
+  const t = useTranslations("missionsPage");
+  const Icon = mission.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="glass-card p-5 relative overflow-hidden group hover:bg-white/10 transition"
+    >
+      <div className={`absolute top-0 right-0 w-32 h-32 ${mission.color} rounded-full blur-3xl -mr-16 -mt-16 opacity-20 group-hover:opacity-30 transition`} />
+
+      <div className="relative">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex items-center gap-3">
+            <div className={`w-11 h-11 rounded-xl ${mission.color} bg-opacity-20 flex items-center justify-center`}>
+              <Icon className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="font-semibold text-white text-sm">{mission.title}</h4>
+              <span className="text-xs text-water-200/50">{mission.badge}</span>
+            </div>
+          </div>
+          <span className="text-xs px-2 py-1 rounded-full bg-water-500/20 text-water-400 border border-water-500/30">
+            {t("comingSoon")}
+          </span>
+        </div>
+
+        <p className="text-xs text-water-200/70 mb-4">{mission.description}</p>
+
+        <Link
+          href="/missions"
+          className="w-full py-2 bg-water-500/20 border border-water-500/30 text-water-400 rounded-lg text-xs font-medium hover:bg-water-500/30 transition text-center block"
+        >
+          {t("learnMore")}
+        </Link>
+      </div>
+    </motion.div>
+  );
+}
+
+// Team Position Card
+function TeamPositionCard({ position, index, t }: { position: { id: string; title: string; tech: string; icon: any; color: string }; index: number; t: any }) {
+  const Icon = position.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.08 }}
+      className="glass-card p-4 group hover:bg-white/10 transition"
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className={`w-10 h-10 rounded-lg ${position.color} bg-opacity-20 flex items-center justify-center`}>
+            <Icon className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="font-medium text-white text-sm">{position.title}</div>
+            <div className="text-xs text-water-200/50">{position.tech}</div>
+          </div>
+        </div>
+        <a
+          href="mailto:team@foxampylab.com"
+          className="px-4 py-2 bg-water-500/20 border border-water-500/30 text-water-400 rounded-lg text-xs font-medium hover:bg-water-500/30 transition"
+        >
+          {t("apply")}
+        </a>
+      </div>
+    </motion.div>
+  );
+}
+
 // Mobile Bottom Navigation
 function MobileBottomNav({ activeTab, setActiveTab }: { activeTab: string; setActiveTab: (tab: string) => void }) {
   const tabs = [
@@ -940,6 +1022,11 @@ function MobileBottomNav({ activeTab, setActiveTab }: { activeTab: string; setAc
 // ==================== MAIN PAGE COMPONENT ====================
 
 export default function HomePage() {
+  // i18n
+  const t = useTranslations("home");
+  const tMissions = useTranslations("missionsPage");
+  const tTeam = useTranslations("team");
+
   // State
   const [user, setUser] = useState<User | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -1298,7 +1385,7 @@ export default function HomePage() {
                 </div>
               </motion.section>
 
-              {/* Daily Missions */}
+              {/* Missions - Coming Soon */}
               <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1307,24 +1394,71 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Flame className="w-5 h-5 text-orange-400" />
-                    <h2 className="text-lg font-semibold text-white">Daily Missions</h2>
+                    <h2 className="text-lg font-semibold text-white">{tMissions("title")}</h2>
                   </div>
                   <Link href="/missions" className="text-sm text-water-400 hover:text-water-300 transition">
-                    All Missions →
+                    {tMissions("learnMore")} →
                   </Link>
                 </div>
 
-                <div className="space-y-3">
-                  {missions.length > 0 ? (
-                    missions.map((mission, index) => (
-                      <MissionCard key={mission.id} mission={mission} index={index} />
-                    ))
-                  ) : (
-                    <div className="glass-card p-6 text-center">
-                      <Target className="w-12 h-12 text-water-200/30 mx-auto mb-3" />
-                      <p className="text-water-200/70">No available missions</p>
-                    </div>
-                  )}
+                <p className="text-water-200/70 text-sm mb-4">{tMissions("subtitle")}</p>
+
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <MissionInfoCard
+                    mission={{
+                      id: "invite",
+                      title: tMissions("missions.invite.title"),
+                      description: tMissions("missions.invite.description"),
+                      badge: tMissions("missions.invite.badge"),
+                      icon: UserPlus,
+                      color: "bg-green-500/20 text-green-400",
+                    }}
+                    index={0}
+                  />
+                  <MissionInfoCard
+                    mission={{
+                      id: "airdrop",
+                      title: tMissions("missions.airdrop.title"),
+                      description: tMissions("missions.airdrop.description"),
+                      badge: tMissions("missions.airdrop.badge"),
+                      icon: Gift,
+                      color: "bg-blue-500/20 text-blue-400",
+                    }}
+                    index={1}
+                  />
+                  <MissionInfoCard
+                    mission={{
+                      id: "retrodrop",
+                      title: tMissions("missions.retrodrop.title"),
+                      description: tMissions("missions.retrodrop.description"),
+                      badge: tMissions("missions.retrodrop.badge"),
+                      icon: Crown,
+                      color: "bg-yellow-500/20 text-yellow-400",
+                    }}
+                    index={2}
+                  />
+                  <MissionInfoCard
+                    mission={{
+                      id: "partner",
+                      title: tMissions("missions.partner.title"),
+                      description: tMissions("missions.partner.description"),
+                      badge: tMissions("missions.partner.badge"),
+                      icon: HandCoins,
+                      color: "bg-purple-500/20 text-purple-400",
+                    }}
+                    index={3}
+                  />
+                  <MissionInfoCard
+                    mission={{
+                      id: "bounties",
+                      title: tMissions("missions.bounties.title"),
+                      description: tMissions("missions.bounties.description"),
+                      badge: tMissions("missions.bounties.badge"),
+                      icon: Code,
+                      color: "bg-cyan-500/20 text-cyan-400",
+                    }}
+                    index={4}
+                  />
                 </div>
               </motion.section>
 
@@ -1379,6 +1513,130 @@ export default function HomePage() {
                       <div className="text-xs text-water-200/60">{tool.desc}</div>
                     </Link>
                   ))}
+                </div>
+              </motion.section>
+
+              {/* Team Recruitment */}
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 }}
+                className="glass-card p-6 relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-water-500 via-cyan-400 to-green-400" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-water-500/10 to-green-500/10 rounded-full blur-3xl -mr-32 -mt-32" />
+
+                <div className="relative">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-water-400 to-cyan-glow flex items-center justify-center">
+                      <UsersRound className="w-5 h-5 text-ocean-deep" />
+                    </div>
+                    <h2 className="text-xl font-bold text-white">{tTeam("title")}</h2>
+                  </div>
+
+                  <p className="text-water-200/70 text-sm mb-6">{tTeam("subtitle")}</p>
+
+                  <div className="space-y-2 mb-6">
+                    <TeamPositionCard
+                      position={{
+                        id: "frontend",
+                        title: tTeam("positions.frontend.title"),
+                        tech: tTeam("positions.frontend.tech"),
+                        icon: Code,
+                        color: "bg-blue-500/20 text-blue-400",
+                      }}
+                      index={0}
+                      t={tTeam}
+                    />
+                    <TeamPositionCard
+                      position={{
+                        id: "backend",
+                        title: tTeam("positions.backend.title"),
+                        tech: tTeam("positions.backend.tech"),
+                        icon: Code,
+                        color: "bg-green-500/20 text-green-400",
+                      }}
+                      index={1}
+                      t={tTeam}
+                    />
+                    <TeamPositionCard
+                      position={{
+                        id: "web3",
+                        title: tTeam("positions.web3.title"),
+                        tech: tTeam("positions.web3.tech"),
+                        icon: Shield,
+                        color: "bg-purple-500/20 text-purple-400",
+                      }}
+                      index={2}
+                      t={tTeam}
+                    />
+                    <TeamPositionCard
+                      position={{
+                        id: "marketing",
+                        title: tTeam("positions.marketing.title"),
+                        tech: tTeam("positions.marketing.tech"),
+                        icon: Megaphone,
+                        color: "bg-orange-500/20 text-orange-400",
+                      }}
+                      index={3}
+                      t={tTeam}
+                    />
+                    <TeamPositionCard
+                      position={{
+                        id: "designer",
+                        title: tTeam("positions.designer.title"),
+                        tech: tTeam("positions.designer.tech"),
+                        icon: Palette,
+                        color: "bg-pink-500/20 text-pink-400",
+                      }}
+                      index={4}
+                      t={tTeam}
+                    />
+                    <TeamPositionCard
+                      position={{
+                        id: "rnd",
+                        title: tTeam("positions.rnd.title"),
+                        tech: tTeam("positions.rnd.tech"),
+                        icon: Cpu,
+                        color: "bg-cyan-500/20 text-cyan-400",
+                      }}
+                      index={5}
+                      t={tTeam}
+                    />
+                    <TeamPositionCard
+                      position={{
+                        id: "community",
+                        title: tTeam("positions.community.title"),
+                        tech: tTeam("positions.community.tech"),
+                        icon: Users,
+                        color: "bg-yellow-500/20 text-yellow-400",
+                      }}
+                      index={6}
+                      t={tTeam}
+                    />
+                    <TeamPositionCard
+                      position={{
+                        id: "datascientist",
+                        title: tTeam("positions.datascientist.title"),
+                        tech: tTeam("positions.datascientist.tech"),
+                        icon: BrainCircuit,
+                        color: "bg-indigo-500/20 text-indigo-400",
+                      }}
+                      index={7}
+                      t={tTeam}
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-2 p-3 bg-white/5 rounded-lg">
+                    <Mail className="w-4 h-4 text-water-400" />
+                    <span className="text-sm text-water-200/70">{tTeam("emailNote")}</span>
+                    <a
+                      href="mailto:team@foxampylab.com"
+                      className="text-water-400 hover:text-water-300 text-sm font-medium transition"
+                    >
+                      team@foxampylab.com
+                    </a>
+                  </div>
                 </div>
               </motion.section>
             </div>
